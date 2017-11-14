@@ -26,6 +26,9 @@
     "prop-types": "15.6.0"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "3.2.15",
+    "@storybook/addon-knobs": "3.2.15",
+    "@storybook/addon-options": "3.2.15",
     "@storybook/react": "3.2.15",
     "babel-cli": "6.26.0",
     "babel-eslint": "8.0.2",
