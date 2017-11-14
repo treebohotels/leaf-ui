@@ -1,0 +1,6 @@
+{
+  "extends": "treebo",
+  "rules": {
+    "import/no-extraneous-dependencies": ["off"]
+  }
+}

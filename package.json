@@ -1,0 +1,63 @@
+{
+  "name": "leaf-ui",
+  "version": "0.0.1",
+  "description": "🍃 Leaf-UI: A component library built using styled-components",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "scripts": {
+    "start": "npm run storybook",
+    "storybook": "BABEL_ENV=es start-storybook -p 9000",
+    "storybook:build": "BABEL_ENV=commonjs build-storybook",
+    "prepublish": "run-p lint test build",
+    "build": "run-p build:es build:commonjs",
+    "build:es": "rimraf es && BABEL_ENV=es babel src -d es --ignore *.test.js --ignore *.story.js",
+    "build:commonjs": "rimraf lib && BABEL_ENV=commonjs babel src -d lib --ignore *.test.js --ignore *.story.js",
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint --ignore-path .gitignore .",
+    "lint:stylelint": "stylelint ./packages/**/*.css",
+    "test": "BABEL_ENV=es NODE_ENV=test jest"
+  },
+  "pre-commit": "lint, test",
+  "files": [
+    "lib/**/*",
+    "es/**/*"
+  ],
+  "dependencies": {
+    "prop-types": "15.6.0"
+  },
+  "devDependencies": {
+    "@storybook/react": "3.2.15",
+    "babel-cli": "6.26.0",
+    "babel-eslint": "8.0.2",
+    "babel-jest": "21.2.0",
+    "babel-preset-treebo": "github:treebohotels/babel-preset-treebo",
+    "eslint": "4.10.0",
+    "eslint-config-treebo": "github:treebohotels/eslint-config-treebo",
+    "jest": "21.2.1",
+    "npm-run-all": "4.1.2",
+    "react": "16.0.0",
+    "react-dom": "16.0.0",
+    "rimraf": "2.6.2",
+    "styled-components": "2.2.3",
+    "stylelint": "8.2.0",
+    "stylelint-config-standard": "17.0.0"
+  },
+  "peerDependencies": {
+    "react": "^15.3.0 || ^16.0.0",
+    "react-dom": "^15.3.0 || ^16.0.0",
+    "styled-components": "^2.2.3"
+  },
+  "optionalDependencies": {
+    "pre-commit": "1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/treebohotels/leaf-ui.git"
+  },
+  "author": "Lakshya Ranganath <lakshya.ranganath@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/treebohotels/leaf-ui/issues"
+  },
+  "homepage": "https://github.com/treebohotels/leaf-ui#readme"
+}

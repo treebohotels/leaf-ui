@@ -1,0 +1,24 @@
+{
+  "env": {
+    "es": {
+      "presets": [
+        ["treebo", {
+          "targets": {},
+          "loose": false,
+          "modules": false,
+          "useBuiltIns": false
+        }]
+      ]
+    },
+    "commonjs": {
+      "presets": [
+        ["treebo", {
+          "targets": {},
+          "loose": false,
+          "modules": "commonjs",
+          "useBuiltIns": false
+        }]
+      ]
+    }
+  }
+}
