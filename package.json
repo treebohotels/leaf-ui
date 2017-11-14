@@ -1,7 +1,7 @@
 {
   "name": "leaf-ui",
-  "version": "0.0.1",
-  "description": "🍃 Leaf-UI: A component library built using styled-components",
+  "version": "0.1.1",
+  "description": "🍃 Leaf-UI: A react component library built using styled-components",
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "build:commonjs": "rimraf lib && BABEL_ENV=commonjs babel src -d lib --ignore *.test.js --ignore *.story.js",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint --ignore-path .gitignore .",
-    "lint:stylelint": "stylelint ./packages/**/*.css",
+    "lint:stylelint": "stylelint ./src/**/*.js",
     "test": "BABEL_ENV=es NODE_ENV=test jest"
   },
   "pre-commit": "lint, test",
@@ -43,7 +43,9 @@
     "rimraf": "2.6.2",
     "styled-components": "2.2.3",
     "stylelint": "8.2.0",
-    "stylelint-config-standard": "17.0.0"
+    "stylelint-config-standard": "17.0.0",
+    "stylelint-config-styled-components": "0.1.1",
+    "stylelint-processor-styled-components": "1.0.0"
   },
   "peerDependencies": {
     "react": "^15.3.0 || ^16.0.0",

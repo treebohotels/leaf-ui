@@ -14,8 +14,7 @@ const Button = styled.button.attrs({
     large: `${props.theme.px([2, 3])}`,
   }[props.size])};
   ${(props) => (props.full ? 'width: 100%;' : '')}
-  color: ${(props) => (props.transparent
-    ? props.theme.color[props.color] : props.theme.color.white)};
+  color: ${(props) => (props.transparent ? props.theme.color[props.color] : props.theme.color.white)};
   background: ${(props) => (props.transparent ? 'transparent' : props.theme.color[props.color])};
   border: 1px solid ${(props) => (props.border ? props.theme.color[props.color] : 'transparent')};
   border-radius: ${(props) => (props.flat ? '0' : props.theme.border.radius)};

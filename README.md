@@ -1,33 +1,49 @@
 <div align="center">
 
 ## 🍃 Leaf-UI
-#### A component library for react/preact built using styled-components
-#### [WARNING: This is a work in progress, API is subject to change without warning]
+#### A react component library built using styled-components
+#### [WARNING: This is a work in progress, API is subject to change]
 
 </div>
 
 # Installation
 
 ``` bash
-npm i -S leaf-ui
+npm install -S leaf-ui
 ```
 
 # Usage
 
-Recommend usage: only include what's needed
-``` bash
-// if you need es modules
-import Card from 'leaf-ui/es/Card'
-import Button from 'leaf-ui/es/Button'
+Wrap your App component with ThemeProvider and pass it the leaf-ui theme (or override it with custom a theme)
+```js
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { ThemeProvider } from 'styled-components';
+import { theme as leafUiTheme } from 'leaf-ui';
+import App from './App';
 
-// if you need commonjs modules
-import Card from 'leaf-ui/lib/Card'
-import Button from 'leaf-ui/lib/Button'
+ReactDOM.hydrate(
+  <ThemeProvider theme={leafUiTheme}>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root'),
+);
 ```
 
-Quick usage: will include everything regardless of what is used
-``` bash
-import { Card, Button } from 'leaf-ui'
+Import and use the components in your App.js
+```js
+// App.js
+import React from 'react';
+import { Button } from 'leaf-ui';
+
+const App = () => (
+  <Button>
+    Leaf-UI
+  </Button>
+);
+
+export default App;
 ```
 
 # Contribute
