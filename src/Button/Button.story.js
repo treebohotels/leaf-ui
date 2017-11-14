@@ -6,10 +6,12 @@ import theme from '../theme';
 import Aux from '../Aux';
 import Button from './Button';
 
+const colors = Object.keys(theme.color);
+
 storiesOf('Button', module)
   .add('playground', () => (
     <Button
-      color={select('color', Object.keys(theme.color), 'leaf')}
+      color={select('color', colors, 'leaf')}
       size={select('size', ['small', 'default', 'large'], 'default')}
       flat={boolean('flat', false)}
       full={boolean('full', false)}
@@ -24,12 +26,12 @@ storiesOf('Button', module)
   .add('colors', () => (
     <Aux>
       {
-        Object.keys(theme.color).map((color) => (
+        colors.map((color) => (
           <Aux>
             <Button color={color}>
               {color}
             </Button>
-            <br />
+            <br /><br />
           </Aux>
         ))
       }
@@ -40,11 +42,11 @@ storiesOf('Button', module)
       <Button size="small">
         Small
       </Button>
-      <br />
+      <br /><br />
       <Button size="default">
         Default
       </Button>
-      <br />
+      <br /><br />
       <Button size="large">
         Large
       </Button>
