@@ -6,69 +6,76 @@ import theme from '../theme';
 import Aux from '../Aux';
 import Button from './Button';
 
-const colors = Object.keys(theme.color);
-
 storiesOf('Button', module)
   .add('playground', () => (
     <Button
-      color={select('color', colors, 'leaf')}
-      size={select('size', ['small', 'default', 'large'], 'default')}
-      flat={boolean('flat', false)}
-      full={boolean('full', false)}
-      transparent={boolean('transparent', false)}
-      border={boolean('border', false)}
+      color={select('color', Object.keys(theme.color), 'leaf')}
+      kind={select('kind', ['solid', 'outlined', 'transparent'], 'solid')}
+      shape={select('shape', ['default', 'flat', 'rounded', 'circular'], 'default')}
+      size={select('size', ['small', 'regular', 'large'], 'regular')}
+      block={boolean('block', false)}
       disabled={boolean('disabled', false)}
       onClick={action('button clicked')}
     >
-      {text('children', 'Button')}
+      {text('children', 'Default Button')}
     </Button>
   ))
-  .add('colors', () => (
+  .add('kinds', () => (
     <Aux>
-      {
-        colors.map((color) => (
-          <Aux>
-            <Button color={color}>
-              {color}
-            </Button>
-            <br /><br />
-          </Aux>
-        ))
-      }
+      <Button kind="solid">
+        Solid Button
+      </Button>
+      <br /><br />
+      <Button kind="outlined">
+        Outlined Button
+      </Button>
+      <br /><br />
+      <Button kind="transparent">
+        Transparent Button
+      </Button>
+    </Aux>
+  ))
+  .add('shapes', () => (
+    <Aux>
+      <Button shape="default">
+        Default Button
+      </Button>
+      <br /><br />
+      <Button shape="flat">
+        Flat Button
+      </Button>
+      <br /><br />
+      <Button shape="rounded">
+        Rounded Button
+      </Button>
+      <br /><br />
+      <Button shape="circular">
+        CB
+      </Button>
     </Aux>
   ))
   .add('sizes', () => (
     <Aux>
       <Button size="small">
-        Small
+        Small Button
       </Button>
       <br /><br />
-      <Button size="default">
-        Default
+      <Button size="regular">
+        Default Button
       </Button>
       <br /><br />
       <Button size="large">
-        Large
+        Large Button
       </Button>
     </Aux>
   ))
-  .add('transparent', () => (
-    <Button transparent>
-      Transparent
+  .add('block', () => (
+    <Button block>
+      Block Button
     </Button>
   ))
-  .add('transparent, with border', () => (
-    <Button transparent border>
-      Transparent with border
-    </Button>
-  ))
-  .add('flat, no rounded corners', () => (
-    <Button flat>
-      Flat
-    </Button>
-  ))
-  .add('full width', () => (
-    <Button full>
-      Full
+  .add('disabled', () => (
+    <Button disabled>
+      Disabled Button
     </Button>
   ));

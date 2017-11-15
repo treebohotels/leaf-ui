@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Button = styled.button.attrs({
   disabled: (props) => props.disabled,
@@ -8,54 +8,85 @@ const Button = styled.button.attrs({
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: ${(props) => ({
-    small: `${props.theme.px(1)}`,
-    default: `${props.theme.px(2)}`,
-    large: `${props.theme.px([2, 3])}`,
-  }[props.size])};
-  ${(props) => (props.full ? 'width: 100%;' : '')}
-  color: ${(props) => (props.transparent ? props.theme.color[props.color] : props.theme.color.white)};
-  background: ${(props) => (props.transparent ? 'transparent' : props.theme.color[props.color])};
-  border: 1px solid ${(props) => (props.border ? props.theme.color[props.color] : 'transparent')};
-  border-radius: ${(props) => (props.flat ? '0' : props.theme.border.radius)};
+  ${(props) => ({
+    solid: `
+      color: ${props.theme.color.white};
+      background: ${props.theme.color[props.color]};
+      border: 1px solid ${props.theme.color[props.color]};
+
+      &:hover {
+        background: ${props.theme.color[`${props.color}Dark`]};
+      }
+    `,
+    outlined: `
+      color: ${props.theme.color[props.color]};
+      background: transparent;
+      border: 1px solid ${props.theme.color[props.color]};
+
+      &:hover {
+        color: ${props.theme.color[`${props.color}Dark`]};
+        background: ${props.theme.color[`${props.color}Lighter`]};
+        border-color: ${props.theme.color[`${props.color}Dark`]};
+      }
+    `,
+    transparent: `
+      color: ${props.theme.color[props.color]};
+      background: transparent;
+      border: 1px solid transparent;
+
+      &:hover {
+        color: ${props.theme.color.white};
+        background: ${props.theme.color[props.color]};
+      }
+    `,
+  }[props.kind])}
+  ${(props) => ({
+    default: `
+      border-radius: ${props.theme.border.radius};
+    `,
+    flat: `
+      border-radius: 0;
+    `,
+    rounded: `
+      border-radius: ${props.theme.px(10)};
+    `,
+    circular: `
+      border-radius: 100%;
+    `,
+  }[props.shape])}
+  ${(props) => ({
+    small: `
+      padding: ${props.theme.px(1)};
+    `,
+    regular: `
+      padding: ${props.theme.px(2)};
+    `,
+    large: `
+      padding: ${props.theme.px([2, 3])};
+    `,
+  }[props.size])}
+  ${(props) => (props.block ? 'width: 100%;' : '')}
   ${(props) => (props.disabled ? `
-    cursor: default;
+    pointer-events: none;
     opacity: 0.5;
   ` : '')}
-
-&:hover {
-  ${(props) => {
-    if (props.disabled) return '';
-    if (props.transparent) {
-      return css`
-        color: ${props.theme.color[`${props.color}Dark`]};
-        background: ${props.theme.color.blackTranslucent};
-        ${props.border ? `border-color: ${props.theme.color[`${props.color}Dark`]};` : ''}
-      `;
-    }
-    return `
-      background: ${props.theme.color[`${props.color}Dark`]};
-    `;
-  }}
-}`;
+  `;
 
 Button.propTypes = {
   color: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'default', 'large']),
-  flat: PropTypes.bool,
-  full: PropTypes.bool,
-  transparent: PropTypes.bool,
-  border: PropTypes.bool,
+  kind: PropTypes.oneOf(['solid', 'outlined', 'transparent']),
+  shape: PropTypes.oneOf(['default', 'flat', 'rounded', 'circular']),
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
+  block: PropTypes.bool,
   disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
   color: 'leaf',
-  size: 'default',
-  flat: false,
-  full: false,
-  transparent: false,
-  border: false,
+  kind: 'solid',
+  size: 'regular',
+  shape: 'default',
+  block: false,
   disabled: false,
 };
 
