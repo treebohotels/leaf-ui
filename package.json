@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npm run storybook",
     "storybook": "BABEL_ENV=es start-storybook -p 9000",
-    "storybook:build": "BABEL_ENV=commonjs build-storybook",
+    "storybook:build": "BABEL_ENV=commonjs build-storybook -o docs",
     "prepublish": "run-p lint test build",
     "build": "run-p build:es build:commonjs",
     "build:es": "rimraf es && BABEL_ENV=es babel src -d es --ignore *.test.js --ignore *.story.js",
