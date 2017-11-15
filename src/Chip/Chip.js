@@ -6,7 +6,7 @@ const Chip = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 100px;
-  background: ${(props) => props.theme.color[`${props.color}Light`]};
+  background: ${(props) => props.theme.color[`${props.color}Lighter`]};
   border: 1px solid ${(props) => props.theme.color[props.color]};
   padding: ${(props) => props.theme.px([0.5, 1])};
   font-size: ${(props) => props.theme.font.size.xs};
@@ -17,7 +17,7 @@ Chip.propTypes = {
 };
 
 Chip.defaultProps = {
-  color: 'white',
+  color: 'leaf',
 };
 
 export default Chip;
