@@ -2,71 +2,71 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Button = styled.button.attrs({
-  disabled: (props) => props.disabled,
+  disabled: (p) => p.disabled,
 })`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  ${(props) => ({
+  ${(p) => ({
     solid: `
-      color: ${props.theme.color.white};
-      background: ${props.theme.color[props.color]};
-      border: 1px solid ${props.theme.color[props.color]};
+      color: ${p.theme.color.white};
+      background: ${p.theme.color[p.color]};
+      border: 1px solid ${p.theme.color[p.color]};
 
       &:hover {
-        background: ${props.theme.color[`${props.color}Dark`]};
+        background: ${p.theme.color[`${p.color}Dark`]};
       }
     `,
     outlined: `
-      color: ${props.theme.color[props.color]};
+      color: ${p.theme.color[p.color]};
       background: transparent;
-      border: 1px solid ${props.theme.color[props.color]};
+      border: 1px solid ${p.theme.color[p.color]};
 
       &:hover {
-        color: ${props.theme.color[`${props.color}Dark`]};
-        background: ${props.theme.color[`${props.color}Lighter`]};
-        border-color: ${props.theme.color[`${props.color}Dark`]};
+        color: ${p.theme.color[`${p.color}Dark`]};
+        background: ${p.theme.color[`${p.color}Lighter`]};
+        border-color: ${p.theme.color[`${p.color}Dark`]};
       }
     `,
     transparent: `
-      color: ${props.theme.color[props.color]};
+      color: ${p.theme.color[p.color]};
       background: transparent;
       border: 1px solid transparent;
 
       &:hover {
-        color: ${props.theme.color.white};
-        background: ${props.theme.color[props.color]};
+        color: ${p.theme.color.white};
+        background: ${p.theme.color[p.color]};
       }
     `,
-  }[props.kind])}
-  ${(props) => ({
+  }[p.kind])}
+  ${(p) => ({
     default: `
-      border-radius: ${props.theme.border.radius};
+      border-radius: ${p.theme.borderRadius};
     `,
     flat: `
       border-radius: 0;
     `,
     rounded: `
-      border-radius: ${props.theme.px(10)};
+      border-radius: ${p.theme.px(10)};
     `,
     circular: `
       border-radius: 100%;
     `,
-  }[props.shape])}
-  ${(props) => ({
+  }[p.shape])}
+  ${(p) => ({
     small: `
-      padding: ${props.theme.px(1)};
+      padding: ${p.theme.px(1)};
     `,
     regular: `
-      padding: ${props.theme.px(2)};
+      padding: ${p.theme.px(2)};
     `,
     large: `
-      padding: ${props.theme.px([2, 3])};
+      padding: ${p.theme.px(2, 3)};
     `,
-  }[props.size])}
-  ${(props) => (props.block ? 'width: 100%;' : '')}
-  ${(props) => (props.disabled ? `
+  }[p.size])}
+  ${(p) => (p.block ? 'width: 100%;' : '')}
+  ${(p) => (p.disabled ? `
     pointer-events: none;
     opacity: 0.5;
   ` : '')}

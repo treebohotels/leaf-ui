@@ -7,7 +7,7 @@ import theme from '../src/theme';
 
 setOptions({
   name: 'Leaf-UI',
-  url: 'https://github.com/treebohotels/leaf-ui.git',
+  url: 'https://github.com/treebohotels/leaf-ui',
   downPanelInRight: true,
 });
 addDecorator(withKnobs);

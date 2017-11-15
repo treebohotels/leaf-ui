@@ -6,10 +6,10 @@ const Chip = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 100px;
-  background: ${(props) => props.theme.color[`${props.color}Lighter`]};
-  border: 1px solid ${(props) => props.theme.color[props.color]};
-  padding: ${(props) => props.theme.px([0.5, 1])};
-  font-size: ${(props) => props.theme.font.size.xs};
+  background: ${(p) => p.theme.color[`${p.color}Lighter`]};
+  border: 1px solid ${(p) => p.theme.color[p.color]};
+  padding: ${(p) => p.theme.px(0.5, 1)};
+  font-size: ${(p) => p.theme.fontSize.xs};
 `;
 
 Chip.propTypes = {

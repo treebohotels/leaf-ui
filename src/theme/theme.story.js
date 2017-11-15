@@ -5,7 +5,7 @@ import Flex from '../Flex';
 import Card from '../Card';
 
 storiesOf('Theme', module)
-  .add('colors', () => {
+  .add('color', () => {
     const ColorCard = Card.extend`
       display: flex;
       flex-basis: 25%;
@@ -38,9 +38,13 @@ storiesOf('Theme', module)
     `;
     return (
       <Flex>
-        <ShadowCard color="white">elevation 0</ShadowCard>
-        <ShadowCard color="white" elevation={1}>elevation 1</ShadowCard>
-        <ShadowCard color="white" elevation={2}>elevation 2</ShadowCard>
+        {
+          Object.keys(theme.boxShadow).map((boxShadow, index) => (
+            <ShadowCard elevation={index}>
+              {index}
+            </ShadowCard>
+          ))
+        }
       </Flex>
     );
   });
