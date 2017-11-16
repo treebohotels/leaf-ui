@@ -8,7 +8,7 @@ const Chip = styled.div`
   border-radius: 100px;
   background: ${(p) => p.theme.color[`${p.color}Lighter`]};
   border: 1px solid ${(p) => p.theme.color[p.color]};
-  padding: ${(p) => p.theme.px(0.5, 1)};
+  padding: ${(p) => p.theme.px([0.5, 1])};
   font-size: ${(p) => p.theme.fontSize.xs};
 `;
 

@@ -80,11 +80,12 @@ export default {
     bold: 700,
   },
 
-  px(...values) {
+  px(value) {
+    const values = Array.isArray(value) ? value : [value];
     return values
-      .map((value) => typeof value === 'string' ? value : `${value * this.pxUnit}px`)
+      .map((v) => typeof v === 'string' ? v : `${v * this.pxScale}px`)
       .join(' ');
   },
 
-  pxUnit: 8,
+  pxScale: 8,
 };

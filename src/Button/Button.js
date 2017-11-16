@@ -62,7 +62,7 @@ const Button = styled.button.attrs({
       padding: ${p.theme.px(2)};
     `,
     large: `
-      padding: ${p.theme.px(2, 3)};
+      padding: ${p.theme.px([2, 3])};
     `,
   }[p.size])}
   ${(p) => p.block ? 'width: 100%;' : ''}
