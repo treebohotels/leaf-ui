@@ -12,18 +12,18 @@
     "build": "run-p build:es build:commonjs",
     "build:es": "rimraf es && BABEL_ENV=es babel src -d es --ignore *.test.js --ignore *.story.js",
     "build:commonjs": "rimraf lib && BABEL_ENV=commonjs babel src -d lib --ignore *.test.js --ignore *.story.js",
+    "precommit": "lint-staged",
     "lint": "run-p lint:*",
-    "lint:eslint": "eslint --ignore-path .gitignore .",
-    "lint:stylelint": "stylelint ./src/**/*.js",
+    "lint:eslint": "eslint .",
+    "lint:stylelint": "stylelint '**/*.js'",
     "test": "BABEL_ENV=es NODE_ENV=test jest"
   },
-  "pre-commit": "lint, test",
   "files": [
     "lib/**/*",
     "es/**/*"
   ],
-  "dependencies": {
-    "prop-types": "15.6.0"
+  "lint-staged": {
+    "*.js": ["eslint", "stylelint"]
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.2.15",
@@ -36,8 +36,11 @@
     "babel-preset-treebo": "github:treebohotels/babel-preset-treebo",
     "eslint": "4.10.0",
     "eslint-config-treebo": "github:treebohotels/eslint-config-treebo",
+    "husky": "0.14.3",
     "jest": "21.2.1",
+    "lint-staged": "5.0.0",
     "npm-run-all": "4.1.2",
+    "prop-types": "15.6.0",
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "rimraf": "2.6.2",
@@ -51,9 +54,6 @@
     "react": "^15.3.0 || ^16.0.0",
     "react-dom": "^15.3.0 || ^16.0.0",
     "styled-components": "^2.2.3"
-  },
-  "optionalDependencies": {
-    "pre-commit": "1.2.2"
   },
   "repository": {
     "type": "git",
