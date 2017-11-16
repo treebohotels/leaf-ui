@@ -19,18 +19,18 @@ const Flex = styled(({
   order,
   ...props
 }) => React.createElement(element, props, children))`
-  ${(p) => (p.alignContent ? `align-content: ${p.alignContent};` : '')}
-  ${(p) => (p.alignSelf ? `align-self: ${p.alignSelf};` : '')}
-  ${(p) => (p.alignItems ? `align-items: ${p.alignItems};` : '')}
-  ${(p) => (p.display ? `display: ${p.display};` : '')}
-  ${(p) => (p.flex ? `flex: ${p.flex};` : '')}
-  ${(p) => (p.flexBasis ? `flex-basis: ${p.flexBasis};` : '')}
-  ${(p) => (p.flexDirection ? `flex-direction: ${p.flexDirection};` : '')}
-  ${(p) => (p.flexGrow ? `flex-grow: ${p.flexGrow};` : '')}
-  ${(p) => (p.flexShrink ? `flex-shrink: ${p.flexShrink};` : '')}
-  ${(p) => (p.flexWrap ? `flex-wrap: ${p.flexWrap};` : '')}
-  ${(p) => (p.justifyContent ? `justify-content: ${p.justifyContent};` : '')}
-  ${(p) => (p.order ? `order: ${p.order};` : '')}
+  ${(p) => p.alignContent ? `align-content: ${p.alignContent};` : ''}
+  ${(p) => p.alignSelf ? `align-self: ${p.alignSelf};` : ''}
+  ${(p) => p.alignItems ? `align-items: ${p.alignItems};` : ''}
+  ${(p) => p.display ? `display: ${p.display};` : ''}
+  ${(p) => p.flex ? `flex: ${p.flex};` : ''}
+  ${(p) => p.flexBasis ? `flex-basis: ${p.flexBasis};` : ''}
+  ${(p) => p.flexDirection ? `flex-direction: ${p.flexDirection};` : ''}
+  ${(p) => p.flexGrow ? `flex-grow: ${p.flexGrow};` : ''}
+  ${(p) => p.flexShrink ? `flex-shrink: ${p.flexShrink};` : ''}
+  ${(p) => p.flexWrap ? `flex-wrap: ${p.flexWrap};` : ''}
+  ${(p) => p.justifyContent ? `justify-content: ${p.justifyContent};` : ''}
+  ${(p) => p.order ? `order: ${p.order};` : ''}
 `;
 
 Flex.propTypes = {

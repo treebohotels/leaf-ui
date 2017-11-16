@@ -65,11 +65,11 @@ const Button = styled.button.attrs({
       padding: ${p.theme.px(2, 3)};
     `,
   }[p.size])}
-  ${(p) => (p.block ? 'width: 100%;' : '')}
-  ${(p) => (p.disabled ? `
+  ${(p) => p.block ? 'width: 100%;' : ''}
+  ${(p) => p.disabled ? `
     pointer-events: none;
     opacity: 0.5;
-  ` : '')}
+  ` : ''}
   `;
 
 Button.propTypes = {

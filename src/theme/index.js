@@ -82,7 +82,7 @@ export default {
 
   px(...values) {
     return values
-      .map((value) => (typeof value === 'string' ? value : `${value * this.pxUnit}px`))
+      .map((value) => typeof value === 'string' ? value : `${value * this.pxUnit}px`)
       .join(' ');
   },
 

@@ -1,6 +1,7 @@
 {
   "extends": "treebo",
   "rules": {
+    "no-confusing-arrow": ["off"],
     "import/no-extraneous-dependencies": ["off"]
   }
 }
