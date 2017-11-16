@@ -5,5 +5,6 @@ export Card from './Card';
 export Chip from './Chip';
 export Divider from './Divider';
 export Flex from './Flex';
+export Price from './Price';
 export Spacer from './Spacer';
 export Toggle from './Toggle';
