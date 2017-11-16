@@ -1,6 +1,6 @@
 {
   "name": "leaf-ui",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "🍃 Leaf-UI: A react component library built using styled-components",
   "main": "lib/index.js",
   "module": "es/index.js",
