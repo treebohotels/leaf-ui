@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Button = styled.button.attrs({
-  disabled: (p) => p.disabled,
-})`
+const Button = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
