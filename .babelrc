@@ -10,7 +10,7 @@
         }]
       ]
     },
-    "commonjs": {
+    "cjs": {
       "presets": [
         ["treebo", {
           "targets": {},

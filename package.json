@@ -5,25 +5,29 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
-    "start": "npm run storybook",
+    "start": "run-s storybook",
     "storybook": "BABEL_ENV=es start-storybook -p 9000",
-    "storybook:build": "BABEL_ENV=commonjs build-storybook -o docs",
+    "storybook:build": "BABEL_ENV=cjs build-storybook -o docs",
+    "clean": "rimraf es lib",
+    "build": "run-s clean && run-p build:es build:cjs",
+    "build:es": "BABEL_ENV=es babel src -d es --ignore *.test.js --ignore *.story.js",
+    "build:cjs": "BABEL_ENV=cjs babel src -d lib --ignore *.test.js --ignore *.story.js",
     "prepublish": "run-p lint test build",
-    "build": "run-p build:es build:commonjs",
-    "build:es": "rimraf es && BABEL_ENV=es babel src -d es --ignore *.test.js --ignore *.story.js",
-    "build:commonjs": "rimraf lib && BABEL_ENV=commonjs babel src -d lib --ignore *.test.js --ignore *.story.js",
     "precommit": "lint-staged",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint .",
     "lint:stylelint": "stylelint '**/*.js'",
-    "test": "BABEL_ENV=es NODE_ENV=test jest"
+    "test": "BABEL_ENV=es jest"
   },
   "files": [
     "lib/**/*",
     "es/**/*"
   ],
   "lint-staged": {
-    "*.js": ["eslint", "stylelint"]
+    "*.js": [
+      "eslint",
+      "stylelint"
+    ]
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.2.15",
