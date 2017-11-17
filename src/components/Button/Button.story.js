@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, select } from '@storybook/addon-knobs';
-import theme from '../theme';
+import theme from '../../theme';
 import Aux from '../Aux';
 import Button from './Button';
 

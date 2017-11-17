@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select, number } from '@storybook/addon-knobs';
-import theme from '../theme';
+import theme from '../../theme';
 import Card from './Card';
 
 storiesOf('Card', module)

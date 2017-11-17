@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import theme from '../theme';
-import Aux from '../Aux';
-import Flex from '../Flex';
-import Card from '../Card';
-import Spacer from '../Spacer';
+import Aux from '../components/Aux';
+import Flex from '../components/Flex';
+import Card from '../components/Card';
+import Spacer from '../components/Spacer';
 
 storiesOf('Theme', module)
   .add('colors', () => {
