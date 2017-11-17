@@ -8,7 +8,7 @@ storiesOf('Card', module)
   .add('playground', () => (
     <Card
       style={{ width: '120px', height: '120px' }}
-      backgroundColor={select('backgroundColor', Object.keys(theme.color), 'white')}
+      color={select('color', Object.keys(theme.color), 'white')}
       elevation={number('elevation', 0)}
     >
       Card content

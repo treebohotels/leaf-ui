@@ -20,7 +20,7 @@ storiesOf('Theme', module)
       <Flex flexWrap="wrap">
         {
           Object.keys(theme.color).map((color) => (
-            <ColorCard elevation={1} backgroundColor={color}>
+            <ColorCard elevation={1} color={color}>
               {color}<br />
               {theme.color[color]}
             </ColorCard>
