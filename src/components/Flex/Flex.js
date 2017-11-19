@@ -7,8 +7,8 @@ const Flex = styled(({
   alignItems,
   alignSelf,
   children,
+  component,
   display,
-  element,
   flex,
   flexBasis,
   flexDirection,
@@ -18,7 +18,7 @@ const Flex = styled(({
   justifyContent,
   order,
   ...props
-}) => React.createElement(element, props, children))`
+}) => React.createElement(component, props, children))`
   ${(p) => p.alignContent ? `align-content: ${p.alignContent};` : ''}
   ${(p) => p.alignSelf ? `align-self: ${p.alignSelf};` : ''}
   ${(p) => p.alignItems ? `align-items: ${p.alignItems};` : ''}
@@ -39,7 +39,7 @@ Flex.propTypes = {
   alignSelf: PropTypes.oneOf(['baseline', 'center', 'flex-end', 'flex-start', 'stretch']),
   children: PropTypes.node,
   display: PropTypes.oneOf(['flex', 'inline-flex']),
-  element: PropTypes.oneOf(['article', 'aside', 'div', 'figure', 'footer', 'header', 'main', 'nav', 'section']),
+  component: PropTypes.oneOf(['article', 'aside', 'div', 'figure', 'footer', 'header', 'main', 'nav', 'section']),
   flex: PropTypes.string,
   flexBasis: PropTypes.string,
   flexDirection: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
@@ -51,8 +51,8 @@ Flex.propTypes = {
 };
 
 Flex.defaultProps = {
+  component: 'div',
   display: 'flex',
-  element: 'div',
 };
 
 export default Flex;
