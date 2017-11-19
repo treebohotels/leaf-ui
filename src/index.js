@@ -6,5 +6,6 @@ export Divider from './components/Divider';
 export Flex from './components/Flex';
 export Price from './components/Price';
 export Spacer from './components/Spacer';
+export Text from './components/Text';
 export Toggle from './components/Toggle';
 export theme from './theme';

@@ -79,7 +79,7 @@ export default {
 
   fontWeight: {
     normal: 400,
-    semi: 500,
+    semibold: 500,
     bold: 700,
   },
 
