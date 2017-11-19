@@ -1,23 +1,26 @@
 {
+  "plugins": [
+    "styled-components"
+  ],
   "env": {
     "es": {
       "presets": [
-        ["treebo", {
-          "targets": {},
-          "loose": false,
-          "modules": false,
-          "useBuiltIns": false
-        }]
+        ["env", {
+          "loose": true,
+          "modules": false
+        }],
+        "stage-1",
+        "react"
       ]
     },
     "cjs": {
       "presets": [
-        ["treebo", {
-          "targets": {},
-          "loose": false,
-          "modules": "commonjs",
-          "useBuiltIns": false
-        }]
+        ["env", {
+          "loose": true,
+          "modules": "commonjs"
+        }],
+        "stage-1",
+        "react"
       ]
     }
   }
