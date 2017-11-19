@@ -12,7 +12,7 @@ storiesOf('Divider', module)
     />
   ))
   .add('solid', () => (
-    <Divider type="solid" />
+    <Divider />
   ))
   .add('dashed', () => (
     <Divider type="dashed" />
