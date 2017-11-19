@@ -1,6 +1,7 @@
 export Aux from './components/Aux';
 export Button from './components/Button';
 export Card from './components/Card';
+export Checkbox from './components/Checkbox';
 export Chip from './components/Chip';
 export Divider from './components/Divider';
 export Flex from './components/Flex';

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Text from '../Text';
 
-const modifierColor = (props) => {
-  if (props.disabled) return '';
-  return props.error ? props.theme.color.dangerDark : props.theme.color.leaf;
+const modifierColor = (valid = 'leaf', invalid = 'dangerDark', disabled = 'rock') => (props) => {
+  if (props.disabled) return props.theme.color[disabled];
+  return props.error ? props.theme.color[invalid] : props.theme.color[valid];
 };
 
 const InputContainer = styled.div`
@@ -18,7 +18,7 @@ const Label = styled.label`
   top: 0;
   left: 0;
   pointer-events: none;
-  color: ${modifierColor};
+  color: ${(p) => p.theme.color.slate};
   font-size: ${(p) => p.theme.fontSize.xxs};
   transform: translate(0, 0);
   transition: all 0.15s ease-in-out;
@@ -31,7 +31,11 @@ const Input = styled.input`
   padding: ${(p) => p.theme.px([1, 0])};
 
   &:focus {
-    border-color: ${modifierColor};
+    border-color: ${modifierColor()};
+
+    + ${/* sc-selector */Label} {
+      color: ${modifierColor()};
+    }
   }
 
   &::placeholder {
