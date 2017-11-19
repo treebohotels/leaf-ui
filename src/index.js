@@ -4,6 +4,7 @@ export Card from './components/Card';
 export Chip from './components/Chip';
 export Divider from './components/Divider';
 export Flex from './components/Flex';
+export Link from './components/Link';
 export Price from './components/Price';
 export Spacer from './components/Spacer';
 export Text from './components/Text';
