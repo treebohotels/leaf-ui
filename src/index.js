@@ -9,6 +9,7 @@ export Form from './components/Form';
 export Link from './components/Link';
 export Price from './components/Price';
 export Spacer from './components/Spacer';
+export Tabs from './components/Tabs';
 export Text from './components/Text';
 export TextInput from './components/TextInput';
 export Toggle from './components/Toggle';
