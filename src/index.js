@@ -6,6 +6,7 @@ export Chip from './components/Chip';
 export Divider from './components/Divider';
 export Flex from './components/Flex';
 export Form from './components/Form';
+export Icon from './components/Icon';
 export Link from './components/Link';
 export Price from './components/Price';
 export Spacer from './components/Spacer';
