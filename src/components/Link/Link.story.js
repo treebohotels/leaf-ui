@@ -4,7 +4,7 @@ import Link from './Link';
 
 storiesOf('Link', module)
   .add('simple', () => (
-    <Link href="#">
+    <Link href="#hashId">
       A simple link
     </Link>
   ));
