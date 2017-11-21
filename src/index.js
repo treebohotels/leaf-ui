@@ -8,6 +8,7 @@ export Flex from './components/Flex';
 export Form from './components/Form';
 export Icon from './components/Icon';
 export Link from './components/Link';
+export Modal from './components/Modal';
 export Price from './components/Price';
 export Spacer from './components/Spacer';
 export Tabs from './components/Tabs';
