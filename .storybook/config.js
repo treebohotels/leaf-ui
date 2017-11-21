@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { configure, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
+import injectBaseStyles from '../src/theme/injectBaseStyles';
 import injectIconStyles from '../src/components/Icon/injectIconStyles';
 import theme from '../src/theme';
 
@@ -15,6 +16,7 @@ setOptions({
 addDecorator(withKnobs);
 
 addDecorator((story) => {
+  injectBaseStyles();
   injectIconStyles();
   return (
     <ThemeProvider theme={theme}>
