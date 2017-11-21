@@ -13,10 +13,6 @@ const TitleContainer = styled.div`
   background: ${(p) => p.theme.color.lagoon};
 `;
 
-const ContentContainer = styled.div`
-  padding: ${(p) => p.theme.px([7, 7, 0, 7])};
-`;
-
 const getSelectedTab = (props) => (
   props.children ? (
     React.Children.map(props.children, (tabSection, index) => (
@@ -70,9 +66,7 @@ class Tabs extends React.Component {
             ))
           }
         </TitleContainer>
-        <ContentContainer>
-          {tabParts.contents[selectedTab]}
-        </ContentContainer>
+        {tabParts.contents[selectedTab]}
       </Flex>
     );
   }
