@@ -1,25 +1,36 @@
 {
-  "plugins": [
-    "styled-components"
-  ],
   "env": {
     "es": {
+      "plugins": [
+        "transform-export-extensions",
+        "transform-class-properties",
+        "transform-object-rest-spread",
+        "syntax-trailing-function-commas",
+        "transform-runtime",
+        "styled-components"
+      ],
       "presets": [
         ["env", {
           "loose": true,
           "modules": false
         }],
-        "stage-1",
         "react"
       ]
     },
     "cjs": {
+      "plugins": [
+        "transform-export-extensions",
+        "transform-class-properties",
+        "transform-object-rest-spread",
+        "syntax-trailing-function-commas",
+        "transform-runtime",
+        "styled-components"
+      ],
       "presets": [
         ["env", {
           "loose": true,
           "modules": "commonjs"
         }],
-        "stage-1",
         "react"
       ]
     }
