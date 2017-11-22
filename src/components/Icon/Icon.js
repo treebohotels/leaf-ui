@@ -8,30 +8,61 @@ const I = styled.i.attrs({
   children: (p) => p.name,
 })`
   ${(p) => p.color ? `color: ${p.theme.color[p.color]};` : ''}
+  ${(p) => p.button ? `
+    padding: ${p.theme.px(1)};
+    cursor: pointer;
+
+    &:hover {
+      background: ${p.theme.color.blackTranslucent};
+    }
+
+    ${p.disabled ? `
+      color: ${p.theme.color.smoke};
+      pointer-events: none;
+      opacity: 0.5;
+    ` : ''}
+  ` : ''}
   ${(p) => p.hasChildren ? `
     ${p.right ? `margin-left: ${p.theme.px(1)}` : `margin-right: ${p.theme.px(1)}`};
     line-height: 0 !important;
   ` : ''}
 `;
 
-const Icon = ({ children, ...props }) => (
+const Icon = ({
+  color,
+  name,
+  right,
+  button,
+  children,
+  ...props
+}) => (
   <Flex alignItems="center" {...props}>
-    {props.right ? children : null}
-    <I hasChildren={!!children} {...props} />
-    {!props.right ? children : null}
+    {right ? children : null}
+    <I
+      color={color}
+      name={name}
+      right={right}
+      button={button}
+      hasChildren={!!children}
+    />
+    {!right ? children : null}
   </Flex>
 );
 
 Icon.propTypes = {
-  className: PropTypes.string,
-  name: PropTypes.string,
   color: PropTypes.string,
+  name: PropTypes.string,
   right: PropTypes.bool,
+  button: PropTypes.bool,
+  disabled: PropTypes.bool,
   children: PropTypes.node,
 };
 
 Icon.defaultProps = {
   name: 'fiber_manual_record',
+  right: false,
+  button: false,
+  disabled: false,
 };
 
 export default Icon;

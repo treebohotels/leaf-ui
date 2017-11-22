@@ -6,11 +6,6 @@ import ModalHeader from './ModalHeader';
 import ModalContent from './ModalContent';
 import ModalFooter from './ModalFooter';
 
-// ReactOverlaysModal.prototype.componentWillMount =
-//   function componentWillMount() {
-//     this.focus = () => {};
-//   };
-
 const backdropStyle = {
   position: 'fixed',
   top: 0,

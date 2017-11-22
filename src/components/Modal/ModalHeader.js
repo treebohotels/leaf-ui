@@ -4,7 +4,6 @@ import Card from '../Card';
 import Flex from '../Flex';
 import Text from '../Text';
 import Icon from '../Icon';
-import Button from '../Button';
 import Spacer from '../Spacer';
 
 const ModalHeader = ({ dark, onClose, children }) => (
@@ -17,14 +16,12 @@ const ModalHeader = ({ dark, onClose, children }) => (
         >
           {children}
         </Text>
-        <Button
+        <Icon
           color={dark ? 'white' : 'black'}
-          kind="transparent"
-          size="small"
+          name="close"
+          button
           onClick={onClose}
-        >
-          <Icon name="close" />
-        </Button>
+        />
       </Flex>
     </Card>
   </Spacer>

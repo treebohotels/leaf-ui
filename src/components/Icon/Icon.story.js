@@ -7,6 +7,12 @@ storiesOf('Icon', module)
   .add('simple', () => (
     <Icon name="nature" />
   ))
+  .add('button', () => (
+    <Icon name="nature" button />
+  ))
+  .add('disabled button', () => (
+    <Icon name="nature" button disabled />
+  ))
   .add('inside a Button', () => (
     <Button>
       <Icon name="nature">
