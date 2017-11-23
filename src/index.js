@@ -4,6 +4,7 @@ export Card from './components/Card';
 export Checkbox from './components/Checkbox';
 export Chip from './components/Chip';
 export Divider from './components/Divider';
+export Dropdown from './components/Dropdown';
 export Flex from './components/Flex';
 export Form from './components/Form';
 export Icon from './components/Icon';
