@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import Icon from '../Icon';
 import List from './List';
 
 storiesOf('List', module)
@@ -17,6 +18,11 @@ storiesOf('List', module)
       <List.Item button>Oak</List.Item>
       <List.Item button>Maple</List.Item>
       <List.Item button>Mahogany</List.Item>
+      <List.Item button>
+        <Icon name="nature">
+          with Icon
+        </Icon>
+      </List.Item>
     </List>
   ))
   .add('clickable list with a disabled item', () => (
@@ -25,5 +31,10 @@ storiesOf('List', module)
       <List.Item button disabled>Oak</List.Item>
       <List.Item button>Maple</List.Item>
       <List.Item button>Mahogany</List.Item>
+      <List.Item button disabled>
+        <Icon name="nature">
+          with Icon
+        </Icon>
+      </List.Item>
     </List>
   ));
