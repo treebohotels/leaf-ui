@@ -10,6 +10,7 @@ export Icon from './components/Icon';
 export Link from './components/Link';
 export List from './components/List';
 export Modal from './components/Modal';
+export Notification from './components/Notification';
 export Price from './components/Price';
 export Spacer from './components/Spacer';
 export Tabs from './components/Tabs';
