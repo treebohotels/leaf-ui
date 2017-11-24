@@ -8,6 +8,7 @@
     "start": "run-s storybook",
     "storybook": "NODE_ENV=es start-storybook -p 9000",
     "storybook:build": "NODE_ENV=cjs build-storybook -o docs",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "build": "run-s build:clean && run-p build:es build:cjs",
     "build:clean": "rimraf es lib",
     "build:es": "NODE_ENV=es babel src -d es --ignore *.test.js --ignore *.story.js",
@@ -17,8 +18,7 @@
     "lint": "run-p lint:*",
     "lint:eslint": "eslint .",
     "lint:stylelint": "stylelint '**/*.js'",
-    "test": "jest",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test": "jest"
   },
   "files": [
     "lib/**/*",

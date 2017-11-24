@@ -18,4 +18,5 @@ export Tabs from './components/Tabs';
 export Text from './components/Text';
 export TextInput from './components/TextInput';
 export Toggle from './components/Toggle';
+export Tooltip from './components/Tooltip';
 export theme from './theme';
