@@ -24,7 +24,7 @@ const I = styled.i.attrs({
   ` : ''}
   ${(p) => p.hasChildren ? `
     ${p.right ? `margin-left: ${p.theme.px(1)}` : `margin-right: ${p.theme.px(1)}`};
-    line-height: 0 !important;
+    font-size: inherit;
   ` : ''}
 `;
 
@@ -36,7 +36,7 @@ const Icon = ({
   children,
   ...props
 }) => (
-  <Flex alignItems="center" {...props}>
+  <Flex alignItems="center">
     {right ? children : null}
     <I
       color={color}
@@ -44,6 +44,7 @@ const Icon = ({
       right={right}
       button={button}
       hasChildren={!!children}
+      {...props}
     />
     {!right ? children : null}
   </Flex>
