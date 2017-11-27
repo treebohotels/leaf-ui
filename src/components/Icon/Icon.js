@@ -24,7 +24,7 @@ const I = styled.i.attrs({
   ` : ''}
   ${(p) => p.hasChildren ? `
     ${p.right ? `margin-left: ${p.theme.px(1)}` : `margin-right: ${p.theme.px(1)}`};
-    font-size: inherit;
+    font-size: inherit !important;
   ` : ''}
 `;
 
