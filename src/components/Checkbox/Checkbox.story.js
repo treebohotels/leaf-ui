@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import Checkbox from './Checkbox';
 
 storiesOf('Checkbox', module)
@@ -8,7 +7,14 @@ storiesOf('Checkbox', module)
     <Checkbox
       name="areLeavesGreen"
       label="Are leaves green?"
-      onChange={action('onChange')}
+    />
+  ))
+  .add('disabled', () => (
+    <Checkbox
+      name="areLeavesGreen"
+      label="Are leaves green?"
+      disabled
+      defaultChecked
     />
   ))
   .add('with error', () => (

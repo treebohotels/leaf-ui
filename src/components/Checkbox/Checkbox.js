@@ -24,7 +24,6 @@ const Box = styled.span`
   height: ${(p) => p.theme.px(2)};
   margin-right: ${(p) => p.theme.px(1)};
   border-radius: 3px;
-  cursor: pointer;
 `;
 
 const Tick = styled.svg`
@@ -82,7 +81,7 @@ const Checkbox = ({
   let error = errorMessage;
 
   if (formik) {
-    inputProps.value = formik.values[name];
+    inputProps.checked = formik.values[name];
     inputProps.onChange = formik.handleChange;
     inputProps.onBlur = formik.handleBlur;
     error = formik.touched[name] && formik.errors[name];
