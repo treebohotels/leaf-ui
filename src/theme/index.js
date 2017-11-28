@@ -84,7 +84,7 @@ export default {
   },
 
   px(value) {
-    const values = Array.isArray(value) ? value : [value];
+    const values = [].concat(value);
     return values
       .map((v) => typeof v === 'string' ? v : `${v * this.pxScale}px`)
       .join(' ');
