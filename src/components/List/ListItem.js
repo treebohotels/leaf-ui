@@ -6,7 +6,8 @@ const ListItem = styled.li`
   ${(p) => p.button ? `
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: ${p.theme.color.blackTranslucent};
     }
 
