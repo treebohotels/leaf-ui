@@ -81,7 +81,7 @@ const Checkbox = ({
   let error = errorMessage;
 
   if (formik) {
-    inputProps.checked = formik.values[name];
+    inputProps.checked = !!formik.values[name];
     inputProps.onChange = formik.handleChange;
     inputProps.onBlur = formik.handleBlur;
     error = formik.touched[name] && formik.errors[name];
