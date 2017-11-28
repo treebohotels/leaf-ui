@@ -31,6 +31,7 @@
     ]
   },
   "dependencies": {
+    "downshift": "1.20.0",
     "formik": "0.10.3",
     "react-overlays": "0.8.3",
     "yup": "0.23.0"

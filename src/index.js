@@ -14,6 +14,7 @@ export Modal from './components/Modal';
 export Notification from './components/Notification';
 export Price from './components/Price';
 export RadioButton from './components/RadioButton';
+export Select from './components/Select';
 export Spacer from './components/Spacer';
 export Tabs from './components/Tabs';
 export Text from './components/Text';
