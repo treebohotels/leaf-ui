@@ -12,7 +12,7 @@ class DropdownContent extends React.Component {
     background: this.props.theme.color.white,
     minWidth: this.props.theme.px(25),
     border: `1px solid ${this.props.theme.color.smoke}`,
-    borderRadius: '2px',
+    borderRadius: this.props.theme.borderRadius,
     boxShadow: this.props.theme.boxShadow[2],
   }
 
