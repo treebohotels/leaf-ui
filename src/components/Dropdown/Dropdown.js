@@ -55,7 +55,7 @@ class Dropdown extends React.Component {
 
 Dropdown.propTypes = {
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 Dropdown.defaultProps = {

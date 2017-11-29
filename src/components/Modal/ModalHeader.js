@@ -30,7 +30,7 @@ const ModalHeader = ({ dark, onClose, children }) => (
 ModalHeader.propTypes = {
   dark: PropTypes.bool,
   onClose: PropTypes.func,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 ModalHeader.defaultProps = {

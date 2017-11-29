@@ -20,7 +20,7 @@ storiesOf('Theme', module)
       <Flex flexWrap="wrap">
         {
           Object.keys(theme.color).map((color) => (
-            <ColorCard elevation={1} color={color}>
+            <ColorCard key={color} elevation={1} color={color}>
               {color}<br />
               {theme.color[color]}
             </ColorCard>
@@ -42,7 +42,7 @@ storiesOf('Theme', module)
       <Aux>
         {
           Object.keys(theme.boxShadow).map((boxShadow, index) => (
-            <ShadowCard elevation={index}>
+            <ShadowCard key={boxShadow} elevation={index}>
               {index}
             </ShadowCard>
           ))
@@ -62,7 +62,7 @@ storiesOf('Theme', module)
       <Aux>
         {
           [1, 2, 3, 4, 5, 6, 7, 8].map((space) => (
-            <Spacer height={`${space * 8}px`} width={`${space * 8}px`}>
+            <Spacer key={space} height={`${space * 8}px`} width={`${space * 8}px`}>
               <SpacingCard>
                 {space * 8}
               </SpacingCard>

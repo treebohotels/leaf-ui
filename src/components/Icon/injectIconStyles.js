@@ -10,7 +10,7 @@ export default () => injectGlobal`
   }
 
   .material-icons {
-    font-family: 'Material Icons';
+    font-family: 'Material Icons', sans-serif;
     font-weight: normal;
     font-style: normal;
     font-size: 24px;

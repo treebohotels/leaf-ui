@@ -95,7 +95,7 @@ TooltipContent.propTypes = {
   placement: PropTypes.string,
   arrowOffsetLeft: PropTypes.string,
   arrowOffsetTop: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default withTheme(TooltipContent);

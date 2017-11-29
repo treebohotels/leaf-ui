@@ -46,7 +46,7 @@ class Tooltip extends React.Component {
 
 Tooltip.propTypes = {
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 Tooltip.defaultProps = {

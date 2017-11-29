@@ -10,7 +10,7 @@ export default () => injectGlobal`
     color: ${(p) => p.theme.color.black};
     font-size: ${(p) => p.theme.fontSize.s};
     font-weight: ${(p) => p.theme.fontWeight.normal};
-    font-family: ${(p) => p.theme.fontFamily.roboto}, system-ui;
+    font-family: ${(p) => p.theme.fontFamily.roboto}, system-ui, sans-serif;
   }
 
   *,

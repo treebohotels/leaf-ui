@@ -18,9 +18,9 @@ class TooltipTrigger extends React.Component {
 }
 
 TooltipTrigger.propTypes = {
-  children: PropTypes.node.isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
+  children: PropTypes.node,
 };
 
 export default TooltipTrigger;

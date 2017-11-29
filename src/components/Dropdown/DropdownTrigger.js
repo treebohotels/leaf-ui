@@ -14,8 +14,8 @@ class DropdownTrigger extends React.Component {
 }
 
 DropdownTrigger.propTypes = {
-  children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
+  children: PropTypes.node,
 };
 
 export default DropdownTrigger;

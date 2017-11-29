@@ -73,7 +73,7 @@ class Tabs extends React.Component {
 }
 
 Tabs.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node),
+  children: PropTypes.node,
 };
 
 Tabs.Section = TabsSection;

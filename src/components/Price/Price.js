@@ -12,7 +12,7 @@ const Price = ({ rounded, children }) => {
 
 Price.propTypes = {
   rounded: PropTypes.bool,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 Price.defaultProps = {
