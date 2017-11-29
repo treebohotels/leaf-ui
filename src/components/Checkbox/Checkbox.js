@@ -71,6 +71,7 @@ const Input = styled.input.attrs({
 `;
 
 const Checkbox = ({
+  className,
   name,
   label,
   error: errorMessage,
@@ -89,7 +90,7 @@ const Checkbox = ({
   }
 
   return (
-    <CheckboxContainer>
+    <CheckboxContainer className={className}>
       <Label htmlFor={name}>
         <Input
           id={name}
@@ -116,6 +117,7 @@ const Checkbox = ({
 };
 
 Checkbox.propTypes = {
+  className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
   error: PropTypes.string,

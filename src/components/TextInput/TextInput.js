@@ -51,6 +51,7 @@ const Input = styled.input`
 `;
 
 const TextInput = ({
+  className,
   name,
   label,
   error: errorMessage,
@@ -69,7 +70,7 @@ const TextInput = ({
   }
 
   return (
-    <InputContainer>
+    <InputContainer className={className}>
       <Input
         id={name}
         placeholder={label}
@@ -95,6 +96,7 @@ const TextInput = ({
 };
 
 TextInput.propTypes = {
+  className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
   error: PropTypes.string,

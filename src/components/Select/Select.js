@@ -141,6 +141,7 @@ class Select extends React.Component {
     } = this.state;
 
     const {
+      className,
       name,
       options,
       error: errorMessage,
@@ -165,7 +166,7 @@ class Select extends React.Component {
           highlightedIndex,
           selectedItem: dsSelectedOptions,
         }) => (
-          <div>
+          <div className={className}>
             <Trigger {...getButtonProps()}>
               {this.getButtonText(dsSelectedOptions)}
             </Trigger>
@@ -208,6 +209,7 @@ class Select extends React.Component {
 }
 
 Select.propTypes = {
+  className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
   multiple: PropTypes.bool,

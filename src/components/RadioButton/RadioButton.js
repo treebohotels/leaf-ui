@@ -22,9 +22,9 @@ const Circle = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
   width: ${(p) => p.theme.px(2)};
   height: ${(p) => p.theme.px(2)};
-  border-radius: 50%;
   margin-right: ${(p) => p.theme.px(1)};
 `;
 
@@ -68,6 +68,7 @@ const Input = styled.input.attrs({
 `;
 
 const RadioButton = ({
+  className,
   name,
   label,
   value,
@@ -87,7 +88,7 @@ const RadioButton = ({
   }
 
   return (
-    <RadioButtonContainer>
+    <RadioButtonContainer className={className}>
       <Label htmlFor={`${name}-${value}`}>
         <Input
           id={`${name}-${value}`}
@@ -111,6 +112,7 @@ const RadioButton = ({
 };
 
 RadioButton.propTypes = {
+  className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string,
