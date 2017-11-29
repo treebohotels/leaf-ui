@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 
 const Price = ({ rounded, children }) => {
-  const unformattedPrice = +children;
-  const isNegative = unformattedPrice < 0;
-  const positivePrice = Math.abs(unformattedPrice);
-  const formattedPrice = (rounded ? Math.round(positivePrice) : positivePrice).toLocaleString('en-IN');
-  const rupeeSymbol = isNegative ? '- ₹' : '₹';
-  const inrPrice = `${rupeeSymbol} ${formattedPrice}`;
+  const price = +children;
+  const inrPrice = price.toLocaleString('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: rounded ? 0 : 2,
+    maximumFractionDigits: rounded ? 0 : 2,
+  });
   return inrPrice;
 };
 
