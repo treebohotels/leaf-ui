@@ -11,6 +11,11 @@ const Text = styled(({
   ${(p) => p.size ? `font-size: ${p.theme.fontSize[p.size]};` : ''}
   ${(p) => p.weight ? `font-weight: ${p.theme.fontWeight[p.weight]};` : ''}
   ${(p) => p.family ? `font-family: ${p.theme.fontFamily[p.family]};` : ''}
+  ${(p) => p.truncate ? `
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  ` : ''}
 `;
 
 Text.propTypes = {
@@ -19,6 +24,7 @@ Text.propTypes = {
   size: PropTypes.string,
   weight: PropTypes.string,
   family: PropTypes.string,
+  truncate: PropTypes.bool,
 };
 
 Text.defaultProps = {
