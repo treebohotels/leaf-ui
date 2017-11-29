@@ -23,10 +23,11 @@ const Box = styled.span`
   width: ${(p) => p.theme.px(2)};
   height: ${(p) => p.theme.px(2)};
   margin-right: ${(p) => p.theme.px(1)};
-  border-radius: 3px;
+  border-radius: ${(p) => p.theme.borderRadius};
 `;
 
 const Tick = styled.svg`
+  fill: ${(p) => p.theme.color.white};
   width: 100%;
   height: 100%;
   padding: 0 1px;
@@ -59,10 +60,10 @@ const Input = styled.input.attrs({
 
   &:checked {
     + ${/* sc-selector */Box} {
+      background: ${modifierColor()};
       border-color: ${modifierColor()};
 
       ${/* sc-selector */Tick} {
-        fill: ${modifierColor()};
         display: block;
       }
     }
@@ -97,7 +98,7 @@ const Checkbox = ({
           error={error}
         />
         <Box>
-          <Tick fillRule="evenodd" name="checkmark" role="img" viewBox="0 0 12 9">
+          <Tick fillRule="evenodd" viewBox="0 0 12 9">
             <path d="M4.1 6.1L1.4 3.4 0 4.9 4.1 9l7.6-7.6L10.3 0z" />
           </Tick>
         </Box>
