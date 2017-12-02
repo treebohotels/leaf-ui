@@ -6,15 +6,24 @@ import pluralize from '../../utils/pluralize';
 import Flex from '../Flex';
 import List from '../List';
 import Text from '../Text';
+import Spacer from '../Spacer';
+import Checkbox from '../Checkbox';
 
 const Trigger = Flex.extend`
   display: inline-flex;
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  width: ${(p) => p.theme.px(12)};
+  width: ${(p) => p.theme.px(20)};
   padding: ${(p) => p.theme.px(1)};
   border: 1px solid ${(p) => p.theme.color.slate};
   border-radius: ${(p) => p.theme.borderRadius};
+`;
+
+const IconArrows = styled.svg`
+  flex: none;
+  width: ${(p) => p.theme.px(3)};
+  height: ${(p) => p.theme.px(3)};
 `;
 
 const OptionListContainer = styled.div`
@@ -143,6 +152,7 @@ class Select extends React.Component {
     const {
       className,
       name,
+      multiple,
       options,
       error: errorMessage,
     } = this.props;
@@ -168,7 +178,10 @@ class Select extends React.Component {
         }) => (
           <div className={className}>
             <Trigger {...getButtonProps()}>
-              {this.getButtonText(dsSelectedOptions)}
+              <Text truncate>{this.getButtonText(dsSelectedOptions)}</Text>
+              <IconArrows viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z" />
+              </IconArrows>
             </Trigger>
             <OptionListContainer>
               {
@@ -186,7 +199,21 @@ class Select extends React.Component {
                             isSelected: dsSelectedOptions.includes(option),
                           })}
                         >
-                          {option.label}
+                          {
+                            multiple ? (
+                              <Spacer padding={0}>
+                                <Checkbox
+                                  readOnly
+                                  label={option.label}
+                                  checked={dsSelectedOptions.includes(option)}
+                                />
+                              </Spacer>
+                            ) : (
+                              <Text>
+                                {option.label}
+                              </Text>
+                            )
+                          }
                         </Option>
                       ))
                     }
