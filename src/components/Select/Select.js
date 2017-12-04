@@ -20,7 +20,7 @@ const Trigger = Flex.extend`
   border-radius: ${(p) => p.theme.borderRadius};
 `;
 
-const IconArrows = styled.svg`
+const TriggerArrows = styled.svg`
   flex: none;
   width: ${(p) => p.theme.px(3)};
   height: ${(p) => p.theme.px(3)};
@@ -144,6 +144,9 @@ class Select extends React.Component {
     }, () => this.onChange(newSelectedOptions));
   }
 
+  itemToString = (option) =>
+    option == null ? '' : String(option.value)
+
   render() {
     const {
       selectedOptions,
@@ -169,6 +172,7 @@ class Select extends React.Component {
       <Downshift
         selectedItem={selectedOptions}
         onSelect={this.onSelect}
+        itemToString={this.itemToString}
         render={({
           isOpen,
           getButtonProps,
@@ -179,9 +183,9 @@ class Select extends React.Component {
           <div className={className}>
             <Trigger {...getButtonProps()}>
               <Text truncate>{this.getButtonText(dsSelectedOptions)}</Text>
-              <IconArrows viewBox="0 0 20 20">
+              <TriggerArrows viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z" />
-              </IconArrows>
+              </TriggerArrows>
             </Trigger>
             <OptionListContainer>
               {
