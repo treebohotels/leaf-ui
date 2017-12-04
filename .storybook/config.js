@@ -3,8 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import { configure, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
-import injectBaseStyles from '../src/theme/injectBaseStyles';
-import injectIconStyles from '../src/components/Icon/injectIconStyles';
+import { injectBaseStyles } from '../src/theme';
+import { injectIconStyles } from '../src/components/Icon';
 import theme from '../src/theme';
 
 setOptions({
