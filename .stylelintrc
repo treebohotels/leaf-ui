@@ -4,7 +4,7 @@
     "stylelint-config-standard",
     "stylelint-config-styled-components"
   ],
-  rules: {
+  "rules": {
     "indentation": null,
     "comment-empty-line-before": null
   },
