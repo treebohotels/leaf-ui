@@ -9,8 +9,8 @@ import Modal from './Modal';
 
 storiesOf('Modal', module)
   .add('simple', () => (
-    <Toggle>
-      {(on, toggle) => (
+    <Toggle
+      render={({ on, toggle }) => (
         <Aux>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
@@ -28,11 +28,11 @@ storiesOf('Modal', module)
           </Modal>
         </Aux>
       )}
-    </Toggle>
+    />
   ))
   .add('tabbed', () => (
-    <Toggle>
-      {(on, toggle) => (
+    <Toggle
+      render={({ on, toggle }) => (
         <Aux>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
@@ -63,11 +63,11 @@ storiesOf('Modal', module)
           </Modal>
         </Aux>
       )}
-    </Toggle>
+    />
   ))
   .add('with title and subtitle', () => (
-    <Toggle>
-      {(on, toggle) => (
+    <Toggle
+      render={({ on, toggle }) => (
         <Aux>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
@@ -86,11 +86,11 @@ storiesOf('Modal', module)
           </Modal>
         </Aux>
       )}
-    </Toggle>
+    />
   ))
   .add('modal over a modal', () => (
-    <Toggle>
-      {(on, toggle) => (
+    <Toggle
+      render={({ on, toggle }) => (
         <Aux>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
@@ -98,11 +98,11 @@ storiesOf('Modal', module)
               MODAL HEADER
             </Modal.Header>
             <Modal.Content>
-              <Toggle>
-                {(onr, toggler) => (
+              <Toggle
+                render={({ on: isInnerModalOpen, toggle: toggleInnerModal }) => (
                   <Aux>
-                    <Button onClick={toggler}>OPEN MODAL</Button>
-                    <Modal isOpen={onr} onClose={toggler}>
+                    <Button onClick={toggleInnerModal}>OPEN MODAL</Button>
+                    <Modal isOpen={isInnerModalOpen} onClose={toggleInnerModal}>
                       <Modal.Header>
                         MODAL HEADER
                       </Modal.Header>
@@ -117,7 +117,7 @@ storiesOf('Modal', module)
                     </Modal>
                   </Aux>
                 )}
-              </Toggle>
+              />
             </Modal.Content>
             <Modal.Footer>
               MODAL FOOTER
@@ -125,5 +125,5 @@ storiesOf('Modal', module)
           </Modal>
         </Aux>
       )}
-    </Toggle>
+    />
   ));
