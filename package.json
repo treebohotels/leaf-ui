@@ -31,7 +31,7 @@
     ]
   },
   "dependencies": {
-    "downshift": "1.22.1",
+    "downshift": "1.22.3",
     "formik": "0.10.5",
     "react-overlays": "0.8.3",
     "yup": "0.23.0"
@@ -55,10 +55,10 @@
     "babel-preset-react": "6.24.1",
     "commitizen": "2.9.6",
     "cz-conventional-changelog": "2.1.0",
-    "eslint": "4.12.1",
+    "eslint": "4.13.1",
     "eslint-config-airbnb": "16.1.0",
     "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-react": "7.5.1",
     "husky": "0.14.3",
     "jest": "21.2.1",
@@ -69,11 +69,11 @@
     "react-dom": "16.2.0",
     "rimraf": "2.6.2",
     "semantic-release": "8.2.0",
-    "styled-components": "2.2.4",
-    "stylelint": "8.3.1",
+    "styled-components": "2.3.0",
+    "stylelint": "8.4.0",
     "stylelint-config-standard": "18.0.0",
     "stylelint-config-styled-components": "0.1.1",
-    "stylelint-processor-styled-components": "1.2.0"
+    "stylelint-processor-styled-components": "1.2.1"
   },
   "peerDependencies": {
     "react": "^15.3.0 || ^16.0.0",
