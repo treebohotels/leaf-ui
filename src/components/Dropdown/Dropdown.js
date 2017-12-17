@@ -30,8 +30,7 @@ class Dropdown extends React.Component {
   }
 
   render() {
-    const { placement } = this.props;
-    const { children } = this.props;
+    const { placement, children } = this.props;
     const dropdownChildrenByType = reactChildrenByType(children);
 
     return (

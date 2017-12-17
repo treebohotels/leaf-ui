@@ -20,8 +20,7 @@ class Tooltip extends React.Component {
   }
 
   render() {
-    const { placement } = this.props;
-    const { children } = this.props;
+    const { placement, children } = this.props;
     const childrenByType = reactChildrenByType(children);
 
     return (
