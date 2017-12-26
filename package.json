@@ -27,16 +27,16 @@
     ]
   },
   "dependencies": {
-    "downshift": "1.22.3",
+    "downshift": "1.22.5",
     "formik": "0.10.5",
     "react-overlays": "0.8.3",
     "yup": "0.23.0"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "3.2.17",
-    "@storybook/addon-knobs": "3.2.17",
-    "@storybook/addon-options": "3.2.17",
-    "@storybook/react": "3.2.17",
+    "@storybook/addon-actions": "3.2.18",
+    "@storybook/addon-knobs": "3.2.18",
+    "@storybook/addon-options": "3.2.18",
+    "@storybook/react": "3.2.18",
     "babel-cli": "6.26.0",
     "babel-eslint": "8.0.3",
     "babel-jest": "22.0.3",
@@ -67,7 +67,7 @@
     "react-dom": "16.2.0",
     "rimraf": "2.6.2",
     "semantic-release": "8.2.0",
-    "styled-components": "2.3.0",
+    "styled-components": "2.3.3",
     "stylelint": "8.4.0",
     "stylelint-config-standard": "18.0.0",
     "stylelint-config-styled-components": "0.1.1",
