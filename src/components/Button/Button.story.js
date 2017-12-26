@@ -9,7 +9,7 @@ import Button from './Button';
 storiesOf('Button', module)
   .add('playground', () => (
     <Button
-      color={select('color', Object.keys(theme.color), 'leaf')}
+      color={select('color', Object.keys(theme.color), 'green')}
       kind={select('kind', ['solid', 'outlined', 'transparent'], 'solid')}
       shape={select('shape', ['default', 'flat', 'rounded', 'circular'], 'default')}
       size={select('size', ['small', 'regular', 'large'], 'regular')}

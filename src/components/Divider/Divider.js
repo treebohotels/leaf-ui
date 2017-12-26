@@ -15,7 +15,7 @@ Divider.propTypes = {
 };
 
 Divider.defaultProps = {
-  color: 'rock',
+  color: 'grey',
   type: 'solid',
 };
 

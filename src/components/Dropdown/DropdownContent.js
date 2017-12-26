@@ -11,7 +11,7 @@ class DropdownContent extends React.Component {
   dropdownInnerStyle = {
     background: this.props.theme.color.white,
     minWidth: this.props.theme.px(25),
-    border: `1px solid ${this.props.theme.color.smoke}`,
+    border: `1px solid ${this.props.theme.color.greyLight}`,
     borderRadius: this.props.theme.borderRadius,
     boxShadow: this.props.theme.boxShadow[2],
   }

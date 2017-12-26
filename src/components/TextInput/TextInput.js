@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Text from '../Text';
 
-const modifierColor = (valid = 'leaf', invalid = 'dangerDark', disabled = 'rock') => (props) => {
+const modifierColor = (valid = 'green', invalid = 'redDark', disabled = 'grey') => (props) => {
   if (props.disabled) return props.theme.color[disabled];
   return props.error ? props.theme.color[invalid] : props.theme.color[valid];
 };
@@ -18,7 +18,7 @@ const Label = styled.label`
   top: 0;
   left: 0;
   pointer-events: none;
-  color: ${(p) => p.theme.color.slate};
+  color: ${(p) => p.theme.color.greyDark};
   font-size: ${(p) => p.theme.fontSize.xxs};
   transform: translate(0, 0);
   transition: all 0.15s ease-in-out;
@@ -26,7 +26,7 @@ const Label = styled.label`
 
 const Input = styled.input`
   background: transparent;
-  border: 1px solid ${(p) => p.theme.color.slate};
+  border: 1px solid ${(p) => p.theme.color.greyDark};
   border-width: 0 0 1px;
   padding: ${(p) => p.theme.px([1, 0])};
 
@@ -44,7 +44,7 @@ const Input = styled.input`
 
   &:placeholder-shown {
     + ${/* sc-selector */Label} {
-      color: ${(p) => p.theme.color.rock};
+      color: ${(p) => p.theme.color.grey};
       transform: translate(0, ${(p) => p.theme.px(3)});
     }
   }
@@ -86,7 +86,7 @@ const TextInput = ({
       </Label>
       {
         error ? (
-          <Text color="dangerDark" size="xxs">
+          <Text color="redDark" size="xxs">
             {error}
           </Text>
         ) : null

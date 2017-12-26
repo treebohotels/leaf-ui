@@ -17,7 +17,7 @@ Chip.propTypes = {
 };
 
 Chip.defaultProps = {
-  color: 'leaf',
+  color: 'green',
 };
 
 export default Chip;

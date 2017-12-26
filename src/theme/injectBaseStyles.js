@@ -6,8 +6,8 @@ export default () => injectGlobal`
   }
 
   body {
-    background: ${(p) => p.theme.color.rock};
-    color: ${(p) => p.theme.color.black};
+    background: ${(p) => p.theme.color.grey};
+    color: ${(p) => p.theme.color.greyDarker};
     font-size: ${(p) => p.theme.fontSize.s};
     font-weight: ${(p) => p.theme.fontWeight.normal};
     font-family: ${(p) => p.theme.fontFamily.roboto}, system-ui, sans-serif;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Text from '../Text';
 
-const modifierColor = (valid = 'leaf', invalid = 'dangerDark', disabled = 'rock') => (props) => {
+const modifierColor = (valid = 'green', invalid = 'redDark', disabled = 'grey') => (props) => {
   if (props.disabled) return props.theme.color[disabled];
   return props.error ? props.theme.color[invalid] : props.theme.color[valid];
 };
@@ -43,7 +43,7 @@ const Input = styled.input.attrs({
   white-space: nowrap;
 
   + ${/* sc-selector */Circle} {
-    border: 1px solid ${modifierColor('slate', 'slate')};
+    border: 1px solid ${modifierColor('greyDark', 'greyDark')};
   }
 
   &:focus {
@@ -102,7 +102,7 @@ const RadioButton = ({
       </Label>
       {
         error ? (
-          <Text color="dangerDark" size="xxs">
+          <Text color="redDark" size="xxs">
             {error}
           </Text>
         ) : null

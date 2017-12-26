@@ -17,7 +17,7 @@ const I = styled.i.attrs({
     }
 
     ${p.disabled ? `
-      color: ${p.theme.color.smoke};
+      color: ${p.theme.color.greyLight};
       pointer-events: none;
       opacity: 0.5;
     ` : ''}

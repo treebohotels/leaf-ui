@@ -14,10 +14,10 @@ const NotificationContainer = styled.div`
 `;
 
 const icon = {
-  info: <Icon name="info" color="info" />,
-  success: <Icon name="check_circle" color="success" />,
-  warning: <Icon name="error" color="warning" />,
-  danger: <Icon name="cancel" color="danger" />,
+  info: <Icon name="info" color="blue" />,
+  success: <Icon name="check_circle" color="green" />,
+  warning: <Icon name="error" color="yellow" />,
+  danger: <Icon name="cancel" color="red" />,
 };
 
 const Notification = ({
@@ -41,7 +41,7 @@ const Notification = ({
                     <Spacer margin={[0, 0, 1, 0]}>
                       <Text size="m" weight="semibold">{title}</Text>
                     </Spacer>
-                    <Text size="xs" color="slate">{content}</Text>
+                    <Text size="xs" color="greyDark">{content}</Text>
                   </Aux>
                 ) : (
                   <Text>{content}</Text>

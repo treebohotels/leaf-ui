@@ -16,7 +16,7 @@ const Trigger = Flex.extend`
   cursor: pointer;
   width: ${(p) => p.theme.px(20)};
   padding: ${(p) => p.theme.px(1)};
-  border: 1px solid ${(p) => p.theme.color.slate};
+  border: 1px solid ${(p) => p.theme.color.greyDark};
   border-radius: ${(p) => p.theme.borderRadius};
 `;
 
@@ -39,7 +39,7 @@ const OptionList = List.extend`
   background: ${(p) => p.theme.color.white};
   min-width: ${(p) => p.theme.px(25)};
   max-height: ${(p) => p.theme.px(25)};
-  border: 1px solid ${(p) => p.theme.color.smoke};
+  border: 1px solid ${(p) => p.theme.color.greyLight};
   border-radius: ${(p) => p.theme.borderRadius};
   box-shadow: ${(p) => p.theme.boxShadow[2]};
 `;
@@ -227,7 +227,7 @@ class Select extends React.Component {
             </OptionListContainer>
             {
               error ? (
-                <Text color="dangerDark" size="xxs">
+                <Text color="redDark" size="xxs">
                   {error}
                 </Text>
               ) : null

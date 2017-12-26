@@ -7,7 +7,7 @@ import Divider from './Divider';
 storiesOf('Divider', module)
   .add('playground', () => (
     <Divider
-      color={select('color', Object.keys(theme.color), 'rock')}
+      color={select('color', Object.keys(theme.color), 'grey')}
       type={select('type', ['solid', 'dashed'], 'solid')}
     />
   ))

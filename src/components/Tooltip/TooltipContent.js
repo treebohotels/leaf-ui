@@ -9,7 +9,7 @@ class TooltipContent extends React.Component {
   }
 
   tooltipInnerStyle = {
-    background: this.props.theme.color.black,
+    background: this.props.theme.color.greyDarker,
     padding: this.props.theme.px(1),
     color: this.props.theme.color.white,
     textAlign: 'center',
@@ -33,7 +33,7 @@ class TooltipContent extends React.Component {
         bottom: 1,
         marginLeft: this.props.theme.px(-1),
         borderWidth: this.props.theme.px([1, 1, 0]),
-        borderTopColor: this.props.theme.color.black,
+        borderTopColor: this.props.theme.color.greyDarker,
       },
     },
     right: {
@@ -41,7 +41,7 @@ class TooltipContent extends React.Component {
         left: 1,
         marginTop: this.props.theme.px(-1),
         borderWidth: this.props.theme.px([1, 1, 1, 0]),
-        borderRightColor: this.props.theme.color.black,
+        borderRightColor: this.props.theme.color.greyDarker,
       },
     },
     bottom: {
@@ -49,7 +49,7 @@ class TooltipContent extends React.Component {
         top: 1,
         marginLeft: this.props.theme.px(-1),
         borderWidth: this.props.theme.px([0, 1, 1]),
-        borderBottomColor: this.props.theme.color.black,
+        borderBottomColor: this.props.theme.color.greyDarker,
       },
     },
     left: {
@@ -57,7 +57,7 @@ class TooltipContent extends React.Component {
         right: 1,
         marginTop: this.props.theme.px(-1),
         borderWidth: this.props.theme.px([1, 0, 1, 1]),
-        borderLeftColor: this.props.theme.color.black,
+        borderLeftColor: this.props.theme.color.greyDarker,
       },
     },
   }

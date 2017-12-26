@@ -12,7 +12,7 @@ const Title = styled.div`
   color: ${(p) => p.theme.color.white};
   background: ${(p) => p.theme.color.lagoon};
   border-bottom: 2px solid transparent;
-  border-color: ${(p) => p.isSelected ? p.theme.color.rio : 'transparent'};
+  border-color: ${(p) => p.isSelected ? p.theme.color.yellow : 'transparent'};
 `;
 
 class TabsSectionTitle extends React.Component {

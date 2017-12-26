@@ -17,7 +17,7 @@ const ModalHeader = ({ dark, onClose, children }) => (
           {children}
         </Text>
         <Icon
-          color={dark ? 'white' : 'black'}
+          color={dark ? 'white' : 'greyDarker'}
           name="close"
           button
           onClick={onClose}
