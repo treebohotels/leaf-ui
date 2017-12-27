@@ -1,11 +1,10 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { configure, addDecorator } from '@storybook/react';
+import { addDecorator, configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
-import { injectBaseStyles } from '../src/theme';
+import theme, { injectBaseStyles } from '../src/theme';
 import { injectIconStyles } from '../src/components/Icon';
-import theme from '../src/theme';
 
 setOptions({
   name: 'Leaf-UI',
@@ -25,9 +24,7 @@ addDecorator((story) => {
   );
 });
 
-function loadStories() {
+configure(() => {
   const req = require.context('../src', true, /\.story\.js$/);
   req.keys().forEach((filename) => req(filename));
-}
-
-configure(loadStories, module);
+}, module);

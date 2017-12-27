@@ -33,6 +33,14 @@
         }],
         "react"
       ]
+    },
+    "development": {
+      "presets": [
+        "expo"
+      ],
+      "plugins": [
+        "transform-react-jsx-source"
+      ]
     }
   }
 }

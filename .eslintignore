@@ -1,5 +1,6 @@
 .idea
 .vscode
+.expo
 es
 lib
 docs
