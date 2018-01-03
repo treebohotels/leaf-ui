@@ -1,16 +1,16 @@
 import { injectGlobal } from 'styled-components';
 
-export default () => injectGlobal`
+export default (theme) => injectGlobal`
   html {
     box-sizing: border-box;
   }
 
   body {
-    background: ${(p) => p.theme.color.grey};
-    color: ${(p) => p.theme.color.greyDarker};
-    font-size: ${(p) => p.theme.fontSize.s};
-    font-weight: ${(p) => p.theme.fontWeight.normal};
-    font-family: ${(p) => p.theme.fontFamily.roboto}, system-ui, sans-serif;
+    background: ${theme.color.greyLight};
+    color: ${theme.color.greyDarker};
+    font-size: ${theme.fontSize.s};
+    font-weight: ${theme.fontWeight.normal};
+    font-family: ${theme.fontFamily.roboto}, system-ui, sans-serif;
   }
 
   *,
@@ -19,26 +19,28 @@ export default () => injectGlobal`
     box-sizing: inherit;
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  ol {
-    list-style: decimal inside;
-    padding: 0;
-    margin: 0;
-  }
-
   p,
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6 {
+  h6,
+  ul,
+  ol {
     padding: 0;
     margin: 0;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  ol {
+    list-style: decimal inside;
   }
 `;

@@ -15,7 +15,7 @@ setOptions({
 addDecorator(withKnobs);
 
 addDecorator((story) => {
-  injectBaseStyles();
+  injectBaseStyles(theme);
   injectIconStyles();
   return (
     <ThemeProvider theme={theme}>
