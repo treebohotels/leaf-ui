@@ -1,26 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { action } from '@storybook/addon-actions';
-import { boolean, text, select } from '@storybook/addon-knobs';
 import Button from '../../src/components/Button/native';
 import Text from '../../src/components/Text/native';
-import theme from '../../src/theme/native/theme';
 
 storiesOf('Button', module)
-  // .add('playground', () => (
-  //   <Button
-  //     color={select('color', Object.keys(theme.color), 'green')}
-  //     kind={select('kind', ['solid', 'outlined', 'transparent'], 'solid')}
-  //     shape={select('shape', ['default', 'flat', 'rounded'], 'default')}
-  //     size={select('size', ['small', 'regular', 'large'], 'regular')}
-  //     block={boolean('block', false)}
-  //     disabled={boolean('disabled', false)}
-  //     light={boolean('light', false)}
-  //     onClick={action('button clicked')}
-  //   >
-  //     <Text>{text('children', 'Default Button')}</Text>
-  //   </Button>
-  // ))
   .add('Default', () => (
     <Button>
       <Text>Default Button</Text>
