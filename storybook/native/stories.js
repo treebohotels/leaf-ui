@@ -61,4 +61,16 @@ storiesOf('Text', module)
   ))
   .add('Colored', () => (
     <Text color="blue">Blue Text</Text>
+  ))
+  .add('XS', () => (
+    <Text color="blue" size="xs">Blue Text</Text>
+  ))
+  .add('XL', () => (
+    <Text color="blue" size="xl">Blue Text</Text>
+  ))
+  .add('XXL', () => (
+    <Text color="blue" size="xxl">Blue Text</Text>
+  ))
+  .add('L', () => (
+    <Text color="blue" size="l">Blue Text</Text>
   ));

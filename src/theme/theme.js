@@ -54,6 +54,7 @@ export default {
     greyDarker: '#4a4a4a',
     blackTranslucent: 'rgba(0, 0, 0, 0.1)',
     black: '#000000',
+    transparent: 'rgba(0, 0, 0, 0)',
   },
 
   fontFamily: {
@@ -62,19 +63,21 @@ export default {
   },
 
   fontSize: {
-    xxxl: '28px',
-    xxl: '24px',
-    xl: '20px',
-    l: '18px',
-    m: '16px',
-    s: '14px',
-    xs: '12px',
-    xxs: '10px',
+    xxxxl: 32,
+    xxxl: 28,
+    xxl: 24,
+    xl: 20,
+    l: 18,
+    m: 16,
+    s: 14,
+    xs: 12,
+    xxs: 10,
   },
 
   fontWeight: {
-    normal: 400,
-    semibold: 500,
+    regular: 400,
+    medium: 500,
+    semibold: 600,
     bold: 700,
   },
 
@@ -85,5 +88,5 @@ export default {
       .join(' ');
   },
 
-  pxScale: 8,
+  pxScale: 4,
 };
