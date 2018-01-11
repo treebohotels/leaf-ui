@@ -9,8 +9,8 @@ const Button = styled.TouchableOpacity`
   border-style: solid;
   ${(p) => ({
     solid: `
-      background-color: ${p.light ? p.theme.color.white : p.theme.color[p.color]};
-      border-color: ${p.light ? p.theme.color.white : p.theme.color[p.color]};
+      background-color: ${p.theme.color[p.color]};
+      border-color: ${p.theme.color[p.color]};
     `,
     outlined: `
       background-color: transparent;
@@ -55,7 +55,6 @@ Button.propTypes = {
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   block: PropTypes.bool,
   disabled: PropTypes.bool,
-  light: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -65,7 +64,6 @@ Button.defaultProps = {
   shape: 'default',
   block: false,
   disabled: false,
-  light: false,
 };
 
 export default Button;
