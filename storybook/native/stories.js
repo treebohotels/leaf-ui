@@ -1,16 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import styled from 'styled-components/native';
 import Button from '../../src/components/Button/native';
 import Text from '../../src/components/Text/native';
 import theme from '../../src/theme';
-
-const ButtonContainer = styled.View`
-  marginVertical: 8;
-  marginHorizontal: 8;
-`;
-
-const View = styled.View``;
+import Spacer from '../../src/components/Spacer/native/Spacer';
 
 storiesOf('Button', module)
   .add('default', () => (
@@ -19,61 +12,61 @@ storiesOf('Button', module)
     </Button>
   ))
   .add('kinds', () => (
-    <View>
-      <ButtonContainer>
+    <Spacer>
+      <Spacer margin={4}>
         <Button kind="solid">
           <Text>Solid Button</Text>
         </Button>
-      </ButtonContainer>
-      <ButtonContainer>
+      </Spacer>
+      <Spacer margin={4}>
         <Button kind="outlined">
           <Text>Outlined Button</Text>
         </Button>
-      </ButtonContainer>
-      <ButtonContainer>
+      </Spacer>
+      <Spacer margin={4}>
         <Button kind="transparent">
           <Text>Transparent Button</Text>
         </Button>
-      </ButtonContainer>
-    </View>
+      </Spacer>
+    </Spacer>
   ))
   .add('shapes', () => (
-    <View>
-      <ButtonContainer>
+    <Spacer>
+      <Spacer margin={4}>
         <Button shape="default">
           <Text>Default Button</Text>
         </Button>
-      </ButtonContainer>
-      <ButtonContainer>
+      </Spacer>
+      <Spacer margin={4}>
         <Button shape="flat">
           <Text>Flat Button</Text>
         </Button>
-      </ButtonContainer>
-      <ButtonContainer>
+      </Spacer>
+      <Spacer margin={4}>
         <Button shape="rounded">
           <Text>Rounded Button</Text>
         </Button>
-      </ButtonContainer>
-    </View>
+      </Spacer>
+    </Spacer>
   ))
   .add('sizes', () => (
-    <View>
-      <ButtonContainer>
+    <Spacer>
+      <Spacer margin={4}>
         <Button size="small">
           <Text>Small Button</Text>
         </Button>
-      </ButtonContainer>
-      <ButtonContainer>
+      </Spacer>
+      <Spacer margin={4}>
         <Button size="regular">
           <Text>Default Button</Text>
         </Button>
-      </ButtonContainer>
-      <ButtonContainer>
+      </Spacer>
+      <Spacer margin={4}>
         <Button size="large">
           <Text>Large Button</Text>
         </Button>
-      </ButtonContainer>
-    </View>
+      </Spacer>
+    </Spacer>
   ))
   .add('block', () => (
     <Button block>
@@ -91,30 +84,30 @@ storiesOf('Text', module)
     <Text>Simple Text</Text>
   ))
   .add('sizes', () => (
-    <View>
+    <Spacer>
       {
         Object.keys(theme.fontSize).map((size) => (
-          <ButtonContainer>
+          <Spacer margin={4}>
             <Text size={size}>
               {size}: {theme.fontSize[size]}
               Size
             </Text>
-          </ButtonContainer>
+          </Spacer>
         ))
       }
-    </View>
+    </Spacer>
   ))
   .add('weights', () => (
-    <View>
+    <Spacer>
       {
         Object.keys(theme.fontWeight).map((weight) => (
-          <ButtonContainer>
+          <Spacer margin={4}>
             <Text weight={weight}>
               {weight}: {theme.fontWeight[weight]}
               Weight
             </Text>
-          </ButtonContainer>
+          </Spacer>
         ))
       }
-    </View>
+    </Spacer>
   ));
