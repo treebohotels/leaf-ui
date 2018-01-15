@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components/native';
 import Text from '../../Text/native';
 
-const modifierColor = (focused = 'green', valid = 'grey', invalid = 'redDark', disabled = 'grey') => (props) => {
+const modifierColor = (focused = 'green', valid = 'grey', invalid = 'red', disabled = 'grey') => (props) => {
   if (props.isFocused) return props.theme.color[focused];
   if (props.disabled) return props.theme.color[disabled];
   return props.error ? props.theme.color[invalid] : props.theme.color[valid];
@@ -12,7 +12,7 @@ const modifierColor = (focused = 'green', valid = 'grey', invalid = 'redDark', d
 
 const labelColor = (props) => {
   if (props.isFocused) return props.theme.color.green;
-  return props.error && !props.isEmptyInput ? props.theme.color.redDark : props.theme.color.grey;
+  return props.error && !props.isEmptyInput ? props.theme.color.red : props.theme.color.grey;
 };
 
 const InputContainer = styled.View`
@@ -54,7 +54,7 @@ const Input = styled.TextInput`
 `;
 
 const ErrorText = Text.extend`
-  color: ${(p) => p.theme.color.redDark};
+  color: ${(p) => p.theme.color.red};
   font-size: ${(p) => p.theme.fontSize.xs};
   margin-top: ${(p) => p.theme.px(2)};
 `;
@@ -132,7 +132,7 @@ class TextInput extends Component {
     let error = errorMessage;
     const labelFontSize = labelTranslateValue.interpolate({
       inputRange: [0, theme.pxScale * 2],
-      outputRange: [theme.fontSize.xxs, theme.fontSize.s],
+      outputRange: [parseInt(theme.fontSize.xxs, 10), parseInt(theme.fontSize.s, 10)],
       extrapolate: 'clamp',
     });
 
