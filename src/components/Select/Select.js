@@ -14,7 +14,7 @@ const Trigger = Flex.extend`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  width: ${(p) => p.theme.px(20)};
+  width: ${(p) => p.block ? '100%' : p.theme.px(20)};
   padding: ${(p) => p.theme.px(1)};
   border: 1px solid ${(p) => p.theme.color.greyDark};
   border-radius: ${(p) => p.theme.borderRadius};
@@ -37,7 +37,7 @@ const OptionList = List.extend`
   overflow-y: scroll;
   z-index: 1050;
   background: ${(p) => p.theme.color.white};
-  min-width: ${(p) => p.theme.px(25)};
+  min-width: ${(p) => p.block ? '100%' : p.theme.px(25)};
   max-height: ${(p) => p.theme.px(25)};
   border: 1px solid ${(p) => p.theme.color.greyLight};
   border-radius: ${(p) => p.theme.borderRadius};
@@ -155,6 +155,7 @@ class Select extends React.Component {
     const {
       className,
       name,
+      block,
       multiple,
       options,
       error: errorMessage,
@@ -181,7 +182,10 @@ class Select extends React.Component {
           selectedItem: dsSelectedOptions,
         }) => (
           <div className={className}>
-            <Trigger {...getButtonProps()}>
+            <Trigger
+              block={block}
+              {...getButtonProps()}
+            >
               <Text truncate>{this.getButtonText(dsSelectedOptions)}</Text>
               <TriggerArrows viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z" />
@@ -190,7 +194,7 @@ class Select extends React.Component {
             <OptionListContainer>
               {
                 isOpen ? (
-                  <OptionList>
+                  <OptionList block={block}>
                     {
                       options.map((option, index) => (
                         <Option
@@ -243,6 +247,7 @@ Select.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
+  block: PropTypes.bool,
   multiple: PropTypes.bool,
   options: PropTypes.array.isRequired,
   defaultSelected: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
