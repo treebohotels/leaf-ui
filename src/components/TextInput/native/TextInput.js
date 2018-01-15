@@ -101,7 +101,6 @@ class TextInput extends Component {
       formik.setFieldTouched(name, true);
       value = formik.values[name];
     }
-    // eslint-disable-next-line no-underscore-dangle
     if (!showPlaceholder && !value) {
       Animated.timing(labelTranslateValue, {
         toValue: theme.pxScale * 2,
