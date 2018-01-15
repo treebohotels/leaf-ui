@@ -80,7 +80,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  color: 'green',
+  color: 'primary',
   kind: 'solid',
   size: 'regular',
   shape: 'default',
