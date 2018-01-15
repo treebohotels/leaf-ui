@@ -29,6 +29,7 @@ const Input = styled.input`
   border: 1px solid ${(p) => p.theme.color.greyDark};
   border-width: 0 0 1px;
   padding: ${(p) => p.theme.px([1, 0])};
+  ${(p) => p.block ? 'width: 100%;' : ''}
 
   &:focus {
     border-color: ${modifierColor()};
@@ -55,6 +56,7 @@ const TextInput = ({
   name,
   label,
   error: errorMessage,
+  block,
   ...props
 }, {
   formik,
@@ -75,6 +77,7 @@ const TextInput = ({
         id={name}
         placeholder={label}
         error={error}
+        block={block}
         {...inputProps}
         {...props}
       />
@@ -100,6 +103,7 @@ TextInput.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   error: PropTypes.string,
+  block: PropTypes.bool,
 };
 
 TextInput.defaultProps = {
