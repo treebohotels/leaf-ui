@@ -88,5 +88,5 @@ export default {
       .join(' ');
   },
 
-  pxScale: 4,
+  pxScale: 8,
 };
