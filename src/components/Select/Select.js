@@ -227,7 +227,7 @@ class Select extends React.Component {
             </OptionListContainer>
             {
               error ? (
-                <Text color="redDark" size="xxs">
+                <Text color="red" size="xxs">
                   {error}
                 </Text>
               ) : null

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Text from '../Text';
 
-const modifierColor = (valid = 'green', invalid = 'redDark', disabled = 'grey') => (props) => {
+const modifierColor = (valid = 'primary', invalid = 'red', disabled = 'grey') => (props) => {
   if (props.disabled) return props.theme.color[disabled];
   return props.error ? props.theme.color[invalid] : props.theme.color[valid];
 };
@@ -107,7 +107,7 @@ const Checkbox = ({
       </Label>
       {
         error ? (
-          <Text color="redDark" size="xxs">
+          <Text color="red" size="xxs">
             {error}
           </Text>
         ) : null
