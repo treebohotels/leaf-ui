@@ -1,8 +1,11 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 
-const Button = styled.TouchableOpacity`
+const isPlatformAndroid = !(Platform.OS === 'ios');
+
+const ButtonView = styled.View`
   align-items: center;
   justify-content: center;
   border-width: 1px;
@@ -44,8 +47,35 @@ const Button = styled.TouchableOpacity`
     `,
   }[p.size])}
   ${(p) => p.block ? 'align-self: stretch;' : 'align-self: flex-start;'}
-  ${(p) => p.disabled ? 'opacity: 0.5;' : ''}
+  ${(p) => p.disabled ? 'opacity: 0.5;' : 'opacity: 1'}
   `;
+
+const Button = ({ color, kind, shape, size, block, disabled, children, ...restProps }) => (
+  isPlatformAndroid ?
+    <TouchableNativeFeedback {...restProps}>
+      <ButtonView
+        color={color}
+        kind={kind}
+        size={size}
+        block={block}
+        disbaled={disabled}
+      >
+        {children}
+      </ButtonView>
+    </TouchableNativeFeedback>
+    :
+    <TouchableOpacity {...restProps}>
+      <ButtonView
+        color={color}
+        kind={kind}
+        size={size}
+        block={block}
+        disbaled={disabled}
+      >
+        {children}
+      </ButtonView>
+    </TouchableOpacity>
+);
 
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
