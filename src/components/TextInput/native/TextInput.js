@@ -16,13 +16,13 @@ const labelColor = (props) => {
 };
 
 const InputContainer = styled.View`
-  padding: ${(p) => p.theme.px([3, 0])};
+  padding: ${(p) => p.theme.px([1.5, 0])};
 `;
 
 const Label = Text.extend`
   position: absolute;
-  top: ${(p) => p.theme.px(3)};
-  left: ${(p) => p.theme.px(2)};
+  top: ${(p) => p.theme.px(1.5)};
+  left: ${(p) => p.theme.px(1)};
   color: ${labelColor};
   font-size: ${(p) => p.theme.fontSize.xxs};
   background-color: ${(p) => p.theme.color.transparent};
@@ -35,7 +35,7 @@ const BorderedContainer = styled.View`
   background: ${modifierColor('transparent', 'transparent', 'redLighter', 'transparent')};
   border-color: ${modifierColor()};
   border-width: 1;
-  height: ${(p) => p.theme.px(13)};
+  height: ${(p) => p.theme.px(6.5)};
   flex-direction: row;
   align-items: center;
 `;
@@ -46,17 +46,17 @@ const RelativeFlexView = styled.View`
 `;
 
 const Input = styled.TextInput`
-  padding: ${(p) => p.isLabelVisible ? p.theme.px([4, 2, 0, 2]) : p.theme.px(2)};
+  padding: ${(p) => p.isLabelVisible ? p.theme.px([2, 0, 0, 0.5]) : p.theme.px([0.5, 0, 0.5, 0.5])};
   font-size: ${(p) => p.theme.fontSize.s};
   color: ${(p) => p.theme.color.greyDarker};
-  height: ${(p) => p.theme.px(13)};
+  height: ${(p) => p.theme.px(6.5)};
   flex: 1;
 `;
 
 const ErrorText = Text.extend`
   color: ${(p) => p.theme.color.red};
   font-size: ${(p) => p.theme.fontSize.xs};
-  margin-top: ${(p) => p.theme.px(2)};
+  margin-top: ${(p) => p.theme.px(1)};
 `;
 
 class TextInput extends Component {
@@ -65,7 +65,7 @@ class TextInput extends Component {
     const { name, theme } = this.props;
     this.state = {
       labelTranslateValue: formik && formik.values[name] ?
-        new Animated.Value(0) : new Animated.Value(theme.pxScale * 2),
+        new Animated.Value(0) : new Animated.Value(theme.pxScale),
       isFocused: false,
     };
   }
@@ -103,7 +103,7 @@ class TextInput extends Component {
     }
     if (!showPlaceholder && !value) {
       Animated.timing(labelTranslateValue, {
-        toValue: theme.pxScale * 2,
+        toValue: theme.pxScale,
         duration: theme.labelAnimationDuration,
       }).start();
     }
@@ -130,7 +130,7 @@ class TextInput extends Component {
     const inputProps = { name };
     let error = errorMessage;
     const labelFontSize = labelTranslateValue.interpolate({
-      inputRange: [0, theme.pxScale * 2],
+      inputRange: [0, theme.pxScale],
       outputRange: [parseInt(theme.fontSize.xxs, 10), parseInt(theme.fontSize.s, 10)],
       extrapolate: 'clamp',
     });

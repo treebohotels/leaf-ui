@@ -63,15 +63,15 @@ const theme = {
   },
 
   fontSize: {
-    xxxxl: 32,
-    xxxl: 28,
-    xxl: 24,
-    xl: 20,
-    l: 18,
-    m: 16,
-    s: 14,
-    xs: 12,
-    xxs: 10,
+    xxxxl: '32px',
+    xxxl: '28px',
+    xxl: '24px',
+    xl: '20px',
+    l: '18px',
+    m: '16px',
+    s: '14px',
+    xs: '12px',
+    xxs: '10px',
   },
 
   fontWeight: {
@@ -88,7 +88,7 @@ const theme = {
       .join(' ');
   },
 
-  pxScale: 4,
+  pxScale: 8,
 };
 
 theme.color.primaryLighter = theme.color.greenLighter;

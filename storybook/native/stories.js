@@ -6,13 +6,11 @@ import Button from '../../src/components/Button/native';
 import Text from '../../src/components/Text/native';
 import Form from '../../src/components/Form';
 import TextInput from '../../src/components/TextInput/native';
+import Spacer from '../../src/components/Spacer/native';
 
-const Container = styled.View`
-  marginVertical: 8;
-  marginHorizontal: 8;
+const View = styled.View`
+  margin: 0;
 `;
-
-const View = styled.View``;
 
 storiesOf('Button', module)
   .add('default', () => (
@@ -22,59 +20,59 @@ storiesOf('Button', module)
   ))
   .add('kinds', () => (
     <View>
-      <Container>
+      <Spacer margin={4}>
         <Button kind="solid">
           <Text>Solid Button</Text>
         </Button>
-      </Container>
-      <Container>
+      </Spacer>
+      <Spacer margin={4}>
         <Button kind="outlined">
           <Text>Outlined Button</Text>
         </Button>
-      </Container>
-      <Container>
+      </Spacer>
+      <Spacer margin={4}>
         <Button kind="transparent">
           <Text>Transparent Button</Text>
         </Button>
-      </Container>
+      </Spacer>
     </View>
   ))
   .add('shapes', () => (
     <View>
-      <Container>
+      <Spacer margin={4}>
         <Button shape="default">
           <Text>Default Button</Text>
         </Button>
-      </Container>
-      <Container>
+      </Spacer>
+      <Spacer margin={4}>
         <Button shape="flat">
           <Text>Flat Button</Text>
         </Button>
-      </Container>
-      <Container>
+      </Spacer>
+      <Spacer margin={4}>
         <Button shape="rounded">
           <Text>Rounded Button</Text>
         </Button>
-      </Container>
+      </Spacer>
     </View>
   ))
   .add('sizes', () => (
     <View>
-      <Container>
+      <Spacer margin={4}>
         <Button size="small">
           <Text>Small Button</Text>
         </Button>
-      </Container>
-      <Container>
+      </Spacer>
+      <Spacer margin={4}>
         <Button size="regular">
           <Text>Default Button</Text>
         </Button>
-      </Container>
-      <Container>
+      </Spacer>
+      <Spacer margin={4}>
         <Button size="large">
           <Text>Large Button</Text>
         </Button>
-      </Container>
+      </Spacer>
     </View>
   ))
   .add('block', () => (
@@ -96,12 +94,12 @@ storiesOf('Text', module)
     <View>
       {
         Object.keys(theme.fontSize).map((size) => (
-          <Container>
+          <Spacer margin={4}>
             <Text size={size}>
               {size}: {theme.fontSize[size]}
               Size
             </Text>
-          </Container>
+          </Spacer>
         ))
       }
     </View>
@@ -110,12 +108,12 @@ storiesOf('Text', module)
     <View>
       {
         Object.keys(theme.fontWeight).map((weight) => (
-          <Container>
+          <Spacer margin={4}>
             <Text weight={weight}>
               {weight}: {theme.fontWeight[weight]}
               Weight
             </Text>
-          </Container>
+          </Spacer>
         ))
       }
     </View>
@@ -123,16 +121,16 @@ storiesOf('Text', module)
 
 storiesOf('TextInput', module)
   .add('simple', () => (
-    <View style={{ paddingHorizontal: 16 }}>
+    <Spacer margin={4}>
       <TextInput
         name="name"
         label="Name"
         error="required"
         autoFocus={false}
       />
-    </View>
+    </Spacer>
   )).add('placeholder', () => (
-    <View style={{ paddingHorizontal: 16 }}>
+    <Spacer margin={4}>
       <TextInput
         name="name"
         label="Name"
@@ -140,7 +138,7 @@ storiesOf('TextInput', module)
         showPlaceholder
         autoFocus={false}
       />
-    </View>
+    </Spacer>
   ));
 
 storiesOf('Form', module)
@@ -155,17 +153,14 @@ storiesOf('Form', module)
           email: Form.validation.string().email(),
         })
       }
-      render={(props) => (
-        <Container>
+      render={() => (
+        <Spacer margin={4}>
           <TextInput
             name="email"
             label="Email"
             autoFocus={false}
           />
-          <Button onPress={props.handleSubmit}>
-            <Text>Submit</Text>
-          </Button>
-        </Container>
+        </Spacer>
       )}
     />
   ))
@@ -180,8 +175,8 @@ storiesOf('Form', module)
           email: Form.validation.string().email(),
         })
       }
-      render={(props) => (
-        <Container>
+      render={() => (
+        <Spacer margin={4}>
           <TextInput
             name="name"
             label="Name"
@@ -190,10 +185,7 @@ storiesOf('Form', module)
               <View style={{ width: 48, height: 48, backgroundColor: 'red' }} />
             }
           />
-          <Button onPress={props.handleSubmit}>
-            <Text>Submit</Text>
-          </Button>
-        </Container>
+        </Spacer>
       )}
     />
   ))
@@ -208,8 +200,8 @@ storiesOf('Form', module)
           email: Form.validation.string().email(),
         })
       }
-      render={(props) => (
-        <Container>
+      render={() => (
+        <Spacer margin={4}>
           <TextInput
             name="name"
             label="Name"
@@ -218,10 +210,7 @@ storiesOf('Form', module)
               <View style={{ width: 48, height: 48, backgroundColor: 'red' }} />
             }
           />
-          <Button onPress={props.handleSubmit}>
-            <Text>Submit</Text>
-          </Button>
-        </Container>
+        </Spacer>
       )}
     />
   ));
