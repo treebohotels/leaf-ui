@@ -54,6 +54,7 @@ const theme = {
     greyDarker: '#4a4a4a',
     blackTranslucent: 'rgba(0, 0, 0, 0.1)',
     black: '#000000',
+    transparent: 'rgba(0, 0, 0, 0)',
   },
 
   fontFamily: {
@@ -62,6 +63,7 @@ const theme = {
   },
 
   fontSize: {
+    xxxxl: '32px',
     xxxl: '28px',
     xxl: '24px',
     xl: '20px',
@@ -73,8 +75,9 @@ const theme = {
   },
 
   fontWeight: {
-    normal: 400,
-    semibold: 500,
+    regular: 400,
+    medium: 500,
+    semibold: 600,
     bold: 700,
   },
 
