@@ -121,7 +121,7 @@ storiesOf('Text', module)
 
 storiesOf('TextInput', module)
   .add('simple', () => (
-    <Spacer margin={4}>
+    <Spacer margin={2}>
       <TextInput
         name="name"
         label="Name"
@@ -130,7 +130,7 @@ storiesOf('TextInput', module)
       />
     </Spacer>
   )).add('placeholder', () => (
-    <Spacer margin={4}>
+    <Spacer margin={2}>
       <TextInput
         name="name"
         label="Name"
@@ -144,17 +144,13 @@ storiesOf('TextInput', module)
 storiesOf('Form', module)
   .add('simple', () => (
     <Form
-      initialValues={{
-        name: 'Leaf',
-      }}
       validationSchema={
         Form.validation.object().shape({
-          name: Form.validation.string().required(),
           email: Form.validation.string().email(),
         })
       }
       render={() => (
-        <Spacer margin={4}>
+        <Spacer margin={2}>
           <TextInput
             name="email"
             label="Email"
@@ -172,11 +168,10 @@ storiesOf('Form', module)
       validationSchema={
         Form.validation.object().shape({
           name: Form.validation.string().required(),
-          email: Form.validation.string().email(),
         })
       }
       render={() => (
-        <Spacer margin={4}>
+        <Spacer margin={2}>
           <TextInput
             name="name"
             label="Name"
@@ -197,13 +192,12 @@ storiesOf('Form', module)
       validationSchema={
         Form.validation.object().shape({
           name: Form.validation.string().required(),
-          email: Form.validation.string().email(),
         })
       }
       render={() => (
-        <Spacer margin={4}>
+        <Spacer margin={2}>
           <TextInput
-            name="name"
+            name="Name"
             label="Name"
             autoFocus={false}
             rightIcon={

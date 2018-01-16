@@ -46,7 +46,7 @@ const RelativeFlexView = styled.View`
 `;
 
 const Input = styled.TextInput`
-  padding: ${(p) => p.isLabelVisible ? p.theme.px([2, 0, 0, 0.5]) : p.theme.px([0.5, 0, 0.5, 0.5])};
+  padding: ${(p) => p.isLabelVisible ? p.theme.px([2, 0, 0, 1]) : p.theme.px([1, 0, 1, 1])};
   font-size: ${(p) => p.theme.fontSize.s};
   color: ${(p) => p.theme.color.greyDarker};
   height: ${(p) => p.theme.px(6.5)};
@@ -122,6 +122,9 @@ class TextInput extends Component {
       theme,
       leftIcon,
       rightIcon,
+      showRightIconWhenFocusedOnly,
+      testID,
+      accessibilityLabel,
       ...props
     } = this.props;
     const { formik } = this.context;
@@ -178,12 +181,14 @@ class TextInput extends Component {
               underlineColorAndroid={theme.color.transparent}
               selectionColor={theme.color.green}
               isLabelVisible={!showPlaceholder}
+              testID={testID}
+              accessibilityLabel={accessibilityLabel}
               {...inputProps}
               {...props}
             />
           </RelativeFlexView>
           {
-            rightIcon
+            !showRightIconWhenFocusedOnly || isFocused ? rightIcon : null
           }
         </BorderedContainer>
         {
@@ -199,6 +204,7 @@ class TextInput extends Component {
 }
 
 TextInput.propTypes = {
+  ...Input.propTypes,
   name: PropTypes.string,
   label: PropTypes.string,
   showPlaceholder: PropTypes.bool,
@@ -207,6 +213,9 @@ TextInput.propTypes = {
   theme: PropTypes.object,
   leftIcon: PropTypes.node,
   rightIcon: PropTypes.node,
+  showRightIconWhenFocusedOnly: PropTypes.bool,
+  testID: PropTypes.string,
+  accessibilityLabel: PropTypes.string,
 };
 
 TextInput.defaultProps = {
@@ -214,6 +223,7 @@ TextInput.defaultProps = {
   label: '',
   showPlaceholder: false,
   error: '',
+  showRightIconWhenFocusedOnly: true,
 };
 
 TextInput.contextTypes = {
