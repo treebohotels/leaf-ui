@@ -13,7 +13,7 @@ const View = styled.View`
 `;
 
 storiesOf('Button', module)
-  .add('default', () => (
+  .add('with text', () => (
     <Button>
       <Text>Default Button</Text>
     </Button>
