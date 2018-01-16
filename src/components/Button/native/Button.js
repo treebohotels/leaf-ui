@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
-import Text from '../../Text/native';
+import { TouchableOpacity } from 'react-native';
 
 const Button = styled.TouchableOpacity`
   align-items: center;
@@ -11,26 +11,14 @@ const Button = styled.TouchableOpacity`
     solid: `
       background-color: ${p.theme.color[p.color]};
       border-color: ${p.theme.color[p.color]};
-
-      ${Text} {
-        color: ${p.theme.color.white};
-      }
     `,
     outlined: `
       background-color: transparent;
       border-color: ${p.theme.color[p.color]};
-
-      ${Text} {
-        color: ${p.theme.color[p.color]};
-      }
     `,
     transparent: `
       background-color: transparent;
       border-color: transparent;
-
-      ${Text} {
-        color: ${p.theme.color[p.color]};
-      }
     `,
   }[p.kind])}
   ${(p) => ({
@@ -42,9 +30,6 @@ const Button = styled.TouchableOpacity`
     `,
     rounded: `
       border-radius: ${p.theme.px(10)};
-    `,
-    circular: `
-      border-radius: 100%;
     `,
   }[p.shape])}
   ${(p) => ({
@@ -58,16 +43,15 @@ const Button = styled.TouchableOpacity`
       padding: ${p.theme.px([2, 3])};
     `,
   }[p.size])}
-  ${(p) => p.block ? 'width: 100%;' : ''}
-  ${(p) => p.disabled ? `
-    opacity: 0.5;
-  ` : ''}
+  ${(p) => p.block ? 'align-self: stretch;' : 'align-self: flex-start;'}
+  ${(p) => p.disabled ? 'opacity: 0.5;' : ''}
   `;
 
 Button.propTypes = {
+  ...TouchableOpacity.propTypes,
   color: PropTypes.string,
   kind: PropTypes.oneOf(['solid', 'outlined', 'transparent']),
-  shape: PropTypes.oneOf(['default', 'flat', 'rounded', 'circular']),
+  shape: PropTypes.oneOf(['default', 'flat', 'rounded']),
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   block: PropTypes.bool,
   disabled: PropTypes.bool,
