@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components/native';
 import Text from '../../Text/native';
 
-const modifierColor = (focused = 'green', valid = 'grey', invalid = 'red', disabled = 'grey') => (props) => {
+const modifierColor = (focused = 'green', valid = 'greyLight', invalid = 'red', disabled = 'grey') => (props) => {
   if (props.isFocused) return props.theme.color[focused];
   if (props.disabled) return props.theme.color[disabled];
   return props.error ? props.theme.color[invalid] : props.theme.color[valid];
@@ -16,13 +16,13 @@ const labelColor = (props) => {
 };
 
 const InputContainer = styled.View`
-  padding: ${(p) => p.theme.px([1.5, 0])};
+  padding: ${(p) => p.theme.px([2, 0])};
 `;
 
 const Label = Text.extend`
   position: absolute;
   top: ${(p) => p.theme.px(1.5)};
-  left: ${(p) => p.theme.px(1)};
+  left: ${(p) => p.theme.px(1.5)};
   color: ${labelColor};
   font-size: ${(p) => p.theme.fontSize.xxs};
   background-color: ${(p) => p.theme.color.transparent};
@@ -35,6 +35,7 @@ const BorderedContainer = styled.View`
   background: ${modifierColor('transparent', 'transparent', 'redLighter', 'transparent')};
   border-color: ${modifierColor()};
   border-width: 1;
+  border-radius: 2;
   height: ${(p) => p.theme.px(6.5)};
   flex-direction: row;
   align-items: center;
@@ -46,7 +47,7 @@ const RelativeFlexView = styled.View`
 `;
 
 const Input = styled.TextInput`
-  padding: ${(p) => p.isLabelVisible ? p.theme.px([2, 0, 0, 1]) : p.theme.px([1, 0, 1, 1])};
+  padding: ${(p) => p.isLabelVisible ? p.theme.px([2.2, 0, 0, 1.3]) : p.theme.px([1.3, 0, 1.3, 1.3])};
   font-size: ${(p) => p.theme.fontSize.s};
   color: ${(p) => p.theme.color.greyDarker};
   height: ${(p) => p.theme.px(6.5)};
@@ -149,7 +150,6 @@ class TextInput extends Component {
     return (
       <InputContainer style={style}>
         <BorderedContainer
-          {...props}
           error={error}
           isFocused={isFocused}
         >
