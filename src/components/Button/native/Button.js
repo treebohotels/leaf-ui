@@ -52,25 +52,27 @@ const ButtonView = styled.View`
 
 const Button = ({ color, kind, shape, size, block, disabled, children, ...restProps }) => (
   isPlatformAndroid ?
-    <TouchableNativeFeedback {...restProps}>
+    <TouchableNativeFeedback disabled={disabled} {...restProps}>
       <ButtonView
         color={color}
         kind={kind}
         size={size}
+        shape={shape}
         block={block}
-        disbaled={disabled}
+        disabled={disabled}
       >
         {children}
       </ButtonView>
     </TouchableNativeFeedback>
     :
-    <TouchableOpacity {...restProps}>
+    <TouchableOpacity disabled={disabled} {...restProps}>
       <ButtonView
         color={color}
         kind={kind}
         size={size}
+        shape={shape}
         block={block}
-        disbaled={disabled}
+        disabled={disabled}
       >
         {children}
       </ButtonView>
