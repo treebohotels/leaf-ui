@@ -47,7 +47,7 @@ const RelativeFlexView = styled.View`
 `;
 
 const Input = styled.TextInput`
-  padding: ${(p) => p.isLabelVisible ? p.theme.px([2.2, 0, 0, 1.3]) : p.theme.px([1.3, 0, 1.3, 1.3])};
+  padding: ${(p) => p.isLabelVisible ? p.theme.px([2.3, 0, 0, 1.5]) : p.theme.px([1.5, 0, 1.5, 1.5])};
   font-size: ${(p) => p.theme.fontSize.s};
   color: ${(p) => p.theme.color.greyDarker};
   height: ${(p) => p.theme.px(6.5)};
