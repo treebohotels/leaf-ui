@@ -7,14 +7,14 @@ import Chip from './Chip';
 
 storiesOf('Chip', module)
   .add('playground', () => (
-    <Chip color={select('color', Object.keys(theme.color), 'green')}>
+    <Chip color={select('color', Object.keys(theme.color), 'primary')}>
       {text('children', 'Chip')}
     </Chip>
   ))
   .add('simple', () => (
     <Aux>
       <Chip>
-        green
+        primary
       </Chip>
       <br /><br />
       <Chip color="blue">

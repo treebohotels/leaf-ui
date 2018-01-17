@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Text from '../Text';
 
-const modifierColor = (valid = 'green', invalid = 'redDark', disabled = 'grey') => (props) => {
+const modifierColor = (valid = 'primary', invalid = 'red', disabled = 'grey') => (props) => {
   if (props.disabled) return props.theme.color[disabled];
   return props.error ? props.theme.color[invalid] : props.theme.color[valid];
 };
@@ -29,6 +29,7 @@ const Input = styled.input`
   border: 1px solid ${(p) => p.theme.color.greyDark};
   border-width: 0 0 1px;
   padding: ${(p) => p.theme.px([1, 0])};
+  ${(p) => p.block ? 'width: 100%;' : ''}
 
   &:focus {
     border-color: ${modifierColor()};
@@ -55,6 +56,7 @@ const TextInput = ({
   name,
   label,
   error: errorMessage,
+  block,
   ...props
 }, {
   formik,
@@ -75,6 +77,7 @@ const TextInput = ({
         id={name}
         placeholder={label}
         error={error}
+        block={block}
         {...inputProps}
         {...props}
       />
@@ -86,7 +89,7 @@ const TextInput = ({
       </Label>
       {
         error ? (
-          <Text color="redDark" size="xxs">
+          <Text color="red" size="xxs">
             {error}
           </Text>
         ) : null
@@ -100,6 +103,7 @@ TextInput.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   error: PropTypes.string,
+  block: PropTypes.bool,
 };
 
 TextInput.defaultProps = {

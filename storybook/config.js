@@ -9,13 +9,13 @@ import { injectIconStyles } from '../src/components/Icon';
 setOptions({
   name: 'Leaf-UI',
   url: 'https://github.com/treebohotels/leaf-ui',
-  downPanelInRight: true,
+  addonPanelInRight: true,
 });
 
 addDecorator(withKnobs);
 
 addDecorator((story) => {
-  injectBaseStyles();
+  injectBaseStyles(theme);
   injectIconStyles();
   return (
     <ThemeProvider theme={theme}>

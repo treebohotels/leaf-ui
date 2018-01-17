@@ -1,4 +1,4 @@
-export default {
+const theme = {
   borderRadius: '2px',
 
   boxShadow: [
@@ -90,3 +90,10 @@ export default {
 
   pxScale: 8,
 };
+
+theme.color.primaryLighter = theme.color.greenLighter;
+theme.color.primaryLight = theme.color.greenLight;
+theme.color.primary = theme.color.green;
+theme.color.primaryDark = theme.color.greenDark;
+
+export default theme;

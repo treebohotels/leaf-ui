@@ -8,17 +8,29 @@ import Button from '../Button';
 import Icon from '../Icon';
 import Spacer from '../Spacer';
 
-const NotificationContainer = styled.div`
-  background: ${(p) => p.type ? p.theme.color[`${p.type}Lighter`] : ''};
-  border-top: 2px solid ${(p) => p.type ? p.theme.color[p.type] : ''};
-`;
-
-const icon = {
-  info: <Icon name="info" color="blue" />,
-  success: <Icon name="check_circle" color="green" />,
-  warning: <Icon name="error" color="yellow" />,
-  danger: <Icon name="cancel" color="red" />,
+const notificationTypes = {
+  info: {
+    color: 'blue',
+    icon: <Icon name="info" color="blue" />,
+  },
+  success: {
+    color: 'green',
+    icon: <Icon name="check_circle" color="green" />,
+  },
+  warning: {
+    color: 'yellow',
+    icon: <Icon name="error" color="yellow" />,
+  },
+  danger: {
+    color: 'red',
+    icon: <Icon name="cancel" color="red" />,
+  },
 };
+
+const NotificationContainer = styled.div`
+  background: ${(p) => p.type ? p.theme.color[`${notificationTypes[p.type].color}Lighter`] : ''};
+  border-top: 2px solid ${(p) => p.type ? p.theme.color[notificationTypes[p.type].color] : ''};
+`;
 
 const Notification = ({
   type,
@@ -31,7 +43,7 @@ const Notification = ({
       <Spacer padding={2}>
         <Flex justifyContent="space-around" alignItems="center">
           <Flex flex="0">
-            {icon[type]}
+            {notificationTypes[type].icon}
           </Flex>
           <Spacer margin={[0, 24, 0, 3]}>
             <Flex flex="1" flexDirection="column">
@@ -52,7 +64,7 @@ const Notification = ({
           {
             actionProps ? (
               <Button
-                color={type}
+                color={notificationTypes[type].color}
                 size="small"
                 {...actionProps}
               />
