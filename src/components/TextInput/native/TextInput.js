@@ -66,7 +66,7 @@ class TextInput extends Component {
     const { name, theme } = this.props;
     this.state = {
       labelTranslateValue: formik && formik.values[name] ?
-        new Animated.Value(0) : new Animated.Value(theme.pxScale),
+        new Animated.Value(0) : new Animated.Value(theme.pxScale * 0.8),
       isFocused: false,
     };
   }
@@ -104,7 +104,7 @@ class TextInput extends Component {
     }
     if (!showPlaceholder && !value) {
       Animated.timing(labelTranslateValue, {
-        toValue: theme.pxScale,
+        toValue: theme.pxScale * 0.8,
         duration: theme.labelAnimationDuration,
       }).start();
     }
@@ -134,7 +134,7 @@ class TextInput extends Component {
     const inputProps = { name };
     let error = errorMessage;
     const labelFontSize = labelTranslateValue.interpolate({
-      inputRange: [0, theme.pxScale],
+      inputRange: [0, theme.pxScale * 0.8],
       outputRange: [parseInt(theme.fontSize.xxs, 10), parseInt(theme.fontSize.s, 10)],
       extrapolate: 'clamp',
     });
