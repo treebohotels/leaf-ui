@@ -126,7 +126,6 @@ storiesOf('TextInput', module)
         name="name"
         label="Name"
         error="required"
-        autoFocus={false}
       />
     </Spacer>
   )).add('placeholder', () => (
@@ -136,7 +135,6 @@ storiesOf('TextInput', module)
         label="Name"
         error="required"
         showPlaceholder
-        autoFocus={false}
       />
     </Spacer>
   ));
@@ -154,7 +152,6 @@ storiesOf('Form', module)
           <TextInput
             name="email"
             label="Email"
-            autoFocus={false}
           />
         </Spacer>
       )}
@@ -175,7 +172,6 @@ storiesOf('Form', module)
           <TextInput
             name="name"
             label="Name"
-            autoFocus={false}
             leftIcon={
               <View style={{ width: 48, height: 48, backgroundColor: 'red' }} />
             }
@@ -199,7 +195,6 @@ storiesOf('Form', module)
           <TextInput
             name="Name"
             label="Name"
-            autoFocus={false}
             rightIcon={
               <View style={{ width: 48, height: 48, backgroundColor: 'red' }} />
             }

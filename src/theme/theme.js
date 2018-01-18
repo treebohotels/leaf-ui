@@ -89,8 +89,6 @@ const theme = {
   },
 
   pxScale: 8,
-
-  labelAnimationDuration: 300,
 };
 
 theme.color.primaryLighter = theme.color.greenLighter;
