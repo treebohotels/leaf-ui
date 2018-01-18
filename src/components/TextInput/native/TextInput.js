@@ -25,7 +25,7 @@ const InputContainerWrapper = styled.View`
 // TODO: create and use position component to create label component
 const Label = Text.extend`
   position: absolute;
-  top: ${(p) => p.theme.px(1.5)};
+  top: ${(p) => p.theme.px(1.3)};
   left: ${(p) => p.theme.px(1.5)};
   font-size: ${(p) => p.theme.fontSize.xxs};
   color: ${labelColor};
@@ -42,7 +42,7 @@ const InputContainer = styled.View`
   border-color: ${modifierColor()};
   border-width: 1;
   border-radius: ${(p) => p.theme.borderRadius};
-  height: ${(p) => p.theme.px(6.5)};
+  height: ${(p) => p.theme.px(6.75)};
 `;
 
 const RelativeFlexView = styled.View`
@@ -52,10 +52,10 @@ const RelativeFlexView = styled.View`
 
 const Input = styled.TextInput`
   flex: 1;
-  padding: ${(p) => p.theme.px([2.3, 0, 0, 1.5])};
+  padding: ${(p) => p.theme.px([2.1, 0, 0, 1.5])};
   font-size: ${(p) => p.theme.fontSize.s};
   color: ${(p) => p.theme.color.greyDarker};
-  height: ${(p) => p.theme.px(6.5)};
+  height: ${(p) => p.theme.px(6.75)};
 `;
 
 class TextInput extends Component {
@@ -64,7 +64,7 @@ class TextInput extends Component {
     const { name, theme } = this.props;
     this.state = {
       labelTranslateValue: formik && formik.values[name] ?
-        new Animated.Value(0) : new Animated.Value(theme.pxScale * 0.8),
+        new Animated.Value(0) : new Animated.Value(theme.pxScale),
       isFocused: false,
     };
   }
@@ -109,7 +109,7 @@ class TextInput extends Component {
     }
     if (!value) {
       Animated.timing(labelTranslateValue, {
-        toValue: theme.pxScale * 0.8,
+        toValue: theme.pxScale,
         duration: labelAnimationDuration,
       }).start();
     }
@@ -143,7 +143,7 @@ class TextInput extends Component {
       error = formik.touched[name] && formik.errors[name];
     }
     const labelFontSize = labelTranslateValue.interpolate({
-      inputRange: [0, theme.pxScale * 0.8],
+      inputRange: [0, theme.pxScale],
       outputRange: [parseInt(theme.fontSize.xxs, 10), parseInt(theme.fontSize.s, 10)],
       extrapolate: 'clamp',
     });
@@ -154,7 +154,7 @@ class TextInput extends Component {
           error={error}
           isFocused={isFocused}
         >
-          {this.getIconComponent(leftIcon)}
+          {this.getIconComponent(leftIcon, isFocused)}
           <RelativeFlexView>
             <AnimatedLabel
               error={error}
@@ -179,7 +179,7 @@ class TextInput extends Component {
               {...props}
             />
           </RelativeFlexView>
-          {this.getIconComponent(rightIcon)}
+          {this.getIconComponent(rightIcon, isFocused)}
         </InputContainer>
         {
           error ? (
