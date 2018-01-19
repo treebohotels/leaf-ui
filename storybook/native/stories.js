@@ -1,18 +1,25 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
+import styled from 'styled-components/native';
+import theme from '../../src/theme';
 import Button from '../../src/components/Button/native';
 import Text from '../../src/components/Text/native';
-import theme from '../../src/theme';
-import Spacer from '../../src/components/Spacer/native/Spacer';
+import Form from '../../src/components/Form';
+import TextInput from '../../src/components/TextInput/native';
+import Spacer from '../../src/components/Spacer/native';
+
+const View = styled.View`
+  margin: 0;
+`;
 
 storiesOf('Button', module)
-  .add('default', () => (
+  .add('with text', () => (
     <Button>
       <Text>Default Button</Text>
     </Button>
   ))
   .add('kinds', () => (
-    <Spacer>
+    <View>
       <Spacer margin={4}>
         <Button kind="solid">
           <Text>Solid Button</Text>
@@ -28,10 +35,10 @@ storiesOf('Button', module)
           <Text>Transparent Button</Text>
         </Button>
       </Spacer>
-    </Spacer>
+    </View>
   ))
   .add('shapes', () => (
-    <Spacer>
+    <View>
       <Spacer margin={4}>
         <Button shape="default">
           <Text>Default Button</Text>
@@ -47,10 +54,10 @@ storiesOf('Button', module)
           <Text>Rounded Button</Text>
         </Button>
       </Spacer>
-    </Spacer>
+    </View>
   ))
   .add('sizes', () => (
-    <Spacer>
+    <View>
       <Spacer margin={4}>
         <Button size="small">
           <Text>Small Button</Text>
@@ -66,7 +73,7 @@ storiesOf('Button', module)
           <Text>Large Button</Text>
         </Button>
       </Spacer>
-    </Spacer>
+    </View>
   ))
   .add('block', () => (
     <Button block>
@@ -84,7 +91,7 @@ storiesOf('Text', module)
     <Text>Simple Text</Text>
   ))
   .add('sizes', () => (
-    <Spacer>
+    <View>
       {
         Object.keys(theme.fontSize).map((size) => (
           <Spacer margin={4}>
@@ -95,10 +102,10 @@ storiesOf('Text', module)
           </Spacer>
         ))
       }
-    </Spacer>
+    </View>
   ))
   .add('weights', () => (
-    <Spacer>
+    <View>
       {
         Object.keys(theme.fontWeight).map((weight) => (
           <Spacer margin={4}>
@@ -109,5 +116,90 @@ storiesOf('Text', module)
           </Spacer>
         ))
       }
+    </View>
+  ));
+
+storiesOf('TextInput', module)
+  .add('simple', () => (
+    <Spacer margin={2}>
+      <TextInput
+        name="name"
+        label="Name"
+        error="required"
+      />
     </Spacer>
+  )).add('placeholder', () => (
+    <Spacer margin={2}>
+      <TextInput
+        name="name"
+        label="Name"
+        error="required"
+        showPlaceholder
+      />
+    </Spacer>
+  ));
+
+storiesOf('Form', module)
+  .add('simple', () => (
+    <Form
+      validationSchema={
+        Form.validation.object().shape({
+          email: Form.validation.string().email(),
+        })
+      }
+      render={() => (
+        <Spacer margin={2}>
+          <TextInput
+            name="email"
+            label="Email"
+          />
+        </Spacer>
+      )}
+    />
+  ))
+  .add('left icon', () => (
+    <Form
+      initialValues={{
+        name: 'Leaf',
+      }}
+      validationSchema={
+        Form.validation.object().shape({
+          name: Form.validation.string().required(),
+        })
+      }
+      render={() => (
+        <Spacer margin={2}>
+          <TextInput
+            name="name"
+            label="Name"
+            leftIcon={
+              <View style={{ width: 48, height: 48, backgroundColor: 'red' }} />
+            }
+          />
+        </Spacer>
+      )}
+    />
+  ))
+  .add('right icon', () => (
+    <Form
+      initialValues={{
+        name: 'Leaf',
+      }}
+      validationSchema={
+        Form.validation.object().shape({
+          name: Form.validation.string().required(),
+        })
+      }
+      render={() => (
+        <Spacer margin={2}>
+          <TextInput
+            name="Name"
+            label="Name"
+            rightIcon={
+              <View style={{ width: 48, height: 48, backgroundColor: 'red' }} />
+            }
+          />
+        </Spacer>
+      )}
+    />
   ));
