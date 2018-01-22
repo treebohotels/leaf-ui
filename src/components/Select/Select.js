@@ -46,11 +46,11 @@ const OptionList = List.extend`
 
 const Option = List.Item.extend`
   ${(p) => p.isActive || p.isSelected ? `
-    background: ${p.theme.color.blackTranslucent};
+    background: ${p.theme.color.translucent};
 
     &:hover,
     &:focus {
-      background: ${p.theme.color.blackTranslucent};
+      background: ${p.theme.color.translucent};
     }
   ` : ''}
 `;

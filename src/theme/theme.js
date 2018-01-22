@@ -52,8 +52,9 @@ const theme = {
     grey: '#aeaeae',
     greyDark: '#717171',
     greyDarker: '#4a4a4a',
-    blackTranslucent: 'rgba(0, 0, 0, 0.1)',
     black: '#000000',
+
+    translucent: 'rgba(0, 0, 0, 0.1)',
     transparent: 'rgba(0, 0, 0, 0)',
   },
 
@@ -95,5 +96,10 @@ theme.color.primaryLighter = theme.color.greenLighter;
 theme.color.primaryLight = theme.color.greenLight;
 theme.color.primary = theme.color.green;
 theme.color.primaryDark = theme.color.greenDark;
+
+theme.color.accentLighter = theme.color.white;
+theme.color.accentLight = theme.color.white;
+theme.color.accent = theme.color.white;
+theme.color.accentDark = theme.color.white;
 
 export default theme;

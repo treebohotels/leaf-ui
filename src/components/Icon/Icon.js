@@ -13,7 +13,7 @@ const I = styled.i.attrs({
     cursor: pointer;
 
     &:hover {
-      background: ${p.theme.color.blackTranslucent};
+      background: ${p.theme.color.translucent};
     }
 
     ${p.disabled ? `
