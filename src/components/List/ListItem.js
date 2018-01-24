@@ -8,7 +8,7 @@ const ListItem = styled.li`
 
     &:hover,
     &:focus {
-      background: ${p.theme.color.blackTranslucent};
+      background: ${p.theme.color.translucent};
     }
 
     ${p.disabled ? `
