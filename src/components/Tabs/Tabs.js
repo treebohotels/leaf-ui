@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import reactChildrenByType from '../../utils/reactChildrenByType';
 import Flex from '../Flex';
-import TabsSection from './TabsSection';
-import TabsSectionTitle from './TabsSectionTitle';
-import TabsSectionContent from './TabsSectionContent';
 
 const TitleContainer = styled.div`
   display: flex;
@@ -13,60 +9,55 @@ const TitleContainer = styled.div`
   background: ${(p) => p.theme.color.lagoon};
 `;
 
-const getSelectedTab = (props) => (
-  props.children ? (
-    React.Children.map(props.children, (tabSection, index) => (
-      tabSection && tabSection.props.defaultSelected ? index : null
-    )).find((index) => index !== null) || 0
-  ) : 0
-);
+const Title = styled.div`
+  display: flex;
+  flex: 0;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: ${(p) => p.theme.px([2, 3])};
+  color: ${(p) => p.theme.color.white};
+  background: ${(p) => p.theme.color.lagoon};
+  border-bottom: 2px solid transparent;
+  border-color: ${(p) => p.isSelected ? p.theme.color.yellow : 'transparent'};
+`;
+
+const Tab = ({ children }) => children;
 
 class Tabs extends React.Component {
   state = {
-    selectedTab: getSelectedTab(this.props),
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ selectedTab: getSelectedTab(nextProps) });
-  }
+    selectedTabIndex:
+      React.Children.map(this.props.children, (tab, index) => (
+        tab.props.defaultSelected ? index : null
+      )).find((index) => index !== null) || 0,
+  };
 
   onTabClick = (index) => () => {
-    const { selectedTab } = this.state;
-    if (selectedTab !== index) {
-      this.setState({ selectedTab: index });
+    const { selectedTabIndex } = this.state;
+    if (index !== selectedTabIndex) {
+      this.setState({ selectedTabIndex: index });
     }
   }
 
-  getTabParts = () => {
-    const { children } = this.props;
-    const tabParts = { titles: [], contents: [] };
-
-    React.Children.map(children, (tabSection) => {
-      const tabSectionByType = reactChildrenByType(tabSection.props.children);
-      tabParts.titles.push(tabSectionByType[TabsSectionTitle]);
-      tabParts.contents.push(tabSectionByType[TabsSectionContent]);
-    });
-
-    return tabParts;
-  }
-
   render() {
-    const { selectedTab } = this.state;
-    const tabParts = this.getTabParts();
+    const { selectedTabIndex } = this.state;
+    const { children } = this.props;
 
     return (
       <Flex flexDirection="column">
         <TitleContainer>
           {
-            React.Children.map(tabParts.titles, (tabTitle, index) => (
-              React.cloneElement(tabTitle, {
-                isSelected: index === selectedTab,
-                onClick: this.onTabClick(index),
-              })
+            React.Children.map(children, (tab, index) => (
+              <Title
+                isSelected={index === selectedTabIndex}
+                onClick={this.onTabClick(index)}
+              >
+                {tab.props.title}
+              </Title>
             ))
           }
         </TitleContainer>
-        {tabParts.contents[selectedTab]}
+        {children[selectedTabIndex]}
       </Flex>
     );
   }
@@ -76,8 +67,6 @@ Tabs.propTypes = {
   children: PropTypes.node,
 };
 
-Tabs.Section = TabsSection;
-Tabs.Section.Title = TabsSectionTitle;
-Tabs.Section.Content = TabsSectionContent;
+Tabs.Tab = Tab;
 
 export default Tabs;

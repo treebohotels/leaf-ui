@@ -1,7 +1,11 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
 
-const Spacer = styled.View`
+const Spacer = styled(({
+  children,
+  ...props
+}) => React.cloneElement(children, props))`
   ${(p) => p.margin || p.margin === 0 ? `margin: ${p.theme.px(p.margin)} !important;` : ''}
   ${(p) => p.padding || p.padding === 0 ? `padding: ${p.theme.px(p.padding)} !important;` : ''}
   ${(p) => p.maxWidth ? `max-width: ${p.maxWidth} !important;` : ''}

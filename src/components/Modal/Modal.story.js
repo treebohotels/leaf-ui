@@ -40,22 +40,16 @@ storiesOf('Modal', module)
               MODAL HEADER
             </Modal.Header>
             <Tabs>
-              <Tabs.Section>
-                <Tabs.Section.Title>One</Tabs.Section.Title>
-                <Tabs.Section.Content>
-                  <Modal.Content>
-                    Content for One
-                  </Modal.Content>
-                </Tabs.Section.Content>
-              </Tabs.Section>
-              <Tabs.Section>
-                <Tabs.Section.Title>Two</Tabs.Section.Title>
-                <Tabs.Section.Content>
-                  <Modal.Content>
-                    Content for Two
-                  </Modal.Content>
-                </Tabs.Section.Content>
-              </Tabs.Section>
+              <Tabs.Tab title="One">
+                <Modal.Content>
+                  Content for One
+                </Modal.Content>
+              </Tabs.Tab>
+              <Tabs.Tab title="Two">
+                <Modal.Content>
+                  Content for Two
+                </Modal.Content>
+              </Tabs.Tab>
             </Tabs>
             <Modal.Footer>
               MODAL FOOTER
