@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 
 const Text = styled.Text`
   ${(p) => p.color ? `color: ${p.theme.color[p.color]};` : ''}

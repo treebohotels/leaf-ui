@@ -1,12 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 import theme from '../../src/theme';
 import Button from '../../src/components/Button/native';
 import Text from '../../src/components/Text/native';
 import Form from '../../src/components/Form';
 import TextInput from '../../src/components/TextInput/native';
-import Spacer from '../../src/components/Spacer/native';
+import Spacer from '../../src/components/Spacer';
 
 const View = styled.View`
   margin: 0;
