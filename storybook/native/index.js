@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import { ThemeProvider } from 'styled-components/native';
+import { ThemeProvider } from 'styled-components';
 import { getStorybookUI, addDecorator, configure } from '@storybook/react-native';
 import theme from '../../src/theme';
 

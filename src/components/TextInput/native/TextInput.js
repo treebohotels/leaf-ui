@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Animated } from 'react-native';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components/native';
+import styled, { withTheme } from 'styled-components';
 import Text from '../../Text/native';
-import Spacer from '../../Spacer/native';
+import Spacer from '../../Spacer';
 
 const labelAnimationDuration = 300;
 

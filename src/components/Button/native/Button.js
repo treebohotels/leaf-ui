@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
 
 const Button = styled.TouchableOpacity`

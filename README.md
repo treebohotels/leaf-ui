@@ -20,11 +20,13 @@ Wrap your App component with ThemeProvider and pass it the leaf-ui theme (or ove
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
-import { theme as leafUiTheme } from 'leaf-ui';
+import theme, { injectBaseStyles } from 'leaf-ui/es/theme';
 import App from './App';
 
+injectBaseStyles(theme);
+
 ReactDOM.hydrate(
-  <ThemeProvider theme={leafUiTheme}>
+  <ThemeProvider theme={theme}>
     <App />
   </ThemeProvider>,
   document.getElementById('root'),
@@ -35,7 +37,7 @@ Import and use the components in your App.js
 ```js
 // App.js
 import React from 'react';
-import { Button } from 'leaf-ui';
+import Button from 'leaf-ui/es/Button';
 
 const App = () => (
   <Button>
