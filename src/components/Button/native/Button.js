@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
 import { TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 
-const isPlatformAndroid = !(Platform.OS === 'ios');
-
 const ButtonView = styled.View`
   align-items: center;
   justify-content: center;
@@ -50,8 +48,17 @@ const ButtonView = styled.View`
   ${(p) => p.disabled ? 'opacity: 0.5;' : 'opacity: 1'}
   `;
 
-const Button = ({ color, kind, shape, size, block, disabled, children, ...restProps }) => (
-  isPlatformAndroid ?
+const Button = ({
+  color,
+  kind,
+  shape,
+  size,
+  block,
+  disabled,
+  children,
+  ...restProps
+}) => (
+  Platform.OS === 'android' ? (
     <TouchableNativeFeedback disabled={disabled} {...restProps}>
       <ButtonView
         color={color}
@@ -64,7 +71,7 @@ const Button = ({ color, kind, shape, size, block, disabled, children, ...restPr
         {children}
       </ButtonView>
     </TouchableNativeFeedback>
-    :
+  ) : (
     <TouchableOpacity disabled={disabled} {...restProps}>
       <ButtonView
         color={color}
@@ -77,6 +84,7 @@ const Button = ({ color, kind, shape, size, block, disabled, children, ...restPr
         {children}
       </ButtonView>
     </TouchableOpacity>
+  )
 );
 
 Button.propTypes = {
