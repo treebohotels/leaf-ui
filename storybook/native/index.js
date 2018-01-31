@@ -33,6 +33,7 @@ class StorybookUIHMRRoot extends Component {
   state = {
     fontLoaded: false,
   };
+
   async componentDidMount() {
     await Font.loadAsync({
       'roboto-regular': require('../../assets/fonts/Roboto.ttf'),
@@ -46,6 +47,7 @@ class StorybookUIHMRRoot extends Component {
     // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({ fontLoaded: true });
   }
+
   render() {
     if (this.state.fontLoaded) {
       return <StorybookUIRoot />;
