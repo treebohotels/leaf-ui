@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Animated } from 'react-native';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components/native';
+import styled, { withTheme } from 'styled-components';
 import Text from '../../Text/native';
-import Spacer from '../../Spacer/native';
+import Spacer from '../../Spacer';
 
 const labelAnimationDuration = 300;
 
@@ -127,6 +127,7 @@ class TextInput extends Component {
       theme,
       leftIcon,
       rightIcon,
+      style,
       ...props
     } = this.props;
     const { formik } = this.context;
@@ -149,7 +150,7 @@ class TextInput extends Component {
     });
 
     return (
-      <InputContainerWrapper>
+      <InputContainerWrapper style={style}>
         <InputContainer
           error={error}
           isFocused={isFocused}
@@ -213,6 +214,10 @@ TextInput.propTypes = {
       component: PropTypes.node,
       showOnlyOnFocus: PropTypes.bool,
     }),
+  ]),
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
   ]),
 };
 
