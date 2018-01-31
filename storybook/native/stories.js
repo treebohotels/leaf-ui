@@ -6,6 +6,7 @@ import Button from '../../src/components/Button/native';
 import Text from '../../src/components/Text/native';
 import Form from '../../src/components/Form';
 import TextInput from '../../src/components/TextInput/native';
+import Chip from '../../src/components/Chip/native';
 import Spacer from '../../src/components/Spacer';
 
 const View = styled.View`
@@ -14,9 +15,11 @@ const View = styled.View`
 
 storiesOf('Button', module)
   .add('with text', () => (
-    <Button>
-      <Text>Default Button</Text>
-    </Button>
+    <Spacer margin={4}>
+      <Button>
+        <Text>Default Button</Text>
+      </Button>
+    </Spacer>
   ))
   .add('kinds', () => (
     <View>
@@ -76,14 +79,18 @@ storiesOf('Button', module)
     </View>
   ))
   .add('block', () => (
-    <Button block>
-      <Text>Block Button</Text>
-    </Button>
+    <Spacer margin={4}>
+      <Button block>
+        <Text>Block Button</Text>
+      </Button>
+    </Spacer>
   ))
   .add('disabled', () => (
-    <Button disabled>
-      <Text>Disabled Button</Text>
-    </Button>
+    <Spacer margin={4}>
+      <Button disabled>
+        <Text>Disabled Button</Text>
+      </Button>
+    </Spacer>
   ));
 
 storiesOf('Text', module)
@@ -202,4 +209,20 @@ storiesOf('Form', module)
         </Spacer>
       )}
     />
+  ));
+
+storiesOf('Chip', module)
+  .add('simple', () => (
+    <View>
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Chip>
+          primary
+        </Chip>
+      </Spacer>
+      <Spacer margin={2}>
+        <Chip color="blue">
+          blue
+        </Chip>
+      </Spacer>
+    </View>
   ));

@@ -127,6 +127,7 @@ class TextInput extends Component {
       theme,
       leftIcon,
       rightIcon,
+      style,
       ...props
     } = this.props;
     const { formik } = this.context;
@@ -149,7 +150,7 @@ class TextInput extends Component {
     });
 
     return (
-      <InputContainerWrapper>
+      <InputContainerWrapper style={style}>
         <InputContainer
           error={error}
           isFocused={isFocused}
@@ -213,6 +214,10 @@ TextInput.propTypes = {
       component: PropTypes.node,
       showOnlyOnFocus: PropTypes.bool,
     }),
+  ]),
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
   ]),
 };
 
