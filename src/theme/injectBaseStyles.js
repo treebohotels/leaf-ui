@@ -6,7 +6,7 @@ export default (theme) => injectGlobal`
   }
 
   body {
-    background: ${theme.color.greyLight};
+    background: ${theme.color.greyLighter};
     color: ${theme.color.greyDarker};
     font-size: ${theme.fontSize.s};
     font-weight: ${theme.fontWeight.normal};

@@ -1,8 +1,9 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
+import { TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 
-const Button = styled.TouchableOpacity`
+const ButtonView = styled.View`
   align-items: center;
   justify-content: center;
   border-width: 1px;
@@ -44,8 +45,47 @@ const Button = styled.TouchableOpacity`
     `,
   }[p.size])}
   ${(p) => p.block ? 'align-self: stretch;' : 'align-self: flex-start;'}
-  ${(p) => p.disabled ? 'opacity: 0.5;' : ''}
+  ${(p) => p.disabled ? 'opacity: 0.5;' : 'opacity: 1'}
   `;
+
+const Button = ({
+  color,
+  kind,
+  shape,
+  size,
+  block,
+  disabled,
+  children,
+  ...restProps
+}) => (
+  Platform.OS === 'android' ? (
+    <TouchableNativeFeedback disabled={disabled} {...restProps}>
+      <ButtonView
+        color={color}
+        kind={kind}
+        size={size}
+        shape={shape}
+        block={block}
+        disabled={disabled}
+      >
+        {children}
+      </ButtonView>
+    </TouchableNativeFeedback>
+  ) : (
+    <TouchableOpacity disabled={disabled} {...restProps}>
+      <ButtonView
+        color={color}
+        kind={kind}
+        size={size}
+        shape={shape}
+        block={block}
+        disabled={disabled}
+      >
+        {children}
+      </ButtonView>
+    </TouchableOpacity>
+  )
+);
 
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
