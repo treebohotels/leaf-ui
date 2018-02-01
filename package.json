@@ -24,7 +24,8 @@
   },
   "files": [
     "lib/**/*",
-    "es/**/*"
+    "es/**/*",
+    "native.js"
   ],
   "lint-staged": {
     "*.js": [
