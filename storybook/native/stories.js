@@ -224,8 +224,8 @@ storiesOf('Chip', module)
           solid regular
         </Chip>
       </Spacer>
-      <Spacer margin={2} size="small" kind="solid">
-        <Chip color="red">
+      <Spacer margin={2}>
+        <Chip color="red" size="small" kind="solid">
           solid small
         </Chip>
       </Spacer>
@@ -234,8 +234,8 @@ storiesOf('Chip', module)
           outlined regular
         </Chip>
       </Spacer>
-      <Spacer margin={2} size="small">
-        <Chip color="teal">
+      <Spacer margin={2}>
+        <Chip color="teal" size="small">
           outlined small
         </Chip>
       </Spacer>

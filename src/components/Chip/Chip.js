@@ -14,7 +14,7 @@ const Chip = styled.div`
     `,
     small: `
       font-size: ${p.theme.fontSize.xxs};
-      padding: ${p.theme.px([0.5, 0.75])};
+      padding: ${p.theme.px(0.5)};
     `,
   }[p.size])}
   ${(p) => ({

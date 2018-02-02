@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Text from '../../Text/native';
 
 const ChipContainer = styled.View`
-  flex-wrap: wrap;
   align-self: flex-start;
   align-items: center;
   justify-content: center;
@@ -13,7 +12,7 @@ const ChipContainer = styled.View`
       padding: ${p.theme.px([1, 1.5])};
     `,
     small: `
-      padding: ${p.theme.px([0.5, 0.75])};
+      padding: ${p.theme.px(0.5)};
     `,
   }[p.size])}
   ${(p) => ({
