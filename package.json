@@ -8,7 +8,7 @@
     "start": "run-s storybook",
     "native": "react-native-scripts start",
     "storybook": "NODE_ENV=es start-storybook -p 9000 -c ./storybook",
-    "storybook:build": "NODE_ENV=cjs build-storybook -o docs",
+    "storybook:build": "NODE_ENV=cjs build-storybook -o docs -c ./storybook",
     "storybook:native": "storybook start -p 7007 -c ./storybook/native",
     "semantic-release": "semantic-release",
     "build": "run-s build:clean && run-p build:es build:cjs",

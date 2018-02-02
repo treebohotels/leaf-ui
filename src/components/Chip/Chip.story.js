@@ -7,18 +7,33 @@ import Chip from './Chip';
 
 storiesOf('Chip', module)
   .add('playground', () => (
-    <Chip color={select('color', Object.keys(theme.color), 'primary')}>
+    <Chip
+      color={select('color', Object.keys(theme.color), 'primary')}
+      kind={select('kind', ['solid', 'outlined'], 'outlined')}
+      size={select('size', ['small', 'regular'], 'regular')}
+    >
       {text('children', 'Chip')}
     </Chip>
   ))
-  .add('simple', () => (
+  .add('kinds', () => (
     <Aux>
       <Chip>
-        primary
+        outlined
       </Chip>
       <br /><br />
-      <Chip color="blue">
-        blue
+      <Chip kind="solid">
+        solid
+      </Chip>
+    </Aux>
+  ))
+  .add('size', () => (
+    <Aux>
+      <Chip>
+        regular
+      </Chip>
+      <br /><br />
+      <Chip size="small">
+        small
       </Chip>
     </Aux>
   ));
