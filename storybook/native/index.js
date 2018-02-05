@@ -36,12 +36,12 @@ class StorybookUIHMRRoot extends Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'roboto-regular': require('../../assets/fonts/Roboto.ttf'),
-      'roboto-medium': require('../../assets/fonts/Roboto_medium.ttf'),
-      'sfprodisplay-regular': require('../../assets/fonts/SFProDisplay-Regular.otf'),
-      'sfprodisplay-medium': require('../../assets/fonts/SFProDisplay-Medium.otf'),
-      'sfprodisplay-semibold': require('../../assets/fonts/SFProDisplay-Semibold.otf'),
-      'averta-bold': require('../../assets/fonts/Averta-Bold.otf'),
+      'roboto-regular': require('./fonts/Roboto.ttf'),
+      'roboto-medium': require('./fonts/Roboto_medium.ttf'),
+      'sfprodisplay-regular': require('./fonts/SFProDisplay-Regular.otf'),
+      'sfprodisplay-medium': require('./fonts/SFProDisplay-Medium.otf'),
+      'sfprodisplay-semibold': require('./fonts/SFProDisplay-Semibold.otf'),
+      'averta-bold': require('./fonts/Averta-Bold.otf'),
     });
 
     // eslint-disable-next-line react/no-did-mount-set-state
