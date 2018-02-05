@@ -1,4 +1,3 @@
-export Aux from './components/Aux';
 export Button from './components/Button';
 export Card from './components/Card';
 export Checkbox from './components/Checkbox';

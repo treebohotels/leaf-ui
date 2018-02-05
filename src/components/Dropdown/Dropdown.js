@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Overlay } from 'react-overlays';
 import reactChildrenByType from '../../utils/reactChildrenByType';
-import Aux from '../Aux';
+import Flex from '../Flex';
 import DropdownTrigger from './DropdownTrigger';
 import DropdownContent from './DropdownContent';
 
@@ -34,7 +34,7 @@ class Dropdown extends React.Component {
     const dropdownChildrenByType = reactChildrenByType(children);
 
     return (
-      <Aux>
+      <Flex display="inline-block">
         {
           React.cloneElement(dropdownChildrenByType[DropdownTrigger], {
             onClick: this.open,
@@ -47,7 +47,7 @@ class Dropdown extends React.Component {
         >
           {dropdownChildrenByType[DropdownContent]}
         </Overlay>
-      </Aux>
+      </Flex>
     );
   }
 }

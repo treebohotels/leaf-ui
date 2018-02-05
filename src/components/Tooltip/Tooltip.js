@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Overlay } from 'react-overlays';
 import reactChildrenByType from '../../utils/reactChildrenByType';
-import Aux from '../Aux';
+import Flex from '../Flex';
 import TooltipTrigger from './TooltipTrigger';
 import TooltipContent from './TooltipContent';
 
@@ -24,7 +24,7 @@ class Tooltip extends React.Component {
     const childrenByType = reactChildrenByType(children);
 
     return (
-      <Aux>
+      <Flex display="inline-block">
         {
           React.cloneElement(childrenByType[TooltipTrigger], {
             onMouseEnter: this.open,
@@ -38,7 +38,7 @@ class Tooltip extends React.Component {
         >
           {childrenByType[TooltipContent]}
         </Overlay>
-      </Aux>
+      </Flex>
     );
   }
 }

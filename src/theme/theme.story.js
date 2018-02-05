@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import theme from '../theme';
-import Aux from '../components/Aux';
 import Flex from '../components/Flex';
 import Card from '../components/Card';
 import Spacer from '../components/Spacer';
@@ -39,7 +38,7 @@ storiesOf('Theme', module)
       margin-bottom: 16px;
     `;
     return (
-      <Aux>
+      <div>
         {
           Object.keys(theme.boxShadow).map((boxShadow, index) => (
             <ShadowCard key={boxShadow} elevation={index}>
@@ -47,7 +46,7 @@ storiesOf('Theme', module)
             </ShadowCard>
           ))
         }
-      </Aux>
+      </div>
     );
   })
   .add('spacing', () => {
@@ -59,7 +58,7 @@ storiesOf('Theme', module)
       margin-bottom: 16px;
     `;
     return (
-      <Aux>
+      <div>
         {
           [1, 2, 3, 4, 5, 6, 7, 8].map((space) => (
             <Spacer key={space} height={`${space * 8}px`} width={`${space * 8}px`}>
@@ -69,6 +68,6 @@ storiesOf('Theme', module)
             </Spacer>
           ))
         }
-      </Aux>
+      </div>
     );
   });

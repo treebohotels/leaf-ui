@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Aux from '../Aux';
 import Flex from '../Flex';
 import Text from '../Text';
 import Button from '../Button';
@@ -49,12 +48,12 @@ const Notification = ({
             <Flex flex="1" flexDirection="column">
               {
                 title ? (
-                  <Aux>
+                  <div>
                     <Spacer margin={[0, 0, 1, 0]}>
                       <Text size="m" weight="semibold">{title}</Text>
                     </Spacer>
                     <Text size="xs" color="greyDark">{content}</Text>
-                  </Aux>
+                  </div>
                 ) : (
                   <Text>{content}</Text>
                 )

@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Aux from '../Aux';
 import Toggle from '../Toggle';
 import Button from '../Button';
 import Text from '../Text';
@@ -11,7 +10,7 @@ storiesOf('Modal', module)
   .add('simple', () => (
     <Toggle
       render={({ on, toggle }) => (
-        <Aux>
+        <div>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
             <Modal.Header>
@@ -26,14 +25,14 @@ storiesOf('Modal', module)
               MODAL FOOTER
             </Modal.Footer>
           </Modal>
-        </Aux>
+        </div>
       )}
     />
   ))
   .add('tabbed', () => (
     <Toggle
       render={({ on, toggle }) => (
-        <Aux>
+        <div>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
             <Modal.Header dark>
@@ -55,14 +54,14 @@ storiesOf('Modal', module)
               MODAL FOOTER
             </Modal.Footer>
           </Modal>
-        </Aux>
+        </div>
       )}
     />
   ))
   .add('with title and subtitle', () => (
     <Toggle
       render={({ on, toggle }) => (
-        <Aux>
+        <div>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
             <Modal.Header>
@@ -78,14 +77,14 @@ storiesOf('Modal', module)
               MODAL FOOTER
             </Modal.Footer>
           </Modal>
-        </Aux>
+        </div>
       )}
     />
   ))
   .add('modal over a modal', () => (
     <Toggle
       render={({ on, toggle }) => (
-        <Aux>
+        <div>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
             <Modal.Header>
@@ -94,7 +93,7 @@ storiesOf('Modal', module)
             <Modal.Content>
               <Toggle
                 render={({ on: isInnerModalOpen, toggle: toggleInnerModal }) => (
-                  <Aux>
+                  <div>
                     <Button onClick={toggleInnerModal}>OPEN MODAL</Button>
                     <Modal isOpen={isInnerModalOpen} onClose={toggleInnerModal}>
                       <Modal.Header>
@@ -109,7 +108,7 @@ storiesOf('Modal', module)
                         MODAL FOOTER
                       </Modal.Footer>
                     </Modal>
-                  </Aux>
+                  </div>
                 )}
               />
             </Modal.Content>
@@ -117,7 +116,7 @@ storiesOf('Modal', module)
               MODAL FOOTER
             </Modal.Footer>
           </Modal>
-        </Aux>
+        </div>
       )}
     />
   ));

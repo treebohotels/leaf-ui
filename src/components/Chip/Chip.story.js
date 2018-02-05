@@ -2,7 +2,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, select } from '@storybook/addon-knobs';
 import theme from '../../theme';
-import Aux from '../Aux';
 import Chip from './Chip';
 
 storiesOf('Chip', module)
@@ -16,7 +15,7 @@ storiesOf('Chip', module)
     </Chip>
   ))
   .add('kinds', () => (
-    <Aux>
+    <div>
       <Chip>
         outlined
       </Chip>
@@ -24,10 +23,10 @@ storiesOf('Chip', module)
       <Chip kind="solid">
         solid
       </Chip>
-    </Aux>
+    </div>
   ))
   .add('size', () => (
-    <Aux>
+    <div>
       <Chip>
         regular
       </Chip>
@@ -35,5 +34,5 @@ storiesOf('Chip', module)
       <Chip size="small">
         small
       </Chip>
-    </Aux>
+    </div>
   ));

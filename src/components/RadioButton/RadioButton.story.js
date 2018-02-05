@@ -1,11 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Aux from '../Aux';
 import RadioButton from './RadioButton';
 
 storiesOf('RadioButton', module)
   .add('simple', () => (
-    <Aux>
+    <div>
       <RadioButton
         name="leafColor"
         label="Green"
@@ -16,10 +15,10 @@ storiesOf('RadioButton', module)
         label="Brown"
         value="brown"
       />
-    </Aux>
+    </div>
   ))
   .add('disabled', () => (
-    <Aux>
+    <div>
       <RadioButton
         name="leafColor"
         label="Green"
@@ -33,7 +32,7 @@ storiesOf('RadioButton', module)
         value="brown"
         disabled
       />
-    </Aux>
+    </div>
   ))
   .add('with error', () => (
     <RadioButton

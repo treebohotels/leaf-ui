@@ -2,7 +2,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, select } from '@storybook/addon-knobs';
 import theme from '../../theme';
-import Aux from '../Aux';
 import Text from './Text';
 
 storiesOf('Text', module)
@@ -17,7 +16,7 @@ storiesOf('Text', module)
     </Text>
   ))
   .add('sizes', () => (
-    <Aux>
+    <div>
       {
         Object.keys(theme.fontSize).map((size) => (
           <Text size={size}>
@@ -26,10 +25,10 @@ storiesOf('Text', module)
           </Text>
         ))
       }
-    </Aux>
+    </div>
   ))
   .add('weights', () => (
-    <Aux>
+    <div>
       {
         Object.keys(theme.fontWeight).map((weight) => (
           <Text weight={weight}>
@@ -38,10 +37,10 @@ storiesOf('Text', module)
           </Text>
         ))
       }
-    </Aux>
+    </div>
   ))
   .add('families', () => (
-    <Aux>
+    <div>
       {
         Object.keys(theme.fontFamily).map((family) => (
           <Text family={family}>
@@ -50,5 +49,5 @@ storiesOf('Text', module)
           </Text>
         ))
       }
-    </Aux>
+    </div>
   ));

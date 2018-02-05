@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, select } from '@storybook/addon-knobs';
 import theme from '../../theme';
-import Aux from '../Aux';
 import Button from './Button';
 
 storiesOf('Button', module)
@@ -21,7 +20,7 @@ storiesOf('Button', module)
     </Button>
   ))
   .add('kinds', () => (
-    <Aux>
+    <div>
       <Button kind="solid">
         Solid Button
       </Button>
@@ -33,10 +32,10 @@ storiesOf('Button', module)
       <Button kind="transparent">
         Transparent Button
       </Button>
-    </Aux>
+    </div>
   ))
   .add('shapes', () => (
-    <Aux>
+    <div>
       <Button shape="default">
         Default Button
       </Button>
@@ -52,10 +51,10 @@ storiesOf('Button', module)
       <Button shape="circular">
         CB
       </Button>
-    </Aux>
+    </div>
   ))
   .add('sizes', () => (
-    <Aux>
+    <div>
       <Button size="small">
         Small Button
       </Button>
@@ -67,7 +66,7 @@ storiesOf('Button', module)
       <Button size="large">
         Large Button
       </Button>
-    </Aux>
+    </div>
   ))
   .add('block', () => (
     <Button block>
