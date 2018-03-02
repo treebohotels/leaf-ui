@@ -115,7 +115,7 @@ class Select extends React.Component {
     if (selectedOptions.length > 1) {
       return pluralize(selectedOptions.length, label, true);
     } else if (selectedOptions.length === 1) {
-      return selectedOptions[0].value;
+      return selectedOptions[0].label;
     }
     return label;
   }
