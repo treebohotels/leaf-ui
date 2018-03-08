@@ -9,7 +9,7 @@ import theme from '../../src/theme';
 const isAndroid = Platform.OS === 'android';
 
 theme.fontFamily = {
-  regular: isAndroid ? 'roboto-regular' : 'sfprodisplay-regular',
+  normal: isAndroid ? 'roboto-normal' : 'sfprodisplay-normal',
   medium: isAndroid ? 'roboto-medium' : 'sfprodisplay-medium',
   semibold: isAndroid ? 'roboto-medium' : 'sfprodisplay-semibold',
   bold: 'averta-bold',
@@ -36,9 +36,9 @@ class StorybookUIHMRRoot extends Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'roboto-regular': require('./fonts/Roboto.ttf'),
+      'roboto-normal': require('./fonts/Roboto.ttf'),
       'roboto-medium': require('./fonts/Roboto_medium.ttf'),
-      'sfprodisplay-regular': require('./fonts/SFProDisplay-Regular.otf'),
+      'sfprodisplay-normal': require('./fonts/SFProDisplay-Regular.otf'),
       'sfprodisplay-medium': require('./fonts/SFProDisplay-Medium.otf'),
       'sfprodisplay-semibold': require('./fonts/SFProDisplay-Semibold.otf'),
       'averta-bold': require('./fonts/Averta-Bold.otf'),

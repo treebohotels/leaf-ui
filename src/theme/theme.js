@@ -73,7 +73,7 @@ theme.fontSize.xs = '12px';
 theme.fontSize.xxs = '10px';
 
 theme.fontWeight = {};
-theme.fontWeight.regular = 400;
+theme.fontWeight.normal = 400;
 theme.fontWeight.medium = 500;
 theme.fontWeight.semibold = 600;
 theme.fontWeight.bold = 700;

@@ -23,7 +23,7 @@ Text.propTypes = {
 
 Text.defaultProps = {
   size: 's',
-  weight: 'regular',
+  weight: 'normal',
 };
 
 export default Text;
