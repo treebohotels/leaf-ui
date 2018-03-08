@@ -20,13 +20,13 @@ Wrap your App component with ThemeProvider and pass it the leaf-ui theme (or ove
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
-import theme, { injectBaseStyles } from 'leaf-ui/es/theme';
+import leafUiTheme, { injectBaseStyles } from 'leaf-ui/es/theme';
 import App from './App';
 
-injectBaseStyles(theme);
+injectBaseStyles(leafUiTheme);
 
-ReactDOM.hydrate(
-  <ThemeProvider theme={theme}>
+ReactDOM.render(
+  <ThemeProvider theme={leafUiTheme}>
     <App />
   </ThemeProvider>,
   document.getElementById('root'),
