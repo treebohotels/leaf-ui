@@ -2,37 +2,37 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, select } from '@storybook/addon-knobs';
 import theme from '../../theme';
-import Chip from './Chip';
+import Tag from './Tag';
 
-storiesOf('Chip', module)
+storiesOf('Tag', module)
   .add('playground', () => (
-    <Chip
+    <Tag
       color={select('color', Object.keys(theme.color), 'primary')}
       kind={select('kind', ['filled', 'outlined'], 'outlined')}
       size={select('size', ['small', 'medium'], 'medium')}
     >
-      {text('children', 'Chip')}
-    </Chip>
+      {text('children', 'Tag')}
+    </Tag>
   ))
   .add('kinds', () => (
     <div>
-      <Chip>
+      <Tag>
         outlined
-      </Chip>
+      </Tag>
       <br /><br />
-      <Chip kind="filled">
+      <Tag kind="filled">
         filled
-      </Chip>
+      </Tag>
     </div>
   ))
   .add('size', () => (
     <div>
-      <Chip size="small">
+      <Tag size="small">
         small
-      </Chip>
+      </Tag>
       <br /><br />
-      <Chip>
+      <Tag>
         medium
-      </Chip>
+      </Tag>
     </div>
   ));

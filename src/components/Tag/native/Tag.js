@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Text from '../../Text/native';
 
-const ChipContainer = styled.View`
+const TagContainer = styled.View`
   align-self: flex-start;
   align-items: center;
   justify-content: center;
@@ -28,8 +28,8 @@ const ChipContainer = styled.View`
   border-color: ${(p) => p.theme.color[p.color]};
   `;
 
-const Chip = ({ style, color, kind, size, children }) => (
-  <ChipContainer
+const Tag = ({ style, color, kind, size, children }) => (
+  <TagContainer
     style={style}
     color={color}
     kind={kind}
@@ -47,10 +47,10 @@ const Chip = ({ style, color, kind, size, children }) => (
     >
       {children}
     </Text>
-  </ChipContainer>
+  </TagContainer>
 );
 
-Chip.propTypes = {
+Tag.propTypes = {
   style: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
@@ -61,10 +61,10 @@ Chip.propTypes = {
   children: PropTypes.string,
 };
 
-Chip.defaultProps = {
+Tag.defaultProps = {
   color: 'primary',
   kind: 'outlined',
   size: 'medium',
 };
 
-export default Chip;
+export default Tag;

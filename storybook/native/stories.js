@@ -6,7 +6,7 @@ import Button from '../../src/components/Button/native';
 import Text from '../../src/components/Text/native';
 import Form from '../../src/components/Form';
 import TextInput from '../../src/components/TextInput/native';
-import Chip from '../../src/components/Chip/native';
+import Tag from '../../src/components/Tag/native';
 import Spacer from '../../src/components/Spacer';
 
 const View = styled.View`
@@ -211,33 +211,33 @@ storiesOf('Form', module)
     />
   ));
 
-storiesOf('Chip', module)
+storiesOf('Tag', module)
   .add('simple', () => (
     <View>
       <Spacer margin={[2, 2, 0, 2]}>
-        <Chip>
+        <Tag>
           primary
-        </Chip>
+        </Tag>
       </Spacer>
       <Spacer margin={2}>
-        <Chip color="lagoon">
+        <Tag color="lagoon">
           outlined medium
-        </Chip>
+        </Tag>
       </Spacer>
       <Spacer margin={2}>
-        <Chip color="teal" size="small">
+        <Tag color="teal" size="small">
           outlined small
-        </Chip>
+        </Tag>
       </Spacer>
       <Spacer margin={2}>
-        <Chip color="yellow" kind="filled">
+        <Tag color="yellow" kind="filled">
           filled medium
-        </Chip>
+        </Tag>
       </Spacer>
       <Spacer margin={2}>
-        <Chip color="red" size="small" kind="filled">
+        <Tag color="red" size="small" kind="filled">
           filled small
-        </Chip>
+        </Tag>
       </Spacer>
     </View>
   ));

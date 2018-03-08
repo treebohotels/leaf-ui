@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Chip = styled.div`
+const Tag = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -29,16 +29,16 @@ const Chip = styled.div`
   }[p.size])}
   `;
 
-Chip.propTypes = {
+Tag.propTypes = {
   color: PropTypes.string,
   kind: PropTypes.oneOf(['filled', 'outlined']),
   size: PropTypes.oneOf(['small', 'medium']),
 };
 
-Chip.defaultProps = {
+Tag.defaultProps = {
   color: 'primary',
   kind: 'outlined',
   size: 'medium',
 };
 
-export default Chip;
+export default Tag;

@@ -1,5 +1,5 @@
 export Button from './components/Button/native';
-export Chip from './components/Chip/native';
+export Tag from './components/Tag/native';
 export Form from './components/Form';
 export Spacer from './components/Spacer';
 export Text from './components/Text/native';
