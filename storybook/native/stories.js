@@ -67,7 +67,7 @@ storiesOf('Button', module)
         </Button>
       </Spacer>
       <Spacer margin={4}>
-        <Button size="regular">
+        <Button size="medium">
           <Text>Default Button</Text>
         </Button>
       </Spacer>

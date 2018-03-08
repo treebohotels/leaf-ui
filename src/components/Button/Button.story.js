@@ -11,7 +11,7 @@ storiesOf('Button', module)
       color={select('color', Object.keys(theme.color), 'primary')}
       kind={select('kind', ['solid', 'outlined', 'transparent'], 'solid')}
       shape={select('shape', ['default', 'flat', 'rounded', 'circular'], 'default')}
-      size={select('size', ['small', 'regular', 'large'], 'regular')}
+      size={select('size', ['small', 'medium', 'large'], 'medium')}
       block={boolean('block', false)}
       disabled={boolean('disabled', false)}
       onClick={action('button clicked')}
@@ -59,7 +59,7 @@ storiesOf('Button', module)
         Small Button
       </Button>
       <br /><br />
-      <Button size="regular">
+      <Button size="medium">
         Default Button
       </Button>
       <br /><br />

@@ -56,7 +56,7 @@ const Button = styled.button`
     small: `
       padding: ${p.theme.px(1)};
     `,
-    regular: `
+    medium: `
       padding: ${p.theme.px(2)};
     `,
     large: `
@@ -74,7 +74,7 @@ Button.propTypes = {
   color: PropTypes.string,
   kind: PropTypes.oneOf(['solid', 'outlined', 'transparent']),
   shape: PropTypes.oneOf(['default', 'flat', 'rounded', 'circular']),
-  size: PropTypes.oneOf(['small', 'regular', 'large']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   block: PropTypes.bool,
   disabled: PropTypes.bool,
 };
@@ -82,7 +82,7 @@ Button.propTypes = {
 Button.defaultProps = {
   color: 'primary',
   kind: 'solid',
-  size: 'regular',
+  size: 'medium',
   shape: 'default',
   block: false,
   disabled: false,
