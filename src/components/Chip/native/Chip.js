@@ -16,7 +16,7 @@ const ChipContainer = styled.View`
     `,
   }[p.size])}
   ${(p) => ({
-    solid: `
+    filled: `
       background: ${p.theme.color[p.color]};
     `,
     outlined: `
@@ -28,16 +28,16 @@ const ChipContainer = styled.View`
   border-color: ${(p) => p.theme.color[p.color]};
   `;
 
-const Chip = ({ style, color, size, kind, children }) => (
+const Chip = ({ style, color, kind, size, children }) => (
   <ChipContainer
     style={style}
     color={color}
-    size={size}
     kind={kind}
+    size={size}
   >
     <Text
       color={{
-        solid: 'white',
+        filled: 'white',
         outlined: color,
       }[kind]}
       size={{
@@ -56,15 +56,15 @@ Chip.propTypes = {
     PropTypes.object,
   ]),
   color: PropTypes.string,
+  kind: PropTypes.oneOf(['filled', 'outlined']),
   size: PropTypes.oneOf(['small', 'medium']),
-  kind: PropTypes.oneOf(['solid', 'outlined']),
   children: PropTypes.string,
 };
 
 Chip.defaultProps = {
   color: 'primary',
-  size: 'medium',
   kind: 'outlined',
+  size: 'medium',
 };
 
 export default Chip;

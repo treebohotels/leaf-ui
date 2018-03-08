@@ -220,16 +220,6 @@ storiesOf('Chip', module)
         </Chip>
       </Spacer>
       <Spacer margin={2}>
-        <Chip color="yellow" kind="solid">
-          solid medium
-        </Chip>
-      </Spacer>
-      <Spacer margin={2}>
-        <Chip color="red" size="small" kind="solid">
-          solid small
-        </Chip>
-      </Spacer>
-      <Spacer margin={2}>
         <Chip color="lagoon">
           outlined medium
         </Chip>
@@ -237,6 +227,16 @@ storiesOf('Chip', module)
       <Spacer margin={2}>
         <Chip color="teal" size="small">
           outlined small
+        </Chip>
+      </Spacer>
+      <Spacer margin={2}>
+        <Chip color="yellow" kind="filled">
+          filled medium
+        </Chip>
+      </Spacer>
+      <Spacer margin={2}>
+        <Chip color="red" size="small" kind="filled">
+          filled small
         </Chip>
       </Spacer>
     </View>

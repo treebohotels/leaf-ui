@@ -8,6 +8,16 @@ const Chip = styled.div`
   border-radius: 100px;
   border: 1px solid ${(p) => p.theme.color[p.color]};
   ${(p) => ({
+    filled: `
+      color: ${p.theme.color.white};
+      background: ${p.theme.color[p.color]};
+    `,
+    outlined: `
+      color: ${p.theme.color[p.color]};
+      background: ${p.theme.color[`${p.color}Lighter`]};
+    `,
+  }[p.kind])}
+  ${(p) => ({
     small: `
       font-size: ${p.theme.fontSize.xxs};
       padding: ${p.theme.px(0.5)};
@@ -17,28 +27,18 @@ const Chip = styled.div`
       padding: ${p.theme.px([1, 1.5])};
     `,
   }[p.size])}
-  ${(p) => ({
-    solid: `
-      color: ${p.theme.color.white};
-      background: ${p.theme.color[p.color]};
-    `,
-    outlined: `
-      color: ${p.theme.color[p.color]};
-      background: ${p.theme.color[`${p.color}Lighter`]};
-    `,
-  }[p.kind])}
   `;
 
 Chip.propTypes = {
   color: PropTypes.string,
+  kind: PropTypes.oneOf(['filled', 'outlined']),
   size: PropTypes.oneOf(['small', 'medium']),
-  kind: PropTypes.oneOf(['solid', 'outlined']),
 };
 
 Chip.defaultProps = {
   color: 'primary',
-  size: 'medium',
   kind: 'outlined',
+  size: 'medium',
 };
 
 export default Chip;

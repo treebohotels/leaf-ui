@@ -8,7 +8,7 @@ storiesOf('Chip', module)
   .add('playground', () => (
     <Chip
       color={select('color', Object.keys(theme.color), 'primary')}
-      kind={select('kind', ['solid', 'outlined'], 'outlined')}
+      kind={select('kind', ['filled', 'outlined'], 'outlined')}
       size={select('size', ['small', 'medium'], 'medium')}
     >
       {text('children', 'Chip')}
@@ -20,8 +20,8 @@ storiesOf('Chip', module)
         outlined
       </Chip>
       <br /><br />
-      <Chip kind="solid">
-        solid
+      <Chip kind="filled">
+        filled
       </Chip>
     </div>
   ))
