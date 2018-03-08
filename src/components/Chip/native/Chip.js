@@ -8,11 +8,11 @@ const ChipContainer = styled.View`
   align-items: center;
   justify-content: center;
   ${(p) => ({
-    regular: `
-      padding: ${p.theme.px([1, 1.5])};
-    `,
     small: `
       padding: ${p.theme.px(0.5)};
+    `,
+    medium: `
+      padding: ${p.theme.px([1, 1.5])};
     `,
   }[p.size])}
   ${(p) => ({
@@ -41,8 +41,8 @@ const Chip = ({ style, color, size, kind, children }) => (
         outlined: color,
       }[kind]}
       size={{
-        regular: 'xs',
         small: 'xxs',
+        medium: 'xs',
       }[size]}
     >
       {children}
@@ -56,14 +56,14 @@ Chip.propTypes = {
     PropTypes.object,
   ]),
   color: PropTypes.string,
-  size: PropTypes.oneOf(['regular', 'small']),
+  size: PropTypes.oneOf(['small', 'medium']),
   kind: PropTypes.oneOf(['solid', 'outlined']),
   children: PropTypes.string,
 };
 
 Chip.defaultProps = {
   color: 'primary',
-  size: 'regular',
+  size: 'medium',
   kind: 'outlined',
 };
 

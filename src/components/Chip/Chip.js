@@ -8,13 +8,13 @@ const Chip = styled.div`
   border-radius: 100px;
   border: 1px solid ${(p) => p.theme.color[p.color]};
   ${(p) => ({
-    regular: `
-      font-size: ${p.theme.fontSize.xs};
-      padding: ${p.theme.px([1, 1.5])};
-    `,
     small: `
       font-size: ${p.theme.fontSize.xxs};
       padding: ${p.theme.px(0.5)};
+    `,
+    medium: `
+      font-size: ${p.theme.fontSize.xs};
+      padding: ${p.theme.px([1, 1.5])};
     `,
   }[p.size])}
   ${(p) => ({
@@ -31,13 +31,13 @@ const Chip = styled.div`
 
 Chip.propTypes = {
   color: PropTypes.string,
-  size: PropTypes.oneOf(['regular', 'small']),
+  size: PropTypes.oneOf(['small', 'medium']),
   kind: PropTypes.oneOf(['solid', 'outlined']),
 };
 
 Chip.defaultProps = {
   color: 'primary',
-  size: 'regular',
+  size: 'medium',
   kind: 'outlined',
 };
 

@@ -221,7 +221,7 @@ storiesOf('Chip', module)
       </Spacer>
       <Spacer margin={2}>
         <Chip color="yellow" kind="solid">
-          solid regular
+          solid medium
         </Chip>
       </Spacer>
       <Spacer margin={2}>
@@ -231,7 +231,7 @@ storiesOf('Chip', module)
       </Spacer>
       <Spacer margin={2}>
         <Chip color="lagoon">
-          outlined regular
+          outlined medium
         </Chip>
       </Spacer>
       <Spacer margin={2}>

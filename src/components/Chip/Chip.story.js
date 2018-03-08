@@ -9,7 +9,7 @@ storiesOf('Chip', module)
     <Chip
       color={select('color', Object.keys(theme.color), 'primary')}
       kind={select('kind', ['solid', 'outlined'], 'outlined')}
-      size={select('size', ['small', 'regular'], 'regular')}
+      size={select('size', ['small', 'medium'], 'medium')}
     >
       {text('children', 'Chip')}
     </Chip>
@@ -27,12 +27,12 @@ storiesOf('Chip', module)
   ))
   .add('size', () => (
     <div>
-      <Chip>
-        regular
-      </Chip>
-      <br /><br />
       <Chip size="small">
         small
+      </Chip>
+      <br /><br />
+      <Chip>
+        medium
       </Chip>
     </div>
   ));
