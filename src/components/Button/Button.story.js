@@ -9,7 +9,7 @@ storiesOf('Button', module)
   .add('playground', () => (
     <Button
       color={select('color', Object.keys(theme.color), 'primary')}
-      kind={select('kind', ['solid', 'outlined', 'transparent'], 'solid')}
+      kind={select('kind', ['filled', 'outlined', 'transparent'], 'filled')}
       shape={select('shape', ['bluntEdged', 'sharpEdged', 'capsular', 'circular'], 'bluntEdged')}
       size={select('size', ['small', 'medium', 'large'], 'medium')}
       block={boolean('block', false)}
@@ -21,8 +21,8 @@ storiesOf('Button', module)
   ))
   .add('kinds', () => (
     <div>
-      <Button kind="solid">
-        Solid Button
+      <Button kind="filled">
+        Filled Button
       </Button>
       <br /><br />
       <Button kind="outlined">

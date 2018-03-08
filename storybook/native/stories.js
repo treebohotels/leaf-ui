@@ -24,8 +24,8 @@ storiesOf('Button', module)
   .add('kinds', () => (
     <View>
       <Spacer margin={4}>
-        <Button kind="solid">
-          <Text>Solid Button</Text>
+        <Button kind="filled">
+          <Text>Filled Button</Text>
         </Button>
       </Spacer>
       <Spacer margin={4}>

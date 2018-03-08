@@ -7,7 +7,7 @@ const Button = styled.button`
   justify-content: center;
   cursor: pointer;
   ${(p) => ({
-    solid: `
+    filled: `
       color: ${p.theme.color.white};
       background: ${p.theme.color[p.color]};
       border: 1px solid ${p.theme.color[p.color]};
@@ -72,7 +72,7 @@ const Button = styled.button`
 
 Button.propTypes = {
   color: PropTypes.string,
-  kind: PropTypes.oneOf(['solid', 'outlined', 'transparent']),
+  kind: PropTypes.oneOf(['filled', 'outlined', 'transparent']),
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'capsular', 'circular']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   block: PropTypes.bool,
@@ -81,7 +81,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   color: 'primary',
-  kind: 'solid',
+  kind: 'filled',
   size: 'medium',
   shape: 'bluntEdged',
   block: false,
