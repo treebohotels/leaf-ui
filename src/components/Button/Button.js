@@ -39,13 +39,13 @@ const Button = styled.button`
     `,
   }[p.kind])}
   ${(p) => ({
-    default: `
+    bluntEdged: `
       border-radius: ${p.theme.borderRadius};
     `,
-    flat: `
+    sharpEdged: `
       border-radius: 0;
     `,
-    rounded: `
+    capsular: `
       border-radius: ${p.theme.px(10)};
     `,
     circular: `
@@ -73,7 +73,7 @@ const Button = styled.button`
 Button.propTypes = {
   color: PropTypes.string,
   kind: PropTypes.oneOf(['solid', 'outlined', 'transparent']),
-  shape: PropTypes.oneOf(['default', 'flat', 'rounded', 'circular']),
+  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'capsular', 'circular']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   block: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -83,7 +83,7 @@ Button.defaultProps = {
   color: 'primary',
   kind: 'solid',
   size: 'medium',
-  shape: 'default',
+  shape: 'bluntEdged',
   block: false,
   disabled: false,
 };

@@ -43,18 +43,18 @@ storiesOf('Button', module)
   .add('shapes', () => (
     <View>
       <Spacer margin={4}>
-        <Button shape="default">
-          <Text>Default Button</Text>
+        <Button shape="bluntEdged">
+          <Text>Blunt Edged Button</Text>
         </Button>
       </Spacer>
       <Spacer margin={4}>
-        <Button shape="flat">
-          <Text>Flat Button</Text>
+        <Button shape="sharpEdged">
+          <Text>Sharp Edged Button</Text>
         </Button>
       </Spacer>
       <Spacer margin={4}>
-        <Button shape="rounded">
-          <Text>Rounded Button</Text>
+        <Button shape="capsular">
+          <Text>Capsular Button</Text>
         </Button>
       </Spacer>
     </View>

@@ -10,13 +10,13 @@ storiesOf('Button', module)
     <Button
       color={select('color', Object.keys(theme.color), 'primary')}
       kind={select('kind', ['solid', 'outlined', 'transparent'], 'solid')}
-      shape={select('shape', ['default', 'flat', 'rounded', 'circular'], 'default')}
+      shape={select('shape', ['bluntEdged', 'sharpEdged', 'capsular', 'circular'], 'bluntEdged')}
       size={select('size', ['small', 'medium', 'large'], 'medium')}
       block={boolean('block', false)}
       disabled={boolean('disabled', false)}
       onClick={action('button clicked')}
     >
-      {text('children', 'Default Button')}
+      {text('children', 'Button')}
     </Button>
   ))
   .add('kinds', () => (
@@ -36,16 +36,16 @@ storiesOf('Button', module)
   ))
   .add('shapes', () => (
     <div>
-      <Button shape="default">
-        Default Button
+      <Button shape="bluntEdged">
+        Blunt Edged Button
       </Button>
       <br /><br />
-      <Button shape="flat">
-        Flat Button
+      <Button shape="sharpEdged">
+        Sharp Edged Button
       </Button>
       <br /><br />
-      <Button shape="rounded">
-        Rounded Button
+      <Button shape="capsular">
+        Capsular Button
       </Button>
       <br /><br />
       <Button shape="circular">
@@ -60,7 +60,7 @@ storiesOf('Button', module)
       </Button>
       <br /><br />
       <Button size="medium">
-        Default Button
+        Medium Button
       </Button>
       <br /><br />
       <Button size="large">
