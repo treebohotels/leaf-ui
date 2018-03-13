@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Divider = styled.hr`
   border-width: 1px 0 0;
-  border-color: ${(p) => p.theme.color[p.color]};
-  border-style: ${(p) => p.type};
+  border-color: ${(props) => props.theme.color[props.color]};
+  border-style: ${(props) => props.type};
   background: transparent;
   margin: 0;
 `;

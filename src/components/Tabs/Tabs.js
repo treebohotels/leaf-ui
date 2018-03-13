@@ -1,28 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Flex from '../Flex';
-
-const TitleContainer = styled.div`
-  display: flex;
-  padding: ${(p) => p.theme.px([0, 7])};
-  background: ${(p) => p.theme.color.lagoon};
-`;
-
-const Title = styled.div`
-  display: flex;
-  flex: 0;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: ${(p) => p.theme.px([2, 3])};
-  color: ${(p) => p.theme.color.white};
-  background: ${(p) => p.theme.color.lagoon};
-  border-bottom: 2px solid transparent;
-  border-color: ${(p) => p.isSelected ? p.theme.color.yellow : 'transparent'};
-`;
-
-const Tab = ({ children }) => children;
+import Tab from './Tab';
+import Title from './Title';
+import TitleContainer from './TitleContainer';
 
 class Tabs extends React.Component {
   state = {

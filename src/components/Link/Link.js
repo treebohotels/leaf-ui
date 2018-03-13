@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 const Link = styled.a`
-  color: ${(p) => p.theme.color.blue};
+  color: ${(props) => props.theme.color.blue};
 
   &:hover {
-    color: ${(p) => p.theme.color.blueDark};
+    color: ${(props) => props.theme.color.blueDark};
   }
 `;
 

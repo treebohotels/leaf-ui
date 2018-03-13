@@ -1,60 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Text from '../Text';
-
-const modifierColor = (valid = 'primary', invalid = 'red', disabled = 'grey') => (props) => {
-  if (props.disabled) return props.theme.color[disabled];
-  return props.error ? props.theme.color[invalid] : props.theme.color[valid];
-};
-
-const InputContainer = styled.div`
-  position: relative;
-  padding: ${(p) => p.theme.px([2, 0])};
-`;
-
-const Label = styled.label`
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  color: ${(p) => p.theme.color.greyDark};
-  font-size: ${(p) => p.theme.fontSize.xxs};
-  transform: translate(0, 0);
-  transition: all 0.15s ease-in-out;
-`;
-
-const Input = styled.input`
-  background: transparent;
-  border: 1px solid ${(p) => p.theme.color.greyDark};
-  border-width: 0 0 1px;
-  padding: ${(p) => p.theme.px([1, 0])};
-  ${(p) => p.block ? 'width: 100%;' : ''}
-
-  &:focus {
-    border-color: ${modifierColor()};
-
-    + ${/* sc-selector */Label} {
-      color: ${modifierColor()};
-    }
-  }
-
-  &::placeholder {
-    visibility: hidden;
-  }
-
-  &:placeholder-shown {
-    + ${/* sc-selector */Label} {
-      color: ${(p) => p.theme.color.grey};
-      transform: translate(0, ${(p) => p.theme.px(3)});
-    }
-  }
-`;
+import Container from './Container';
+import Input from './Input';
+import Label from './Label';
 
 const TextInput = ({
   className,
   name,
   label,
+  disabled,
   error: errorMessage,
   block,
   ...props
@@ -72,10 +27,11 @@ const TextInput = ({
   }
 
   return (
-    <InputContainer className={className}>
+    <Container className={className}>
       <Input
         id={name}
         placeholder={label}
+        disabled={disabled}
         error={error}
         block={block}
         {...inputProps}
@@ -94,7 +50,7 @@ const TextInput = ({
           </Text>
         ) : null
       }
-    </InputContainer>
+    </Container>
   );
 };
 
@@ -102,6 +58,7 @@ TextInput.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
+  disabled: PropTypes.bool,
   error: PropTypes.string,
   block: PropTypes.bool,
 };
@@ -109,6 +66,7 @@ TextInput.propTypes = {
 TextInput.defaultProps = {
   name: 'defaultName',
   label: 'defaultLabel',
+  disabled: false,
   error: '',
 };
 

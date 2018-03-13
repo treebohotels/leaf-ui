@@ -3,61 +3,63 @@ import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 
 class DropdownContent extends React.Component {
-  dropdownStyle = {
-    position: 'absolute',
-    padding: this.props.theme.px(1),
-  }
-
-  dropdownInnerStyle = {
-    background: this.props.theme.color.white,
-    minWidth: this.props.theme.px(25),
-    border: `1px solid ${this.props.theme.color.greyLight}`,
-    borderRadius: this.props.theme.borderRadius,
-    boxShadow: this.props.theme.boxShadow[2],
-  }
-
-  dropdownArrowStyle = {
-    position: 'absolute',
-    width: 0,
-    height: 0,
-    borderRightColor: 'transparent',
-    borderLeftColor: 'transparent',
-    borderTopColor: 'transparent',
-    borderBottomColor: 'transparent',
-    borderStyle: 'solid',
-  }
-
-  placementStyles = {
-    top: {
-      arrow: {
-        bottom: 1,
-        marginLeft: this.props.theme.px(-1),
-        borderWidth: this.props.theme.px([1, 1, 0]),
-        borderTopColor: this.props.theme.color.white,
-      },
+  styles = {
+    dropdown: {
+      position: 'absolute',
+      padding: this.props.theme.px(1),
     },
-    right: {
-      arrow: {
-        left: 1,
-        marginTop: this.props.theme.px(-1),
-        borderWidth: this.props.theme.px([1, 1, 1, 0]),
-        borderRightColor: this.props.theme.color.white,
-      },
+
+    dropdownInner: {
+      background: this.props.theme.color.white,
+      minWidth: this.props.theme.px(25),
+      border: `1px solid ${this.props.theme.color.greyLight}`,
+      borderRadius: this.props.theme.borderRadius,
+      boxShadow: this.props.theme.boxShadow[2],
     },
-    bottom: {
-      arrow: {
-        top: 1,
-        marginLeft: this.props.theme.px(-1),
-        borderWidth: this.props.theme.px([0, 1, 1]),
-        borderBottomColor: this.props.theme.color.white,
-      },
+
+    dropdownArrow: {
+      position: 'absolute',
+      width: 0,
+      height: 0,
+      borderRightColor: 'transparent',
+      borderLeftColor: 'transparent',
+      borderTopColor: 'transparent',
+      borderBottomColor: 'transparent',
+      borderStyle: 'solid',
     },
-    left: {
-      arrow: {
-        right: 1,
-        marginTop: this.props.theme.px(-1),
-        borderWidth: this.props.theme.px([1, 0, 1, 1]),
-        borderLeftColor: this.props.theme.color.white,
+
+    placement: {
+      top: {
+        arrow: {
+          bottom: 1,
+          marginLeft: this.props.theme.px(-1),
+          borderWidth: this.props.theme.px([1, 1, 0]),
+          borderTopColor: this.props.theme.color.white,
+        },
+      },
+      right: {
+        arrow: {
+          left: 1,
+          marginTop: this.props.theme.px(-1),
+          borderWidth: this.props.theme.px([1, 1, 1, 0]),
+          borderRightColor: this.props.theme.color.white,
+        },
+      },
+      bottom: {
+        arrow: {
+          top: 1,
+          marginLeft: this.props.theme.px(-1),
+          borderWidth: this.props.theme.px([0, 1, 1]),
+          borderBottomColor: this.props.theme.color.white,
+        },
+      },
+      left: {
+        arrow: {
+          right: 1,
+          marginTop: this.props.theme.px(-1),
+          borderWidth: this.props.theme.px([1, 0, 1, 1]),
+          borderLeftColor: this.props.theme.color.white,
+        },
       },
     },
   }
@@ -66,22 +68,22 @@ class DropdownContent extends React.Component {
     const {
       style,
       placement,
-      arrowOffsetLeft: left = this.placementStyles[placement].arrow.left,
-      arrowOffsetTop: top = this.placementStyles[placement].arrow.top,
+      arrowOffsetLeft: left = this.styles.placement[placement].arrow.left,
+      arrowOffsetTop: top = this.styles.placement[placement].arrow.top,
       children,
     } = this.props;
 
     return (
-      <div style={{ ...this.dropdownStyle, ...style }}>
+      <div style={{ ...this.styles.dropdown, ...style }}>
         <div
           style={{
-            ...this.dropdownArrowStyle,
-            ...this.placementStyles[placement].arrow,
+            ...this.styles.dropdownArrow,
+            ...this.styles.placement[placement].arrow,
             left,
             top,
           }}
         />
-        <div style={this.dropdownInnerStyle}>
+        <div style={this.styles.dropdownInner}>
           {children}
         </div>
       </div>

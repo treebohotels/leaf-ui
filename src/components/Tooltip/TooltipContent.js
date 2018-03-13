@@ -3,61 +3,63 @@ import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 
 class TooltipContent extends React.Component {
-  tooltipStyle = {
-    position: 'absolute',
-    padding: this.props.theme.px(1),
-  }
-
-  tooltipInnerStyle = {
-    background: this.props.theme.color.greyDarker,
-    padding: this.props.theme.px(1),
-    color: this.props.theme.color.white,
-    textAlign: 'center',
-    borderRadius: this.props.theme.borderRadius,
-  }
-
-  tooltipArrowStyle = {
-    position: 'absolute',
-    width: 0,
-    height: 0,
-    borderRightColor: 'transparent',
-    borderLeftColor: 'transparent',
-    borderTopColor: 'transparent',
-    borderBottomColor: 'transparent',
-    borderStyle: 'solid',
-  }
-
-  placementStyles = {
-    top: {
-      arrow: {
-        bottom: 1,
-        marginLeft: this.props.theme.px(-1),
-        borderWidth: this.props.theme.px([1, 1, 0]),
-        borderTopColor: this.props.theme.color.greyDarker,
-      },
+  styles = {
+    tooltip: {
+      position: 'absolute',
+      padding: this.props.theme.px(1),
     },
-    right: {
-      arrow: {
-        left: 1,
-        marginTop: this.props.theme.px(-1),
-        borderWidth: this.props.theme.px([1, 1, 1, 0]),
-        borderRightColor: this.props.theme.color.greyDarker,
-      },
+
+    tooltipInner: {
+      background: this.props.theme.color.greyDarker,
+      padding: this.props.theme.px(1),
+      color: this.props.theme.color.white,
+      textAlign: 'center',
+      borderRadius: this.props.theme.borderRadius,
     },
-    bottom: {
-      arrow: {
-        top: 1,
-        marginLeft: this.props.theme.px(-1),
-        borderWidth: this.props.theme.px([0, 1, 1]),
-        borderBottomColor: this.props.theme.color.greyDarker,
-      },
+
+    tooltipArrow: {
+      position: 'absolute',
+      width: 0,
+      height: 0,
+      borderRightColor: 'transparent',
+      borderLeftColor: 'transparent',
+      borderTopColor: 'transparent',
+      borderBottomColor: 'transparent',
+      borderStyle: 'solid',
     },
-    left: {
-      arrow: {
-        right: 1,
-        marginTop: this.props.theme.px(-1),
-        borderWidth: this.props.theme.px([1, 0, 1, 1]),
-        borderLeftColor: this.props.theme.color.greyDarker,
+
+    placement: {
+      top: {
+        arrow: {
+          bottom: 1,
+          marginLeft: this.props.theme.px(-1),
+          borderWidth: this.props.theme.px([1, 1, 0]),
+          borderTopColor: this.props.theme.color.greyDarker,
+        },
+      },
+      right: {
+        arrow: {
+          left: 1,
+          marginTop: this.props.theme.px(-1),
+          borderWidth: this.props.theme.px([1, 1, 1, 0]),
+          borderRightColor: this.props.theme.color.greyDarker,
+        },
+      },
+      bottom: {
+        arrow: {
+          top: 1,
+          marginLeft: this.props.theme.px(-1),
+          borderWidth: this.props.theme.px([0, 1, 1]),
+          borderBottomColor: this.props.theme.color.greyDarker,
+        },
+      },
+      left: {
+        arrow: {
+          right: 1,
+          marginTop: this.props.theme.px(-1),
+          borderWidth: this.props.theme.px([1, 0, 1, 1]),
+          borderLeftColor: this.props.theme.color.greyDarker,
+        },
       },
     },
   }
@@ -66,22 +68,22 @@ class TooltipContent extends React.Component {
     const {
       style,
       placement,
-      arrowOffsetLeft: left = this.placementStyles[placement].arrow.left,
-      arrowOffsetTop: top = this.placementStyles[placement].arrow.top,
+      arrowOffsetLeft: left = this.styles.placement[placement].arrow.left,
+      arrowOffsetTop: top = this.styles.placement[placement].arrow.top,
       children,
     } = this.props;
 
     return (
-      <div style={{ ...this.tooltipStyle, ...style }}>
+      <div style={{ ...this.styles.tooltip, ...style }}>
         <div
           style={{
-            ...this.tooltipArrowStyle,
-            ...this.placementStyles[placement].arrow,
+            ...this.styles.tooltipArrow,
+            ...this.styles.placement[placement].arrow,
             left,
             top,
           }}
         />
-        <div style={this.tooltipInnerStyle}>
+        <div style={this.styles.tooltipInner}>
           {children}
         </div>
       </div>

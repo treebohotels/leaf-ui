@@ -6,14 +6,14 @@ const Spacer = styled(({
   children,
   ...props
 }) => React.cloneElement(children, props))`
-  ${(p) => p.margin || p.margin === 0 ? `margin: ${p.theme.px(p.margin)} !important;` : ''}
-  ${(p) => p.padding || p.padding === 0 ? `padding: ${p.theme.px(p.padding)} !important;` : ''}
-  ${(p) => p.maxWidth ? `max-width: ${p.maxWidth} !important;` : ''}
-  ${(p) => p.width ? `width: ${p.width} !important;` : ''}
-  ${(p) => p.minWidth ? `min-width: ${p.minWidth} !important;` : ''}
-  ${(p) => p.minHeight ? `min-height: ${p.minHeight} !important;` : ''}
-  ${(p) => p.height ? `height: ${p.height} !important;` : ''}
-  ${(p) => p.maxHeight ? `max-height: ${p.maxHeight} !important;` : ''}
+  margin: ${(props) => props.margin || props.margin === 0 ? `${props.theme.px(props.margin)} !important;` : ''};
+  padding: ${(props) => props.padding || props.padding === 0 ? `${props.theme.px(props.padding)} !important;` : ''};
+  max-width: ${(props) => props.maxWidth ? `${props.maxWidth} !important;` : ''};
+  width: ${(props) => props.width ? `${props.width} !important;` : ''};
+  min-width: ${(props) => props.minWidth ? `${props.minWidth} !important;` : ''};
+  min-height: ${(props) => props.minHeight ? `${props.minHeight} !important;` : ''};
+  height: ${(props) => props.height ? `${props.height} !important;` : ''};
+  max-height: ${(props) => props.maxHeight ? `${props.maxHeight} !important;` : ''};
 `;
 
 Spacer.propTypes = {

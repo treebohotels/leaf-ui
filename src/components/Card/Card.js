@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Card = styled.div`
-  background: ${(p) => p.theme.color[p.color]};
-  border-radius: ${(p) => p.theme.borderRadius};
-  box-shadow: ${(p) => p.theme.boxShadow[p.elevation]};
+  background: ${(props) => props.theme.color[props.color]};
+  border-radius: ${(props) => props.theme.borderRadius};
+  box-shadow: ${(props) => props.theme.boxShadow[props.elevation]};
 `;
 
 Card.propTypes = {

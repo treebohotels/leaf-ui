@@ -1,59 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Downshift from 'downshift';
 import pluralize from '../../utils/pluralize';
-import Flex from '../Flex';
-import List from '../List';
 import Text from '../Text';
 import Spacer from '../Spacer';
 import Checkbox from '../Checkbox';
-
-const Trigger = Flex.extend`
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  width: ${(p) => p.block ? '100%' : p.theme.px(20)};
-  padding: ${(p) => p.theme.px(1)};
-  border: 1px solid ${(p) => p.theme.color.greyDark};
-  border-radius: ${(p) => p.theme.borderRadius};
-`;
-
-const TriggerArrows = styled.svg`
-  flex: none;
-  width: ${(p) => p.theme.px(3)};
-  height: ${(p) => p.theme.px(3)};
-`;
-
-const OptionListContainer = styled.div`
-  position: relative;
-`;
-
-const OptionList = List.extend`
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow-y: scroll;
-  z-index: 1050;
-  background: ${(p) => p.theme.color.white};
-  min-width: ${(p) => p.block ? '100%' : p.theme.px(25)};
-  max-height: ${(p) => p.theme.px(25)};
-  border: 1px solid ${(p) => p.theme.color.greyLight};
-  border-radius: ${(p) => p.theme.borderRadius};
-  box-shadow: ${(p) => p.theme.boxShadow[2]};
-`;
-
-const Option = List.Item.extend`
-  ${(p) => p.isActive || p.isSelected ? `
-    background: ${p.theme.color.translucent};
-
-    &:hover,
-    &:focus {
-      background: ${p.theme.color.translucent};
-    }
-  ` : ''}
-`;
+import Trigger from './Trigger';
+import TriggerArrows from './TriggerArrows';
+import OptionList from './OptionList';
+import Option from './Option';
 
 class Select extends React.Component {
   constructor(props, context) {
@@ -186,12 +141,12 @@ class Select extends React.Component {
               block={block}
               {...getButtonProps()}
             >
-              <Text truncate>{this.getButtonText(dsSelectedOptions)}</Text>
-              <TriggerArrows viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z" />
-              </TriggerArrows>
+              <Text truncate>
+                {this.getButtonText(dsSelectedOptions)}
+              </Text>
+              <TriggerArrows />
             </Trigger>
-            <OptionListContainer>
+            <div style={{ position: 'relative' }}>
               {
                 isOpen ? (
                   <OptionList block={block}>
@@ -228,7 +183,7 @@ class Select extends React.Component {
                   </OptionList>
                 ) : null
               }
-            </OptionListContainer>
+            </div>
             {
               error ? (
                 <Text color="red" size="xxs">

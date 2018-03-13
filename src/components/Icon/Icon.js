@@ -3,29 +3,33 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Flex from '../Flex';
 
-const I = styled.i.attrs({
-  className: (p) => p.className ? `material-icons ${p.className}` : 'material-icons',
-  children: (p) => p.name,
-})`
-  ${(p) => p.color ? `color: ${p.theme.color[p.color]};` : ''}
-  ${(p) => p.button ? `
-    padding: ${p.theme.px(1)};
-    cursor: pointer;
-
-    &:hover {
-      background: ${p.theme.color.translucent};
+const styles = {
+  color(props) {
+    if (props.color) {
+      return props.theme.color[props.color];
+    } else if (props.disabled) {
+      return props.theme.color.greyLight;
     }
+    return '';
+  },
+};
 
-    ${p.disabled ? `
-      color: ${p.theme.color.greyLight};
-      pointer-events: none;
-      opacity: 0.5;
-    ` : ''}
-  ` : ''}
-  ${(p) => p.hasChildren ? `
-    ${p.right ? `margin-left: ${p.theme.px(1)}` : `margin-right: ${p.theme.px(1)}`};
-    font-size: inherit !important;
-  ` : ''}
+const I = styled.i.attrs({
+  className: (props) => props.className ? `material-icons ${props.className}` : 'material-icons',
+  children: (props) => props.name,
+})`
+  color: ${styles.color};
+  padding: ${(props) => props.button ? props.theme.px(1) : ''};
+  margin-left: ${(props) => props.hasChildren && props.right ? props.theme.px(1) : ''};
+  margin-right: ${(props) => props.hasChildren ? props.theme.px(1) : ''};
+  font-size: ${(props) => props.hasChildren ? 'inherit !important' : ''};
+  cursor: ${(props) => props.button ? 'pointer' : ''};
+  pointer-events: ${(props) => props.disabled ? 'none' : ''};
+  opacity: ${(props) => props.disabled ? '0.5' : ''};
+
+  &:hover {
+    background: ${(props) => props.button ? props.theme.color.translucent : ''};
+  }
 `;
 
 const Icon = ({

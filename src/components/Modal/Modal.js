@@ -1,29 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Modal as ReactOverlaysModal } from 'react-overlays';
+import ModalDialog from './ModalDialog';
 import ModalHeader from './ModalHeader';
 import ModalContent from './ModalContent';
 import ModalFooter from './ModalFooter';
 
-const backdropStyle = {
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  left: 0,
-  bottom: 0,
-  zIndex: 'auto',
-  background: 'rgba(0, 0, 0, 0.25)',
+const styles = {
+  ReactOverlaysModal: {
+    backdrop: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      left: 0,
+      bottom: 0,
+      zIndex: 'auto',
+      background: 'rgba(0, 0, 0, 0.25)',
+    },
+  },
 };
-
-const Dialog = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: ${(p) => p.theme.boxShadow[3]};
-  min-width: ${(p) => p.theme.px(75)};
-`;
 
 const Modal = ({
   isOpen,
@@ -32,12 +27,12 @@ const Modal = ({
   children,
 }) => (
   <ReactOverlaysModal
-    backdropStyle={backdropStyle}
+    backdropStyle={styles.ReactOverlaysModal.backdrop}
     show={isOpen}
     onHide={onClose}
     container={container}
   >
-    <Dialog>
+    <ModalDialog>
       {
         React.Children.map(children, (child) => (
           React.cloneElement(child, {
@@ -45,7 +40,7 @@ const Modal = ({
           })
         ))
       }
-    </Dialog>
+    </ModalDialog>
   </ReactOverlaysModal>
 );
 

@@ -1,35 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Flex from '../Flex';
 import Text from '../Text';
 import Button from '../Button';
-import Icon from '../Icon';
 import Spacer from '../Spacer';
-
-const notificationTypes = {
-  info: {
-    color: 'blue',
-    icon: <Icon name="info" color="blue" />,
-  },
-  success: {
-    color: 'green',
-    icon: <Icon name="check_circle" color="green" />,
-  },
-  warning: {
-    color: 'yellow',
-    icon: <Icon name="error" color="yellow" />,
-  },
-  danger: {
-    color: 'red',
-    icon: <Icon name="cancel" color="red" />,
-  },
-};
-
-const NotificationContainer = styled.div`
-  background: ${(p) => p.type ? p.theme.color[`${notificationTypes[p.type].color}Lighter`] : ''};
-  border-top: 2px solid ${(p) => p.type ? p.theme.color[notificationTypes[p.type].color] : ''};
-`;
+import NotificationContainer from './NotificationContainer';
+import notificationTypes from './notificationTypes';
 
 const Notification = ({
   type,

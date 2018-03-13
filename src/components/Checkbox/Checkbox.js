@@ -1,79 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Text from '../Text';
-
-const modifierColor = (valid = 'primary', invalid = 'red', disabled = 'grey') => (props) => {
-  if (props.disabled) return props.theme.color[disabled];
-  return props.error ? props.theme.color[invalid] : props.theme.color[valid];
-};
-
-const CheckboxContainer = styled.div`
-  position: relative;
-  padding: ${(p) => p.theme.px([2, 0])};
-`;
-
-const Label = styled.label`
-  display: flex;
-  cursor: pointer;
-`;
-
-const Box = styled.span`
-  display: flex;
-  width: ${(p) => p.theme.px(2)};
-  height: ${(p) => p.theme.px(2)};
-  margin-right: ${(p) => p.theme.px(1)};
-  border-radius: ${(p) => p.theme.borderRadius};
-`;
-
-const Tick = styled.svg`
-  fill: ${(p) => p.theme.color.white};
-  width: 100%;
-  height: 100%;
-  padding: 0 1px;
-  display: none;
-`;
-
-const Input = styled.input.attrs({
-  type: 'checkbox',
-})`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-  visibility: visible;
-  white-space: nowrap;
-
-  + ${/* sc-selector */Box} {
-    border: 1px solid ${modifierColor('greyDark', 'greyDark')};
-  }
-
-  &:focus {
-    + ${/* sc-selector */Box} {
-      box-shadow: 0 0 0 1px ${modifierColor()};
-    }
-  }
-
-  &:checked {
-    + ${/* sc-selector */Box} {
-      background: ${modifierColor()};
-      border-color: ${modifierColor()};
-
-      ${/* sc-selector */Tick} {
-        display: block;
-      }
-    }
-  }
-`;
+import Container from './Container';
+import Label from './Label';
+import Input from './Input';
+import Box from './Box';
+import Tick from './Tick';
 
 const Checkbox = ({
   className,
   name,
   label,
+  disabled,
   error: errorMessage,
   ...props
 }, {
@@ -90,18 +28,17 @@ const Checkbox = ({
   }
 
   return (
-    <CheckboxContainer className={className}>
+    <Container className={className}>
       <Label htmlFor={name}>
         <Input
           id={name}
           {...inputProps}
           {...props}
+          disabled={disabled}
           error={error}
         />
         <Box>
-          <Tick fillRule="evenodd" viewBox="0 0 12 9">
-            <path d="M4.1 6.1L1.4 3.4 0 4.9 4.1 9l7.6-7.6L10.3 0z" />
-          </Tick>
+          <Tick />
         </Box>
         {label}
       </Label>
@@ -112,7 +49,7 @@ const Checkbox = ({
           </Text>
         ) : null
       }
-    </CheckboxContainer>
+    </Container>
   );
 };
 
@@ -120,12 +57,14 @@ Checkbox.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
+  disabled: PropTypes.bool,
   error: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
   name: 'defaultName',
   label: 'defaultLabel',
+  disabled: false,
   error: '',
 };
 
