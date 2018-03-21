@@ -13,8 +13,8 @@ const Img = styled.img`
 `;
 
 class Image extends Component {
-  static getCdnUrl(src = '', width: 4, height: 3) {
-    return src ? `${src}?w=${width * 100}&h=${height * 100}&fm=pjpg&fit=crop&auto=compress` : src;
+  static getCdnUrl(src = '', aspectRatio) {
+    return src ? `${src}?w=${aspectRatio.width * 100}&h=${aspectRatio.height * 100}&fm=pjpg&fit=crop&auto=compress` : src;
   }
 
   state = {
