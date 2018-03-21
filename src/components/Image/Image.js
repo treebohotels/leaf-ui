@@ -9,12 +9,12 @@ const Img = styled.img`
   position: ${(props) => props.isLoaded ? 'static' : 'initial'};
   visibility: ${(props) => props.src ? 'initial' : 'hidden'};
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
-  background-color: red;
+  background-color: ${(props) => props.isLoaded ? 'transparent' : props.theme.color.translucent};
 `;
 
 class Image extends Component {
-  static getCdnUrl(src = '', width: 4, height: 3) {
-    return src ? `${src}?w=${width * 100}&h=${height * 100}&fm=pjpg&fit=crop&auto=compress` : src;
+  static getCdnUrl(src = '', aspectRatio) {
+    return src ? `${src}?w=${aspectRatio.width * 100}&h=${aspectRatio.height * 100}&fm=pjpg&fit=crop&auto=compress` : src;
   }
 
   state = {
@@ -99,7 +99,7 @@ Image.propTypes = {
   height: PropTypes.string,
   aspectRatio: PropTypes.object,
   grayscale: PropTypes.bool,
-  lazy: PropTypes.string,
+  lazy: PropTypes.bool,
   shouldFetchFromCdn: PropTypes.bool,
   src: PropTypes.string,
   alt: PropTypes.string,
