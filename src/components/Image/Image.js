@@ -99,7 +99,7 @@ Image.propTypes = {
   height: PropTypes.string,
   aspectRatio: PropTypes.object,
   grayscale: PropTypes.bool,
-  lazy: PropTypes.string,
+  lazy: PropTypes.bool,
   shouldFetchFromCdn: PropTypes.bool,
   src: PropTypes.string,
   alt: PropTypes.string,
