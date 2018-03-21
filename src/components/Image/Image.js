@@ -9,7 +9,7 @@ const Img = styled.img`
   position: ${(props) => props.isLoaded ? 'static' : 'initial'};
   visibility: ${(props) => props.src ? 'initial' : 'hidden'};
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
-  background-color: red;
+  background-color: ${(props) => props.isLoaded ? 'transparent' : props.theme.color.translucent};
 `;
 
 class Image extends Component {
