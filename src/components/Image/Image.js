@@ -3,6 +3,19 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import browserDimensions from '../../utils/browserDimensions';
 
+const styles = {
+  borderRadius(props) {
+    if (props.shape === 'bluntEdged') {
+      return props.theme.borderRadius;
+    } else if (props.shape === 'sharpEdged') {
+      return '0';
+    } else if (props.shape === 'circular') {
+      return '100%';
+    }
+    return '';
+  },
+};
+
 const Img = styled.img`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -10,6 +23,7 @@ const Img = styled.img`
   visibility: ${(props) => props.src ? 'initial' : 'hidden'};
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
   background-color: ${(props) => props.isLoaded ? 'transparent' : props.theme.color.translucent};
+  border-radius: ${styles.borderRadius};
 `;
 
 class Image extends Component {
@@ -18,19 +32,13 @@ class Image extends Component {
   }
 
   state = {
-    src: typeof window !== 'undefined' && this.props.lazy ? '' : this.props.src,
-    shouldFetch: (typeof window === 'undefined' && this.props.lazy),
-    isLoaded: (typeof window === 'undefined' && this.props.lazy),
+    shouldFetch: (typeof window === 'undefined'),
+    isLoaded: (typeof window === 'undefined'),
   };
 
   componentDidMount() {
     window.setTimeout(this.handleScroll);
     window.addEventListener('scroll', this.handleScroll, { passive: true });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { shouldFetch } = this.state;
-    this.setState({ src: shouldFetch ? nextProps.src : '' });
   }
 
   componentDidUpdate() {
@@ -50,12 +58,11 @@ class Image extends Component {
 
   handleScroll = () => {
     const { isLoaded } = this.state;
-    const { src } = this.props;
     const boundingClientRect = this.containerRef.getBoundingClientRect();
     const isInViewport =
       (boundingClientRect.top <= browserDimensions().height && boundingClientRect.bottom >= 0);
     if (!isLoaded && isInViewport) {
-      this.setState({ src, shouldFetch: true });
+      this.setState({ shouldFetch: true });
       window.removeEventListener('scroll', this.handleScroll, { passive: true });
     }
   }
@@ -65,7 +72,8 @@ class Image extends Component {
   }
 
   render() {
-    const { src, isLoaded } = this.state;
+    const { isLoaded, shouldFetch } = this.state;
+    const src = !this.props.lazy || (shouldFetch && this.props.src) ? this.props.src : '';
     const {
       alt,
       aspectRatio,
