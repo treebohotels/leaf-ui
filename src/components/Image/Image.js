@@ -88,7 +88,7 @@ Image.propTypes = {
   shouldFetchFromCdn: PropTypes.bool,
   src: PropTypes.string,
   alt: PropTypes.string,
-  shape: PropTypes.string,
+  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
 };
 
 Image.defaultProps = {
