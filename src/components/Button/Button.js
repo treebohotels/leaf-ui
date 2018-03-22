@@ -77,7 +77,7 @@ const styles = {
     },
     border(props) {
       if (props.kind === 'filled') {
-        return `1px solid ${props.theme.color[props.color]}`;
+        return `1px solid ${props.theme.color[`${props.color}Dark`]}`;
       } else if (props.kind === 'outlined') {
         return `1px solid ${props.theme.color[`${props.color}Dark`]}`;
       } else if (props.kind === 'transparent') {
