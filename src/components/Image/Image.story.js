@@ -6,8 +6,8 @@ import Image from './Image';
 storiesOf('Image', module)
   .add('playground', () => (
     <Image
-      shape={select('shape', ['bluntEdged', 'sharpEdged', 'capsular', 'circular'], 'bluntEdged')}
-      src="http://images.treebohotels.com/files/Treebo_The_Galaxy/Oak/OAk_(4).jpg?w=400&h=300&fm=pjpg&fit=crop&auto=compress"
+      shape={select('shape', ['bluntEdged', 'sharpEdged', 'circular'], 'bluntEdged')}
+      src="https://images.treebohotels.com/files/Treebo_The_Galaxy/Oak/OAk_(4).jpg"
       height="200px"
       width="200px"
     />
@@ -17,7 +17,7 @@ storiesOf('Image', module)
       <Image
         height="200px"
         width="200px"
-        src="http://images.treebohotels.com/files/Treebo_The_Galaxy/Oak/OAk_(4).jpg?w=400&h=300&fm=pjpg&fit=crop&auto=compress"
+        src="https://images.treebohotels.com/files/Treebo_The_Galaxy/Oak/OAk_(4).jpg"
       />
     </div>
   ));
