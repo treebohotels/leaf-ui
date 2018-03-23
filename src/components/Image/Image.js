@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isInViewport from '../../utils/isInViewport';
 import Img from './Img';
-import browserDimensions from '../../utils/browserDimensions';
 
 class Image extends Component {
   static getCdnUrl(src = '', width, height) {
@@ -39,10 +39,7 @@ class Image extends Component {
 
   handleScroll = () => {
     const { isLoaded } = this.state;
-    const boundingClientRect = this.containerRef.getBoundingClientRect();
-    const isInViewport =
-      (boundingClientRect.top <= browserDimensions().height && boundingClientRect.bottom >= 0);
-    if (!isLoaded && isInViewport) {
+    if (!isLoaded && isInViewport(this.containerRef)) {
       this.setState({ shouldFetch: true });
       window.removeEventListener('scroll', this.handleScroll, { passive: true });
     }
