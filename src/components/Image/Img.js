@@ -38,7 +38,7 @@ Img.propTypes = {
 Img.defaultProps = {
   width: '',
   height: '',
-  grayscale: 'grayscale(1)',
+  grayscale: false,
   shape: 'sharpEdged',
   isLoaded: false,
 };
