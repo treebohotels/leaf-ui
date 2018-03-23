@@ -35,4 +35,12 @@ Img.propTypes = {
   borderRadius: PropTypes.string,
 };
 
+Img.defaultProps = {
+  width: '',
+  height: '',
+  grayscale: 'grayscale(1)',
+  shape: 'sharpEdged',
+  isLoaded: false,
+};
+
 export default Img;
