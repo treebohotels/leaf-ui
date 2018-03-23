@@ -4,8 +4,16 @@ import isInViewport from '../../utils/isInViewport';
 import Img from './Img';
 
 class Image extends Component {
-  static getCdnUrl(src = '', width, height) {
-    return src ? `${src}?w=${width * 100}&h=${height * 100}&fm=pjpg&fit=crop&auto=compress` : src;
+  static getCdnUrl(src = '', width = '', height = '') {
+    const integerWidth = Number.parseInt(width, 10);
+    const integerHeight = Number.parseInt(height, 10);
+    const query = [
+      `w=${integerWidth || ''}`,
+      `h=${integerHeight || ''}`,
+      'fit=crop',
+      'auto=compress',
+    ].filter(Boolean).join('&');
+    return src ? `${src}?${query}` : src;
   }
 
   state = {
@@ -34,12 +42,12 @@ class Image extends Component {
   }
 
   setImageRef = (ref) => {
-    this.containerRef = ref;
+    this.imageRef = ref;
   }
 
   handleScroll = () => {
     const { isLoaded } = this.state;
-    if (!isLoaded && isInViewport(this.containerRef)) {
+    if (!isLoaded && isInViewport(this.imageRef)) {
       this.setState({ shouldFetch: true });
       window.removeEventListener('scroll', this.handleScroll, { passive: true });
     }
@@ -48,14 +56,14 @@ class Image extends Component {
   render() {
     const { isLoaded, shouldFetch } = this.state;
     const {
+      src,
       alt,
-      grayscale,
-      shouldFetchFromCdn,
       width,
       height,
+      grayscale,
       shape,
       lazy,
-      src,
+      shouldFetchFromCdn,
     } = this.props;
 
     const source = !lazy || shouldFetch ? src : '';
@@ -63,14 +71,14 @@ class Image extends Component {
 
     return (
       <Img
+        innerRef={this.setImageRef}
         src={imageSrc}
         alt={alt}
         width={width}
         height={height}
+        grayscale={grayscale}
         shape={shape}
         isLoaded={isLoaded}
-        grayscale={grayscale}
-        innerRef={this.setImageRef}
         onLoad={this.onImageLoaded}
       />
     );
@@ -78,25 +86,23 @@ class Image extends Component {
 }
 
 Image.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
   grayscale: PropTypes.bool,
+  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   lazy: PropTypes.bool,
   shouldFetchFromCdn: PropTypes.bool,
-  src: PropTypes.string,
-  alt: PropTypes.string,
-  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
 };
 
 Image.defaultProps = {
-  width: '100%',
-  height: 'auto',
+  width: '',
+  height: '',
   grayscale: false,
+  shape: 'sharpEdged',
   lazy: true,
   shouldFetchFromCdn: true,
-  src: '',
-  alt: '',
-  shape: '',
 };
 
 export default Image;
