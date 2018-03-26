@@ -14,17 +14,17 @@ const styles = {
   },
 };
 
-const Img = styled.img`
+const ImgContainer = styled.span`
   width: ${(props) => props.width || ''};
   height: ${(props) => props.height || ''};
+  background-color: ${(props) => props.isLoaded ? 'transparent' : props.theme.color.translucent};
   position: ${(props) => props.isLoaded ? 'static' : 'initial'};
-  visibility: ${(props) => props.src ? 'initial' : 'hidden'};
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
   border-radius: ${styles.borderRadius};
   display: ${(props) => props.display || ''};
 `;
 
-Img.propTypes = {
+ImgContainer.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   width: PropTypes.string,
@@ -36,7 +36,7 @@ Img.propTypes = {
   borderRadius: PropTypes.string,
 };
 
-Img.defaultProps = {
+ImgContainer.defaultProps = {
   width: '',
   height: '',
   grayscale: false,
@@ -45,4 +45,4 @@ Img.defaultProps = {
   isLoaded: false,
 };
 
-export default Img;
+export default ImgContainer;
