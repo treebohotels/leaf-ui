@@ -7,13 +7,13 @@ class Image extends Component {
   static getCdnUrl(src = '', width = '', height = '') {
     const integerWidth = Number.parseInt(width, 10);
     const integerHeight = Number.parseInt(height, 10);
-    const query = [
+    const searchParams = [
       `w=${integerWidth || ''}`,
       `h=${integerHeight || ''}`,
       'fit=crop',
       'auto=compress',
     ].filter(Boolean).join('&');
-    return src ? `${src}?${query}` : src;
+    return src ? `${src}?${searchParams}` : src;
   }
 
   state = {
@@ -67,6 +67,7 @@ class Image extends Component {
       alt,
       width,
       height,
+      border,
       grayscale,
       shape,
       lazy,
@@ -83,6 +84,7 @@ class Image extends Component {
         alt={alt}
         width={width}
         height={height}
+        border={border}
         grayscale={grayscale}
         shape={shape}
         isLoaded={isLoaded}
@@ -101,6 +103,7 @@ Image.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
+  border: PropTypes.string,
   grayscale: PropTypes.bool,
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   lazy: PropTypes.bool,
@@ -110,6 +113,7 @@ Image.propTypes = {
 Image.defaultProps = {
   width: '',
   height: '',
+  border: '',
   grayscale: false,
   shape: 'sharpEdged',
   lazy: true,
