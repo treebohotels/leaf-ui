@@ -22,18 +22,22 @@ class Image extends Component {
   };
 
   componentDidMount() {
-    window.setTimeout(this.handleScroll);
-    window.addEventListener('scroll', this.handleScroll, { passive: true });
-  }
-
-  componentDidUpdate() {
-    const { isLoaded } = this.state;
-    if (!isLoaded) {
-      window.setTimeout(this.handleScroll);
+    const { subscribeToGalleryRef } = this.context;
+    if (subscribeToGalleryRef) {
+      subscribeToGalleryRef((galleryRef) => {
+        this.galleryRef = galleryRef;
+        this.galleryRef.addEventListener('scroll', this.handleScroll, { passive: true });
+        window.setTimeout(this.handleScroll);
+      });
     }
+    window.addEventListener('scroll', this.handleScroll, { passive: true });
+    window.setTimeout(this.handleScroll);
   }
 
   componentWillUnmount() {
+    if (this.galleryRef) {
+      this.galleryRef.removeEventListener('scroll', this.handleScroll, { passive: true });
+    }
     window.removeEventListener('scroll', this.handleScroll, { passive: true });
   }
 
@@ -49,6 +53,9 @@ class Image extends Component {
     const { isLoaded } = this.state;
     if (!isLoaded && isInViewport(this.imageRef)) {
       this.setState({ shouldFetch: true });
+      if (this.galleryRef) {
+        this.galleryRef.removeEventListener('scroll', this.handleScroll, { passive: true });
+      }
       window.removeEventListener('scroll', this.handleScroll, { passive: true });
     }
   }
@@ -84,6 +91,10 @@ class Image extends Component {
     );
   }
 }
+
+Image.contextTypes = {
+  subscribeToGalleryRef: PropTypes.func,
+};
 
 Image.propTypes = {
   src: PropTypes.string.isRequired,
