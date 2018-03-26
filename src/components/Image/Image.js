@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isInViewport from '../../utils/isInViewport';
+import ImgContainer from './ImgContainer';
 import Img from './Img';
 
 class Image extends Component {
@@ -72,7 +73,6 @@ class Image extends Component {
       alt,
       width,
       height,
-      border,
       grayscale,
       shape,
       display,
@@ -84,19 +84,26 @@ class Image extends Component {
     const imageSrc = shouldFetchFromCdn ? Image.getCdnUrl(source, width, height) : source;
 
     return (
-      <Img
-        innerRef={this.setImageRef}
-        src={imageSrc}
-        alt={alt}
+      <ImgContainer
         width={width}
         height={height}
-        border={border}
         grayscale={grayscale}
         shape={shape}
         display={display}
-        isLoaded={isLoaded}
-        onLoad={this.onImageLoaded}
-      />
+      >
+        <Img
+          innerRef={this.setImageRef}
+          src={imageSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          grayscale={grayscale}
+          shape={shape}
+          display={display}
+          isLoaded={isLoaded}
+          onLoad={this.onImageLoaded}
+        />
+      </ImgContainer>
     );
   }
 }
@@ -110,7 +117,6 @@ Image.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
-  border: PropTypes.string,
   grayscale: PropTypes.bool,
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   display: PropTypes.string,
@@ -121,7 +127,6 @@ Image.propTypes = {
 Image.defaultProps = {
   width: '',
   height: '',
-  border: '',
   grayscale: false,
   shape: 'sharpEdged',
   display: 'inline',
