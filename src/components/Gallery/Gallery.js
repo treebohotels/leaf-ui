@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Spacer from '../Spacer';
 
 const GalleryContainer = styled.div`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   overflow-x: ${(props) => props.scrollDirection === 'horizontal' ? 'scroll' : 'hidden'};
   overflow-y: ${(props) => props.scrollDirection === 'vertical' ? 'scroll' : 'hidden'};
   white-space: ${(props) => props.scrollDirection === 'horizontal' ? 'nowrap' : 'initial'};
@@ -33,14 +36,26 @@ class Gallery extends Component {
   listeners = [];
 
   render() {
-    const { className, scrollDirection, children } = this.props;
+    const {
+      width,
+      height,
+      scrollDirection,
+      children,
+    } = this.props;
     return (
       <GalleryContainer
-        className={className}
+        width={width}
+        height={height}
         scrollDirection={scrollDirection}
         innerRef={this.setGalleryRef}
       >
-        {children}
+        {
+          React.Children.map(children, (child) => (
+            <Spacer margin={[0, 0.5, 0, 0]}>
+              {child}
+            </Spacer>
+          ))
+        }
       </GalleryContainer>
     );
   }
@@ -51,13 +66,16 @@ Gallery.childContextTypes = {
 };
 
 Gallery.propTypes = {
-  className: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
   scrollDirection: PropTypes.string,
   children: PropTypes.node,
 };
 
 Gallery.defaultProps = {
-  scrollDirection: 'horizontal',
+  width: '',
+  height: '',
+  scrollDirection: 'vertical',
 };
 
 export default Gallery;
