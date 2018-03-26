@@ -9,7 +9,7 @@ const GalleryContainer = styled.div`
   height: ${(props) => props.height};
   overflow-x: ${(props) => props.scrollDirection === 'horizontal' ? 'scroll' : 'hidden'};
   overflow-y: ${(props) => props.scrollDirection === 'vertical' ? 'scroll' : 'hidden'};
-  white-space: ${(props) => props.scrollDirection === 'horizontal' ? 'nowrap' : 'initial'};
+  display: ${(props) => props.scrollDirection === 'horizontal' ? 'flex' : ''};
 
   &::-webkit-scrollbar {
     display: none;
@@ -43,6 +43,7 @@ class Gallery extends Component {
       scrollDirection,
       children,
     } = this.props;
+
     return (
       <GalleryContainer
         width={width}
@@ -52,7 +53,7 @@ class Gallery extends Component {
       >
         {
           React.Children.map(children, (child) => (
-            <Spacer margin={[0, 0.5, 0, 0]}>
+            <Spacer margin={scrollDirection === 'horizontal' ? [0, 0.5, 0, 0] : [0, 0, 0.5, 0]}>
               <Flex display="inline-block">
                 {child}
               </Flex>
@@ -71,7 +72,7 @@ Gallery.childContextTypes = {
 Gallery.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
-  scrollDirection: PropTypes.string,
+  scrollDirection: PropTypes.oneOf(['horizontal', 'vertical']),
   children: PropTypes.node,
 };
 
