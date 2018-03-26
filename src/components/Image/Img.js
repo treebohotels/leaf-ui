@@ -21,7 +21,7 @@ const Img = styled.img`
   visibility: ${(props) => props.src ? 'initial' : 'hidden'};
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
   border-radius: ${styles.borderRadius};
-  display: ${(props) => props.display || ''};
+  display: inline-block;
 `;
 
 Img.propTypes = {
@@ -31,7 +31,6 @@ Img.propTypes = {
   height: PropTypes.string,
   grayscale: PropTypes.bool,
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
-  display: PropTypes.string,
   isLoaded: PropTypes.bool,
   borderRadius: PropTypes.string,
 };
@@ -41,7 +40,6 @@ Img.defaultProps = {
   height: '',
   grayscale: false,
   shape: 'sharpEdged',
-  display: 'inline',
   isLoaded: false,
 };
 
