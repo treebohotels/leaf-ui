@@ -21,7 +21,6 @@ const ImgContainer = styled.div`
   position: ${(props) => props.isLoaded ? 'static' : 'initial'};
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
   border-radius: ${styles.borderRadius};
-  display: inline-block;
 `;
 
 ImgContainer.propTypes = {

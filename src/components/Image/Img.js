@@ -21,7 +21,6 @@ const Img = styled.img`
   visibility: ${(props) => props.src ? 'initial' : 'hidden'};
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
   border-radius: ${styles.borderRadius};
-  display: inline-block;
 `;
 
 Img.propTypes = {

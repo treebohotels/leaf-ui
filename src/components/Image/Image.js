@@ -87,7 +87,7 @@ class Image extends Component {
       <ImgContainer
         className={className}
         width={width}
-        grayscale={grayscale}
+        height={height}
         shape={shape}
       >
         <Img
@@ -97,7 +97,6 @@ class Image extends Component {
           width={width}
           height={height}
           grayscale={grayscale}
-          shape={shape}
           isLoaded={isLoaded}
           onLoad={this.onImageLoaded}
         />
@@ -111,9 +110,9 @@ Image.contextTypes = {
 };
 
 Image.propTypes = {
-  className: PropTypes.string,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
+  className: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
   grayscale: PropTypes.bool,
@@ -123,6 +122,7 @@ Image.propTypes = {
 };
 
 Image.defaultProps = {
+  className: '',
   width: '',
   height: '',
   grayscale: false,
