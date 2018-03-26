@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Spacer from '../Spacer';
+import Flex from '../Flex';
 
 const GalleryContainer = styled.div`
   width: ${(props) => props.width};
@@ -52,7 +53,9 @@ class Gallery extends Component {
         {
           React.Children.map(children, (child) => (
             <Spacer margin={[0, 0.5, 0, 0]}>
-              {child}
+              <Flex display="inline-block">
+                {child}
+              </Flex>
             </Spacer>
           ))
         }
@@ -75,7 +78,7 @@ Gallery.propTypes = {
 Gallery.defaultProps = {
   width: '',
   height: '',
-  scrollDirection: 'vertical',
+  scrollDirection: 'horizontal',
 };
 
 export default Gallery;
