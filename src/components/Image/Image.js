@@ -110,9 +110,9 @@ Image.contextTypes = {
 };
 
 Image.propTypes = {
+  className: PropTypes.string,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
-  className: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
   grayscale: PropTypes.bool,

@@ -19,7 +19,6 @@ const ImgContainer = styled.div`
   height: ${(props) => props.height || ''};
   background-color: ${(props) => props.isLoaded ? 'transparent' : props.theme.color.translucent};
   position: ${(props) => props.isLoaded ? 'static' : 'initial'};
-  filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
   border-radius: ${styles.borderRadius};
 `;
 
@@ -28,7 +27,6 @@ ImgContainer.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
-  grayscale: PropTypes.bool,
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   isLoaded: PropTypes.bool,
   borderRadius: PropTypes.string,
@@ -37,7 +35,6 @@ ImgContainer.propTypes = {
 ImgContainer.defaultProps = {
   width: '',
   height: '',
-  grayscale: false,
   shape: 'sharpEdged',
   isLoaded: false,
 };
