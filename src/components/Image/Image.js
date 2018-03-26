@@ -75,6 +75,7 @@ class Image extends Component {
       border,
       grayscale,
       shape,
+      display,
       lazy,
       shouldFetchFromCdn,
     } = this.props;
@@ -92,6 +93,7 @@ class Image extends Component {
         border={border}
         grayscale={grayscale}
         shape={shape}
+        display={display}
         isLoaded={isLoaded}
         onLoad={this.onImageLoaded}
       />
@@ -111,6 +113,7 @@ Image.propTypes = {
   border: PropTypes.string,
   grayscale: PropTypes.bool,
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
+  display: PropTypes.string,
   lazy: PropTypes.bool,
   shouldFetchFromCdn: PropTypes.bool,
 };
@@ -121,6 +124,7 @@ Image.defaultProps = {
   border: '',
   grayscale: false,
   shape: 'sharpEdged',
+  display: 'inline',
   lazy: true,
   shouldFetchFromCdn: true,
 };
