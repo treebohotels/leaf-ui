@@ -17,6 +17,7 @@ const styles = {
 const Img = styled.img`
   width: ${(props) => props.width || ''};
   height: ${(props) => props.height || ''};
+  border: ${(props) => props.border || ''};
   background-color: ${(props) => props.isLoaded ? 'transparent' : props.theme.color.translucent};
   position: ${(props) => props.isLoaded ? 'static' : 'initial'};
   visibility: ${(props) => props.src ? 'initial' : 'hidden'};
@@ -29,10 +30,20 @@ Img.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
+  border: PropTypes.string,
   grayscale: PropTypes.bool,
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   isLoaded: PropTypes.bool,
   borderRadius: PropTypes.string,
+};
+
+Img.defaultProps = {
+  width: '',
+  height: '',
+  border: '',
+  grayscale: false,
+  shape: 'sharpEdged',
+  isLoaded: false,
 };
 
 export default Img;
