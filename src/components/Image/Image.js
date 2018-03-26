@@ -34,6 +34,11 @@ class Image extends Component {
     window.setTimeout(this.handleScroll);
   }
 
+  componentDidUpdate() {
+    const { isLoaded } = this.state;
+    if (!isLoaded) window.setTimeout(this.handleScroll);
+  }
+
   componentWillUnmount() {
     if (this.galleryRef) {
       this.galleryRef.removeEventListener('scroll', this.handleScroll, { passive: true });
