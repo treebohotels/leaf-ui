@@ -69,13 +69,13 @@ class Image extends Component {
   render() {
     const { isLoaded, shouldFetch } = this.state;
     const {
+      className,
       src,
       alt,
       width,
       height,
       grayscale,
       shape,
-      display,
       lazy,
       shouldFetchFromCdn,
     } = this.props;
@@ -85,11 +85,10 @@ class Image extends Component {
 
     return (
       <ImgContainer
+        className={className}
         width={width}
-        height={height}
         grayscale={grayscale}
         shape={shape}
-        display={display}
       >
         <Img
           innerRef={this.setImageRef}
@@ -99,7 +98,6 @@ class Image extends Component {
           height={height}
           grayscale={grayscale}
           shape={shape}
-          display={display}
           isLoaded={isLoaded}
           onLoad={this.onImageLoaded}
         />
@@ -113,13 +111,13 @@ Image.contextTypes = {
 };
 
 Image.propTypes = {
+  className: PropTypes.string,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
   grayscale: PropTypes.bool,
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
-  display: PropTypes.string,
   lazy: PropTypes.bool,
   shouldFetchFromCdn: PropTypes.bool,
 };
@@ -129,7 +127,6 @@ Image.defaultProps = {
   height: '',
   grayscale: false,
   shape: 'sharpEdged',
-  display: 'inline',
   lazy: true,
   shouldFetchFromCdn: true,
 };
