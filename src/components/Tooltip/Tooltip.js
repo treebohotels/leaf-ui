@@ -11,6 +11,10 @@ class Tooltip extends React.Component {
     show: false,
   }
 
+  setTooltipTriggerRef = (node) => {
+    this.tooltipTriggerRef = node;
+  }
+
   open = () => {
     this.setState({ show: true });
   }
@@ -20,23 +24,25 @@ class Tooltip extends React.Component {
   }
 
   render() {
+    const { show } = this.state;
     const { placement, children } = this.props;
-    const childrenByType = reactChildrenByType(children);
+    const tooltipChildrenByType = reactChildrenByType(children);
 
     return (
       <Flex display="inline-block">
         {
-          React.cloneElement(childrenByType[TooltipTrigger], {
+          React.cloneElement(tooltipChildrenByType[TooltipTrigger], {
+            ref: this.setTooltipTriggerRef,
             onMouseEnter: this.open,
             onMouseLeave: this.close,
           })
         }
         <Overlay
-          show={this.state.show}
+          show={show}
           placement={placement}
-          target={this}
+          target={this.tooltipTriggerRef}
         >
-          {childrenByType[TooltipContent]}
+          {tooltipChildrenByType[TooltipContent]}
         </Overlay>
       </Flex>
     );

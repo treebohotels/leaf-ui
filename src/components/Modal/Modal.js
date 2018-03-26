@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal as ReactOverlaysModal } from 'react-overlays';
-import ModalDialog from './ModalDialog';
+import Dialog from './Dialog';
 import ModalHeader from './ModalHeader';
 import ModalContent from './ModalContent';
 import ModalFooter from './ModalFooter';
@@ -32,7 +32,7 @@ const Modal = ({
     onHide={onClose}
     container={container}
   >
-    <ModalDialog>
+    <Dialog>
       {
         React.Children.map(children, (child) => (
           React.cloneElement(child, {
@@ -40,7 +40,7 @@ const Modal = ({
           })
         ))
       }
-    </ModalDialog>
+    </Dialog>
   </ReactOverlaysModal>
 );
 

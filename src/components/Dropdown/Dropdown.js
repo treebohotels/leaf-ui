@@ -15,6 +15,10 @@ class Dropdown extends React.Component {
     document.removeEventListener('click', this.close);
   }
 
+  setDropdownTriggerRef = (node) => {
+    this.dropdownTriggerRef = node;
+  }
+
   open = () => {
     if (!this.state.show) {
       document.addEventListener('click', this.close);
@@ -30,6 +34,7 @@ class Dropdown extends React.Component {
   }
 
   render() {
+    const { show } = this.state;
     const { placement, children } = this.props;
     const dropdownChildrenByType = reactChildrenByType(children);
 
@@ -37,13 +42,14 @@ class Dropdown extends React.Component {
       <Flex display="inline-block">
         {
           React.cloneElement(dropdownChildrenByType[DropdownTrigger], {
+            ref: this.setDropdownTriggerRef,
             onClick: this.open,
           })
         }
         <Overlay
-          show={this.state.show}
+          show={show}
           placement={placement}
-          target={this}
+          target={this.dropdownTriggerRef}
         >
           {dropdownChildrenByType[DropdownContent]}
         </Overlay>
