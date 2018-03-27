@@ -23,13 +23,10 @@ class Image extends Component {
   };
 
   componentDidMount() {
-    const { subscribeToGalleryRef } = this.context;
-    if (subscribeToGalleryRef) {
-      subscribeToGalleryRef((galleryRef) => {
-        this.galleryRef = galleryRef;
-        this.galleryRef.addEventListener('scroll', this.handleScroll, { passive: true });
-        window.setTimeout(this.handleScroll);
-      });
+    const { getGalleryRef } = this.context;
+    if (getGalleryRef()) {
+      getGalleryRef().addEventListener('scroll', this.handleScroll, { passive: true });
+      window.setTimeout(this.handleScroll);
     }
     window.addEventListener('scroll', this.handleScroll, { passive: true });
     window.setTimeout(this.handleScroll);
@@ -41,8 +38,9 @@ class Image extends Component {
   }
 
   componentWillUnmount() {
-    if (this.galleryRef) {
-      this.galleryRef.removeEventListener('scroll', this.handleScroll, { passive: true });
+    const { getGalleryRef } = this.context;
+    if (getGalleryRef()) {
+      getGalleryRef().removeEventListener('scroll', this.handleScroll, { passive: true });
     }
     window.removeEventListener('scroll', this.handleScroll, { passive: true });
   }
@@ -57,10 +55,11 @@ class Image extends Component {
 
   handleScroll = () => {
     const { isLoaded } = this.state;
+    const { getGalleryRef } = this.context;
     if (!isLoaded && isInViewport(this.imageRef)) {
       this.setState({ shouldFetch: true });
-      if (this.galleryRef) {
-        this.galleryRef.removeEventListener('scroll', this.handleScroll, { passive: true });
+      if (getGalleryRef()) {
+        getGalleryRef().removeEventListener('scroll', this.handleScroll, { passive: true });
       }
       window.removeEventListener('scroll', this.handleScroll, { passive: true });
     }
@@ -106,7 +105,7 @@ class Image extends Component {
 }
 
 Image.contextTypes = {
-  subscribeToGalleryRef: PropTypes.func,
+  getGalleryRef: PropTypes.func,
 };
 
 Image.propTypes = {
