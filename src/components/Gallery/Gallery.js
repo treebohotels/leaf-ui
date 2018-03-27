@@ -19,22 +19,15 @@ const GalleryContainer = styled.div`
 class Gallery extends Component {
   getChildContext() {
     return {
-      subscribeToGalleryRef: this.subscribeToGalleryRef,
+      getGalleryRef: this.getGalleryRef,
     };
   }
 
   setGalleryRef = (ref) => {
-    this.listeners = this.listeners.filter((listener) => {
-      listener(ref);
-      return false;
-    });
+    this.galleryRef = ref;
   }
 
-  subscribeToGalleryRef = (listener) => {
-    this.listeners.push(listener);
-  }
-
-  listeners = [];
+  getGalleryRef = () => this.galleryRef
 
   render() {
     const {
@@ -54,7 +47,7 @@ class Gallery extends Component {
         {
           React.Children.map(children, (child) => (
             <Spacer margin={scrollDirection === 'horizontal' ? [0, 0.5, 0, 0] : [0, 0, 0.5, 0]}>
-              <Flex display="inline-block">
+              <Flex display="inline-flex">
                 {child}
               </Flex>
             </Spacer>
@@ -66,7 +59,7 @@ class Gallery extends Component {
 }
 
 Gallery.childContextTypes = {
-  subscribeToGalleryRef: PropTypes.node,
+  getGalleryRef: PropTypes.func,
 };
 
 Gallery.propTypes = {
