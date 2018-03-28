@@ -11,8 +11,8 @@ class Tooltip extends React.Component {
     show: false,
   }
 
-  setTooltipTriggerRef = (node) => {
-    this.tooltipTriggerRef = node;
+  setTooltipTriggerRef = (ref) => {
+    this.tooltipTriggerRef = ref;
   }
 
   open = () => {

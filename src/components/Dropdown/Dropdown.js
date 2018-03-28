@@ -15,8 +15,8 @@ class Dropdown extends React.Component {
     document.removeEventListener('click', this.close);
   }
 
-  setDropdownTriggerRef = (node) => {
-    this.dropdownTriggerRef = node;
+  setDropdownTriggerRef = (ref) => {
+    this.dropdownTriggerRef = ref;
   }
 
   open = () => {
