@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Divider = styled.View`
-  borderTopWidth: ${(p) => p.vertical ? 0 : p.thickness};
-  borderRightWidth: ${(p) => p.vertical ? p.thickness : 0};
-  borderColor: ${(p) => p.theme.color[p.color]};
-  borderStyle: ${(p) => p.type};
-  margin: 0;
+  ${(props) => props.thickness ? `border-top-width: ${props.vertical ? 0 : props.thickness};` : ''};
+  ${(props) => props.thickness ? `border-right-width: ${props.vertical ? props.thickness : 0};` : ''};
+  ${(props) => props.thickness ? `border-color: ${props.theme.color[props.color]};` : ''};
+  ${(props) => props.thickness ? `border-style: ${props.type};` : ''};
+  ${(props) => props.thickness ? `border-right-width: ${props.vertical ? props.thickness : 0};` : ''};
+  ${'margin: 0;'};
 `;
 
 Divider.propTypes = {

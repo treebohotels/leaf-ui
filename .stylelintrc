@@ -8,6 +8,5 @@
     "indentation": null,
     "comment-empty-line-before": null
   },
-  "ignoreFiles": "**/native/*.js",
   "syntax": "scss"
 }

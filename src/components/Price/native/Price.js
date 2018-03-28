@@ -12,19 +12,18 @@ const fontSize = {
   xxl: 44,
 };
 
+const types = {
+  regular: 'none',
+  striked: 'line-through',
+};
+
 const Amount = styled.Text`
-  fontSize: ${(p) => fontSize[p.size]};
-  color: ${(p) => p.theme.color[p.color]};
-  fontWeight: ${(p) => p.bold ? p.theme.fontWeight.bold : p.theme.fontWeight.medium};
-  textDecorationLine: ${(props) => {
-    const types = {
-      regular: 'none',
-      striked: 'line-through',
-    };
-    return types[props.type];
-  }};
-  marginRight: 6;
-  fontFamily: ${fontFamilies.medium};
+  ${(props) => props.size ? `font-size: ${fontSize[props.size]};` : ''}
+  ${(props) => props.color ? `color: ${props.theme.color[props.color]};` : ''}
+  ${(props) => props.bold ? `font-weight: ${props.theme.fontWeight.bold};` : `font-weight: ${props.theme.fontWeight.medium}`}
+  ${(props) => props.size ? `text-decoration-line: ${types[props.type]};` : ''}
+  ${(props) => props.size ? `font-family: ${fontFamilies.medium};` : ''}
+  ${'margin-right: 6;'};
 `;
 
 const Price = ({

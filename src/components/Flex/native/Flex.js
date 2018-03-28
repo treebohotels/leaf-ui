@@ -2,19 +2,19 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Flex = styled.View`
-  ${(p) => p.color ? `color: ${p.theme.color[p.color]};` : ''}
-  ${(p) => p.alignContent ? `align-content: ${p.alignContent};` : ''};
-  ${(p) => p.alignSelf ? `align-self: ${p.alignSelf};` : ''};
-  ${(p) => p.alignItems ? `align-items: ${p.alignItems};` : ''};
-  ${(p) => p.display ? `display: ${p.display};` : ''};
-  ${(p) => p.flex ? `flex: ${p.flex};` : ''};
-  ${(p) => p.flexBasis ? `flex-basis: ${p.flexBasis};` : ''};
-  ${(p) => p.flexDirection ? `flex-direction: ${p.flexDirection};` : ''};
-  ${(p) => p.flexGrow ? `flex-grow: ${p.flexGrow};` : ''};
-  ${(p) => p.flexShrink ? `flex-shrink: ${p.flexShrink};` : ''};
-  ${(p) => p.flexWrap ? `flex-wrap: ${p.flexWrap};` : ''};
-  ${(p) => p.justifyContent ? `justify-content: ${p.justifyContent};` : ''};
-  ${(p) => p.order ? `order: ${p.order};` : ''};
+  ${(props) => props.color ? `color: ${props.theme.color[props.color]};` : ''}
+  ${(props) => props.alignContent ? `align-content: ${props.alignContent};` : ''};
+  ${(props) => props.alignSelf ? `align-self: ${props.alignSelf};` : ''};
+  ${(props) => props.alignItems ? `align-items: ${props.alignItems};` : ''};
+  ${(props) => props.display ? `display: ${props.display};` : ''};
+  ${(props) => props.flex ? `flex: ${props.flex};` : ''};
+  ${(props) => props.flexBasis ? `flex-basis: ${props.flexBasis};` : ''};
+  ${(props) => props.flexDirection ? `flex-direction: ${props.flexDirection};` : ''};
+  ${(props) => props.flexGrow ? `flex-grow: ${props.flexGrow};` : ''};
+  ${(props) => props.flexShrink ? `flex-shrink: ${props.flexShrink};` : ''};
+  ${(props) => props.flexWrap ? `flex-wrap: ${props.flexWrap};` : ''};
+  ${(props) => props.justifyContent ? `justify-content: ${props.justifyContent};` : ''};
+  ${(props) => props.order ? `order: ${props.order};` : ''};
 `;
 
 Flex.propTypes = {

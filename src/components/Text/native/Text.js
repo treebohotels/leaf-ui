@@ -15,15 +15,15 @@ export const fontFamilies = {
 export const fontWeights = theme.fontWeight;
 
 const Text = styled.Text`
-  ${(p) => p.color ? `color: ${p.theme.color[p.color]};` : ''}
-  ${(p) => p.size ? `font-size: ${p.theme.fontSize[p.size]};` : ''}
-  ${(p) => p.weight ? `font-weight: ${p.theme.fontWeight[p.weight]};` : ''}
-  ${(p) => p.lineHeight ? `line-height: ${p.lineHeight};` : ''}
-  ${(p) => {
-    if (p.family) {
-      return `font-family: ${fontFamilies[p.family]}`;
+  ${(props) => props.color ? `color: ${props.theme.color[props.color]};` : ''}
+  ${(props) => props.size ? `font-size: ${props.theme.fontSize[props.size]};` : ''}
+  ${(props) => props.weight ? `font-weight: ${props.theme.fontWeight[props.weight]};` : ''}
+  ${(props) => props.lineHeight ? `line-height: ${props.lineHeight};` : ''}
+  ${(props) => {
+    if (props.family) {
+      return `font-family: ${fontFamilies[props.family]}`;
     }
-    return `font-family: ${p.theme.fontFamily[p.weight]}`;
+    return `font-family: ${props.theme.fontFamily[props.weight]}`;
   }}
   `;
 
