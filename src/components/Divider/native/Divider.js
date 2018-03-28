@@ -4,9 +4,8 @@ import styled from 'styled-components';
 const Divider = styled.View`
   ${(props) => props.thickness ? `border-top-width: ${props.vertical ? 0 : props.thickness};` : ''};
   ${(props) => props.thickness ? `border-right-width: ${props.vertical ? props.thickness : 0};` : ''};
-  ${(props) => props.thickness ? `border-color: ${props.theme.color[props.color]};` : ''};
-  ${(props) => props.thickness ? `border-style: ${props.type};` : ''};
-  ${(props) => props.thickness ? `border-right-width: ${props.vertical ? props.thickness : 0};` : ''};
+  ${(props) => props.color ? `border-color: ${props.theme.color[props.color]};` : ''};
+  ${(props) => props.type ? `border-style: ${props.type};` : ''};
   ${'margin: 0;'};
 `;
 
