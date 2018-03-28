@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Platform } from 'react-native';
-import { theme } from 'leaf-ui/native';
+import { theme } from '../../../theme';
 
 const isPlatformAndroid = !(Platform.OS === 'ios');
 

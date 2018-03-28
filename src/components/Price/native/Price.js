@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
-import Text, { fontFamilies } from '../Text/Text';
+import Text, { fontFamilies } from '../../Text';
 
 const fontSize = {
   xs: 12,
