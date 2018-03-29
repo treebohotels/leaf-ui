@@ -32,10 +32,6 @@ export default (theme) => injectGlobal`
     margin: 0;
   }
 
-  p {
-    line-height: 1.5;
-  }
-
   ul {
     list-style: none;
   }
