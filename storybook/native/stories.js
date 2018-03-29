@@ -7,7 +7,7 @@ import Text from '../../src/components/Text/native';
 import Form from '../../src/components/Form';
 import TextInput from '../../src/components/TextInput/native';
 import Tag from '../../src/components/Tag/native';
-import Spacer from '../../src/components/Spacer';
+import Spacer from '../../src/components/Spacer/native';
 
 const View = styled.View`
   margin: 0;
@@ -101,7 +101,7 @@ storiesOf('Text', module)
     <View>
       {
         Object.keys(theme.fontSize).map((size) => (
-          <Spacer margin={4}>
+          <Spacer margin={4} key={size}>
             <Text size={size}>
               {size}: {theme.fontSize[size]}
               Size
@@ -115,13 +115,12 @@ storiesOf('Text', module)
     <View>
       {
         Object.keys(theme.fontWeight).map((weight) => (
-          <Spacer margin={4}>
+          <Spacer margin={4} key={weight}>
             <Text weight={weight}>
               {weight}: {theme.fontWeight[weight]}
               Weight
             </Text>
-          </Spacer>
-        ))
+          </Spacer>))
       }
     </View>
   ));

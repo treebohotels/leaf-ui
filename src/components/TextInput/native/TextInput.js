@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import Text from '../../Text/native';
-import Spacer from '../../Spacer';
+import Spacer from '../../Spacer/native';
 
 const labelAnimationDuration = 300;
 
