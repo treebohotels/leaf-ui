@@ -24,7 +24,7 @@ class Image extends Component {
 
   componentDidMount() {
     const { getGalleryRef } = this.context;
-    if (getGalleryRef()) {
+    if (getGalleryRef && getGalleryRef()) {
       getGalleryRef().addEventListener('scroll', this.handleScroll, { passive: true });
       window.setTimeout(this.handleScroll);
     }
@@ -39,7 +39,7 @@ class Image extends Component {
 
   componentWillUnmount() {
     const { getGalleryRef } = this.context;
-    if (getGalleryRef()) {
+    if (getGalleryRef && getGalleryRef()) {
       getGalleryRef().removeEventListener('scroll', this.handleScroll, { passive: true });
     }
     window.removeEventListener('scroll', this.handleScroll, { passive: true });
@@ -58,7 +58,7 @@ class Image extends Component {
     const { getGalleryRef } = this.context;
     if (!isLoaded && isInViewport(this.imageRef)) {
       this.setState({ shouldFetch: true });
-      if (getGalleryRef()) {
+      if (getGalleryRef && getGalleryRef()) {
         getGalleryRef().removeEventListener('scroll', this.handleScroll, { passive: true });
       }
       window.removeEventListener('scroll', this.handleScroll, { passive: true });
