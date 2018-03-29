@@ -88,6 +88,7 @@ class Image extends Component {
         width={width}
         height={height}
         shape={shape}
+        isLoaded={isLoaded}
       >
         <Img
           innerRef={this.setImageRef}
