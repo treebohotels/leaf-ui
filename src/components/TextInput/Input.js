@@ -2,21 +2,63 @@ import styled from 'styled-components';
 import Label from './Label';
 
 const styles = {
-  focus: {
-    border(props) {
+  borderColor(props) {
+    if (props.disabled) {
+      return props.theme.color.grey;
+    } else if (props.error) {
+      return props.theme.color.red;
+    }
+    return props.theme.color.greyLight;
+  },
+  backgroundColor(props) {
+    if (props.disabled) {
+      return props.theme.color.grey;
+    } else if (props.error) {
+      return props.theme.color.redLighter;
+    }
+    return 'transparent';
+  },
+  placeholderShown: {
+    borderColor(props) {
       if (props.disabled) {
-        return `1px solid ${props.theme.color.grey}`;
+        return props.theme.color.grey;
       } else if (props.error) {
-        return `1px solid ${props.theme.color.greyDark}`;
+        return props.theme.color.red;
       }
-      return `1px solid ${props.theme.color.greyDark}`;
+      return props.theme.color.greyLight;
+    },
+    backgroundColor(props) {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      } else if (props.error) {
+        return props.theme.color.redLighter;
+      }
+      return 'transparent';
+    },
+  },
+  focus: {
+    borderColor(props) {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      } else if (props.error) {
+        return props.theme.color.primary;
+      }
+      return props.theme.color.primary;
+    },
+    backgroundColor(props) {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      } else if (props.error) {
+        return 'transparent';
+      }
+      return 'transparent';
     },
     Label: {
       color(props) {
         if (props.disabled) {
           return props.theme.color.grey;
         } else if (props.error) {
-          return props.theme.color.red;
+          return props.theme.color.primary;
         }
         return props.theme.color.primary;
       },
@@ -25,28 +67,39 @@ const styles = {
 };
 
 const Input = styled.input`
-  background: transparent;
-  border: 1px solid ${(props) => props.theme.color.greyDark};
-  padding: ${(props) => props.theme.px([1, 0])};
-  ${(p) => p.block ? 'width: 100%;' : ''}
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${styles.borderColor};
+  border-radius: ${(props) => props.theme.borderRadius};
+  background-color: ${styles.backgroundColor};
+  font-size: ${(props) => props.theme.fontSize.s};
+  padding: ${(props) => props.theme.px([3, 1.5, 1.5, 1.5])};
+  ${(props) => props.block ? 'width: 100%;' : ''}
+  outline: none;
 
-  &:focus {
-    border: ${styles.focus.border};
+  &:placeholder-shown {
+    border-color: ${styles.placeholderShown.borderColor};
+    background-color: ${styles.placeholderShown.backgroundColor};
 
     + ${/* sc-selector */Label} {
+      top: ${(props) => props.theme.px(4.5)};
+      font-size: ${(props) => props.theme.fontSize.s};
+    }
+  }
+
+  &:focus {
+    border-color: ${styles.focus.borderColor};
+    background-color: ${styles.focus.backgroundColor};
+
+    + ${/* sc-selector */Label} {
+      top: ${(props) => props.theme.px(3)};
       color: ${styles.focus.Label.color};
+      font-size: ${(props) => props.theme.fontSize.xxs};
     }
   }
 
   &::placeholder {
     visibility: hidden;
-  }
-
-  &:placeholder-shown {
-    + ${/* sc-selector */Label} {
-      color: ${(props) => props.theme.color.grey};
-      transform: translate(0, ${(props) => props.theme.px(3)});
-    }
   }
 `;
 

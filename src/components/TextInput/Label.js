@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 const Label = styled.label`
   position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  color: ${(props) => props.theme.color.greyDark};
+  top: ${(props) => props.theme.px(3)};
+  left: ${(props) => props.theme.px(1.5)};
+  color: ${(props) => props.theme.color.grey};
   font-size: ${(props) => props.theme.fontSize.xxs};
+  pointer-events: none;
   transform: translate(0, 0);
   transition: all 0.15s ease-in-out;
 `;
