@@ -29,7 +29,7 @@ Text.propTypes = {
 };
 
 Text.defaultProps = {
-  component: 'p',
+  component: 'div',
 };
 
 export default Text;
