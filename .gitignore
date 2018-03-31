@@ -5,4 +5,5 @@ es
 lib
 coverage
 node_modules
+docs
 npm-debug.log*
