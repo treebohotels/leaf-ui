@@ -7,7 +7,7 @@ import Text from './Text';
 storiesOf('Text', module)
   .add('playground', () => (
     <Text
-      component={text('component', 'p')}
+      component={text('component', 'div')}
       color={select('color', Object.keys(theme.color), 'greyDarker')}
       size={select('size', Object.keys(theme.fontSize), 's')}
       weight={select('weight', Object.keys(theme.fontWeight), 'normal')}
