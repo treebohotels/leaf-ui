@@ -1,19 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { View } from 'react-native';
 
-const Spacer = styled(({
-  children,
-  ...props
-}) => React.cloneElement(children, props))`
-  ${(props) => props.margin || props.margin === 0 ? `margin: ${props.theme.px(props.margin)} !important;` : ''};
-  ${(props) => props.padding || props.padding === 0 ? `padding: ${props.theme.px(props.padding)} !important;` : ''};
-  ${(props) => props.maxWidth ? `max-width: ${props.maxWidth} !important;` : ''};
-  ${(props) => props.width ? `width: ${props.width} !important;` : ''};
-  ${(props) => props.minWidth ? `min-width: ${props.minWidth} !important;` : ''};
-  ${(props) => props.minHeight ? `min-height: ${props.minHeight} !important;` : ''};
-  ${(props) => props.height ? `height: ${props.height} !important;` : ''};
-  ${(props) => props.maxHeight ? `max-height: ${props.maxHeight} !important;` : ''};
+const Spacer = styled(({ margin, padding, ...rest }) => <View {...rest} />)`
+  ${(props) => props.margin || props.margin === 0 ? `margin: ${props.theme.px(props.margin)}` : ''};
+  ${(props) => props.padding || props.padding === 0 ? `padding: ${props.theme.px(props.padding)}` : ''};
+  ${(props) => props.maxWidth ? `max-width: ${props.maxWidth}` : ''};
+  ${(props) => props.width ? `width: ${props.width}` : ''};
+  ${(props) => props.minWidth ? `min-width: ${props.minWidth}` : ''};
+  ${(props) => props.minHeight ? `min-height: ${props.minHeight}` : ''};
+  ${(props) => props.height ? `height: ${props.height}` : ''};
+  ${(props) => props.maxHeight ? `max-height: ${props.maxHeight}` : ''};
 `;
 
 Spacer.propTypes = {
