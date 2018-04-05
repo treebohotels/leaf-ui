@@ -4,23 +4,23 @@ import styled from 'styled-components';
 const ListItem = styled.li`
   color: ${(props) => props.disabled ? props.theme.color.greyLight : ''};
   padding: ${(props) => props.theme.px(2)};
-  cursor: ${(props) => props.button ? 'pointer' : ''};
+  cursor: ${(props) => props.clickable ? 'pointer' : ''};
   pointer-events: ${(props) => props.disabled ? 'none' : ''};
   opacity: ${(props) => props.disabled ? '0.5' : ''};
 
   &:hover,
   &:focus {
-    background: ${(props) => props.button ? props.theme.color.translucent : ''};
+    background: ${(props) => props.clickable ? props.theme.color.primaryLighter : ''};
   }
 `;
 
 ListItem.propTypes = {
-  button: PropTypes.bool,
+  clickable: PropTypes.bool,
   disabled: PropTypes.bool,
 };
 
 ListItem.defaultProps = {
-  button: false,
+  clickable: false,
   disabled: false,
 };
 

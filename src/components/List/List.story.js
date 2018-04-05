@@ -14,11 +14,11 @@ storiesOf('List', module)
   ))
   .add('clickable list', () => (
     <List>
-      <List.Item button>Acacia</List.Item>
-      <List.Item button>Oak</List.Item>
-      <List.Item button>Maple</List.Item>
-      <List.Item button>Mahogany</List.Item>
-      <List.Item button>
+      <List.Item clickable>Acacia</List.Item>
+      <List.Item clickable>Oak</List.Item>
+      <List.Item clickable>Maple</List.Item>
+      <List.Item clickable>Mahogany</List.Item>
+      <List.Item clickable>
         <Icon name="nature">
           with Icon
         </Icon>
@@ -27,11 +27,11 @@ storiesOf('List', module)
   ))
   .add('clickable list with a disabled item', () => (
     <List>
-      <List.Item button>Acacia</List.Item>
-      <List.Item button disabled>Oak</List.Item>
-      <List.Item button>Maple</List.Item>
-      <List.Item button>Mahogany</List.Item>
-      <List.Item button disabled>
+      <List.Item clickable>Acacia</List.Item>
+      <List.Item clickable disabled>Oak</List.Item>
+      <List.Item clickable>Maple</List.Item>
+      <List.Item clickable>Mahogany</List.Item>
+      <List.Item clickable disabled>
         <Icon name="nature">
           with Icon
         </Icon>

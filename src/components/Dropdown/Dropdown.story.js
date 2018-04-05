@@ -14,11 +14,11 @@ storiesOf('Dropdown', module)
       </Dropdown.Trigger>
       <Dropdown.Content>
         <List>
-          <List.Item button onClick={action('Acacia')}>Acacia</List.Item>
-          <List.Item button onClick={action('Oak')}>Oak</List.Item>
-          <List.Item button onClick={action('Maple')}>Maple</List.Item>
-          <List.Item button onClick={action('Mahogany')}>Mahogany</List.Item>
-          <List.Item button onClick={action('Nature')}>
+          <List.Item clickable onClick={action('Acacia')}>Acacia</List.Item>
+          <List.Item clickable onClick={action('Oak')}>Oak</List.Item>
+          <List.Item clickable onClick={action('Maple')}>Maple</List.Item>
+          <List.Item clickable onClick={action('Mahogany')}>Mahogany</List.Item>
+          <List.Item clickable onClick={action('Nature')}>
             <Icon name="nature">
               with Icon
             </Icon>
@@ -34,11 +34,11 @@ storiesOf('Dropdown', module)
       </Dropdown.Trigger>
       <Dropdown.Content>
         <List>
-          <List.Item button onClick={action('Acacia')}>Acacia</List.Item>
-          <List.Item button disabled onClick={action('Oak')}>Oak</List.Item>
-          <List.Item button onClick={action('Maple')}>Maple</List.Item>
-          <List.Item button onClick={action('Mahogany')}>Mahogany</List.Item>
-          <List.Item button disabled onClick={action('Nature')}>
+          <List.Item clickable onClick={action('Acacia')}>Acacia</List.Item>
+          <List.Item clickable disabled onClick={action('Oak')}>Oak</List.Item>
+          <List.Item clickable onClick={action('Maple')}>Maple</List.Item>
+          <List.Item clickable onClick={action('Mahogany')}>Mahogany</List.Item>
+          <List.Item clickable disabled onClick={action('Nature')}>
             <Icon name="nature">
               with Icon
             </Icon>
