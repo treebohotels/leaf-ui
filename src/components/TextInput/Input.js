@@ -18,6 +18,16 @@ const styles = {
     }
     return props.theme.color.white;
   },
+  Label: {
+    color(props) {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      } else if (props.error) {
+        return props.theme.color.red;
+      }
+      return props.theme.color.grey;
+    },
+  },
   placeholderShown: {
     borderColor(props) {
       if (props.disabled) {
@@ -74,8 +84,12 @@ const Input = styled.input`
   background-color: ${styles.backgroundColor};
   font-size: ${(props) => props.theme.fontSize.s};
   padding: ${(props) => props.theme.px([3, 1.5, 1.5, 1.5])};
-  ${(props) => props.block ? 'width: 100%;' : ''}
+  width: ${(props) => props.block ? '100%' : props.theme.px(25)};
   outline: none;
+
+  + ${/* sc-selector */Label} {
+    color: ${styles.Label.color};
+  }
 
   &:placeholder-shown {
     border-color: ${styles.placeholderShown.borderColor};
