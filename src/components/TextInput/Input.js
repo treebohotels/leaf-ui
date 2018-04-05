@@ -4,7 +4,7 @@ import Label from './Label';
 const styles = {
   borderColor(props) {
     if (props.disabled) {
-      return props.theme.color.grey;
+      return props.theme.color.greyLight;
     } else if (props.error) {
       return props.theme.color.red;
     }
@@ -12,16 +12,16 @@ const styles = {
   },
   backgroundColor(props) {
     if (props.disabled) {
-      return props.theme.color.grey;
+      return props.theme.color.greyLighter;
     } else if (props.error) {
       return props.theme.color.redLighter;
     }
-    return 'transparent';
+    return props.theme.color.white;
   },
   placeholderShown: {
     borderColor(props) {
       if (props.disabled) {
-        return props.theme.color.grey;
+        return props.theme.color.greyLight;
       } else if (props.error) {
         return props.theme.color.red;
       }
@@ -29,17 +29,17 @@ const styles = {
     },
     backgroundColor(props) {
       if (props.disabled) {
-        return props.theme.color.grey;
+        return props.theme.color.greyLighter;
       } else if (props.error) {
         return props.theme.color.redLighter;
       }
-      return 'transparent';
+      return props.theme.color.white;
     },
   },
   focus: {
     borderColor(props) {
       if (props.disabled) {
-        return props.theme.color.grey;
+        return props.theme.color.greyLight;
       } else if (props.error) {
         return props.theme.color.primary;
       }
@@ -47,11 +47,11 @@ const styles = {
     },
     backgroundColor(props) {
       if (props.disabled) {
-        return props.theme.color.grey;
+        return props.theme.color.greyLighter;
       } else if (props.error) {
-        return 'transparent';
+        return props.theme.color.white;
       }
-      return 'transparent';
+      return props.theme.color.white;
     },
     Label: {
       color(props) {
