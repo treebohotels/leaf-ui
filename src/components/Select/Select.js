@@ -5,7 +5,9 @@ import pluralize from '../../utils/pluralize';
 import Text from '../Text';
 import Spacer from '../Spacer';
 import Checkbox from '../Checkbox';
+import Container from './Container';
 import Trigger from './Trigger';
+import Label from './Label';
 import TriggerArrows from './TriggerArrows';
 import OptionList from './OptionList';
 import Option from './Option';
@@ -65,14 +67,14 @@ class Select extends React.Component {
     return [].concat(defaultSelected || []);
   }
 
-  getButtonText = (selectedOptions) => {
-    const { label } = this.props;
-    if (selectedOptions.length > 1) {
-      return pluralize(selectedOptions.length, label, true);
-    } else if (selectedOptions.length === 1) {
-      return selectedOptions[0].label;
+  getTriggerText = (selectedOptions) => {
+    const { label, multiple } = this.props;
+    if (!selectedOptions.length) {
+      return <span>&nbsp;</span>;
+    } else if (multiple) {
+      return `${selectedOptions.length} ${pluralize(selectedOptions.length, label)}`;
     }
-    return label;
+    return selectedOptions[0].label;
   }
 
   addOption = (selectedOption) => {
@@ -110,6 +112,8 @@ class Select extends React.Component {
     const {
       className,
       name,
+      label,
+      disabled,
       block,
       multiple,
       options,
@@ -131,18 +135,30 @@ class Select extends React.Component {
         itemToString={this.itemToString}
         render={({
           isOpen,
+          getRootProps,
           getButtonProps,
           getItemProps,
           highlightedIndex,
           selectedItem: dsSelectedOptions,
         }) => (
-          <div className={className}>
+          <Container className={className} {...getRootProps({ refKey: 'innerRef' })}>
             <Trigger
+              isOpen={isOpen}
               block={block}
+              disabled={disabled}
+              error={error}
               {...getButtonProps()}
             >
+              <Label
+                isOpen={isOpen}
+                hasValue={dsSelectedOptions.length}
+                disabled={disabled}
+                error={error}
+              >
+                {label}
+              </Label>
               <Text truncate>
-                {this.getButtonText(dsSelectedOptions)}
+                {this.getTriggerText(dsSelectedOptions)}
               </Text>
               <TriggerArrows />
             </Trigger>
@@ -154,7 +170,7 @@ class Select extends React.Component {
                       options.map((option, index) => (
                         <Option
                           key={option.value}
-                          button
+                          clickable
                           {...getItemProps({
                             index,
                             item: option,
@@ -191,7 +207,7 @@ class Select extends React.Component {
                 </Text>
               ) : null
             }
-          </div>
+          </Container>
         )}
       />
     );
@@ -202,6 +218,7 @@ Select.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
+  disabled: PropTypes.bool,
   block: PropTypes.bool,
   multiple: PropTypes.bool,
   options: PropTypes.array.isRequired,
@@ -213,6 +230,7 @@ Select.propTypes = {
 Select.defaultProps = {
   name: 'defaultName',
   label: 'defaultLabel',
+  disabled: false,
   multiple: false,
 };
 

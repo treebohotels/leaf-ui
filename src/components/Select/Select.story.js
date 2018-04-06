@@ -15,7 +15,6 @@ storiesOf('Select', module)
       name="color"
       label="Color"
       options={options}
-      defaultSelected={options[2]}
       onChange={action('onChange')}
     />
   ))
@@ -27,5 +26,14 @@ storiesOf('Select', module)
       options={options}
       defaultSelected={options[2]}
       onChange={action('onChange')}
+    />
+  ))
+  .add('error', () => (
+    <Select
+      name="color"
+      label="Color"
+      options={options}
+      onChange={action('onChange')}
+      error="some error message"
     />
   ));
