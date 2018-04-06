@@ -31,6 +31,7 @@ class Gallery extends Component {
 
   render() {
     const {
+      className,
       width,
       height,
       scrollDirection,
@@ -39,6 +40,7 @@ class Gallery extends Component {
 
     return (
       <GalleryContainer
+        className={className}
         width={width}
         height={height}
         scrollDirection={scrollDirection}
@@ -63,6 +65,7 @@ Gallery.childContextTypes = {
 };
 
 Gallery.propTypes = {
+  className: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
   scrollDirection: PropTypes.oneOf(['horizontal', 'vertical']),
