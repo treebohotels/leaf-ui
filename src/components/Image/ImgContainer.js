@@ -23,8 +23,6 @@ const ImgContainer = styled.div`
 `;
 
 ImgContainer.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
