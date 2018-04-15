@@ -47,9 +47,8 @@ const Input = styled.input.attrs({
   padding: 0;
   margin: 0;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
   border: 0;
-  visibility: visible;
+  visibility: hidden;
   white-space: nowrap;
 
   + ${/* sc-selector */Circle} {
