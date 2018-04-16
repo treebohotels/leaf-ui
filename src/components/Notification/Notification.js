@@ -52,7 +52,7 @@ const Notification = ({
 );
 
 Notification.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.oneOf(Object.keys(notificationTypes)),
   title: PropTypes.string,
   content: PropTypes.string,
   actionProps: PropTypes.object,
