@@ -41,7 +41,7 @@ class Select extends React.Component {
     }
   }
 
-  onSelect = (selectedOption) => {
+  onSelect = (selectedOption, stateAndHelpers) => {
     const { selectedOptions } = this.state;
     const { multiple } = this.props;
 
@@ -51,6 +51,8 @@ class Select extends React.Component {
       } else {
         this.addOption(selectedOption);
       }
+      // Let's key menu open for multi-select
+      stateAndHelpers.openMenu();
     } else {
       this.setState({
         selectedOptions: [selectedOption],
