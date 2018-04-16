@@ -17,6 +17,10 @@ const GalleryContainer = styled.div`
 `;
 
 class Gallery extends Component {
+  state = {
+    isGallleryRefSet: false,
+  }
+
   getChildContext() {
     return {
       getGalleryRef: this.getGalleryRef,
@@ -25,11 +29,13 @@ class Gallery extends Component {
 
   setGalleryRef = (ref) => {
     this.galleryRef = ref;
+    this.setState({ isGallleryRefSet: true });
   }
 
   getGalleryRef = () => this.galleryRef
 
   render() {
+    const { isGallleryRefSet } = this.state;
     const {
       className,
       width,
@@ -47,13 +53,13 @@ class Gallery extends Component {
         innerRef={this.setGalleryRef}
       >
         {
-          React.Children.map(children, (child) => (
-            <Spacer margin={scrollDirection === 'horizontal' ? [0, 0.5, 0, 0] : [0, 0, 0.5, 0]}>
+          isGallleryRefSet ? React.Children.map(children, (child) => (
+            <Spacer key={child} margin={scrollDirection === 'horizontal' ? [0, 0.5, 0, 0] : [0, 0, 0.5, 0]}>
               <Flex display="inline-flex">
                 {child}
               </Flex>
             </Spacer>
-          ))
+          )) : null
         }
       </GalleryContainer>
     );
