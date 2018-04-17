@@ -48,8 +48,9 @@ const Input = styled.input.attrs({
   padding: 0;
   margin: 0;
   overflow: hidden;
+  clip: rect(0, 0, 0, 0);
   border: 0;
-  visibility: hidden;
+  visibility: visible;
   white-space: nowrap;
 
   + ${/* sc-selector */Box} {
