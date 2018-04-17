@@ -8,7 +8,8 @@ storiesOf('Tag', module)
   .add('playground', () => (
     <Tag
       color={select('color', Object.keys(theme.color), 'primary')}
-      kind={select('kind', ['filled', 'outlined'], 'outlined')}
+      kind={select('kind', ['filled', 'outlined'], 'filled')}
+      shape={select('shape', ['bluntEdged', 'sharpEdged', 'capsular'], 'bluntEdged')}
       size={select('size', ['small', 'medium'], 'medium')}
     >
       {text('children', 'Tag')}

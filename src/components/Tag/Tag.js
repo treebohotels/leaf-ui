@@ -18,6 +18,18 @@ const styles = {
     }
     return '';
   },
+  borderRadius(props) {
+    if (props.shape === 'bluntEdged') {
+      return props.theme.borderRadius;
+    } else if (props.shape === 'sharpEdged') {
+      return '0';
+    } else if (props.shape === 'capsular') {
+      return props.theme.px(10);
+    } else if (props.shape === 'circular') {
+      return '100%';
+    }
+    return '';
+  },
   fontSize(props) {
     if (props.size === 'small') {
       return props.theme.fontSize.xxs;
@@ -28,7 +40,7 @@ const styles = {
   },
   padding(props) {
     if (props.size === 'small') {
-      return props.theme.px(0.5);
+      return props.theme.px([0.5, 1]);
     } else if (props.size === 'medium') {
       return props.theme.px([1, 1.5]);
     }
@@ -40,10 +52,10 @@ const Tag = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 100px;
-  border: 1px solid ${(props) => props.theme.color[props.color]};
   color: ${styles.color};
   background: ${styles.background};
+  border: 1px solid ${(props) => props.theme.color[props.color]};
+  border-radius: ${styles.borderRadius};
   font-size: ${styles.fontSize};
   padding: ${styles.padding};
 `;
@@ -51,12 +63,14 @@ const Tag = styled.div`
 Tag.propTypes = {
   color: PropTypes.string,
   kind: PropTypes.oneOf(['filled', 'outlined']),
+  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'capsular']),
   size: PropTypes.oneOf(['small', 'medium']),
 };
 
 Tag.defaultProps = {
   color: 'primary',
-  kind: 'outlined',
+  kind: 'filled',
+  shape: 'bluntEdged',
   size: 'medium',
 };
 

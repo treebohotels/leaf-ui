@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { View } from 'react-native';
 
-const Spacer = styled(({ margin, padding, ...rest }) => <View {...rest} />)`
+const Spacer = styled(
+  ({
+    margin,
+    padding,
+    height,
+    width,
+    ...rest
+  }) => <View {...rest} />,
+)`
   ${(props) => props.margin || props.margin === 0 ? `margin: ${props.theme.px(props.margin)}` : ''};
   ${(props) => props.padding || props.padding === 0 ? `padding: ${props.theme.px(props.padding)}` : ''};
   ${(props) => props.maxWidth ? `max-width: ${props.maxWidth}` : ''};

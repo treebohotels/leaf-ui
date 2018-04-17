@@ -6,7 +6,7 @@ import Text from '../Text';
 import Icon from '../Icon';
 import Spacer from '../Spacer';
 
-const ModalHeader = ({ dark, onClose, children }) => (
+const ModalHeader = ({ dark, children }, { onClose }) => (
   <Spacer padding={[7, 7, 0, 7]}>
     <Card color={dark ? 'lagoon' : 'white'}>
       <Flex alignItems="center" justifyContent="space-between">
@@ -27,9 +27,12 @@ const ModalHeader = ({ dark, onClose, children }) => (
   </Spacer>
 );
 
+ModalHeader.contextTypes = {
+  onClose: PropTypes.func,
+};
+
 ModalHeader.propTypes = {
   dark: PropTypes.bool,
-  onClose: PropTypes.func,
   children: PropTypes.node,
 };
 

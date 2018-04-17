@@ -13,6 +13,8 @@ class Image extends Component {
       `h=${integerHeight || ''}`,
       'fit=crop',
       'auto=compress',
+      (typeof window === 'undefined') ? 'blur=550' : '',
+      (typeof window === 'undefined') ? 'q=0' : '',
     ].filter(Boolean).join('&');
     return src ? `${src}?${searchParams}` : src;
   }
