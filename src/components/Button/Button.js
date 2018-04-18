@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -55,18 +54,6 @@ const styles = {
     }
     return '';
   },
-  pointerEvents(props) {
-    if (props.disabled) {
-      return 'none';
-    }
-    return '';
-  },
-  opacity(props) {
-    if (props.disabled) {
-      return '0.5';
-    }
-    return '';
-  },
   hover: {
     color(props) {
       if (props.kind === 'filled') {
@@ -101,7 +88,7 @@ const styles = {
   },
 };
 
-const StyledButton = styled.button`
+const Button = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -112,8 +99,8 @@ const StyledButton = styled.button`
   width: ${(props) => props.block ? '100%' : ''};
   border: ${styles.border};
   border-radius: ${styles.borderRadius};
-  pointer-events: ${styles.pointerEvents};
-  opacity: ${styles.opacity};
+  pointer-events: ${(props) => props.disabled ? 'none' : ''};
+  opacity: ${(props) => props.disabled ? '0.5' : ''};
 
   &:hover {
     color: ${styles.hover.color};
@@ -122,19 +109,6 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = (props, context) => (
-  <StyledButton
-    {...props}
-    disabled={
-      props.disabled || (
-        props.type === 'submit' &&
-        context.formik &&
-        !context.formik.isValid
-      )
-    }
-  />
-);
-
 Button.propTypes = {
   color: PropTypes.string,
   kind: PropTypes.oneOf(['filled', 'outlined', 'transparent']),
@@ -142,7 +116,6 @@ Button.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   block: PropTypes.bool,
   disabled: PropTypes.bool,
-  type: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -152,10 +125,6 @@ Button.defaultProps = {
   shape: 'bluntEdged',
   block: false,
   disabled: false,
-};
-
-Button.contextTypes = {
-  formik: PropTypes.object,
 };
 
 export default Button;
