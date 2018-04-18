@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -14,7 +15,14 @@ const styles = {
   },
 };
 
-const Img = styled('amp-img').attrs({
+const Img = styled(
+  ({
+    shape,
+    grayscale,
+    borderRadius,
+    ...rest
+  }) => <amp-img {...rest} />,
+).attrs({
   className: 'amp-img',
 })`
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
@@ -26,6 +34,7 @@ Img.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
+  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   grayscale: PropTypes.bool,
   borderRadius: PropTypes.string,
 };
