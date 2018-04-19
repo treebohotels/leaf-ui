@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-/* stylelint-disable block-no-empty */
 const GalleryContainer = styled(
   ({
     className,
     ...rest
   }) => <amp-carousel {...rest} />,
-)``;
+)`
+  ${''}
+`;
 
 GalleryContainer.propTypes = {
   width: PropTypes.number.isRequired,
