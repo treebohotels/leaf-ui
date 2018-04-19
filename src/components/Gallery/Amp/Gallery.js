@@ -1,24 +1,34 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import GalleryContainer from './GalleryContainer';
 
 const Gallery = (props) => {
-  const { width, height, type, layout, children } = props;
+  const {
+    width,
+    height,
+    type,
+    layout,
+    children,
+  } = props;
+
+  const integerWidth = Number.parseInt(width, 10);
+  const integerHeight = Number.parseInt(height, 10);
+
   return (
-    <div>
+    <Fragment>
       <Helmet>
-        <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script> { /* eslint-disable-line react/self-closing-comp */ }
+        <script async="" custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script> { /* eslint-disable-line react/self-closing-comp */ }
       </Helmet>
       <GalleryContainer
-        width={width}
-        height={height}
+        width={integerWidth}
+        height={integerHeight}
         type={type}
         layout={layout}
       >
         {children}
       </GalleryContainer>
-    </div>
+    </Fragment>
   );
 };
 

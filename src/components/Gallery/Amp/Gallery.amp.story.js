@@ -81,12 +81,12 @@ storiesOf('Gallery', module).add('simple', () => {
     <div>
       <div style={{ height: '1000px' }}>
         <Gallery
-          width="500"
+          width="400"
           height="300"
         >
           {
             images.map((image, index) => (
-              <Image key={image.url} alt={`img-${index}`} width="500" height="300" src={image.url} />
+              <Image key={image.url} alt={`img-${index}`} width="400" height="300" src={image.url} />
             ))
           }
         </Gallery>
