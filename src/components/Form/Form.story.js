@@ -6,6 +6,7 @@ import TextInput from '../TextInput';
 import Select from '../Select';
 import Checkbox from '../Checkbox';
 import RadioButton from '../RadioButton';
+import Button from '../Button';
 
 storiesOf('Form', module)
   .add('simple', () => (
@@ -33,7 +34,7 @@ storiesOf('Form', module)
         <RadioButton name="treeType" label="Oak" value="oak" />
         <RadioButton name="treeType" label="Maple" value="maple" />
         <RadioButton name="treeType" label="Mahogany" value="mahogany" />
-        <input type="submit" />
+        <Button type="submit">Submit</Button>
       </Form.Form>
     </Form>
   ));
