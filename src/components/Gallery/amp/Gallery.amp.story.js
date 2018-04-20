@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Image from '../../Image/Amp';
+import Image from '../../Image/amp';
 import Gallery from './Gallery';
 
 storiesOf('Gallery', module).add('simple', () => {
