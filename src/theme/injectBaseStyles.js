@@ -14,6 +14,7 @@ const injectBaseStyles = (theme) => {
       font-size: ${theme.fontSize.s};
       font-weight: ${theme.fontWeight.normal};
       font-family: ${theme.fontFamily.roboto}, system-ui, sans-serif;
+      margin: 0;
     }
 
     *,
