@@ -1,7 +1,6 @@
 import { injectGlobal } from 'styled-components';
 
 export default () => injectGlobal`
-  /* fallback */
   @font-face {
     font-family: 'Material Icons';
     font-style: normal;
