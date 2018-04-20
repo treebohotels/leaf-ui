@@ -22,7 +22,7 @@ const Img = styled(
     borderRadius,
     className,
     ...rest
-  }) => <amp-img {...rest} />,
+  }) => <amp-img layout="responsive" {...rest} />,
 )`
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
   border-radius: ${styles.borderRadius};
@@ -33,18 +33,14 @@ Img.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  layout: PropTypes.oneOf(['fixed-height', 'responsive']),
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   grayscale: PropTypes.bool,
   borderRadius: PropTypes.string,
 };
 
 Img.defaultProps = {
-  width: '',
-  height: '',
-  layout: 'responsive',
-  grayscale: false,
   shape: 'sharpEdged',
+  grayscale: false,
 };
 
 export default Img;

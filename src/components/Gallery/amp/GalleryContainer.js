@@ -6,7 +6,7 @@ const GalleryContainer = styled(
   ({
     className,
     ...rest
-  }) => <amp-carousel {...rest} />,
+  }) => <amp-carousel layout="responsive" type="slides" {...rest} />,
 )`
   ${''}
 `;
@@ -14,13 +14,11 @@ const GalleryContainer = styled(
 GalleryContainer.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  type: PropTypes.oneOf(['carousel', 'slides']),
-  layout: PropTypes.oneOf(['fixed-height', 'responsive']),
 };
 
 GalleryContainer.defaultProps = {
-  type: 'carousel',
-  layout: 'responsive',
+  width: '',
+  height: '',
 };
 
 export default GalleryContainer;

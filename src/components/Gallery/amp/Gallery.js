@@ -7,8 +7,6 @@ const Gallery = (props) => {
   const {
     width,
     height,
-    type,
-    layout,
     children,
   } = props;
 
@@ -18,13 +16,11 @@ const Gallery = (props) => {
   return (
     <Fragment>
       <Helmet>
-        <script async="" custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script> { /* eslint-disable-line react/self-closing-comp */ }
+        <script async="" custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js">&nbsp;</script>
       </Helmet>
       <GalleryContainer
         width={integerWidth}
         height={integerHeight}
-        type={type}
-        layout={layout}
       >
         {children}
       </GalleryContainer>
@@ -35,14 +31,9 @@ const Gallery = (props) => {
 Gallery.propTypes = {
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['carousel', 'slides']),
-  layout: PropTypes.oneOf(['fixed-height', 'responsive']),
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
-Gallery.defaultProps = {
-  type: 'slides',
-  layout: 'responsive',
-};
+Gallery.defaultProps = {};
 
 export default Gallery;
