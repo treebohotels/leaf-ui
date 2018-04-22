@@ -1,4 +1,5 @@
 export Button from './components/Button/native';
+export Card from './components/Card/native';
 export Tag from './components/Tag/native';
 export Flex from './components/Flex/native';
 export Form from './components/Form';
