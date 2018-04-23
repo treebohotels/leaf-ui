@@ -20,6 +20,7 @@ export default class Image extends Component {
       alt,
       width,
       height,
+      layout,
       shape,
       grayscale,
     } = this.props;
@@ -34,6 +35,7 @@ export default class Image extends Component {
         alt={alt}
         width={integerWidth}
         height={integerHeight}
+        layout={layout}
         shape={shape}
         grayscale={grayscale}
       >
@@ -48,11 +50,13 @@ Image.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
+  layout: PropTypes.oneOf(['', 'responsive']),
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   grayscale: PropTypes.bool,
 };
 
 Image.defaultProps = {
+  layout: '',
   shape: 'sharpEdged',
   grayscale: false,
 };
