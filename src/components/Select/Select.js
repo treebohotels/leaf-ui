@@ -180,7 +180,7 @@ class Select extends React.Component {
                         >
                           {
                             multiple ? (
-                              <Spacer padding={0}>
+                              <Spacer padding={[0]}>
                                 <Checkbox
                                   readOnly
                                   label={option.label}

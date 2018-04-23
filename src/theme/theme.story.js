@@ -61,7 +61,7 @@ storiesOf('Theme', module)
       <div>
         {
           [1, 2, 3, 4, 5, 6, 7, 8].map((space) => (
-            <Spacer key={space} height={`${space * 8}px`} width={`${space * 8}px`}>
+            <Spacer key={space} height={space} width={space}>
               <SpacingCard>
                 {space * 8}
               </SpacingCard>

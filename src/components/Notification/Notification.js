@@ -13,9 +13,9 @@ const Notification = ({
   content,
   actionProps,
 }) => (
-  <Spacer padding={1} margin={[0, 0, 2, 0]}>
+  <Spacer padding={[1]} margin={[0, 0, 2, 0]}>
     <NotificationContainer type={type}>
-      <Spacer padding={2}>
+      <Spacer padding={[2]}>
         <Flex justifyContent="space-around" alignItems="center">
           <Flex flex="0">
             {notificationTypes[type].icon}

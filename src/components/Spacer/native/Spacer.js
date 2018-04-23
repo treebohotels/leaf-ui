@@ -14,31 +14,49 @@ const Spacer = styled(
 )`
   ${(props) => props.margin || props.margin === 0 ? `margin: ${props.theme.px(props.margin)}` : ''};
   ${(props) => props.padding || props.padding === 0 ? `padding: ${props.theme.px(props.padding)}` : ''};
-  ${(props) => props.maxWidth ? `max-width: ${props.maxWidth}` : ''};
-  ${(props) => props.width ? `width: ${props.width}` : ''};
-  ${(props) => props.minWidth ? `min-width: ${props.minWidth}` : ''};
-  ${(props) => props.minHeight ? `min-height: ${props.minHeight}` : ''};
-  ${(props) => props.height ? `height: ${props.height}` : ''};
-  ${(props) => props.maxHeight ? `max-height: ${props.maxHeight}` : ''};
+  ${(props) => props.maxWidth ? `max-width: ${props.theme.px(props.maxWidth)}` : ''};
+  ${(props) => props.width ? `width: ${props.theme.px(props.width)}` : ''};
+  ${(props) => props.minWidth ? `min-width: ${props.theme.px(props.minWidth)}` : ''};
+  ${(props) => props.minHeight ? `min-height: ${props.theme.px(props.minHeight)}` : ''};
+  ${(props) => props.height ? `height: ${props.theme.px(props.height)}` : ''};
+  ${(props) => props.maxHeight ? `max-height: ${props.theme.px(props.maxHeight)}` : ''};
 `;
 
 Spacer.propTypes = {
-  margin: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-  ]),
+  margin: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+  ),
   padding: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   ]),
-  maxWidth: PropTypes.string,
-  width: PropTypes.string,
-  minWidth: PropTypes.string,
-  minHeight: PropTypes.string,
-  height: PropTypes.string,
-  maxHeight: PropTypes.string,
+  maxWidth: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  width: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  minWidth: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  minHeight: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  height: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  maxHeight: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 export default Spacer;
