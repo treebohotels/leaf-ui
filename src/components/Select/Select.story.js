@@ -26,7 +26,6 @@ storiesOf('Select', module)
       options={options}
       defaultSelected={options[2]}
       onChange={action('onChange')}
-      closeOnSelect={false}
     />
   ))
   .add('error', () => (

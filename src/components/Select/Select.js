@@ -43,7 +43,7 @@ class Select extends React.Component {
 
   onSelect = (selectedOption, stateAndHelpers) => {
     const { selectedOptions } = this.state;
-    const { multiple, closeOnSelect } = this.props;
+    const { multiple } = this.props;
 
     if (multiple) {
       if (selectedOptions.includes(selectedOption)) {
@@ -51,14 +51,12 @@ class Select extends React.Component {
       } else {
         this.addOption(selectedOption);
       }
+      // Keep menu open for multi select
+      stateAndHelpers.openMenu();
     } else {
       this.setState({
         selectedOptions: [selectedOption],
       }, () => this.onChange(selectedOption));
-    }
-
-    if (!closeOnSelect) {
-      stateAndHelpers.openMenu();
     }
   }
 
@@ -227,7 +225,6 @@ Select.propTypes = {
   multiple: PropTypes.bool,
   options: PropTypes.array.isRequired,
   defaultSelected: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  closeOnSelect: PropTypes.bool,
   error: PropTypes.string,
   onChange: PropTypes.func,
 };
@@ -237,7 +234,6 @@ Select.defaultProps = {
   label: 'defaultLabel',
   disabled: false,
   multiple: false,
-  closeOnSelect: true,
 };
 
 Select.contextTypes = {
