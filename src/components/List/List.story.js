@@ -37,4 +37,12 @@ storiesOf('List', module)
         </Icon>
       </List.Item>
     </List>
+  ))
+  .add('list with bullet', () => (
+    <List bulletType="disc">
+      <List.Item>Acacia</List.Item>
+      <List.Item>Oak</List.Item>
+      <List.Item>Maple</List.Item>
+      <List.Item>Mahogany</List.Item>
+    </List>
   ));

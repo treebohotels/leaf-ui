@@ -36,10 +36,6 @@ const injectBaseStyles = (theme) => {
       margin: 0;
     }
 
-    ul {
-      list-style: none;
-    }
-
     ol {
       list-style: decimal inside;
     }
