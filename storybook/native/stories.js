@@ -260,31 +260,86 @@ storiesOf('Form', module)
   ));
 
 storiesOf('Tag', module)
-  .add('simple', () => (
+  .add('bluntEdged', () => (
     <View>
       <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: primary, size: medium</Text>
         <Tag>
-          primary
+          Tag
         </Tag>
       </Spacer>
-      <Spacer margin={[2]}>
-        <Tag color="lagoon">
-          outlined medium
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: lagoon, size: small</Text>
+        <Tag color="lagoon" size="small">
+          Tag
         </Tag>
       </Spacer>
-      <Spacer margin={[2]}>
-        <Tag color="teal" size="small">
-          outlined small
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: primary, size: medium, kind: outlined</Text>
+        <Tag kind="outlined">
+          Tag
         </Tag>
       </Spacer>
-      <Spacer margin={[2]}>
-        <Tag color="yellow" kind="filled">
-          filled medium
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: lagoon, size: small, kind: outlined</Text>
+        <Tag color="lagoon" size="small" kind="outlined">
+          Tag
         </Tag>
       </Spacer>
-      <Spacer margin={[2]}>
-        <Tag color="red" size="small" kind="filled">
-          filled small
+    </View>
+  ))
+  .add('capsular', () => (
+    <View>
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: primary, size: medium</Text>
+        <Tag shape="capsular">
+          Tag
+        </Tag>
+      </Spacer>
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: lagoon, size: small</Text>
+        <Tag shape="capsular" color="lagoon" size="small">
+          Tag
+        </Tag>
+      </Spacer>
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: primary, size: medium, kind: outlined</Text>
+        <Tag shape="capsular" kind="outlined">
+          Tag
+        </Tag>
+      </Spacer>
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: lagoon, size: small, kind: outlined</Text>
+        <Tag shape="capsular" color="lagoon" size="small" kind="outlined">
+          Tag
+        </Tag>
+      </Spacer>
+    </View>
+  ))
+  .add('sharpEdged', () => (
+    <View>
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: primary, size: medium</Text>
+        <Tag shape="sharpEdged">
+          Tag
+        </Tag>
+      </Spacer>
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: lagoon, size: small</Text>
+        <Tag shape="sharpEdged" color="lagoon" size="small">
+          Tag
+        </Tag>
+      </Spacer>
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: primary, size: medium, kind: outlined</Text>
+        <Tag shape="sharpEdged" kind="outlined">
+          Tag
+        </Tag>
+      </Spacer>
+      <Spacer margin={[2, 2, 0, 2]}>
+        <Text>color: lagoon, size: small, kind: outlined</Text>
+        <Tag shape="sharpEdged" color="lagoon" size="small" kind="outlined">
+          Tag
         </Tag>
       </Spacer>
     </View>

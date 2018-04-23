@@ -9,14 +9,18 @@ const styles = {
     return props.theme.color[`${props.color}Lighter`];
   },
   padding(props) {
-    if (props.size === 'small') return props.theme.px([0.15, 0.5, 0.25, 0.5]);
+    if (props.size === 'small') return props.theme.px([0.5, 1]);
     return props.theme.px([1, 1.5]);
   },
   borderColor(props) {
     return props.theme.color[props.color];
   },
   borderRadius(props) {
-    if (props.shape === 'capsular') return props.theme.px(10);
+    if (props.shape === 'capsular') {
+      return props.theme.px(10);
+    } else if (props.shape === 'sharpEdged') {
+      return props.theme.px(0);
+    }
     return props.theme.borderRadius;
   },
 };
@@ -28,7 +32,7 @@ const TagContainer = styled.View`
   border-radius: ${styles.borderRadius};
   padding: ${styles.padding};
   background: ${styles.background};
-  border-width: 0.8;
+  border-width: 1;
   border-color: ${styles.borderColor};
 `;
 
@@ -58,15 +62,15 @@ Tag.propTypes = {
   color: PropTypes.string,
   kind: PropTypes.oneOf(['filled', 'outlined']),
   size: PropTypes.oneOf(['small', 'medium']),
-  shape: PropTypes.oneOf(['bluntEdged', 'capsular']),
+  shape: PropTypes.oneOf(['bluntEdged', 'capsular', 'sharpEdged']),
   children: PropTypes.string,
 };
 
 Tag.defaultProps = {
   color: 'primary',
-  kind: 'outlined',
+  kind: 'filled',
   size: 'medium',
-  shape: 'capsular',
+  shape: 'bluntEdged',
 };
 
 export default Tag;
