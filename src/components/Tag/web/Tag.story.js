@@ -17,7 +17,7 @@ storiesOf('Tag', module)
   ))
   .add('kinds', () => (
     <div>
-      <Tag>
+      <Tag kind="outlined">
         outlined
       </Tag>
       <br /><br />
