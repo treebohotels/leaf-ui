@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import theme from '../theme';
-import Flex from '../components/Flex';
-import Card from '../components/Card';
-import Spacer from '../components/Spacer';
+import Flex from '../components/Flex/web';
+import Card from '../components/Card/web';
+import Spacer from '../components/Spacer/web';
 
 storiesOf('Theme', module)
   .add('colors', () => {
@@ -61,7 +61,7 @@ storiesOf('Theme', module)
       <div>
         {
           [1, 2, 3, 4, 5, 6, 7, 8].map((space) => (
-            <Spacer key={space} height={`${space * 8}px`} width={`${space * 8}px`}>
+            <Spacer key={space} height={space} width={space}>
               <SpacingCard>
                 {space * 8}
               </SpacingCard>
