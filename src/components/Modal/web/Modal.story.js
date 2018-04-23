@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Toggle from '../../Toggle';
+import Toggle from '../../Toggle/web';
 import Button from '../../Button/web';
 import Text from '../../Text/web';
 import Tabs from '../../Tabs/web';

@@ -1,12 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import Form from '../Form';
 import TextInput from '../../TextInput/web';
 import Select from '../../Select/web';
 import Checkbox from '../../Checkbox/web';
 import RadioButton from '../../RadioButton/web';
 import Button from '../../Button/web';
+import Form from './Form';
 
 storiesOf('Form', module)
   .add('simple', () => (
