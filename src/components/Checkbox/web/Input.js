@@ -48,7 +48,9 @@ const Input = styled.input.attrs({
   padding: 0;
   margin: 0;
   overflow: hidden;
+  /* For browsers that yet don't support clip-path */
   clip: rect(0, 0, 0, 0);
+  clip-path: inset(1px 0 0 0);
   border: 0;
   visibility: visible;
   white-space: nowrap;
