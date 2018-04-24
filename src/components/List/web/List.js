@@ -6,8 +6,8 @@ const List = styled.ul`
   list-style-type: ${(props) => props.bulletType || 'none'};
   list-style-position: ${(props) => props.bulletType ? 'inside' : ''};
 
-  + ${/* sc-selector */ListItem} {
-    padding: ${(props) => props.bulletType ? '8px 8px 8px 0' : props.theme.px(2)};
+  > ${/* sc-selector */ListItem} {
+    padding: ${(props) => props.bulletType ? props.theme.px([1, 1, 1, 0]) : props.theme.px(2)};
   }
 `;
 
