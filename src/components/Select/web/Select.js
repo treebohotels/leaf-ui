@@ -170,7 +170,6 @@ class Select extends React.Component {
                       options.map((option, index) => (
                         <Option
                           key={option.value}
-                          clickable
                           {...getItemProps({
                             index,
                             item: option,
