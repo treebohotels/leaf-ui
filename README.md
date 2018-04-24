@@ -37,7 +37,7 @@ Import and use the components in your App.js
 ```js
 // App.js
 import React from 'react';
-import Button from 'leaf-ui/es/Button';
+import Button from 'leaf-ui/es/Button/web';
 
 const App = () => (
   <Button>

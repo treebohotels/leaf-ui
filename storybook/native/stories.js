@@ -3,8 +3,9 @@ import { storiesOf } from '@storybook/react-native';
 import styled from 'styled-components';
 import theme from '../../src/theme';
 import Button from '../../src/components/Button/native';
+import Card from '../../src/components/Card/native';
 import Text from '../../src/components/Text/native';
-import Form from '../../src/components/Form';
+import Form from '../../src/components/Form/native';
 import TextInput from '../../src/components/TextInput/native';
 import Tag from '../../src/components/Tag/native';
 import Spacer from '../../src/components/Spacer/native';
@@ -15,7 +16,7 @@ const View = styled.View`
 
 storiesOf('Button', module)
   .add('with text', () => (
-    <Spacer margin={4}>
+    <Spacer margin={[4]}>
       <Button>
         <Text>Default Button</Text>
       </Button>
@@ -23,17 +24,17 @@ storiesOf('Button', module)
   ))
   .add('kinds', () => (
     <View>
-      <Spacer margin={4}>
+      <Spacer margin={[4]}>
         <Button kind="filled">
           <Text>Filled Button</Text>
         </Button>
       </Spacer>
-      <Spacer margin={4}>
+      <Spacer margin={[4]}>
         <Button kind="outlined">
           <Text>Outlined Button</Text>
         </Button>
       </Spacer>
-      <Spacer margin={4}>
+      <Spacer margin={[4]}>
         <Button kind="transparent">
           <Text>Transparent Button</Text>
         </Button>
@@ -42,17 +43,17 @@ storiesOf('Button', module)
   ))
   .add('shapes', () => (
     <View>
-      <Spacer margin={4}>
+      <Spacer margin={[4]}>
         <Button shape="bluntEdged">
           <Text>Blunt Edged Button</Text>
         </Button>
       </Spacer>
-      <Spacer margin={4}>
+      <Spacer margin={[4]}>
         <Button shape="sharpEdged">
           <Text>Sharp Edged Button</Text>
         </Button>
       </Spacer>
-      <Spacer margin={4}>
+      <Spacer margin={[4]}>
         <Button shape="capsular">
           <Text>Capsular Button</Text>
         </Button>
@@ -61,17 +62,17 @@ storiesOf('Button', module)
   ))
   .add('sizes', () => (
     <View>
-      <Spacer margin={4}>
+      <Spacer margin={[4]}>
         <Button size="small">
           <Text>Small Button</Text>
         </Button>
       </Spacer>
-      <Spacer margin={4}>
+      <Spacer margin={[4]}>
         <Button size="medium">
           <Text>Default Button</Text>
         </Button>
       </Spacer>
-      <Spacer margin={4}>
+      <Spacer margin={[4]}>
         <Button size="large">
           <Text>Large Button</Text>
         </Button>
@@ -79,17 +80,65 @@ storiesOf('Button', module)
     </View>
   ))
   .add('block', () => (
-    <Spacer margin={4}>
+    <Spacer margin={[4]}>
       <Button block>
         <Text>Block Button</Text>
       </Button>
     </Spacer>
   ))
   .add('disabled', () => (
-    <Spacer margin={4}>
+    <Spacer margin={[4]}>
       <Button disabled>
         <Text>Disabled Button</Text>
       </Button>
+    </Spacer>
+  ));
+
+storiesOf('Card', module)
+  .add('Lagoon', () => (
+    <Spacer>
+      <Spacer margin={[0, 0, 5, 0]}>
+        <Card color="lagoon" elevation={0}>
+          <Spacer padding={2}>
+            <Text color="white">Elevation: 0</Text>
+          </Spacer>
+        </Card>
+      </Spacer>
+      <Spacer margin={[0, 0, 5, 0]}>
+        <Card color="lagoon" elevation={1}>
+          <Spacer padding={2}>
+            <Text color="white">Elevation: 1</Text>
+          </Spacer>
+        </Card>
+      </Spacer>
+      <Spacer margin={[0, 0, 5, 0]}>
+        <Card color="lagoon" elevation={2}>
+          <Spacer padding={2}>
+            <Text color="white">Elevation: 2</Text>
+          </Spacer>
+        </Card>
+      </Spacer>
+      <Spacer margin={[0, 0, 5, 0]}>
+        <Card color="lagoon" elevation={3}>
+          <Spacer padding={2}>
+            <Text color="white">Elevation: 3</Text>
+          </Spacer>
+        </Card>
+      </Spacer>
+      <Spacer margin={[0, 0, 5, 0]}>
+        <Card color="lagoon" elevation={4}>
+          <Spacer padding={2}>
+            <Text color="white">Elevation: 4</Text>
+          </Spacer>
+        </Card>
+      </Spacer>
+      <Spacer margin={[0, 0, 5, 0]}>
+        <Card color="lagoon" elevation={5}>
+          <Spacer padding={2}>
+            <Text color="white">Elevation: 5</Text>
+          </Spacer>
+        </Card>
+      </Spacer>
     </Spacer>
   ));
 
@@ -101,7 +150,7 @@ storiesOf('Text', module)
     <View>
       {
         Object.keys(theme.fontSize).map((size) => (
-          <Spacer margin={4} key={size}>
+          <Spacer margin={[4]} key={size}>
             <Text size={size}>
               {size}: {theme.fontSize[size]}
               Size
@@ -115,7 +164,7 @@ storiesOf('Text', module)
     <View>
       {
         Object.keys(theme.fontWeight).map((weight) => (
-          <Spacer margin={4} key={weight}>
+          <Spacer margin={[4]} key={weight}>
             <Text weight={weight}>
               {weight}: {theme.fontWeight[weight]}
               Weight
@@ -127,7 +176,7 @@ storiesOf('Text', module)
 
 storiesOf('TextInput', module)
   .add('simple', () => (
-    <Spacer margin={2}>
+    <Spacer margin={[2]}>
       <TextInput
         name="name"
         label="Name"
@@ -135,7 +184,7 @@ storiesOf('TextInput', module)
       />
     </Spacer>
   )).add('placeholder', () => (
-    <Spacer margin={2}>
+    <Spacer margin={[2]}>
       <TextInput
         name="name"
         label="Name"
@@ -154,7 +203,7 @@ storiesOf('Form', module)
         })
       }
       render={() => (
-        <Spacer margin={2}>
+        <Spacer margin={[2]}>
           <TextInput
             name="email"
             label="Email"
@@ -174,7 +223,7 @@ storiesOf('Form', module)
         })
       }
       render={() => (
-        <Spacer margin={2}>
+        <Spacer margin={[2]}>
           <TextInput
             name="name"
             label="Name"
@@ -197,7 +246,7 @@ storiesOf('Form', module)
         })
       }
       render={() => (
-        <Spacer margin={2}>
+        <Spacer margin={[2]}>
           <TextInput
             name="Name"
             label="Name"
@@ -218,22 +267,22 @@ storiesOf('Tag', module)
           primary
         </Tag>
       </Spacer>
-      <Spacer margin={2}>
+      <Spacer margin={[2]}>
         <Tag color="lagoon">
           outlined medium
         </Tag>
       </Spacer>
-      <Spacer margin={2}>
+      <Spacer margin={[2]}>
         <Tag color="teal" size="small">
           outlined small
         </Tag>
       </Spacer>
-      <Spacer margin={2}>
+      <Spacer margin={[2]}>
         <Tag color="yellow" kind="filled">
           filled medium
         </Tag>
       </Spacer>
-      <Spacer margin={2}>
+      <Spacer margin={[2]}>
         <Tag color="red" size="small" kind="filled">
           filled small
         </Tag>
