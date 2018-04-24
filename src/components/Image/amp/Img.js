@@ -17,13 +17,12 @@ const styles = {
 
 const Img = styled(
   ({
-    layout,
     shape,
     grayscale,
     borderRadius,
     className,
-    ...rest
-  }) => <amp-img layout={layout} {...rest} />,
+    ...props
+  }) => <amp-img {...props} />,
 )`
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
   border-radius: ${styles.borderRadius};
@@ -34,14 +33,13 @@ Img.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  layout: PropTypes.oneOf(['', 'responsive']),
+  layout: PropTypes.oneOf(['responsive']),
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   grayscale: PropTypes.bool,
   borderRadius: PropTypes.string,
 };
 
 Img.defaultProps = {
-  layout: '',
   shape: 'sharpEdged',
   grayscale: false,
 };

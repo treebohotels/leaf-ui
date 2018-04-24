@@ -4,7 +4,7 @@ import { addDecorator, configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
 import theme, { injectBaseStyles } from '../../src/theme';
-import { injectIconStyles } from '../../src/components/Icon';
+import injectIconStyles from '../../src/components/Icon/web/injectIconStyles';
 
 setOptions({
   name: 'Leaf-UI',

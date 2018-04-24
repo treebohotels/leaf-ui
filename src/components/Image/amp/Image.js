@@ -50,13 +50,12 @@ Image.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
-  layout: PropTypes.oneOf(['', 'responsive']),
+  layout: PropTypes.oneOf(['responsive']),
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   grayscale: PropTypes.bool,
 };
 
 Image.defaultProps = {
-  layout: '',
   shape: 'sharpEdged',
   grayscale: false,
 };
