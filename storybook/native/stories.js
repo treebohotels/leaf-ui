@@ -34,11 +34,6 @@ storiesOf('Button', module)
           <Text>Outlined Button</Text>
         </Button>
       </Spacer>
-      <Spacer margin={[4]}>
-        <Button kind="transparent">
-          <Text>Transparent Button</Text>
-        </Button>
-      </Spacer>
     </View>
   ))
   .add('shapes', () => (

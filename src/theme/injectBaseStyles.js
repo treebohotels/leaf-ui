@@ -5,6 +5,7 @@ import injectIconStyles from '../components/Icon/web/injectIconStyles';
 const injectBaseStyles = (theme) => {
   injectGlobal`
     html {
+      line-height: 1.2;
       box-sizing: border-box;
     }
 
