@@ -3,32 +3,23 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const styles = {
-  color: (state) => (props) => {
+  color(props) {
     if (props.kind === 'filled') {
       return props.theme.color.white;
     } else if (props.kind === 'outlined') {
-      if (state.hover) {
-        return props.theme.color.white;
-      }
       return props.theme.color[props.color];
     }
     return '';
   },
-  background: (state) => (props) => {
+  backgroundColor(props) {
     if (props.kind === 'filled') {
-      if (state.hover) {
-        return props.theme.color[`${props.color}Dark`];
-      }
       return props.theme.color[props.color];
     } else if (props.kind === 'outlined') {
-      if (state.hover) {
-        return props.theme.color[props.color];
-      }
       return 'transparent';
     }
     return '';
   },
-  fontSize: () => (props) => {
+  fontSize(props) {
     if (props.size === 'small') {
       return props.theme.fontSize.xs;
     } else if (props.size === 'medium') {
@@ -38,7 +29,7 @@ const styles = {
     }
     return '';
   },
-  padding: () => (props) => {
+  padding(props) {
     if (props.size === 'small') {
       return props.theme.px([1, 2]);
     } else if (props.size === 'medium') {
@@ -48,21 +39,15 @@ const styles = {
     }
     return '';
   },
-  border: (state) => (props) => {
+  borderColor(props) {
     if (props.kind === 'filled') {
-      if (state.hover) {
-        return `1px solid ${props.theme.color[`${props.color}Dark`]}`;
-      }
-      return `1px solid ${props.theme.color[props.color]}`;
+      return props.theme.color[props.color];
     } else if (props.kind === 'outlined') {
-      if (state.hover) {
-        return `1px solid ${props.theme.color[props.color]}`;
-      }
-      return `1px solid ${props.theme.color[props.color]}`;
+      return props.theme.color[props.color];
     }
     return '';
   },
-  borderRadius: () => (props) => {
+  borderRadius(props) {
     if (props.shape === 'bluntEdged') {
       return props.theme.borderRadius;
     } else if (props.shape === 'sharpEdged') {
@@ -74,17 +59,43 @@ const styles = {
     }
     return '';
   },
-  pointerEvents: () => (props) => {
+  pointerEvents(props) {
     if (props.disabled) {
       return 'none';
     }
     return '';
   },
-  opacity: () => (props) => {
+  opacity(props) {
     if (props.disabled) {
       return '0.5';
     }
     return '';
+  },
+  hover: {
+    color(props) {
+      if (props.kind === 'filled') {
+        return props.theme.color.white;
+      } else if (props.kind === 'outlined') {
+        return props.theme.color.white;
+      }
+      return '';
+    },
+    backgroundColor(props) {
+      if (props.kind === 'filled') {
+        return props.theme.color[`${props.color}Dark`];
+      } else if (props.kind === 'outlined') {
+        return props.theme.color[props.color];
+      }
+      return '';
+    },
+    borderColor(props) {
+      if (props.kind === 'filled') {
+        return props.theme.color[`${props.color}Dark`];
+      } else if (props.kind === 'outlined') {
+        return props.theme.color[props.color];
+      }
+      return '';
+    },
   },
 };
 
@@ -94,20 +105,22 @@ const StyledButton = styled.button`
   justify-content: center;
   cursor: pointer;
   text-transform: uppercase;
-  color: ${styles.color({})};
-  font-size: ${styles.fontSize({})};
-  background: ${styles.background({})};
-  padding: ${styles.padding({})};
+  color: ${styles.color};
+  font-size: ${styles.fontSize};
+  background-color: ${styles.backgroundColor};
+  padding: ${styles.padding};
   width: ${(props) => props.block ? '100%' : ''};
-  border: ${styles.border({})};
-  border-radius: ${styles.borderRadius({})};
-  pointer-events: ${styles.pointerEvents({})};
-  opacity: ${styles.opacity({})};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${styles.borderColor};
+  border-radius: ${styles.borderRadius};
+  pointer-events: ${styles.pointerEvents};
+  opacity: ${styles.opacity};
 
   &:hover {
-    color: ${styles.color({ hover: true })};
-    background: ${styles.background({ hover: true })};
-    border: ${styles.border({ hover: true })};
+    color: ${styles.hover.color};
+    background-color: ${styles.hover.backgroundColor};
+    border-color: ${styles.hover.borderColor};
   }
 `;
 
