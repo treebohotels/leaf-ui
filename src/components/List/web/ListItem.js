@@ -10,7 +10,7 @@ const ListItem = styled.li`
 
   &:hover,
   &:focus {
-    background: ${(props) => props.clickable ? props.theme.color.primaryLighter : ''};
+    background: ${(props) => props.clickable ? props.theme.color.translucent : ''};
   }
 `;
 
