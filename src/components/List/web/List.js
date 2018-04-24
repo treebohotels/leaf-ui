@@ -12,12 +12,8 @@ const List = styled.ul`
 `;
 
 List.propTypes = {
-  bulletType: PropTypes.oneOf(['', 'disc']),
+  bulletType: PropTypes.oneOf(['disc']),
   disabled: PropTypes.bool,
-};
-
-List.defaultProps = {
-  bulletType: '',
 };
 
 List.Item = ListItem;
