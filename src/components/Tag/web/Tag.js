@@ -32,7 +32,7 @@ const styles = {
   },
   fontSize(props) {
     if (props.size === 'small') {
-      return props.theme.fontSize.xxs;
+      return props.theme.fontSize.xxxs;
     } else if (props.size === 'medium') {
       return props.theme.fontSize.xs;
     }
@@ -40,9 +40,9 @@ const styles = {
   },
   padding(props) {
     if (props.size === 'small') {
-      return props.theme.px([0.5, 1]);
+      return props.theme.px([0.375, 1]);
     } else if (props.size === 'medium') {
-      return props.theme.px([1, 1.5]);
+      return props.theme.px([0.5, 1.5]);
     }
     return '';
   },
