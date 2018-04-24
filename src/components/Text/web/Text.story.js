@@ -13,7 +13,7 @@ storiesOf('Text', module)
       weight={select('weight', Object.keys(theme.fontWeight), 'normal')}
       family={select('family', Object.keys(theme.fontFamily), 'roboto')}
       align={select('align', ['left', 'center', 'right'], 'left')}
-      trucate={boolean('trucate', false)}
+      truncate={boolean('truncate', false)}
     >
       {text('children', 'The quick brown fox jumps over the lazy dog')}
     </Text>

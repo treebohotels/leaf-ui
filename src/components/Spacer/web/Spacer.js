@@ -4,6 +4,14 @@ import styled from 'styled-components';
 
 const Spacer = styled(({
   children,
+  margin,
+  padding,
+  maxWidth,
+  width,
+  minWidth,
+  maxHeight,
+  height,
+  minHeight,
   ...props
 }) => React.cloneElement(children, props))`
   margin: ${(props) => props.margin || props.margin === 0 ? `${props.theme.px(props.margin)} !important;` : ''};
@@ -41,7 +49,7 @@ Spacer.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-  minHeight: PropTypes.oneOfType([
+  maxHeight: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
   ]),
@@ -49,7 +57,7 @@ Spacer.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-  maxHeight: PropTypes.oneOfType([
+  minHeight: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
   ]),

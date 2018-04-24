@@ -5,7 +5,7 @@ import theme from '../../src/theme';
 import Button from '../../src/components/Button/native';
 import Card from '../../src/components/Card/native';
 import Text from '../../src/components/Text/native';
-import Form from '../../src/components/Form';
+import Form from '../../src/components/Form/native';
 import TextInput from '../../src/components/TextInput/native';
 import Tag from '../../src/components/Tag/native';
 import Spacer from '../../src/components/Spacer/native';

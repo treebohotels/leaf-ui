@@ -1,7 +1,14 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Divider = styled.hr`
+const Divider = styled(
+  ({
+    color,
+    type,
+    ...props
+  }) => <hr {...props} />,
+)`
   border-width: 1px 0 0;
   border-color: ${(props) => props.theme.color[props.color]};
   border-style: ${(props) => props.type};
