@@ -8,6 +8,12 @@ const Link = styled.a`
   &:hover {
     color: ${(props) => props.theme.color.blueDark};
   }
+
+  &:focus {
+    outline: none;
+    text-decoration: underline;
+    color: ${(props) => props.theme.color.blueDark};
+  }
 `;
 
 export default Link;
