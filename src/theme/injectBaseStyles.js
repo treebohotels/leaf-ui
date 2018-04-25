@@ -2,9 +2,15 @@
 import { injectGlobal } from 'styled-components';
 import injectIconStyles from '../components/Icon/web/injectIconStyles';
 
-const injectBaseStyles = (theme) => {
+const injectBaseStyles = (
+  theme,
+  options = {
+    icons: true,
+  },
+) => {
   injectGlobal`
     html {
+      line-height: 1.2;
       box-sizing: border-box;
     }
 
@@ -41,7 +47,9 @@ const injectBaseStyles = (theme) => {
     }
   `;
 
-  injectIconStyles(theme);
+  if (options.icons) {
+    injectIconStyles(theme);
+  }
 };
 
 export default injectBaseStyles;

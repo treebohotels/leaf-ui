@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Button from '../../Button/web';
 import Icon from './Icon';
 
@@ -7,11 +8,18 @@ storiesOf('Icon', module)
   .add('simple', () => (
     <Icon name="nature" />
   ))
-  .add('button', () => (
-    <Icon name="nature" button />
+  .add('clickable', () => (
+    <Icon
+      name="nature"
+      onClick={action('icon clicked')}
+    />
   ))
-  .add('disabled button', () => (
-    <Icon name="nature" button disabled />
+  .add('disabled', () => (
+    <Icon
+      name="nature"
+      onClick={action('icon clicked')}
+      disabled
+    />
   ))
   .add('inside a Button', () => (
     <Button>

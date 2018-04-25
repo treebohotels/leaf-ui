@@ -3,37 +3,45 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Text from '../../Text/native';
 
+const styles = {
+  background(props) {
+    if (props.kind === 'filled') return props.theme.color[props.color];
+    return props.theme.color[`${props.color}Lighter`];
+  },
+  padding(props) {
+    if (props.size === 'small') return props.theme.px([0.5, 1]);
+    return props.theme.px([1, 1.5]);
+  },
+  borderColor(props) {
+    return props.theme.color[props.color];
+  },
+  borderRadius(props) {
+    if (props.shape === 'capsular') {
+      return props.theme.px(10);
+    } else if (props.shape === 'sharpEdged') {
+      return props.theme.px(0);
+    }
+    return props.theme.borderRadius;
+  },
+};
+
 const TagContainer = styled.View`
   align-self: flex-start;
   align-items: center;
   justify-content: center;
-  ${(p) => ({
-    small: `
-      padding: ${p.theme.px(0.5)};
-    `,
-    medium: `
-      padding: ${p.theme.px([1, 1.5])};
-    `,
-  }[p.size])}
-  ${(p) => ({
-    filled: `
-      background: ${p.theme.color[p.color]};
-    `,
-    outlined: `
-      background: ${p.theme.color[`${p.color}Lighter`]};
-    `,
-  }[p.kind])}
-  border-radius: 100px;
-  border-width: 1px;
-  border-color: ${(p) => p.theme.color[p.color]};
-  `;
+  border-radius: ${styles.borderRadius};
+  padding: ${styles.padding};
+  background: ${styles.background};
+  border-width: 1;
+  border-color: ${styles.borderColor};
+`;
 
-const Tag = ({ style, color, kind, size, children }) => (
+const Tag = ({ color, kind, size, children, shape }) => (
   <TagContainer
-    style={style}
     color={color}
     kind={kind}
     size={size}
+    shape={shape}
   >
     <Text
       color={{
@@ -51,20 +59,18 @@ const Tag = ({ style, color, kind, size, children }) => (
 );
 
 Tag.propTypes = {
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
   color: PropTypes.string,
   kind: PropTypes.oneOf(['filled', 'outlined']),
   size: PropTypes.oneOf(['small', 'medium']),
+  shape: PropTypes.oneOf(['bluntEdged', 'capsular', 'sharpEdged']),
   children: PropTypes.string,
 };
 
 Tag.defaultProps = {
   color: 'primary',
-  kind: 'outlined',
+  kind: 'filled',
   size: 'medium',
+  shape: 'bluntEdged',
 };
 
 export default Tag;

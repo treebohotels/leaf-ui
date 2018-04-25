@@ -29,10 +29,12 @@ Spacer.propTypes = {
       PropTypes.string,
     ]),
   ),
-  padding: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  padding: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+  ),
   maxWidth: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,

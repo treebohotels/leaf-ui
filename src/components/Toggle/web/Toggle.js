@@ -18,8 +18,8 @@ class Toggle extends React.Component {
 
   render() {
     const { on } = this.state;
-    const { render } = this.props;
-    return render({
+    const { children } = this.props;
+    return children({
       on,
       toggle: this.toggle,
       setToggle: this.setToggle,
@@ -28,7 +28,7 @@ class Toggle extends React.Component {
 }
 
 Toggle.propTypes = {
-  render: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
 export default Toggle;

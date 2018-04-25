@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal as ReactOverlaysModal } from 'react-overlays';
 import Dialog from './Dialog';
+import CloseIcon from './CloseIcon';
 import ModalHeader from './ModalHeader';
 import ModalContent from './ModalContent';
 import ModalFooter from './ModalFooter';
@@ -20,42 +21,24 @@ const styles = {
   },
 };
 
-class Modal extends Component {
-  getChildContext() {
-    const { isOpen, onClose } = this.props;
-    return {
-      isOpen,
-      onClose,
-    };
-  }
-
-  render() {
-    const {
-      isOpen,
-      onClose,
-      container,
-      children,
-    } = this.props;
-
-    return (
-      <ReactOverlaysModal
-        backdropStyle={styles.ReactOverlaysModal.backdrop}
-        show={isOpen}
-        onHide={onClose}
-        container={container}
-      >
-        <Dialog>
-          {children}
-        </Dialog>
-      </ReactOverlaysModal>
-    );
-  }
-}
-
-Modal.childContextTypes = {
-  isOpen: PropTypes.bool,
-  onClose: PropTypes.func,
-};
+const Modal = ({
+  isOpen,
+  onClose,
+  container,
+  children,
+}) => (
+  <ReactOverlaysModal
+    backdropStyle={styles.ReactOverlaysModal.backdrop}
+    show={isOpen}
+    onHide={onClose}
+    container={container}
+  >
+    <Dialog>
+      <CloseIcon onClick={onClose} />
+      {children}
+    </Dialog>
+  </ReactOverlaysModal>
+);
 
 Modal.propTypes = {
   isOpen: PropTypes.bool,

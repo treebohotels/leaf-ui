@@ -21,23 +21,15 @@ class Select extends React.Component {
     };
   }
 
-  onChange = (newSelectedOptions) => {
+  onChange = (selectedOptions) => {
     const { name, onChange } = this.props;
     const { formik } = this.context;
     if (formik) {
-      formik.setFieldValue(name, newSelectedOptions);
-      formik.setFieldTouched(name);
+      formik.setFieldValue(name, selectedOptions);
+      formik.setFieldTouched(name, true);
     }
     if (onChange) {
-      onChange(newSelectedOptions);
-    }
-  }
-
-  onStateChange = () => {
-    const { name } = this.props;
-    const { formik } = this.context;
-    if (formik) {
-      formik.setFieldTouched(name);
+      onChange(selectedOptions);
     }
   }
 
@@ -46,12 +38,23 @@ class Select extends React.Component {
     const { multiple } = this.props;
 
     if (multiple) {
+      let newSelectedOptions = [];
       if (selectedOptions.includes(selectedOption)) {
-        this.removeOption(selectedOption);
+        // multiple: remove option
+        newSelectedOptions = selectedOptions
+          .filter((option) => option.value !== selectedOption.value);
       } else {
-        this.addOption(selectedOption);
+        // multiple: add option
+        newSelectedOptions = [
+          ...selectedOptions,
+          selectedOption,
+        ];
       }
+      this.setState({
+        selectedOptions: newSelectedOptions,
+      }, () => this.onChange(newSelectedOptions));
     } else {
+      // single: select option
       this.setState({
         selectedOptions: [selectedOption],
       }, () => this.onChange(selectedOption));
@@ -61,10 +64,19 @@ class Select extends React.Component {
   getDefaultSelected = (props, context) => {
     const { name, defaultSelected } = props;
     const { formik } = context;
-    if (formik) {
-      return [].concat(formik.values[name] || []);
+    let defaultSelectedOptions = [];
+
+    if (defaultSelected) {
+      defaultSelectedOptions = defaultSelectedOptions.concat(defaultSelected || []);
+    } else if (formik) {
+      defaultSelectedOptions = defaultSelectedOptions.concat(formik.values[name] || []);
     }
-    return [].concat(defaultSelected || []);
+
+    if (formik && defaultSelected) {
+      formik.setFieldValue(name, defaultSelected);
+    }
+
+    return defaultSelectedOptions;
   }
 
   getTriggerText = (selectedOptions) => {
@@ -75,30 +87,6 @@ class Select extends React.Component {
       return `${selectedOptions.length} ${pluralize(selectedOptions.length, label)}`;
     }
     return selectedOptions[0].label;
-  }
-
-  addOption = (selectedOption) => {
-    const { selectedOptions } = this.state;
-
-    const newSelectedOptions = [
-      ...selectedOptions,
-      selectedOption,
-    ];
-
-    this.setState({
-      selectedOptions: newSelectedOptions,
-    }, () => this.onChange(newSelectedOptions));
-  }
-
-  removeOption = (selectedOption) => {
-    const { selectedOptions } = this.state;
-
-    const newSelectedOptions =
-      selectedOptions.filter((option) => option.value !== selectedOption.value);
-
-    this.setState({
-      selectedOptions: newSelectedOptions,
-    }, () => this.onChange(newSelectedOptions));
   }
 
   itemToString = (option) =>
@@ -170,7 +158,6 @@ class Select extends React.Component {
                       options.map((option, index) => (
                         <Option
                           key={option.value}
-                          clickable
                           {...getItemProps({
                             index,
                             item: option,

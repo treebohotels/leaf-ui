@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Icon from '../../Icon/web';
 import Text from '../../Text/web';
 import List from './List';
@@ -15,11 +16,11 @@ storiesOf('List', module)
   ))
   .add('clickable list', () => (
     <List>
-      <List.Item clickable>Acacia</List.Item>
-      <List.Item clickable>Oak</List.Item>
-      <List.Item clickable>Maple</List.Item>
-      <List.Item clickable>Mahogany</List.Item>
-      <List.Item clickable>
+      <List.Item onClick={action('listItem clicked')}>Acacia</List.Item>
+      <List.Item onClick={action('listItem clicked')}>Oak</List.Item>
+      <List.Item onClick={action('listItem clicked')}>Maple</List.Item>
+      <List.Item onClick={action('listItem clicked')}>Mahogany</List.Item>
+      <List.Item onClick={action('listItem clicked')}>
         <Icon name="nature">
           with Icon
         </Icon>
@@ -28,11 +29,11 @@ storiesOf('List', module)
   ))
   .add('clickable list with a disabled item', () => (
     <List>
-      <List.Item clickable>Acacia</List.Item>
-      <List.Item clickable disabled>Oak</List.Item>
-      <List.Item clickable>Maple</List.Item>
-      <List.Item clickable>Mahogany</List.Item>
-      <List.Item clickable disabled>
+      <List.Item onClick={action('listItem clicked')}>Acacia</List.Item>
+      <List.Item onClick={action('listItem clicked')} disabled>Oak</List.Item>
+      <List.Item onClick={action('listItem clicked')}>Maple</List.Item>
+      <List.Item onClick={action('listItem clicked')}>Mahogany</List.Item>
+      <List.Item onClick={action('listItem clicked')} disabled>
         <Icon name="nature">
           with Icon
         </Icon>

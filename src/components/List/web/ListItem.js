@@ -9,17 +9,16 @@ const ListItem = styled.li`
 
   &:hover,
   &:focus {
-    background: ${(props) => props.clickable ? props.theme.color.primaryLighter : ''};
+    background: ${(props) => props.onClick ? props.theme.color.translucent : ''};
   }
 `;
 
 ListItem.propTypes = {
-  clickable: PropTypes.bool,
+  onClick: PropTypes.func,
   disabled: PropTypes.bool,
 };
 
 ListItem.defaultProps = {
-  clickable: false,
   disabled: false,
 };
 

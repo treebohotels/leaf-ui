@@ -19,16 +19,15 @@ const I = styled.i.attrs({
   children: (props) => props.name,
 })`
   color: ${styles.color};
-  padding: ${(props) => props.button ? props.theme.px(1) : ''};
   margin-left: ${(props) => props.hasChildren && props.right ? props.theme.px(1) : ''};
   margin-right: ${(props) => props.hasChildren ? props.theme.px(1) : ''};
   font-size: ${(props) => props.hasChildren ? 'inherit !important' : ''};
-  cursor: ${(props) => props.button ? 'pointer' : ''};
+  cursor: ${(props) => props.onClick ? 'pointer' : ''};
   pointer-events: ${(props) => props.disabled ? 'none' : ''};
   opacity: ${(props) => props.disabled ? '0.5' : ''};
 
   &:hover {
-    background: ${(props) => props.button ? props.theme.color.translucent : ''};
+    background: ${(props) => props.onClick ? props.theme.color.translucent : ''};
   }
 `;
 
@@ -36,7 +35,7 @@ const Icon = ({
   color,
   name,
   right,
-  button,
+  onClick,
   children,
   ...props
 }) => (
@@ -46,7 +45,7 @@ const Icon = ({
       color={color}
       name={name}
       right={right}
-      button={button}
+      onClick={onClick}
       hasChildren={!!children}
       {...props}
     />
@@ -58,15 +57,14 @@ Icon.propTypes = {
   color: PropTypes.string,
   name: PropTypes.string,
   right: PropTypes.bool,
-  button: PropTypes.bool,
   disabled: PropTypes.bool,
+  onClick: PropTypes.bool,
   children: PropTypes.node,
 };
 
 Icon.defaultProps = {
   name: 'fiber_manual_record',
   right: false,
-  button: false,
   disabled: false,
 };
 

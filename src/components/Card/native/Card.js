@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const boxShadow = [
-  '0px 0px',
+  '0px 0px 0px rgba(0,0,0,0)',
   '0px 1px 3px rgba(0,0,0,0.1)',
   '0px 3px 6px rgba(0,0,0,0.2)',
   '0px 10px 20px rgba(0,0,0,0.3)',
