@@ -8,8 +8,8 @@ import Modal from './Modal';
 
 storiesOf('Modal', module)
   .add('simple', () => (
-    <Toggle
-      render={({ on, toggle }) => (
+    <Toggle>
+      {({ on, toggle }) => (
         <div>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
@@ -27,40 +27,42 @@ storiesOf('Modal', module)
           </Modal>
         </div>
       )}
-    />
+    </Toggle>
   ))
   .add('tabbed', () => (
-    <Toggle
-      render={({ on, toggle }) => (
+    <Toggle>
+      {({ on, toggle }) => (
         <div>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
-            <Modal.Header dark>
+            <Modal.Header>
               MODAL HEADER
             </Modal.Header>
-            <Tabs>
-              <Tabs.Tab title="One">
-                <Modal.Content>
-                  Content for One
-                </Modal.Content>
-              </Tabs.Tab>
-              <Tabs.Tab title="Two">
-                <Modal.Content>
-                  Content for Two
-                </Modal.Content>
-              </Tabs.Tab>
-            </Tabs>
+            <Modal.Content>
+              <Tabs>
+                <Tabs.Tab title="One">
+                  <Modal.Content>
+                    Content for One
+                  </Modal.Content>
+                </Tabs.Tab>
+                <Tabs.Tab title="Two">
+                  <Modal.Content>
+                    Content for Two
+                  </Modal.Content>
+                </Tabs.Tab>
+              </Tabs>
+            </Modal.Content>
             <Modal.Footer>
               MODAL FOOTER
             </Modal.Footer>
           </Modal>
         </div>
       )}
-    />
+    </Toggle>
   ))
   .add('with title and subtitle', () => (
-    <Toggle
-      render={({ on, toggle }) => (
+    <Toggle>
+      {({ on, toggle }) => (
         <div>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
@@ -79,11 +81,11 @@ storiesOf('Modal', module)
           </Modal>
         </div>
       )}
-    />
+    </Toggle>
   ))
   .add('modal over a modal', () => (
-    <Toggle
-      render={({ on, toggle }) => (
+    <Toggle>
+      {({ on, toggle }) => (
         <div>
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
@@ -91,8 +93,8 @@ storiesOf('Modal', module)
               MODAL HEADER
             </Modal.Header>
             <Modal.Content>
-              <Toggle
-                render={({ on: isInnerModalOpen, toggle: toggleInnerModal }) => (
+              <Toggle>
+                {({ on: isInnerModalOpen, toggle: toggleInnerModal }) => (
                   <div>
                     <Button onClick={toggleInnerModal}>OPEN MODAL</Button>
                     <Modal isOpen={isInnerModalOpen} onClose={toggleInnerModal}>
@@ -110,7 +112,7 @@ storiesOf('Modal', module)
                     </Modal>
                   </div>
                 )}
-              />
+              </Toggle>
             </Modal.Content>
             <Modal.Footer>
               MODAL FOOTER
@@ -118,5 +120,5 @@ storiesOf('Modal', module)
           </Modal>
         </div>
       )}
-    />
+    </Toggle>
   ));
