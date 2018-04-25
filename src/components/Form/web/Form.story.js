@@ -12,8 +12,6 @@ storiesOf('Form', module)
   .add('simple', () => (
     <Form
       initialValues={{
-        leafName: 'eucalyptus',
-        leafColor: { label: 'Green', value: 'Green' },
         isAquatic: false,
         treeType: 'maple',
       }}
@@ -28,12 +26,36 @@ storiesOf('Form', module)
       }
     >
       <Form.Form>
-        <TextInput name="leafName" label="Leaf name" />
-        <Select name="leafColor" label="Leaf color" options={[{ label: 'Red', value: 'Red' }, { label: 'Green', value: 'Green' }]} />
-        <Checkbox name="isAquatic" label="Is an aquatic plant" />
-        <RadioButton name="treeType" label="Oak" value="oak" />
-        <RadioButton name="treeType" label="Maple" value="maple" />
-        <RadioButton name="treeType" label="Mahogany" value="mahogany" />
+        <TextInput
+          name="leafName"
+          label="Leaf name"
+          defaultValue="eucalyptus"
+        />
+        <Select
+          name="leafColor"
+          label="Leaf color"
+          options={[{ label: 'Red', value: 'Red' }, { label: 'Green', value: 'Green' }]}
+          defaultSelected={{ label: 'Green', value: 'Green' }}
+        />
+        <Checkbox
+          name="isAquatic"
+          label="Is an aquatic plant"
+        />
+        <RadioButton
+          name="treeType"
+          label="Oak"
+          value="oak"
+        />
+        <RadioButton
+          name="treeType"
+          label="Maple"
+          value="maple"
+        />
+        <RadioButton
+          name="treeType"
+          label="Mahogany"
+          value="mahogany"
+        />
         <Button type="submit">Submit</Button>
       </Form.Form>
     </Form>
