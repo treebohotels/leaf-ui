@@ -5,6 +5,12 @@ import styled from 'styled-components';
 const Text = styled(({
   component,
   children,
+  color,
+  size,
+  weight,
+  family,
+  align,
+  truncate,
   ...props
 }) => React.createElement(component, props, children))`
   color: ${(props) => props.color ? props.theme.color[props.color] : ''};

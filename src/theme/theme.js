@@ -71,6 +71,7 @@ theme.fontSize.m = '16px';
 theme.fontSize.s = '14px';
 theme.fontSize.xs = '12px';
 theme.fontSize.xxs = '10px';
+theme.fontSize.xxxs = '8px';
 
 theme.fontWeight = {};
 theme.fontWeight.normal = 400;

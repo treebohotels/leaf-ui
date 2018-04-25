@@ -17,10 +17,6 @@ const ButtonView = styled.View`
       background-color: transparent;
       border-color: ${p.theme.color[p.color]};
     `,
-    transparent: `
-      background-color: transparent;
-      border-color: transparent;
-    `,
   }[p.kind])}
   ${(p) => ({
     bluntEdged: `
@@ -90,15 +86,16 @@ const Button = ({
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
   color: PropTypes.string,
-  kind: PropTypes.oneOf(['filled', 'outlined', 'transparent']),
-  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'capsular']),
+  kind: PropTypes.oneOf(['filled', 'outlined']),
+  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'capsular', 'circular']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   block: PropTypes.bool,
   disabled: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {
-  color: 'green',
+  color: 'primary',
   kind: 'filled',
   size: 'medium',
   shape: 'bluntEdged',
