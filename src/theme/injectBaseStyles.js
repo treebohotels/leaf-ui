@@ -35,15 +35,9 @@ const injectBaseStyles = (
     h3,
     h4,
     h5,
-    h6,
-    ul,
-    ol {
+    h6 {
       padding: 0;
       margin: 0;
-    }
-
-    ol {
-      list-style: decimal inside;
     }
   `;
 

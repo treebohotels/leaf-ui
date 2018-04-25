@@ -1,19 +1,35 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ListItem from './ListItem';
 
-const List = styled.ul`
-  list-style-type: ${(props) => props.bulletType || 'none'};
-  list-style-position: ${(props) => props.bulletType ? 'outside' : ''};
-  padding-left: ${(props) => props.bulletType ? props.theme.px(2) : ''};
+const styles = {
+  listStyleType(props) {
+    if (props.type === 'ul') {
+      return 'disc';
+    } else if (props.type === 'ol') {
+      return 'decimal';
+    }
+    return 'none';
+  },
+};
+
+const List = styled(({
+  type,
+  ...props
+}) => React.createElement(props.type || 'ul', props))`
+  margin: 0;
+  padding: ${(props) => props.type ? props.theme.px([0, 0, 0, 2]) : '0'};
+  list-style-type: ${styles.listStyleType};
+  list-style-position: ${(props) => props.type ? 'outside' : ''};
 
   > ${/* sc-selector */ListItem} {
-    padding: ${(props) => props.bulletType ? props.theme.px([1, 1, 1, 0]) : props.theme.px(2)};
+    padding: ${(props) => props.type ? props.theme.px([1, 1, 1, 0]) : props.theme.px(2)};
   }
 `;
 
 List.propTypes = {
-  bulletType: PropTypes.oneOf(['disc']),
+  type: PropTypes.oneOf(['ul', 'ol']),
 };
 
 List.Item = ListItem;
