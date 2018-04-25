@@ -23,16 +23,18 @@ const Spacer = styled(
 `;
 
 Spacer.propTypes = {
-  margin: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-  ]),
-  padding: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-  ]),
+  margin: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+  ),
+  padding: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+  ),
   maxWidth: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
