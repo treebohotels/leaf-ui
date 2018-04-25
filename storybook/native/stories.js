@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import theme from '../../src/theme';
 import Button from '../../src/components/Button/native';
 import Card from '../../src/components/Card/native';
+import Divider from '../../src/components/Divider/native';
+import Flex from '../../src/components/Flex/native';
 import Text from '../../src/components/Text/native';
 import Form from '../../src/components/Form/native';
 import TextInput from '../../src/components/TextInput/native';
@@ -134,6 +136,40 @@ storiesOf('Card', module)
           </Spacer>
         </Card>
       </Spacer>
+    </Spacer>
+  ));
+
+storiesOf('Divider', module)
+  .add('Horizontal', () => (
+    <Spacer margin={2}>
+      <Card color="translucent">
+        <Spacer padding={2}>
+          <Text>Lorem Ipsum</Text>
+        </Spacer>
+      </Card>
+      <Divider />
+      <Card color="translucent">
+        <Spacer padding={2}>
+          <Text>Treebo Ipsum</Text>
+        </Spacer>
+      </Card>
+    </Spacer>
+  ))
+  .add('Vertical', () => (
+    <Spacer margin={2}>
+      <Flex flexDirection="row">
+        <Card color="translucent">
+          <Spacer padding={2}>
+            <Text>Lorem Ipsum</Text>
+          </Spacer>
+        </Card>
+        <Divider vertical />
+        <Card color="translucent">
+          <Spacer padding={2}>
+            <Text>Treebo Ipsum</Text>
+          </Spacer>
+        </Card>
+      </Flex>
     </Spacer>
   ));
 
