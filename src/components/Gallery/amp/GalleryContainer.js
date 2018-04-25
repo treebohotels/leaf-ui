@@ -5,8 +5,8 @@ import styled from 'styled-components';
 const GalleryContainer = styled(
   ({
     className,
-    ...rest
-  }) => <amp-carousel layout="responsive" type="slides" {...rest} />,
+    ...props
+  }) => <amp-carousel layout="responsive" type="slides" {...props} />,
 )`
   ${''}
 `;

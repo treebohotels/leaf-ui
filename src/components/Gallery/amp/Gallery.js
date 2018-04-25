@@ -34,6 +34,4 @@ Gallery.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-Gallery.defaultProps = {};
-
 export default Gallery;

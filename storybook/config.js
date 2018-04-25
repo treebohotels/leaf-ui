@@ -23,6 +23,6 @@ addDecorator((story) => {
 });
 
 configure(() => {
-  const req = require.context('../src', true, /[^(amp)]\.story\.js$/);
+  const req = require.context('../src', true, /\/web\/.*\.story.js$/);
   req.keys().forEach((filename) => req(filename));
 }, module);
