@@ -1,7 +1,7 @@
 import Expo from 'expo';
 import React from 'react';
 import { View } from 'react-native';
-import StorybookUI from './storybook/native';
+import StorybookUI from './storybook/native/config';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class AwakeInDevApp extends React.Component {
