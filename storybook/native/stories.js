@@ -174,35 +174,31 @@ storiesOf('Divider', module)
   ));
 
 storiesOf('Text', module)
-  .add('Default', () => (
-    <Text>Simple Text</Text>
-  ))
   .add('sizes', () => (
-    <View>
-      {
-        Object.keys(theme.fontSize).map((size) => (
-          <Spacer margin={[4]} key={size}>
+    <Spacer margin={[2]}>
+      <Card elevation={1}>
+        { Object.keys(theme.fontSize).map((size) => (
+          <Spacer padding={[1]}>
             <Text size={size}>
-              {size}: {theme.fontSize[size]}
-              Size
+              {`size="${size}" (${theme.fontSize[size]})`}
             </Text>
           </Spacer>
-        ))
-      }
-    </View>
+          )) }
+      </Card>
+    </Spacer>
   ))
   .add('weights', () => (
-    <View>
-      {
-        Object.keys(theme.fontWeight).map((weight) => (
-          <Spacer margin={[4]} key={weight}>
+    <Spacer margin={[2]}>
+      <Card elevation={1}>
+        { Object.keys(theme.fontWeight).map((weight) => (
+          <Spacer padding={[1]}>
             <Text weight={weight}>
-              {weight}: {theme.fontWeight[weight]}
-              Weight
+              {`weight="${weight}" (${theme.fontWeight[weight]})`}
             </Text>
-          </Spacer>))
-      }
-    </View>
+          </Spacer>
+          )) }
+      </Card>
+    </Spacer>
   ));
 
 storiesOf('TextInput', module)
