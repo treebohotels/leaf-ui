@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { addDecorator, configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
-import theme, { injectBaseStyles } from '../src/theme';
+import theme, { injectBaseStyles } from '../../src/theme';
 
 setOptions({
   name: 'Leaf-UI',
@@ -23,6 +23,6 @@ addDecorator((story) => {
 });
 
 configure(() => {
-  const req = require.context('../src', true, /\/web\/.*\.story.js$/);
+  const req = require.context('../../src', true, /\/web\/.*\.story.js$/);
   req.keys().forEach((filename) => req(filename));
 }, module);

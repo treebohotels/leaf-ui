@@ -50,9 +50,29 @@ export default App;
 
 # Contribute
 
+Web Components
 ```
 npm install
-npm start
+npm run web
+# open http://localhost:9000
 ```
 
-The Storybook will be available on port `http://localhost:9000/`
+Native Components
+```
+npm install
+
+# terminal-1
+npm run native:storybook
+
+# terminal-2
+npm run native
+# press i for ios
+# press a for android
+```
+
+Amp Components
+```
+npm install
+npm run amp
+# open http://localhost:9001
+```
