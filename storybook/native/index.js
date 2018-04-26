@@ -22,8 +22,13 @@ addDecorator((story) => (
 ));
 
 configure(() => {
-  // eslint-disable-next-line global-require
-  require('./stories');
+  require('../../src/components/Button/native/Button.story');
+  require('../../src/components/Card/native/Card.story');
+  require('../../src/components/Divider/native/Divider.story');
+  require('../../src/components/Form/native/Form.story');
+  require('../../src/components/Tag/native/Tag.story');
+  require('../../src/components/Text/native/Text.story');
+  require('../../src/components/TextInput/native/TextInput.story');
 }, module);
 
 const StorybookUIRoot = getStorybookUI({ port: 7007, onDeviceUI: true });
