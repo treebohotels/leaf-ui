@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Text from '../../Text/web';
 
-const MoreOrLessContainer = styled.div`
+let index = 0;
+const getUniqueId = () => {
+  index += 1;
+  return `__LEAF_UI__more-or-less-input-${index}`;
+};
+
+const MoreOrLessContainer = styled(
+  ({
+    id,
+    initialHeight,
+    labelForMore,
+    labelForLess,
+    ...props
+  }) => <div {...props} />,
+)`
   > div {
     height: ${(props) => props.initialHeight};
     overflow: hidden;
@@ -13,7 +27,7 @@ const MoreOrLessContainer = styled.div`
     content: "${(props) => props.labelForMore}";
   }
 
-  #togglemoreorless {
+  #${(props) => props.id} {
     display: none;
 
     &:checked {
@@ -28,20 +42,41 @@ const MoreOrLessContainer = styled.div`
   }
 `;
 
-const MoreOrLess = (props) => (
-  <MoreOrLessContainer {...props}>
-    <input type="checkbox" id="togglemoreorless" />
-    <div>
-      {props.children}
-    </div>
-    <Text
-      component="label"
-      htmlFor="togglemoreorless"
-      color="blue"
-      size="s"
-    />
-  </MoreOrLessContainer>
-);
+class MoreOrLess extends Component {
+  constructor(props) {
+    super(props);
+    this.id = getUniqueId();
+  }
+
+  render() {
+    const {
+      initialHeight,
+      labelForMore,
+      labelForLess,
+      children,
+      ...props
+    } = this.props;
+
+    return (
+      <MoreOrLessContainer
+        id={this.id}
+        initialHeight={initialHeight}
+        labelForMore={labelForMore}
+        labelForLess={labelForLess}
+        {...props}
+      >
+        <input type="checkbox" id={this.id} />
+        <div>{children}</div>
+        <Text
+          component="label"
+          htmlFor={this.id}
+          color="blue"
+          size="s"
+        />
+      </MoreOrLessContainer>
+    );
+  }
+}
 
 MoreOrLess.propTypes = {
   initialHeight: PropTypes.string.isRequired,

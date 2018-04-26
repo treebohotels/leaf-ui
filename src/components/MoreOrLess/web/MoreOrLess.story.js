@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import Card from '../../Card/web';
+import Spacer from '../../Spacer/web';
 import MoreOrLess from './MoreOrLess';
 
 const LoremIpsum = () => (
@@ -30,9 +31,20 @@ const LoremIpsum = () => (
 
 storiesOf('MoreOrLess', module)
   .add('simple', () => (
-    <MoreOrLess initialHeight="100px" labelForMore="Show More" labelForLess="Show Less">
-      <Card>
-        <LoremIpsum />
-      </Card>
-    </MoreOrLess>
+    <Fragment>
+      <Spacer padding={[2]}>
+        <MoreOrLess initialHeight="100px" labelForMore="Show More" labelForLess="Show Less">
+          <Card>
+            <LoremIpsum />
+          </Card>
+        </MoreOrLess>
+      </Spacer>
+      <Spacer padding={[2]}>
+        <MoreOrLess initialHeight="100px" labelForMore="Show More" labelForLess="Show Less">
+          <Card>
+            <LoremIpsum />
+          </Card>
+        </MoreOrLess>
+      </Spacer>
+    </Fragment>
   ));
