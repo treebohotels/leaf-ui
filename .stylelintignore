@@ -2,7 +2,7 @@
 .vscode
 .expo
 es
-lib
+cjs
 docs
 coverage
 node_modules

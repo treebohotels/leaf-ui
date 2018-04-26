@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import theme from '../theme';
-import Flex from '../components/Flex/web';
-import Card from '../components/Card/web';
-import Spacer from '../components/Spacer/web';
+import Flex from '../Flex/web';
+import Card from '../Card/web';
+import Spacer from '../Spacer/web';
 
 storiesOf('Theme', module)
   .add('colors', () => {
