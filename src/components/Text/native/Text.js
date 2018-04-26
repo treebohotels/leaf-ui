@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Platform } from 'react-native';
+import theme from '../../../theme';
 
 const isPlatformAndroid = !(Platform.OS === 'ios');
 
@@ -20,25 +21,9 @@ const Text = styled.Text`
 `;
 
 Text.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOf([
-    'xxxxl',
-    'xxxl',
-    'xxl',
-    'xl',
-    'l',
-    'm',
-    's',
-    'xs',
-    'xxs',
-    'xxxs',
-  ]),
-  weight: PropTypes.oneOf([
-    'normal',
-    'medium',
-    'semibold',
-    'bold',
-  ]),
+  color: PropTypes.oneOf(Object.keys(theme.color)),
+  size: PropTypes.oneOf(Object.keys(theme.fontSize)),
+  weight: PropTypes.oneOf(Object.keys(theme.fontWeight)),
   align: PropTypes.oneOf(['left', 'center', 'right']),
 };
 
