@@ -24,7 +24,7 @@ const MoreOrLessContainer = styled(
   }
 
   > label::before {
-    content: "${(props) => props.labelForMore}";
+    content: '${(props) => props.labelForMore}';
   }
 
   #${(props) => props.id} {
@@ -36,7 +36,7 @@ const MoreOrLessContainer = styled(
       }
 
       ~ label::before {
-        content: "${(props) => props.labelForLess}";
+        content: '${(props) => props.labelForLess}';
       }
     }
   }
