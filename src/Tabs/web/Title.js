@@ -3,14 +3,15 @@ import styled from 'styled-components';
 const Title = styled.div`
   display: flex;
   flex: 0;
+  white-space: nowrap;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: ${(props) => props.theme.px([2, 3])};
-  color: ${(props) => props.theme.color.white};
-  background: ${(props) => props.theme.color.lagoon};
+  padding: ${(props) => props.theme.px(2)};
   border-bottom: 2px solid transparent;
-  border-color: ${(props) => props.isSelected ? props.theme.color.yellow : 'transparent'};
+  color: ${(props) => props.isSelected ? '' : props.theme.color.grey};
+  font-weight: ${(props) => props.isSelected ? props.theme.fontWeight.medium : ''};
+  border-color: ${(props) => props.isSelected ? props.theme.color.primary : 'transparent'};
 `;
 
 export default Title;

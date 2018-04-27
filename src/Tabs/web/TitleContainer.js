@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const TitleContainer = styled.div`
   display: flex;
-  padding: ${(props) => props.theme.px([0, 7])};
-  background: ${(props) => props.theme.color.lagoon};
+  padding: ${(props) => props.theme.px([0, 3])};
+  border-bottom: 1px solid ${(props) => props.theme.color.greyLight};
 `;
 
 export default TitleContainer;
