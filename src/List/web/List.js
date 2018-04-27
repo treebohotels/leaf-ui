@@ -5,19 +5,20 @@ import ListItem from './ListItem';
 
 const styles = {
   listStyleType(props) {
-    if (props.type === 'ul') {
+    if (props.type === 'unordered') {
       return 'disc';
-    } else if (props.type === 'ol') {
+    } else if (props.type === 'ordered') {
       return 'decimal';
     }
     return 'none';
   },
 };
+const listType = (props) => props && props.type === 'ordered' ? 'ol' : 'ul';
 
 const List = styled(({
   type,
   ...props
-}) => React.createElement(props.type || 'ul', props))`
+}) => React.createElement(listType(props.type), props))`
   margin: 0;
   padding: ${(props) => props.type ? props.theme.px([0, 0, 0, 2]) : '0'};
   list-style-type: ${styles.listStyleType};
