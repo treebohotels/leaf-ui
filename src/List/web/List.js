@@ -30,7 +30,7 @@ const List = styled(({
 `;
 
 List.propTypes = {
-  type: PropTypes.oneOf(['ul', 'ol']),
+  type: PropTypes.oneOf(['ordered', 'unordered']),
 };
 
 List.Item = ListItem;

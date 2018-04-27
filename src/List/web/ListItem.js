@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const ListItem = styled.li`
   color: ${(props) => props.disabled ? props.theme.color.greyLight : ''};
-  cursor: ${(props) => props.clickable ? 'pointer' : ''};
+  cursor: ${(props) => props.onClick ? 'pointer' : ''};
   pointer-events: ${(props) => props.disabled ? 'none' : ''};
   opacity: ${(props) => props.disabled ? '0.5' : ''};
 
