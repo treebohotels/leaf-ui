@@ -28,17 +28,6 @@ const injectBaseStyles = (
     *::before {
       box-sizing: inherit;
     }
-
-    p,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      padding: 0;
-      margin: 0;
-    }
   `;
 
   if (options.icons) {

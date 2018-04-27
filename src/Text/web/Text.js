@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import theme from '../../theme';
 
 const Text = styled(({
   component,
-  children,
   color,
   size,
   weight,
   family,
   align,
   truncate,
+  children,
   ...props
 }) => React.createElement(component, props, children))`
   color: ${(props) => props.color ? props.theme.color[props.color] : ''};
@@ -22,14 +23,16 @@ const Text = styled(({
   overflow: ${(props) => props.truncate ? 'hidden' : ''};
   white-space: ${(props) => props.truncate ? 'nowrap' : ''};
   text-overflow: ${(props) => props.truncate ? 'ellipsis' : ''};
+  padding: 0;
+  margin: 0;
 `;
 
 Text.propTypes = {
   component: PropTypes.node,
-  color: PropTypes.string,
-  size: PropTypes.string,
-  weight: PropTypes.string,
-  family: PropTypes.string,
+  color: PropTypes.oneOf(Object.keys(theme.color)),
+  size: PropTypes.oneOf(Object.keys(theme.fontSize)),
+  weight: PropTypes.oneOf(Object.keys(theme.fontWeight)),
+  family: PropTypes.oneOf(Object.keys(theme.fontFamily)),
   align: PropTypes.oneOf(['left', 'center', 'right']),
   truncate: PropTypes.bool,
 };
