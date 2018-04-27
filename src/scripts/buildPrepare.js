@@ -50,11 +50,11 @@ fs.readFile(packageJsonPath, 'utf-8', (readFileErr, packageJsonData) => {
   const packageJson = JSON.parse(packageJsonData);
   const newPackageJson = Object.assign({}, packageJson, {
     files: [
-      'cjs',
-      'es',
-      ...components,
-      'theme',
-    ].map((file) => `${file}/**/*`),
+      'cjs/**/*',
+      'es/**/*',
+      ...components.map((component) => `${component}/**/*`),
+      'theme.js',
+    ],
   });
   fs.writeFile(packageJsonPath, JSON.stringify(newPackageJson, null, 2), (writeFileErr) => {
     if (writeFileErr) throw writeFileErr;
