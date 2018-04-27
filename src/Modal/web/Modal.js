@@ -16,7 +16,7 @@ const styles = {
       left: 0,
       bottom: 0,
       zIndex: 'auto',
-      background: 'rgba(0, 0, 0, 0.25)',
+      background: 'rgba(0, 0, 0, 0.5)',
     },
   },
 };

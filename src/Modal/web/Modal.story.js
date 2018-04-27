@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import Toggle from '../../Toggle/web';
 import Button from '../../Button/web';
 import Text from '../../Text/web';
+import Flex from '../../Flex/web';
 import Tabs from '../../Tabs/web';
 import Modal from './Modal';
 
@@ -14,7 +15,7 @@ storiesOf('Modal', module)
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
             <Modal.Header>
-              MODAL HEADER
+              Modal Header
             </Modal.Header>
             <Modal.Content>
               content for the modal
@@ -22,7 +23,7 @@ storiesOf('Modal', module)
               content for the modal
             </Modal.Content>
             <Modal.Footer>
-              MODAL FOOTER
+              Modal Footer
             </Modal.Footer>
           </Modal>
         </div>
@@ -36,24 +37,24 @@ storiesOf('Modal', module)
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
             <Modal.Header>
-              MODAL HEADER
+              Modal Header
             </Modal.Header>
-            <Modal.Content>
+            <Flex flex="auto" flexDirection="column">
               <Tabs>
-                <Tabs.Tab title="One">
+                <Tabs.Tab title="Tab Selected">
                   <Modal.Content>
-                    Content for One
+                    First Content
                   </Modal.Content>
                 </Tabs.Tab>
-                <Tabs.Tab title="Two">
+                <Tabs.Tab title="Tab Random">
                   <Modal.Content>
-                    Content for Two
+                    Random Content
                   </Modal.Content>
                 </Tabs.Tab>
               </Tabs>
-            </Modal.Content>
+            </Flex>
             <Modal.Footer>
-              MODAL FOOTER
+              Modal Footer
             </Modal.Footer>
           </Modal>
         </div>
@@ -76,7 +77,7 @@ storiesOf('Modal', module)
               content for the modal
             </Modal.Content>
             <Modal.Footer>
-              MODAL FOOTER
+              Modal Footer
             </Modal.Footer>
           </Modal>
         </div>
@@ -90,7 +91,7 @@ storiesOf('Modal', module)
           <Button onClick={toggle}>OPEN MODAL</Button>
           <Modal isOpen={on} onClose={toggle}>
             <Modal.Header>
-              MODAL HEADER
+              Modal Header
             </Modal.Header>
             <Modal.Content>
               <Toggle>
@@ -98,8 +99,8 @@ storiesOf('Modal', module)
                   <div>
                     <Button onClick={toggleInnerModal}>OPEN MODAL</Button>
                     <Modal isOpen={isInnerModalOpen} onClose={toggleInnerModal}>
-                      <Modal.Header>
-                        MODAL HEADER
+                      <Modal.Header onBack={toggleInnerModal}>
+                        Modal Header
                       </Modal.Header>
                       <Modal.Content>
                         content for the modal
@@ -107,7 +108,7 @@ storiesOf('Modal', module)
                         content for the modal
                       </Modal.Content>
                       <Modal.Footer>
-                        MODAL FOOTER
+                        Modal Footer
                       </Modal.Footer>
                     </Modal>
                   </div>
@@ -115,7 +116,7 @@ storiesOf('Modal', module)
               </Toggle>
             </Modal.Content>
             <Modal.Footer>
-              MODAL FOOTER
+              Modal Footer
             </Modal.Footer>
           </Modal>
         </div>

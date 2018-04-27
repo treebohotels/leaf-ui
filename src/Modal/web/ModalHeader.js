@@ -5,7 +5,7 @@ import Icon from '../../Icon/web';
 import Spacer from '../../Spacer/web';
 
 const ModalHeader = ({ children, onBack }) => (
-  <Spacer padding={[5, 5, 0, 5]}>
+  <Spacer padding={[5, 5, 1, 5]}>
     <div>
       {
         onBack ? (
