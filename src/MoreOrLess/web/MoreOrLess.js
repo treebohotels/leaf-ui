@@ -80,7 +80,7 @@ class MoreOrLess extends Component {
 
 MoreOrLess.propTypes = {
   initialHeight: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   labelForMore: PropTypes.string,
   labelForLess: PropTypes.string,
 };
