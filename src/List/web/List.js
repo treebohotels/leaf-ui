@@ -13,7 +13,7 @@ const styles = {
     return 'none';
   },
 };
-const listType = (props) => props && props.type === 'ordered' ? 'ol' : 'ul';
+const listType = (type) => type === 'ordered' ? 'ol' : 'ul';
 
 const List = styled(({
   type,
