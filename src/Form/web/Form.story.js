@@ -12,7 +12,6 @@ storiesOf('Form', module)
   .add('simple', () => (
     <Form
       initialValues={{
-        isAquatic: false,
         treeType: 'maple',
       }}
       onSubmit={action('onSubmit')}
@@ -40,6 +39,7 @@ storiesOf('Form', module)
         <Checkbox
           name="isAquatic"
           label="Is an aquatic plant"
+          defaultChecked
         />
         <RadioButton
           name="treeType"

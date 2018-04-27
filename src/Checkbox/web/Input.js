@@ -3,23 +3,19 @@ import Box from './Box';
 import Tick from './Tick';
 
 const styles = {
-  focus: {
-    Box: {
-      boxShadow(props) {
-        if (props.disabled) {
-          return `0 0 0 1px ${props.theme.color.grey}`;
-        } else if (props.error) {
-          return `0 0 0 1px ${props.theme.color.red}`;
-        }
-        return `0 0 0 1px ${props.theme.color.primary}`;
-      },
-    },
-  },
   checked: {
     Box: {
-      background(props) {
+      borderColor(props) {
         if (props.disabled) {
-          return props.theme.color.grey;
+          return props.theme.color.greyLight;
+        } else if (props.error) {
+          return props.theme.color.red;
+        }
+        return props.theme.color.primary;
+      },
+      backgroundColor(props) {
+        if (props.disabled) {
+          return props.theme.color.greyLight;
         } else if (props.error) {
           return props.theme.color.red;
         }
@@ -28,13 +24,21 @@ const styles = {
     },
   },
   Box: {
-    border(props) {
+    borderColor(props) {
       if (props.disabled) {
-        return `1px solid ${props.theme.color.grey}`;
+        return props.theme.color.greyLight;
       } else if (props.error) {
-        return `1px solid ${props.theme.color.greyDark}`;
+        return props.theme.color.red;
       }
-      return `1px solid ${props.theme.color.greyDark}`;
+      return props.theme.color.greyLight;
+    },
+    backgroundColor(props) {
+      if (props.disabled) {
+        return props.theme.color.greyLighter;
+      } else if (props.error) {
+        return props.theme.color.redLighter;
+      }
+      return props.theme.color.white;
     },
   },
 };
@@ -48,7 +52,6 @@ const Input = styled.input.attrs({
   padding: 0;
   margin: 0;
   overflow: hidden;
-  /* For browsers that yet don't support clip-path */
   clip: rect(0, 0, 0, 0);
   clip-path: inset(1px 0 0 0);
   border: 0;
@@ -56,18 +59,21 @@ const Input = styled.input.attrs({
   white-space: nowrap;
 
   + ${/* sc-selector */Box} {
-    border: ${styles.Box.border};
+    border-color: ${styles.Box.borderColor};
+    background-color: ${styles.Box.backgroundColor};
   }
 
   &:focus {
     + ${/* sc-selector */Box} {
-      box-shadow: ${styles.focus.Box.boxShadow};
+      border-color: ${(props) => props.theme.color.primary};
+      background-color: ${(props) => props.theme.color.white};
     }
   }
 
   &:checked {
     + ${/* sc-selector */Box} {
-      background: ${styles.checked.Box.background};
+      border-color: ${styles.checked.Box.borderColor};
+      background-color: ${styles.checked.Box.backgroundColor};
 
       ${/* sc-selector */Tick} {
         display: block;

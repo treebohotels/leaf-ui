@@ -7,51 +7,72 @@ import Input from './Input';
 import Box from './Box';
 import Tick from './Tick';
 
-const Checkbox = ({
-  className,
-  name,
-  label,
-  disabled,
-  error: errorMessage,
-  ...props
-}, {
-  formik,
-}) => {
-  const inputProps = { name };
-  let error = errorMessage;
+class Checkbox extends React.Component {
+  componentDidMount() {
+    const { name, defaultChecked } = this.props;
+    const { formik } = this.context;
 
-  if (formik) {
-    inputProps.checked = !!formik.values[name];
-    inputProps.onChange = formik.handleChange;
-    inputProps.onBlur = formik.handleBlur;
-    error = formik.touched[name] && formik.errors[name];
+    if (formik) {
+      formik.setFieldValue(name, !!defaultChecked);
+    }
   }
 
-  return (
-    <Container className={className}>
-      <Label htmlFor={name}>
-        <Input
-          id={name}
-          {...inputProps}
-          {...props}
-          disabled={disabled}
-          error={error}
-        />
-        <Box>
-          <Tick />
-        </Box>
-        {label}
-      </Label>
-      {
-        error ? (
-          <Text color="red" size="xxs">
-            {error}
-          </Text>
-        ) : null
-      }
-    </Container>
-  );
-};
+  render() {
+    const {
+      className,
+      name,
+      label,
+      disabled,
+      error: errorMessage,
+      ...props
+    } = this.props;
+
+    const {
+      formik,
+    } = this.context;
+
+    const inputProps = { name, ...props };
+    let error = errorMessage;
+
+    if (formik) {
+      inputProps.checked = !!formik.values[name];
+      delete inputProps.defaultChecked;
+      inputProps.onChange = (...args) => {
+        formik.handleChange(...args);
+        props.onChange(...args);
+      };
+      inputProps.onBlur = (...args) => {
+        formik.handleBlur(...args);
+        props.onBlur(...args);
+      };
+      error = formik.touched[name] && formik.errors[name];
+    }
+
+    return (
+      <Container className={className}>
+        <Label htmlFor={name}>
+          <Input
+            id={name}
+            disabled={disabled}
+            error={error}
+            {...inputProps}
+          />
+          <Box>
+            <Tick />
+          </Box>
+          {label}
+        </Label>
+        {
+          error ? (
+            <Text color="red" size="xxs">
+              {error}
+            </Text>
+          ) : null
+        }
+      </Container>
+    );
+  }
+}
 
 Checkbox.propTypes = {
   className: PropTypes.string,
@@ -59,6 +80,9 @@ Checkbox.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.string,
+  defaultChecked: PropTypes.bool,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 Checkbox.defaultProps = {
@@ -66,6 +90,8 @@ Checkbox.defaultProps = {
   label: 'defaultLabel',
   disabled: false,
   error: '',
+  onChange: () => {},
+  onBlur: () => {},
 };
 
 Checkbox.contextTypes = {
