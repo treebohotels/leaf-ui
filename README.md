@@ -1,7 +1,7 @@
 <div align="center">
 
 ## 🍃 Leaf-UI
-#### A react component library built using styled-components
+#### A react component library for web, native and amp built using styled-components
 #### [WARNING: This is a work in progress, API is subject to change]
 
 </div>
@@ -20,7 +20,7 @@ Wrap your App component with ThemeProvider and pass it the leaf-ui theme (or ove
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
-import leafUiTheme, { injectBaseStyles } from 'leaf-ui/es/theme';
+import leafUiTheme, { injectBaseStyles } from 'leaf-ui/theme';
 import App from './App';
 
 injectBaseStyles(leafUiTheme);
@@ -37,7 +37,10 @@ Import and use the components in your App.js
 ```js
 // App.js
 import React from 'react';
-import Button from 'leaf-ui/es/Button/web';
+import Button from 'leaf-ui/Button/web';
+
+// for commonjs use,
+// import Button from 'leaf-ui/cjs/Button/web';
 
 const App = () => (
   <Button>
@@ -48,11 +51,37 @@ const App = () => (
 export default App;
 ```
 
+Supported Platforms
+* /web
+* /native
+* /amp
+
+
 # Contribute
 
+Web Components
 ```
 npm install
-npm start
+npm run web
+# open http://localhost:9000
 ```
 
-The Storybook will be available on port `http://localhost:9000/`
+Native Components
+```
+npm install
+
+# terminal-1
+npm run native:storybook
+
+# terminal-2
+npm run native
+# press i for ios
+# press a for android
+```
+
+Amp Components
+```
+npm install
+npm run amp
+# open http://localhost:9001
+```

@@ -1,10 +1,16 @@
 /* eslint-disable no-unused-expressions */
 import { injectGlobal } from 'styled-components';
-import injectIconStyles from '../components/Icon/web/injectIconStyles';
+import injectIconStyles from '../Icon/web/injectIconStyles';
 
-const injectBaseStyles = (theme) => {
+const injectBaseStyles = (
+  theme,
+  options = {
+    icons: true,
+  },
+) => {
   injectGlobal`
     html {
+      line-height: 1.2;
       box-sizing: border-box;
     }
 
@@ -22,30 +28,11 @@ const injectBaseStyles = (theme) => {
     *::before {
       box-sizing: inherit;
     }
-
-    p,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    ul,
-    ol {
-      padding: 0;
-      margin: 0;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    ol {
-      list-style: decimal inside;
-    }
   `;
 
-  injectIconStyles(theme);
+  if (options.icons) {
+    injectIconStyles(theme);
+  }
 };
 
 export default injectBaseStyles;

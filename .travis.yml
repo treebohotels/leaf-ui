@@ -8,7 +8,7 @@ before_script:
   - npm prune
 script:
   - npm run lint
-  # - npm run test
   - npm run build
+  - npm run build:prepare
 after_success:
   - npm run semantic-release
