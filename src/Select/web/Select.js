@@ -8,6 +8,7 @@ import Checkbox from '../../Checkbox/web';
 import Container from './Container';
 import Trigger from './Trigger';
 import Label from './Label';
+import Input from './Input';
 import TriggerArrows from './TriggerArrows';
 import OptionList from './OptionList';
 import Option from './Option';
@@ -130,6 +131,7 @@ class Select extends React.Component {
           selectedItem: dsSelectedOptions,
         }) => (
           <Container className={className} {...getRootProps({ refKey: 'innerRef' })}>
+            <Input isOpen={isOpen} disabled={disabled} error={error} {...getButtonProps()} />
             <Trigger
               isOpen={isOpen}
               block={block}
