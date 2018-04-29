@@ -9,6 +9,13 @@ storiesOf('TextInput', module)
       label="Leaf Color"
     />
   ))
+  .add('disabled', () => (
+    <TextInput
+      name="leafColor"
+      label="Leaf Color"
+      disabled
+    />
+  ))
   .add('with error', () => (
     <TextInput
       name="leafColor"
