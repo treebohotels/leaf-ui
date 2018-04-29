@@ -28,6 +28,16 @@ storiesOf('Select', module)
       onChange={action('onChange')}
     />
   ))
+  .add('disabled', () => (
+    <Select
+      name="color"
+      label="Color"
+      options={options}
+      onChange={action('onChange')}
+      defaultSelected={options[2]}
+      disabled
+    />
+  ))
   .add('error', () => (
     <Select
       name="color"
