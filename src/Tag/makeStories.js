@@ -1,8 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { text, select } from '@storybook/addon-knobs';
 import theme from '../theme';
 
-export default (storiesOf, { Tag }) =>
+export default (storiesOf, {
+  Tag,
+  Spacer,
+  Flex,
+}) =>
   storiesOf('Tag', module)
     .add('playground', () => (
       <Tag
@@ -15,24 +19,30 @@ export default (storiesOf, { Tag }) =>
       </Tag>
     ))
     .add('kinds', () => (
-      <Fragment>
-        <Tag kind="outlined">
-        outlined
-        </Tag>
-        <br /><br />
-        <Tag kind="filled">
-        filled
-        </Tag>
-      </Fragment>
+      <Spacer width="100px">
+        <Flex flexDirection="column" >
+          <Tag kind="outlined">
+            outlined
+          </Tag>
+          <Spacer margin={[1, 0, 0, 0]}>
+            <Tag kind="filled">
+              filled
+            </Tag>
+          </Spacer>
+        </Flex>
+      </Spacer>
     ))
     .add('size', () => (
-      <Fragment>
-        <Tag size="small">
-        small
-        </Tag>
-        <br /><br />
-        <Tag>
-        medium
-        </Tag>
-      </Fragment>
+      <Spacer width="100px">
+        <Flex flexDirection="column" >
+          <Tag size="small">
+            small
+          </Tag>
+          <Spacer margin={[1, 0, 0, 0]}>
+            <Tag>
+              medium
+            </Tag>
+          </Spacer>
+        </Flex>
+      </Spacer>
     ));

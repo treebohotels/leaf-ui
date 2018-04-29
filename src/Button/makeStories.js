@@ -1,9 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, select } from '@storybook/addon-knobs';
 import theme from '../theme';
 
-export default (storiesOf, { Button }) =>
+export default (storiesOf, {
+  Button,
+  Spacer,
+  Flex,
+}) =>
   storiesOf('Button', module)
     .add('playground', () => (
       <Button
@@ -19,57 +23,69 @@ export default (storiesOf, { Button }) =>
       </Button>
     ))
     .add('kinds', () => (
-      <Fragment>
-        <Button kind="filled">
-        Filled Button
-        </Button>
-        <br /><br />
-        <Button kind="outlined">
-        Outlined Button
-        </Button>
-      </Fragment>
+      <Spacer width="200px">
+        <Flex flexDirection="column" >
+          <Button kind="filled">
+          Filled Button
+          </Button>
+          <Spacer margin={[1, 0, 0, 0]}>
+            <Button kind="outlined">
+            Outlined Button
+            </Button>
+          </Spacer>
+        </Flex>
+      </Spacer>
     ))
     .add('shapes', () => (
-      <Fragment>
-        <Button shape="bluntEdged">
-        Blunt Edged Button
-        </Button>
-        <br /><br />
-        <Button shape="sharpEdged">
-        Sharp Edged Button
-        </Button>
-        <br /><br />
-        <Button shape="capsular">
-        Capsular Button
-        </Button>
-        <br /><br />
-        <Button shape="circular">
-        C
-        </Button>
-      </Fragment>
+      <Spacer width="200px">
+        <Flex flexDirection="column" >
+          <Button shape="bluntEdged">
+            Blunt Edged Button
+          </Button>
+          <Spacer margin={[1, 0, 0, 0]}>
+            <Button shape="sharpEdged">
+              Sharp Edged Button
+            </Button>
+          </Spacer>
+          <Spacer margin={[1, 0, 0, 0]}>
+            <Button shape="capsular">
+              Capsular Button
+            </Button>
+          </Spacer>
+          <Spacer margin={[1, 0, 0, 0]} width="45px">
+            <Button shape="circular">
+            C
+            </Button>
+          </Spacer>
+        </Flex>
+      </Spacer>
     ))
     .add('sizes', () => (
-      <Fragment>
-        <Button size="small">
-        Small Button
-        </Button>
-        <br /><br />
-        <Button size="medium">
-        Medium Button
-        </Button>
-        <br /><br />
-        <Button size="large">
-        Large Button
-        </Button>
-      </Fragment>
+      <Spacer width="200px">
+        <Flex flexDirection="column" >
+          <Button size="small">
+          Small Button
+          </Button>
+          <Spacer margin={[1, 0, 0, 0]}>
+            <Button size="medium">
+            Medium Button
+            </Button>
+          </Spacer>
+          <Spacer margin={[1, 0, 0, 0]}>
+            <Button size="large">
+            Large Button
+            </Button>
+          </Spacer>
+        </Flex>
+      </Spacer>
     ))
     .add('block', () => (
       <Button block>
-      Block Button
+        Block Button
       </Button>
     ))
     .add('disabled', () => (
       <Button disabled>
-      Disabled Button
+        Disabled Button
       </Button>
     ));
