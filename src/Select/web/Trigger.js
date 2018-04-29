@@ -41,10 +41,10 @@ const Trigger = styled.button`
     border-color: ${(props) => props.theme.color.primary};
     background-color: ${(props) => props.theme.color.white};
     outline: none;
-  }
 
-  &:focus > ${/* sc-selector */Label} {
-    color: ${(props) => props.theme.color.primary};
+    ${/* sc-selector */Label} {
+      color: ${(props) => props.theme.color.primary};
+    }
   }
 `;
 
