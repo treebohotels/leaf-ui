@@ -3,14 +3,8 @@ import Label from './Label';
 
 const styles = {
   focus: {
-    borderColor(props) {
-      return props.theme.color.primary;
-    },
     backgroundColor(props) {
       return props.theme.color.white;
-    },
-    color(props) {
-      return props.theme.color.primary;
     },
   },
   borderColor(props) {
@@ -49,13 +43,13 @@ const Trigger = styled.button`
   border-radius: ${(props) => props.theme.borderRadius};
 
   &:focus {
-    background-color: ${styles.focus.backgroundColor};
-    border-color: ${styles.focus.borderColor};
+    border-color: ${(props) => props.theme.color.primary};
+    background-color: ${(props) => props.theme.color.white};
     outline: none;
   }
 
   &:focus > ${/* sc-selector */Label} {
-    color: ${styles.focus.color};
+    color: ${(props) => props.theme.color.primary};
   }
 `;
 
