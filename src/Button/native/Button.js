@@ -1,7 +1,8 @@
 import React from 'react';
 import { TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
+import theme from '../../theme';
 
 const ButtonView = styled.View`
   align-items: center;
@@ -85,7 +86,7 @@ const Button = ({
 
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
-  color: PropTypes.string,
+  color: PropTypes.oneOf(Object.keys(theme.color)),
   kind: PropTypes.oneOf(['filled', 'outlined']),
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'capsular', 'circular']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),

@@ -1,7 +1,16 @@
+import React from 'react';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import theme from '../../theme';
 
-const Divider = styled.View`
+const Divider = styled(
+  ({
+    color,
+    vertical,
+    ...props
+  }) => <View {...props} />,
+)`
   border-top-width: ${(props) => props.vertical ? 0 : 1};
   border-right-width: ${(props) => props.vertical ? 1 : 0};
   border-color: ${(props) => props.theme.color[props.color] || ''};
@@ -9,7 +18,7 @@ const Divider = styled.View`
 `;
 
 Divider.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.oneOf(Object.keys(theme.color)),
   vertical: PropTypes.bool,
 };
 
