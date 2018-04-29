@@ -28,4 +28,4 @@
 * npm/yarn version: 
 * node version: 
 * browser name and version:
-* operating System and version:
+* operating system and version:
