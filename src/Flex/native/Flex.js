@@ -1,11 +1,28 @@
+import React from 'react';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Flex = styled.View`
-  ${(props) => props.color ? `color: ${props.theme.color[props.color]};` : ''}
+const Flex = styled(
+  ({
+    alignContent,
+    alignItems,
+    alignSelf,
+    display,
+    flex,
+    flexBasis,
+    flexDirection,
+    flexGrow,
+    flexShrink,
+    flexWrap,
+    justifyContent,
+    order,
+    ...props
+  }) => <View {...props} />,
+)`
   ${(props) => props.alignContent ? `align-content: ${props.alignContent};` : ''};
-  ${(props) => props.alignSelf ? `align-self: ${props.alignSelf};` : ''};
   ${(props) => props.alignItems ? `align-items: ${props.alignItems};` : ''};
+  ${(props) => props.alignSelf ? `align-self: ${props.alignSelf};` : ''};
   ${(props) => props.display ? `display: ${props.display};` : ''};
   ${(props) => props.flex ? `flex: ${props.flex};` : ''};
   ${(props) => props.flexBasis ? `flex-basis: ${props.flexBasis};` : ''};
@@ -21,7 +38,6 @@ Flex.propTypes = {
   alignContent: PropTypes.oneOf(['center', 'flex-end', 'flex-start', 'space-around', 'space-between', 'stretch']),
   alignItems: PropTypes.oneOf(['baseline', 'center', 'flex-end', 'flex-start', 'stretch']),
   alignSelf: PropTypes.oneOf(['baseline', 'center', 'flex-end', 'flex-start', 'stretch']),
-  children: PropTypes.node,
   display: PropTypes.oneOf(['flex', 'none']),
   flex: PropTypes.number,
   flexBasis: PropTypes.string,
