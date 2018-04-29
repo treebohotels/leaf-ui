@@ -24,7 +24,8 @@
 
 ### **Environment**
 <!--- Include as many relevant details about the environment you experienced the bug in -->
-* Version used:
-* Browser Name and version:
-* Operating System and version (desktop or mobile):
-* Link to your project:
+* leaf-ui version:
+* npm/yarn version: 
+* node version: 
+* browser name and version:
+* operating System and version:
