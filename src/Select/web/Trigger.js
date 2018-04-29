@@ -2,11 +2,6 @@ import styled from 'styled-components';
 import Label from './Label';
 
 const styles = {
-  focus: {
-    backgroundColor(props) {
-      return props.theme.color.white;
-    },
-  },
   borderColor(props) {
     if (props.isOpen) {
       return props.theme.color.primary;
