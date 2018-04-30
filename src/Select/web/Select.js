@@ -129,13 +129,19 @@ class Select extends React.Component {
           highlightedIndex,
           selectedItem: dsSelectedOptions,
         }) => (
-          <Container className={className} {...getRootProps({ refKey: 'innerRef' })}>
+          <Container
+            {...getRootProps({
+              className,
+              refKey: 'innerRef',
+            })}
+          >
             <Trigger
-              isOpen={isOpen}
-              block={block}
-              disabled={disabled}
-              error={error}
-              {...getButtonProps()}
+              {...getButtonProps({
+                isOpen,
+                block,
+                disabled,
+                error,
+              })}
             >
               <Label
                 isOpen={isOpen}
@@ -145,7 +151,7 @@ class Select extends React.Component {
               >
                 {label}
               </Label>
-              <Text truncate>
+              <Text size="s" truncate>
                 {this.getTriggerText(dsSelectedOptions)}
               </Text>
               <TriggerArrows />
@@ -157,8 +163,8 @@ class Select extends React.Component {
                     {
                       options.map((option, index) => (
                         <Option
-                          key={option.value}
                           {...getItemProps({
+                            key: option.value,
                             index,
                             item: option,
                             isActive: highlightedIndex === index,
@@ -189,9 +195,11 @@ class Select extends React.Component {
             </div>
             {
               error ? (
-                <Text color="red" size="xxs">
-                  {error}
-                </Text>
+                <Spacer margin={[0.5, 0, 0, 0]}>
+                  <Text color="red" size="xxs">
+                    {error}
+                  </Text>
+                </Spacer>
               ) : null
             }
           </Container>

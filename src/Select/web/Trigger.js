@@ -1,4 +1,5 @@
-import Flex from '../../Flex/web';
+import styled from 'styled-components';
+import Label from './Label';
 
 const styles = {
   borderColor(props) {
@@ -23,7 +24,7 @@ const styles = {
   },
 };
 
-const Trigger = Flex.extend`
+const Trigger = styled.button`
   position: relative;
   display: inline-flex;
   justify-content: space-between;
@@ -35,6 +36,16 @@ const Trigger = Flex.extend`
   padding: ${(props) => props.theme.px([3, 1.5, 1.5, 1.5])};
   border: 1px solid ${styles.borderColor};
   border-radius: ${(props) => props.theme.borderRadius};
+
+  &:focus {
+    border-color: ${(props) => props.theme.color.primary};
+    background-color: ${(props) => props.theme.color.white};
+    outline: none;
+
+    ${/* sc-selector */Label} {
+      color: ${(props) => props.theme.color.primary};
+    }
+  }
 `;
 
 export default Trigger;

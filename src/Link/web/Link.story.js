@@ -1,10 +1,5 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Link from './Link';
+import Link from '../web';
+import makeStories from '../makeStories';
 
-storiesOf('Link', module)
-  .add('simple', () => (
-    <Link href="#hash">
-      A simple link
-    </Link>
-  ));
+makeStories(storiesOf, { Link });
