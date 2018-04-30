@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import theme from '../../theme';
+import Card from '../../Card/web';
 import Select from '../../Select/web';
 import Tag from '../../Tag/web';
 import Text from '../../Text/web';
@@ -15,22 +16,24 @@ const options = Object.keys(theme.color).map((color) => ({
 
 storiesOf('Table', module)
   .add('playground', () => (
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>Type</Table.TH>
-          <Table.TH>Date</Table.TH>
-          <Table.TH>ID</Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>Oak</Table.TD>
-          <Table.TD>2018/11/4</Table.TD>
-          <Table.TD>TRB-101</Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
+    <Card>
+      <Table>
+        <Table.THead>
+          <Table.TR>
+            <Table.TH>Type</Table.TH>
+            <Table.TH>Date</Table.TH>
+            <Table.TH>ID</Table.TH>
+          </Table.TR>
+        </Table.THead>
+        <Table.TBody>
+          <Table.TR>
+            <Table.TD>Oak</Table.TD>
+            <Table.TD>2018/11/4</Table.TD>
+            <Table.TD>TRB-101</Table.TD>
+          </Table.TR>
+        </Table.TBody>
+      </Table>
+    </Card>
   ))
   .add('default', () => (
     <Table>
