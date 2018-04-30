@@ -5,15 +5,15 @@ import { AccordionSectionTriggerContainer } from './AccordionSectionTrigger';
 import { AccordionSectionContentContainer } from './AccordionSectionContent';
 import { I } from '../../Icon/amp';
 
-let index = 0;
-const getUniqueId = () => {
-  index += 1;
-  return `__LEAF_UI__accordion-trigger-input-${index}`;
+let inputIndex = 0;
+const getInputId = () => {
+  inputIndex += 1;
+  return `__LEAF_UI__accordion-trigger-input-${inputIndex}`;
 };
 
 const AccordionSectionContainer = styled(
   ({
-    id,
+    inputId,
     ...props
   }) => <div {...props} />,
 )`
@@ -21,14 +21,14 @@ const AccordionSectionContainer = styled(
     display: none;
   }
 
-  #${(props) => props.id} {
+  #${(props) => props.inputId} {
     display: none;
 
-    ~ ${/* sc-selector */AccordionSectionContentContainer} {
-      display: block;
-    }
-
     &:checked {
+      ~ ${/* sc-selector */AccordionSectionContentContainer} {
+        display: block;
+      }
+
       + ${/* sc-selector */AccordionSectionTriggerContainer} {
           ${/* sc-selector */I} {
           transform: rotate(180deg);
@@ -41,26 +41,26 @@ const AccordionSectionContainer = styled(
 class AccordionSection extends Component {
   constructor(props) {
     super(props);
-    this.id = getUniqueId();
+    this.inputId = getInputId();
   }
 
   render() {
     const {
-      accordionGroup,
+      groupName,
       children,
       ...props
     } = this.props;
 
     return (
       <AccordionSectionContainer
-        id={this.id}
+        inputId={this.inputId}
         {...props}
       >
-        <input type="radio" name={accordionGroup} id={this.id} />
+        <input type="radio" name={groupName} id={this.inputId} />
         {
           React.Children.map(children, (child) => child.type.name === 'AccordionSectionTrigger' ? (
             React.cloneElement(child, {
-              htmlFor: this.id,
+              htmlFor: this.inputId,
             })
           ) : child)
         }
@@ -70,7 +70,7 @@ class AccordionSection extends Component {
 }
 
 AccordionSection.propTypes = {
-  accordionGroup: PropTypes.string,
+  groupName: PropTypes.string,
   children: PropTypes.node,
 };
 

@@ -4,16 +4,16 @@ import AccordionSection from './AccordionSection';
 import AccordionSectionTrigger from './AccordionSectionTrigger';
 import AccordionSectionContent from './AccordionSectionContent';
 
-let index = 0;
-const getAccordionGroup = () => {
-  index += 1;
-  return `__LEAF_UI__accordion-group-${index}`;
-};
-
 class Accordion extends Component {
   constructor(props) {
     super(props);
-    this.accordionGroup = getAccordionGroup();
+    this.groupIndex = 0;
+    this.groupName = this.getGroupName();
+  }
+
+  getGroupName = () => {
+    this.groupIndex += 1;
+    return `__LEAF_UI__accordion-group-${this.groupIndex}`;
   }
 
   render() {
@@ -23,7 +23,7 @@ class Accordion extends Component {
         {
           React.Children.map(children, (child) => child.type.name === 'AccordionSection' ? (
             React.cloneElement(child, {
-              accordionGroup: this.accordionGroup,
+              groupName: this.groupName,
             })
           ) : child)
         }

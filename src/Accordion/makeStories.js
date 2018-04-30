@@ -21,7 +21,15 @@ const sampleText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Donec convallis massa at pretium tincidunt.
     Quisque quis tellus quis odio venenatis bibendum`;
 
-export default (storiesOf, { Accordion, Card, Spacer, Icon, Divider, Text }) =>
+export default (storiesOf, {
+  Accordion,
+  Card,
+  Spacer,
+  Icon,
+  Divider,
+  Text,
+  Flex,
+}) =>
   storiesOf('Accordion', module)
     .add('Simple Accordion', () => (
       <Fragment>
@@ -33,11 +41,16 @@ export default (storiesOf, { Accordion, Card, Spacer, Icon, Divider, Text }) =>
             <Accordion.Trigger>
               <Spacer padding={[2]}>
                 <Card>
-                  <Icon name="keyboard_arrow_down" right>
+                  <Flex
+                    flexDirection="row"
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
                     <Text size="s" weight="medium" color="greyDarker">
-                    This is title
+                      This is title
                     </Text>
-                  </Icon>
+                    <Icon name="keyboard_arrow_down" right />
+                  </Flex>
                 </Card>
               </Spacer>
             </Accordion.Trigger>
@@ -52,11 +65,16 @@ export default (storiesOf, { Accordion, Card, Spacer, Icon, Divider, Text }) =>
             <Accordion.Trigger>
               <Spacer padding={[2]}>
                 <Card>
-                  <Icon name="keyboard_arrow_down" right>
+                  <Flex
+                    flexDirection="row"
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
                     <Text size="s" weight="medium" color="greyDarker">
-                    This is title
+                      This is title
                     </Text>
-                  </Icon>
+                    <Icon name="keyboard_arrow_down" right />
+                  </Flex>
                 </Card>
               </Spacer>
             </Accordion.Trigger>
@@ -79,11 +97,16 @@ export default (storiesOf, { Accordion, Card, Spacer, Icon, Divider, Text }) =>
             <Accordion.Trigger>
               <Spacer padding={[2]}>
                 <Card>
-                  <Icon name="keyboard_arrow_down" right>
+                  <Flex
+                    flexDirection="row"
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
                     <Text size="s" weight="medium" color="greyDarker">
-                    This is title
+                      This is title
                     </Text>
-                  </Icon>
+                    <Icon name="keyboard_arrow_down" right />
+                  </Flex>
                 </Card>
               </Spacer>
             </Accordion.Trigger>
@@ -102,11 +125,16 @@ export default (storiesOf, { Accordion, Card, Spacer, Icon, Divider, Text }) =>
             <Accordion.Trigger>
               <Spacer padding={[2]}>
                 <Card>
-                  <Icon name="keyboard_arrow_down" right>
+                  <Flex
+                    flexDirection="row"
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
                     <Text size="s" weight="medium" color="greyDarker">
-                    This is title
+                      This is title
                     </Text>
-                  </Icon>
+                    <Icon name="keyboard_arrow_down" right />
+                  </Flex>
                 </Card>
               </Spacer>
             </Accordion.Trigger>

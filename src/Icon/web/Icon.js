@@ -39,7 +39,7 @@ const Icon = ({
   children,
   ...props
 }) => (
-  <Flex alignItems="center" justifyContent="space-between">
+  <Flex alignItems="center">
     {right ? children : null}
     <I
       color={color}
