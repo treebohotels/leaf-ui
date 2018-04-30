@@ -8,6 +8,7 @@ import TR from './TR';
 import TD from './TD';
 
 const Table = styled.table`
+  width: 100%;
   border-collapse: collapse;
   background-color: ${(props) => props.color ? props.theme.color[props.color] : ''};
 `;
