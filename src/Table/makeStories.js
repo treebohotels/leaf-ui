@@ -7,7 +7,14 @@ const options = Object.keys(theme.color).map((color) => ({
   value: color,
 }));
 
-export default (storiesOf, { Card, Table, Tag, Select, Text, Spacer }) =>
+export default (storiesOf, {
+  Card,
+  Tag,
+  Text,
+  Select,
+  Spacer,
+  Table,
+}) =>
   storiesOf('Table', module)
     .add('playground', () => (
       <Card>
@@ -116,7 +123,7 @@ export default (storiesOf, { Card, Table, Tag, Select, Text, Spacer }) =>
                   kind="outlined"
                   shape="capsular"
                 >
-                 Chip
+                  Chip
                 </Tag>
               </Spacer>
             </Table.TD>
