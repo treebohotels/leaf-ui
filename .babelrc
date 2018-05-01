@@ -19,11 +19,13 @@
     },
     "cjs": {
       "plugins": [
+        ["transform-runtime", {
+          "polyfill": false
+        }],
         "transform-export-extensions",
         "transform-class-properties",
         "transform-object-rest-spread",
         "syntax-trailing-function-commas",
-        "transform-runtime",
         "styled-components"
       ],
       "presets": [
