@@ -104,7 +104,9 @@ const StyledButton = styled(
   ({
     color,
     kind,
+    size,
     shape,
+    block,
     ...props
   }) => <button {...props} />,
 )`
