@@ -14,12 +14,7 @@ const styles = {
   },
 };
 
-export const I = styled(
-  ({
-    name,
-    ...props
-  }) => <i {...props} />,
-).attrs({
+export const I = styled.i.attrs({
   className: (props) => props.className ? `material-icons ${props.className}` : 'material-icons',
   children: (props) => props.name,
 })`

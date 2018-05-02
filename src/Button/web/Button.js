@@ -100,14 +100,7 @@ const styles = {
   },
 };
 
-const StyledButton = styled(
-  ({
-    color,
-    kind,
-    shape,
-    ...props
-  }) => <button {...props} />,
-)`
+const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
