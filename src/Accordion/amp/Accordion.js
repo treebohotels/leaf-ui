@@ -21,7 +21,7 @@ class Accordion extends Component {
     return (
       <div>
         {
-          React.Children.map(children, (child) => child.type.name === 'AccordionSection' ? (
+          React.Children.map(children, (child) => child && child.type.name === 'AccordionSection' ? (
             React.cloneElement(child, {
               groupName: this.groupName,
             })

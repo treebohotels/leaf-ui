@@ -58,7 +58,7 @@ class AccordionSection extends Component {
       >
         <input type="radio" name={groupName} id={this.inputId} />
         {
-          React.Children.map(children, (child) => child.type.name === 'AccordionSectionTrigger' ? (
+          React.Children.map(children, (child) => child && child.type.name === 'AccordionSectionTrigger' ? (
             React.cloneElement(child, {
               htmlFor: this.inputId,
             })
