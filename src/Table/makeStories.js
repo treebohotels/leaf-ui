@@ -8,7 +8,6 @@ const options = Object.keys(theme.color).map((color) => ({
 }));
 
 export default (storiesOf, {
-  Card,
   Tag,
   Text,
   Select,
@@ -16,26 +15,6 @@ export default (storiesOf, {
   Table,
 }) =>
   storiesOf('Table', module)
-    .add('playground', () => (
-      <Card>
-        <Table>
-          <Table.THead>
-            <Table.TR>
-              <Table.TH>Type</Table.TH>
-              <Table.TH>Date</Table.TH>
-              <Table.TH>ID</Table.TH>
-            </Table.TR>
-          </Table.THead>
-          <Table.TBody>
-            <Table.TR>
-              <Table.TD>Oak</Table.TD>
-              <Table.TD>2018/11/4</Table.TD>
-              <Table.TD>TRB-101</Table.TD>
-            </Table.TR>
-          </Table.TBody>
-        </Table>
-      </Card>
-    ))
     .add('default', () => (
       <Table>
         <Table.THead>
