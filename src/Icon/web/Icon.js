@@ -19,6 +19,7 @@ export const I = styled(
     color,
     name,
     right,
+    hasChildren,
     ...props
   }) => <i {...props} />,
 ).attrs({
@@ -65,7 +66,7 @@ Icon.propTypes = {
   name: PropTypes.string,
   right: PropTypes.bool,
   disabled: PropTypes.bool,
-  onClick: PropTypes.bool,
+  onClick: PropTypes.func,
   children: PropTypes.node,
 };
 
