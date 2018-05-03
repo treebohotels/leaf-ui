@@ -2,24 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export const AccordionSectionTriggerContainer = styled.div`
-  ${''}
-`;
-
-const AccordionSectionTrigger = (props) => {
-  const {
+const AccordionSectionTrigger = styled(
+  ({
     children,
     htmlFor,
-  } = props;
-
-  return (
-    <AccordionSectionTriggerContainer>
+    ...props
+  }) => (
+    <div {...props}>
       <label htmlFor={htmlFor}>
         {children}
       </label>
-    </AccordionSectionTriggerContainer>
-  );
-};
+    </div>
+  ),
+)`
+  ${''}
+`;
 
 AccordionSectionTrigger.propTypes = {
   htmlFor: PropTypes.string,

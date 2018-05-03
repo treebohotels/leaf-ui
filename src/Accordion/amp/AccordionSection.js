@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import AccordionSectionTrigger, { AccordionSectionTriggerContainer } from './AccordionSectionTrigger';
-import { AccordionSectionContentContainer } from './AccordionSectionContent';
+import AccordionSectionTrigger from './AccordionSectionTrigger';
+import AccordionSectionContent from './AccordionSectionContent';
 import { I } from '../../Icon/amp';
 
 let inputIndex = 0;
@@ -17,11 +17,11 @@ const AccordionSectionContainer = styled(
     display: none;
 
     &:checked {
-      ~ ${/* sc-selector */AccordionSectionContentContainer} {
+      ~ ${/* sc-selector */AccordionSectionContent} {
         display: block;
       }
 
-      + ${/* sc-selector */AccordionSectionTriggerContainer} {
+      + ${/* sc-selector */AccordionSectionTrigger} {
         ${/* sc-selector */I} {
           transform: rotate(180deg);
         }
