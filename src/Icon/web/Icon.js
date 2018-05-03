@@ -16,7 +16,9 @@ const styles = {
 
 export const I = styled(
   ({
+    color,
     name,
+    right,
     ...props
   }) => <i {...props} />,
 ).attrs({
