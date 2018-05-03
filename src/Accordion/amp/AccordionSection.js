@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { AccordionSectionTriggerContainer } from './AccordionSectionTrigger';
+import AccordionSectionTrigger, { AccordionSectionTriggerContainer } from './AccordionSectionTrigger';
 import { AccordionSectionContentContainer } from './AccordionSectionContent';
 import { I } from '../../Icon/amp';
 
 let inputIndex = 0;
-const getInputId = () => {
-  inputIndex += 1;
-  return `__LEAF_UI__accordion-trigger-input-${inputIndex}`;
-};
 
 const AccordionSectionContainer = styled(
   ({
@@ -17,10 +13,6 @@ const AccordionSectionContainer = styled(
     ...props
   }) => <div {...props} />,
 )`
-  > ${/* sc-selector */AccordionSectionContentContainer} {
-    display: none;
-  }
-
   #${(props) => props.inputId} {
     display: none;
 
@@ -30,7 +22,7 @@ const AccordionSectionContainer = styled(
       }
 
       + ${/* sc-selector */AccordionSectionTriggerContainer} {
-          ${/* sc-selector */I} {
+        ${/* sc-selector */I} {
           transform: rotate(180deg);
         }
       }
@@ -41,8 +33,13 @@ const AccordionSectionContainer = styled(
 class AccordionSection extends Component {
   constructor(props) {
     super(props);
-    this.inputId = getInputId();
+    this.inputId = this.getInputId();
   }
+
+  getInputId = () => {
+    inputIndex += 1;
+    return `__LEAF_UI__accordion-trigger-input-${inputIndex}`;
+  };
 
   render() {
     const {
@@ -58,7 +55,8 @@ class AccordionSection extends Component {
       >
         <input type="radio" name={groupName} id={this.inputId} />
         {
-          React.Children.map(children, (child) => child && child.type.name === 'AccordionSectionTrigger' ? (
+          React.Children.map(children, (child) =>
+          child && child.type === AccordionSectionTrigger ? (
             React.cloneElement(child, {
               htmlFor: this.inputId,
             })

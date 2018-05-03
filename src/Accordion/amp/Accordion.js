@@ -4,24 +4,27 @@ import AccordionSection from './AccordionSection';
 import AccordionSectionTrigger from './AccordionSectionTrigger';
 import AccordionSectionContent from './AccordionSectionContent';
 
+let groupIndex = 0;
+
 class Accordion extends Component {
   constructor(props) {
     super(props);
-    this.groupIndex = 0;
     this.groupName = this.getGroupName();
   }
 
   getGroupName = () => {
-    this.groupIndex += 1;
-    return `__LEAF_UI__accordion-group-${this.groupIndex}`;
+    groupIndex += 1;
+    return `__LEAF_UI__accordion-group-${groupIndex}`;
   }
 
   render() {
     const { children } = this.props;
+
     return (
       <div>
         {
-          React.Children.map(children, (child) => child && child.type.name === 'AccordionSection' ? (
+          React.Children.map(children, (child) =>
+          child && child.type === AccordionSection ? (
             React.cloneElement(child, {
               groupName: this.groupName,
             })
@@ -37,7 +40,7 @@ Accordion.propTypes = {
 };
 
 Accordion.Section = AccordionSection;
-Accordion.Trigger = AccordionSectionTrigger;
-Accordion.Content = AccordionSectionContent;
+Accordion.Section.Trigger = AccordionSectionTrigger;
+Accordion.Section.Content = AccordionSectionContent;
 
 export default Accordion;

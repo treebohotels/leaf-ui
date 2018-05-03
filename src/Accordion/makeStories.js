@@ -38,7 +38,7 @@ export default (storiesOf, {
         </Spacer>
         <Accordion>
           <Accordion.Section>
-            <Accordion.Trigger>
+            <Accordion.Section.Trigger>
               <Spacer padding={[2]}>
                 <Card>
                   <Flex
@@ -47,22 +47,22 @@ export default (storiesOf, {
                     justifyContent="space-between"
                   >
                     <Text size="s" weight="medium" color="greyDarker">
-                      This is title
+                      This is title1
                     </Text>
                     <Icon name="keyboard_arrow_down" right />
                   </Flex>
                 </Card>
               </Spacer>
-            </Accordion.Trigger>
-            <Accordion.Content>
+            </Accordion.Section.Trigger>
+            <Accordion.Section.Content>
               <Spacer padding={[2]}>
                 <Card>{sampleText}</Card>
               </Spacer>
-            </Accordion.Content>
+            </Accordion.Section.Content>
           </Accordion.Section>
           <Divider />
           <Accordion.Section>
-            <Accordion.Trigger>
+            <Accordion.Section.Trigger>
               <Spacer padding={[2]}>
                 <Card>
                   <Flex
@@ -71,18 +71,18 @@ export default (storiesOf, {
                     justifyContent="space-between"
                   >
                     <Text size="s" weight="medium" color="greyDarker">
-                      This is title
+                      This is title2
                     </Text>
                     <Icon name="keyboard_arrow_down" right />
                   </Flex>
                 </Card>
               </Spacer>
-            </Accordion.Trigger>
-            <Accordion.Content>
+            </Accordion.Section.Trigger>
+            <Accordion.Section.Content>
               <Spacer padding={[2]}>
                 <Card>{sampleText}</Card>
               </Spacer>
-            </Accordion.Content>
+            </Accordion.Section.Content>
           </Accordion.Section>
         </Accordion>
       </Fragment>
@@ -94,7 +94,7 @@ export default (storiesOf, {
         </Spacer>
         <Accordion>
           <Accordion.Section>
-            <Accordion.Trigger>
+            <Accordion.Section.Trigger>
               <Spacer padding={[2]}>
                 <Card>
                   <Flex
@@ -109,12 +109,12 @@ export default (storiesOf, {
                   </Flex>
                 </Card>
               </Spacer>
-            </Accordion.Trigger>
-            <Accordion.Content>
+            </Accordion.Section.Trigger>
+            <Accordion.Section.Content>
               <Spacer padding={[2]}>
                 <Card>{sampleText}</Card>
               </Spacer>
-            </Accordion.Content>
+            </Accordion.Section.Content>
           </Accordion.Section>
         </Accordion>
         <Spacer padding={[2]}>
@@ -122,7 +122,7 @@ export default (storiesOf, {
         </Spacer>
         <Accordion>
           <Accordion.Section>
-            <Accordion.Trigger>
+            <Accordion.Section.Trigger>
               <Spacer padding={[2]}>
                 <Card>
                   <Flex
@@ -137,12 +137,12 @@ export default (storiesOf, {
                   </Flex>
                 </Card>
               </Spacer>
-            </Accordion.Trigger>
-            <Accordion.Content>
+            </Accordion.Section.Trigger>
+            <Accordion.Section.Content>
               <Spacer padding={[2]}>
                 <Card>{sampleText}</Card>
               </Spacer>
-            </Accordion.Content>
+            </Accordion.Section.Content>
           </Accordion.Section>
         </Accordion>
       </Fragment>
