@@ -4,6 +4,7 @@ import { addDecorator, configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
 import theme, { injectBaseStyles } from '../../src/theme';
+import layoutDecorator from '../decorators/layout';
 
 setOptions({
   name: 'Leaf-UI',
@@ -21,6 +22,8 @@ addDecorator((story) => {
     </ThemeProvider>
   );
 });
+
+addDecorator(layoutDecorator);
 
 configure(() => {
   const req = require.context('../../src', true, /\/amp\/.*\.story.js$/);
