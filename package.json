@@ -95,7 +95,8 @@
     "components",
     "styled-components",
     "theme",
-    "design-system"
+    "design-system",
+    "ui-library"
   ],
   "repository": {
     "type": "git",
