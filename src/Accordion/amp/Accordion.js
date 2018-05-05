@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import AccordionSection from './AccordionSection';
 import AccordionSectionTrigger from './AccordionSectionTrigger';
 import AccordionSectionContent from './AccordionSectionContent';
+import reachChidrenGroupByType from '../../utils/reactChildrenGroupByType';
 
 let groupIndex = 0;
 
@@ -19,6 +20,9 @@ class Accordion extends Component {
 
   render() {
     const { children } = this.props;
+    const accordionChildrenGroupByType = reachChidrenGroupByType(children);
+    const noOtherSiblingSections = accordionChildrenGroupByType[AccordionSection] &&
+    accordionChildrenGroupByType[AccordionSection].length === 1;
 
     return (
       <div>
@@ -27,6 +31,7 @@ class Accordion extends Component {
           child && child.type === AccordionSection ? (
             React.cloneElement(child, {
               groupName: this.groupName,
+              noOtherSiblingSections,
             })
           ) : child)
         }
