@@ -27,6 +27,7 @@ Some things that will help us to quickly accept your pull request:
 * We use [semantic-release](https://github.com/semantic-release/semantic-release) for creating automatic releases. So the messages that you type in while committing are fed to semantic-release and based on the type of commit i.e (fix, feat, perf etc.) semantic-release decides the type of release i.e (min, major, patch) 
 
 **Here's the list of conventional commit types:**
+
 | Type    | Description |
 | ------ | ------------- |
 | feat | A new feature |
