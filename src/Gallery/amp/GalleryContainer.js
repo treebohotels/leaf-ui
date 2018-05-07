@@ -6,19 +6,26 @@ const GalleryContainer = styled(
   ({
     className,
     ...props
-  }) => <amp-carousel layout="responsive" type="slides" {...props} />,
+  }) => {
+    const carouselProps = {
+      layout: 'responsive',
+      ...props,
+    };
+    if (props.type === 'slides') carouselProps.controls = '';
+    return (
+      <amp-carousel
+        {...carouselProps}
+      />
+    );
+  },
 )`
   ${''}
 `;
 
 GalleryContainer.propTypes = {
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-};
-
-GalleryContainer.defaultProps = {
-  width: '',
-  height: '',
+  width: PropTypes.number,
+  height: PropTypes.number,
+  type: PropTypes.oneOf(['carousel', 'slides']).isRequired,
 };
 
 export default GalleryContainer;

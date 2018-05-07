@@ -52,6 +52,7 @@ export default (storiesOf, {
       <Gallery
         width="400"
         height="300"
+        type="slides"
       >
         {
           images.map((image, index) => (
