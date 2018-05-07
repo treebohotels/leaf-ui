@@ -5,17 +5,15 @@ import styled from 'styled-components';
 const GalleryContainer = styled(
   ({
     className,
-    type,
     ...props
   }) => {
     const carouselProps = {
       layout: 'responsive',
       ...props,
     };
-    if (type === 'slides') carouselProps.controls = '';
+    if (props.type === 'slides') carouselProps.controls = '';
     return (
       <amp-carousel
-        type={type}
         {...carouselProps}
       />
     );
@@ -25,9 +23,9 @@ const GalleryContainer = styled(
 `;
 
 GalleryContainer.propTypes = {
-  width: PropTypes.string,
-  height: PropTypes.string,
-  type: PropTypes.oneOf(['carousel', 'slides']),
+  width: PropTypes.number,
+  height: PropTypes.number,
+  type: PropTypes.oneOf(['carousel', 'slides']).isRequired,
 };
 
 export default GalleryContainer;
