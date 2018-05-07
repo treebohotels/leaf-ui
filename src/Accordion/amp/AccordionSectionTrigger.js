@@ -19,8 +19,8 @@ const AccordionSectionTrigger = styled(
 `;
 
 AccordionSectionTrigger.propTypes = {
-  children: PropTypes.node,
   htmlFor: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default AccordionSectionTrigger;
