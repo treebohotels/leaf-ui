@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 const AccordionSectionTrigger = styled(
   ({
-    children,
     htmlFor,
+    children,
     ...props
   }) => (
     <div {...props}>

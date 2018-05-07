@@ -41,9 +41,12 @@ class AccordionSection extends Component {
     return `__LEAF_UI__accordion-trigger-input-${inputIndex}`;
   };
 
+  getInputType = (noOtherSiblingSections) => noOtherSiblingSections ? 'checkbox' : 'radio';
+
   render() {
     const {
       groupName,
+      noOtherSiblingSections,
       children,
       ...props
     } = this.props;
@@ -53,7 +56,11 @@ class AccordionSection extends Component {
         inputId={this.inputId}
         {...props}
       >
-        <input type="radio" name={groupName} id={this.inputId} />
+        <input
+          type={this.getInputType(noOtherSiblingSections)}
+          name={groupName}
+          id={this.inputId}
+        />
         {
           React.Children.map(children, (child) =>
           child && child.type === AccordionSectionTrigger ? (
@@ -68,8 +75,9 @@ class AccordionSection extends Component {
 }
 
 AccordionSection.propTypes = {
-  groupName: PropTypes.string,
   children: PropTypes.node,
+  groupName: PropTypes.string,
+  noOtherSiblingSections: PropTypes.bool,
 };
 
 export default AccordionSection;
