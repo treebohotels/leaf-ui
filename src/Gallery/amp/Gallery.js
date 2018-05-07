@@ -7,6 +7,7 @@ const Gallery = (props) => {
   const {
     width,
     height,
+    type,
     children,
   } = props;
 
@@ -21,6 +22,7 @@ const Gallery = (props) => {
       <GalleryContainer
         width={integerWidth}
         height={integerHeight}
+        type={type}
       >
         {children}
       </GalleryContainer>
@@ -29,9 +31,10 @@ const Gallery = (props) => {
 };
 
 Gallery.propTypes = {
-  width: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  type: PropTypes.oneOf(['carousel', 'slides']).isRequired,
+  children: PropTypes.node,
 };
 
 export default Gallery;
