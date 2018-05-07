@@ -60,3 +60,6 @@ Supported Platforms
 # Contribute
 
 Read our [contributing guide](CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to leaf-ui.
+
+# Setup
+Follow this quick [setup guide](SETUP.md) to get leaf-ui working on your local machine.

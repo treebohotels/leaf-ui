@@ -22,7 +22,7 @@ const Img = styled(
     borderRadius,
     className,
     ...props
-  }) => <amp-img {...props} />,
+  }) => <amp-img class={className} {...props} />,
 )`
   filter: ${(props) => props.grayscale ? 'grayscale(1)' : 'grayscale(0)'};
   border-radius: ${styles.borderRadius};
