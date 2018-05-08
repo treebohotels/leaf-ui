@@ -18,7 +18,7 @@ const AccordionSectionContainer = styled(
 
     &:checked {
       ~ ${/* sc-selector */AccordionSectionContent} {
-        display: block;
+        height: auto;
       }
 
       + ${/* sc-selector */AccordionSectionTrigger} {

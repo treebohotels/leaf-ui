@@ -6,6 +6,7 @@ import Icon from '../../Icon/amp';
 import Divider from '../../Divider/amp';
 import Text from '../../Text/amp';
 import Flex from '../../Flex/amp';
+import Image from '../../Image/amp';
 import makeStories from '../makeStories';
 
 makeStories(storiesOf, {
@@ -16,4 +17,5 @@ makeStories(storiesOf, {
   Divider,
   Text,
   Flex,
+  Image,
 });
