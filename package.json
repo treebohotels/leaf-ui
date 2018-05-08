@@ -31,6 +31,7 @@
     ]
   },
   "dependencies": {
+    "@storybook/addon-centered": "^3.4.3",
     "downshift": "1.31.12",
     "expo": "23.0.4",
     "formik": "0.11.11",

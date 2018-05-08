@@ -3,8 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import { addDecorator, configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
+import centered from '@storybook/addon-centered';
 import theme, { injectBaseStyles } from '../../src/theme';
-import layoutDecorator from '../decorators/layout';
 
 setOptions({
   name: 'Leaf-UI',
@@ -23,7 +23,7 @@ addDecorator((story) => {
   );
 });
 
-addDecorator(layoutDecorator);
+addDecorator(centered);
 
 configure(() => {
   const req = require.context('../../src', true, /\/web\/.*\.story.js$/);
