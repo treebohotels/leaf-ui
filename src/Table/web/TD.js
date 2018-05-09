@@ -8,7 +8,7 @@ const TD = styled.td`
 `;
 
 TD.propTypes = {
-  textAlign: PropTypes.string,
+  textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
 };
 
 TD.defaultProps = {

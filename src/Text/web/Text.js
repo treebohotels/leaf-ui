@@ -35,7 +35,7 @@ Text.propTypes = {
   size: PropTypes.oneOf(Object.keys(theme.fontSize)),
   weight: PropTypes.oneOf(Object.keys(theme.fontWeight)),
   family: PropTypes.oneOf(Object.keys(theme.fontFamily)),
-  align: PropTypes.oneOf(['left', 'center', 'right']),
+  align: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
   truncate: PropTypes.bool,
 };
 

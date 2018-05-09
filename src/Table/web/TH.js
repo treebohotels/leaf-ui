@@ -7,7 +7,7 @@ const TH = styled.th`
  `;
 
 TH.propTypes = {
-  textAlign: PropTypes.string,
+  textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
 };
 
 TH.defaultProps = {
