@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spacer from '../../Spacer/web';
 import Text from '../../Text/web';
-import Container from './Container';
 import Label from './Label';
 import Input from './Input';
 import Box from './Box';
@@ -50,7 +49,7 @@ class Checkbox extends React.Component {
     }
 
     return (
-      <Container className={className}>
+      <div className={className}>
         <Label htmlFor={name}>
           <Input
             id={name}
@@ -73,7 +72,7 @@ class Checkbox extends React.Component {
             </Spacer>
           ) : null
         }
-      </Container>
+      </div>
     );
   }
 }

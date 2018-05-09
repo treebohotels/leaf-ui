@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Spacer from '../../Spacer/web';
 import Text from '../../Text/web';
-import Container from './Container';
 import Label from './Label';
 import Input from './Input';
 import Circle from './Circle';
@@ -28,7 +28,7 @@ const RadioButton = ({
   }
 
   return (
-    <Container className={className}>
+    <div className={className}>
       <Label htmlFor={`${name}-${value}`}>
         <Input
           id={`${name}-${value}`}
@@ -43,12 +43,14 @@ const RadioButton = ({
       </Label>
       {
         error ? (
-          <Text color="red" size="xxs">
-            {error}
-          </Text>
+          <Spacer margin={[0.5, 0, 0, 0]}>
+            <Text color="red" size="xxs">
+              {error}
+            </Text>
+          </Spacer>
         ) : null
       }
-    </Container>
+    </div>
   );
 };
 
