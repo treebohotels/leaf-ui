@@ -23,14 +23,14 @@ export default (storiesOf, {
             <Table.TR>
               <Table.TH>Type</Table.TH>
               <Table.TH>Date</Table.TH>
-              <Table.TH>ID</Table.TH>
+              <Table.TH textAlign="right">ID</Table.TH>
             </Table.TR>
           </Table.THead>
           <Table.TBody>
             <Table.TR>
               <Table.TD>Oak</Table.TD>
               <Table.TD>2018/11/4</Table.TD>
-              <Table.TD>TRB-101</Table.TD>
+              <Table.TD textAlign="right">TRB-101</Table.TD>
             </Table.TR>
           </Table.TBody>
         </Table>
