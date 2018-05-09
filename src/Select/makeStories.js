@@ -13,6 +13,7 @@ export default (storiesOf, { Select }) =>
       <Select
         name="color"
         label="Color"
+        placeholder="Select a color"
         options={options}
         onChange={action('onChange')}
       />
@@ -21,6 +22,7 @@ export default (storiesOf, { Select }) =>
       <Select
         name="color"
         label="Color"
+        placeholder="Select a color"
         multiple
         options={options}
         defaultSelected={options[2]}
@@ -31,6 +33,7 @@ export default (storiesOf, { Select }) =>
       <Select
         name="color"
         label="Color"
+        placeholder="Select a color"
         options={options}
         onChange={action('onChange')}
         defaultSelected={options[2]}
@@ -41,6 +44,7 @@ export default (storiesOf, { Select }) =>
       <Select
         name="color"
         label="Color"
+        placeholder="Select a color"
         options={options}
         onChange={action('onChange')}
         error="some error message"

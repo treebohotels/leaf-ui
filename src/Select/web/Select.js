@@ -5,7 +5,6 @@ import pluralize from '../../utils/pluralize';
 import Text from '../../Text/web';
 import Spacer from '../../Spacer/web';
 import Checkbox from '../../Checkbox/web';
-import Container from './Container';
 import Trigger from './Trigger';
 import Label from './Label';
 import TriggerArrows from './TriggerArrows';
@@ -28,9 +27,7 @@ class Select extends React.Component {
       formik.setFieldValue(name, selectedOptions);
       formik.setFieldTouched(name, true);
     }
-    if (onChange) {
-      onChange(selectedOptions);
-    }
+    onChange(selectedOptions);
   }
 
   onSelect = (selectedOption) => {
@@ -80,9 +77,9 @@ class Select extends React.Component {
   }
 
   getTriggerText = (selectedOptions) => {
-    const { label, multiple } = this.props;
+    const { label, placeholder, multiple } = this.props;
     if (!selectedOptions.length) {
-      return <span>&nbsp;</span>;
+      return placeholder;
     } else if (multiple) {
       return `${selectedOptions.length} ${pluralize(selectedOptions.length, label)}`;
     }
@@ -123,18 +120,15 @@ class Select extends React.Component {
         itemToString={this.itemToString}
         render={({
           isOpen,
-          getRootProps,
           getButtonProps,
           getItemProps,
           highlightedIndex,
           selectedItem: dsSelectedOptions,
         }) => (
-          <Container
-            {...getRootProps({
-              className,
-              refKey: 'innerRef',
-            })}
-          >
+          <div className={className}>
+            <Label htmlFor={name}>
+              {label}
+            </Label>
             <Trigger
               {...getButtonProps({
                 isOpen,
@@ -143,23 +137,24 @@ class Select extends React.Component {
                 error,
               })}
             >
-              <Label
-                isOpen={isOpen}
-                hasValue={dsSelectedOptions.length}
-                disabled={disabled}
-                error={error}
-              >
-                {label}
-              </Label>
-              <Text size="s" truncate>
-                {this.getTriggerText(dsSelectedOptions)}
-              </Text>
+              <Spacer padding={[1.5, 0, 1.5, 1.5]}>
+                <Text
+                  color={!dsSelectedOptions.length ? 'grey' : ''}
+                  size="s"
+                  truncate
+                >
+                  {this.getTriggerText(dsSelectedOptions)}
+                </Text>
+              </Spacer>
               <TriggerArrows />
             </Trigger>
             <div style={{ position: 'relative' }}>
               {
                 isOpen ? (
-                  <OptionList block={block}>
+                  <OptionList
+                    isOpen={isOpen}
+                    block={block}
+                  >
                     {
                       options.map((option, index) => (
                         <Option
@@ -202,7 +197,7 @@ class Select extends React.Component {
                 </Spacer>
               ) : null
             }
-          </Container>
+          </div>
         )}
       />
     );
@@ -211,22 +206,20 @@ class Select extends React.Component {
 
 Select.propTypes = {
   className: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   label: PropTypes.string,
+  placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   block: PropTypes.bool,
   multiple: PropTypes.bool,
   options: PropTypes.array.isRequired,
   defaultSelected: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  error: PropTypes.string,
   onChange: PropTypes.func,
+  error: PropTypes.string,
 };
 
 Select.defaultProps = {
-  name: 'defaultName',
-  label: 'defaultLabel',
-  disabled: false,
-  multiple: false,
+  onChange: () => {},
 };
 
 Select.contextTypes = {

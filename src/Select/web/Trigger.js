@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Label from './Label';
 
 const styles = {
   borderColor(props) {
@@ -26,25 +25,24 @@ const styles = {
 
 const Trigger = styled.button`
   position: relative;
-  display: inline-flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${styles.borderColor};
+  border-top-left-radius: ${(props) => props.theme.borderRadius};
+  border-top-right-radius: ${(props) => props.theme.borderRadius};
   background-color: ${styles.backgroundColor};
   pointer-events: ${(props) => props.disabled ? 'none' : ''};
   width: ${(props) => props.block ? '100%' : props.theme.px(25)};
-  padding: ${(props) => props.theme.px([3, 1.5, 1.5, 1.5])};
-  border: 1px solid ${styles.borderColor};
-  border-radius: ${(props) => props.theme.borderRadius};
+  padding: 0;
+  outline: none;
 
   &:focus {
     border-color: ${(props) => props.theme.color.primary};
     background-color: ${(props) => props.theme.color.white};
-    outline: none;
-
-    ${/* sc-selector */Label} {
-      color: ${(props) => props.theme.color.primary};
-    }
   }
 `;
 
