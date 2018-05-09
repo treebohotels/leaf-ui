@@ -21,14 +21,14 @@ export default (storiesOf, {
           <Table.TR>
             <Table.TH>Type</Table.TH>
             <Table.TH>Date</Table.TH>
-            <Table.TH>ID</Table.TH>
+            <Table.TH textAlign="right">ID</Table.TH>
           </Table.TR>
         </Table.THead>
         <Table.TBody>
           <Table.TR>
             <Table.TD>1000</Table.TD>
             <Table.TD>2</Table.TD>
-            <Table.TD>Pragya</Table.TD>
+            <Table.TD textAlign="right">Pragya</Table.TD>
           </Table.TR>
         </Table.TBody>
       </Table>
