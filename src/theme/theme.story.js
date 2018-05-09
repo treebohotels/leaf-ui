@@ -19,34 +19,13 @@ storiesOf('Theme', module)
       <Flex flexWrap="wrap">
         {
           Object.keys(theme.color).map((color) => (
-            <ColorCard key={color} elevation={1} color={color}>
+            <ColorCard key={color} color={color} elevated>
               {color}<br />
               {theme.color[color]}
             </ColorCard>
           ))
         }
       </Flex>
-    );
-  })
-  .add('shadows', () => {
-    const ShadowCard = Card.extend`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 120px;
-      width: 120px;
-      margin-bottom: 16px;
-    `;
-    return (
-      <div>
-        {
-          Object.keys(theme.boxShadow).map((boxShadow, index) => (
-            <ShadowCard key={boxShadow} elevation={index}>
-              {index}
-            </ShadowCard>
-          ))
-        }
-      </div>
     );
   })
   .add('spacing', () => {

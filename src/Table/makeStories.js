@@ -34,7 +34,7 @@ export default (storiesOf, {
       </Table>
     ))
     .add('with select', () => (
-      <Table elevation={2}>
+      <Table>
         <Table.TBody>
           <Table.TR>
             <Table.TH>Type</Table.TH>
@@ -80,7 +80,7 @@ export default (storiesOf, {
       </Table>
     ))
     .add('with tag', () => (
-      <Table elevation={2}>
+      <Table>
         <Table.TBody>
           <Table.TR>
             <Table.TH>Type</Table.TH>

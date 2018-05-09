@@ -32,8 +32,7 @@ const Trigger = styled.button`
   border-width: 1px;
   border-style: solid;
   border-color: ${styles.borderColor};
-  border-top-left-radius: ${(props) => props.theme.borderRadius};
-  border-top-right-radius: ${(props) => props.theme.borderRadius};
+  border-radius: ${(props) => props.theme.borderRadius};
   background-color: ${styles.backgroundColor};
   pointer-events: ${(props) => props.disabled ? 'none' : ''};
   width: ${(props) => props.block ? '100%' : props.theme.px(25)};

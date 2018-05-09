@@ -1,5 +1,5 @@
 import React from 'react';
-import { select, number } from '@storybook/addon-knobs';
+import { select, boolean } from '@storybook/addon-knobs';
 import theme from '../theme';
 
 const sampleText = `
@@ -14,7 +14,7 @@ export default(storiesOf, { Card }) =>
     .add('playground', () => (
       <Card
         color={select('color', Object.keys(theme.color), 'white')}
-        elevation={number('elevation', 0)}
+        elevated={boolean('elevated', false)}
       >
         {sampleText}
       </Card>
@@ -24,8 +24,8 @@ export default(storiesOf, { Card }) =>
         {sampleText}
       </Card>
     ))
-    .add('with elevation', () => (
-      <Card elevation={2}>
+    .add('elevated', () => (
+      <Card elevated>
         {sampleText}
       </Card>
     ));

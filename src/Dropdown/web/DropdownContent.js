@@ -1,20 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
+import Spacer from '../../Spacer/web';
+import Card from '../../Card/web';
 
 class DropdownContent extends React.Component {
   styles = {
     dropdown: {
       position: 'absolute',
       padding: this.props.theme.px(1),
-    },
-
-    dropdownInner: {
-      background: this.props.theme.color.white,
-      minWidth: this.props.theme.px(25),
-      border: `1px solid ${this.props.theme.color.greyLight}`,
-      borderRadius: this.props.theme.borderRadius,
-      boxShadow: this.props.theme.boxShadow[2],
     },
 
     dropdownArrow: {
@@ -83,9 +77,11 @@ class DropdownContent extends React.Component {
             top,
           }}
         />
-        <div style={this.styles.dropdownInner}>
-          {children}
-        </div>
+        <Spacer minWidth={25}>
+          <Card elevated>
+            {children}
+          </Card>
+        </Spacer>
       </div>
     );
   }

@@ -4,8 +4,6 @@ const lowResolutionTheme = {};
 
 lowResolutionTheme.borderRadius = theme.borderRadius;
 
-lowResolutionTheme.boxShadow = theme.boxShadow;
-
 lowResolutionTheme.color = {};
 lowResolutionTheme.color.greenLighter = '#e6f7ed';
 lowResolutionTheme.color.greenLight = '#78bb91';

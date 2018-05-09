@@ -2,14 +2,6 @@ const theme = {};
 
 theme.borderRadius = '2px';
 
-theme.boxShadow = [];
-theme.boxShadow[0] = 'none';
-theme.boxShadow[1] = '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(114, 113, 113, 0.08)';
-theme.boxShadow[2] = '0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 3px 6px 0 rgba(174, 174, 174, 0.16)';
-theme.boxShadow[3] = '0 10px 20px 0 rgba(0, 0, 0, 0.12), 0 6px 6px 0 rgba(0, 0, 0, 0.16)';
-theme.boxShadow[4] = '0 14px 28px 0 rgba(0, 0, 0, 0.12), 0 10px 10px 0 rgba(0, 0, 0, 0.16)';
-theme.boxShadow[5] = '0 19px 38px 0 rgba(0, 0, 0, 0.16), 0 15px 12px 0 rgba(0, 0, 0, 0.16)';
-
 theme.color = {};
 theme.color.greenLighter = '#e6f7ed';
 theme.color.greenLight = '#6ed396';
