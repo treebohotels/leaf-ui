@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 
 export default(storiesOf, {
+  Spacer,
   TextInput,
   Select,
   Checkbox,
@@ -13,8 +14,8 @@ export default(storiesOf, {
     .add('simple', () => (
       <Form
         initialValues={{
-        treeType: 'maple',
-      }}
+          treeType: 'maple',
+        }}
         onSubmit={action('onSubmit')}
         validationSchema={
         Form.validation.object().shape({
@@ -26,22 +27,30 @@ export default(storiesOf, {
       }
       >
         <Form.Form>
-          <TextInput
-            name="leafName"
-            label="Leaf name"
-            defaultValue="eucalyptus"
-          />
-          <Select
-            name="leafColor"
-            label="Leaf color"
-            options={[{ label: 'Red', value: 'Red' }, { label: 'Green', value: 'Green' }]}
-            defaultSelected={{ label: 'Green', value: 'Green' }}
-          />
-          <Checkbox
-            name="isAquatic"
-            label="Is an aquatic plant"
-            defaultChecked
-          />
+          <Spacer margin={[0, 0, 2, 0]}>
+            <TextInput
+              name="leafName"
+              label="Leaf Name"
+              placeholder="pine"
+              defaultValue="eucalyptus"
+            />
+          </Spacer>
+          <Spacer margin={[0, 0, 2, 0]}>
+            <Select
+              name="leafColor"
+              label="Leaf color"
+              placeholder="Select a color"
+              options={[{ label: 'Red', value: 'Red' }, { label: 'Green', value: 'Green' }]}
+              defaultSelected={{ label: 'Green', value: 'Green' }}
+            />
+          </Spacer>
+          <Spacer margin={[0, 0, 2, 0]}>
+            <Checkbox
+              name="isAquatic"
+              label="Is an aquatic plant"
+              defaultChecked
+            />
+          </Spacer>
           <RadioButton
             name="treeType"
             label="Oak"
@@ -57,7 +66,9 @@ export default(storiesOf, {
             label="Mahogany"
             value="mahogany"
           />
-          <Button type="submit">Submit</Button>
+          <Spacer margin={[2, 0, 0, 0]}>
+            <Button type="submit">Submit</Button>
+          </Spacer>
         </Form.Form>
       </Form>
     ));

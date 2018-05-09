@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spacer from '../../Spacer/web';
 import Text from '../../Text/web';
-import Container from './Container';
 import Input from './Input';
 import Label from './Label';
 
@@ -23,9 +22,7 @@ class TextInput extends React.Component {
       className,
       name,
       label,
-      disabled,
       error: errorMessage,
-      block,
       ...props
     } = this.props;
 
@@ -51,22 +48,16 @@ class TextInput extends React.Component {
     }
 
     return (
-      <Container className={className}>
+      <div className={className}>
+        <Label htmlFor={name}>
+          {label}
+        </Label>
         <Input
           id={name}
           name={name}
-          placeholder={label}
-          disabled={disabled}
           error={error}
-          block={block}
           {...inputProps}
         />
-        <Label
-          htmlFor={name}
-          error={error}
-        >
-          {label}
-        </Label>
         {
           error ? (
             <Spacer margin={[0.5, 0, 0, 0]}>
@@ -76,28 +67,25 @@ class TextInput extends React.Component {
             </Spacer>
           ) : null
         }
-      </Container>
+      </div>
     );
   }
 }
 
 TextInput.propTypes = {
   className: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   label: PropTypes.string,
+  placeholder: PropTypes.string,
   disabled: PropTypes.bool,
-  error: PropTypes.string,
   block: PropTypes.bool,
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
+  error: PropTypes.string,
 };
 
 TextInput.defaultProps = {
-  name: 'defaultName',
-  label: 'defaultLabel',
-  disabled: false,
-  error: '',
   onChange: () => {},
   onBlur: () => {},
 };
