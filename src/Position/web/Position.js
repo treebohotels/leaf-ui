@@ -18,6 +18,7 @@ const Position = styled(
   right: ${(props) => props.right != null ? `${props.theme.px(props.right)} !important;` : ''};
   bottom: ${(props) => props.bottom != null ? `${props.theme.px(props.bottom)} !important;` : ''};
   left: ${(props) => props.left != null ? `${props.theme.px(props.left)} !important;` : ''};
+  z-index: ${(props) => props.zIndex != null ? `${props.zIndex} !important;` : ''};
 `;
 
 Position.propTypes = {
@@ -41,6 +42,10 @@ Position.propTypes = {
     PropTypes.string,
   ]),
   left: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  zIndex: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
   ]),
