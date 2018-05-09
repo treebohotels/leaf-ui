@@ -1,15 +1,8 @@
 import PropTypes from 'prop-types';
+import formatPrice from './formatPrice';
 
-const Price = ({ rounded, children }) => {
-  const price = +children;
-  const inrPrice = price.toLocaleString('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    minimumFractionDigits: rounded ? 0 : 2,
-    maximumFractionDigits: rounded ? 0 : 2,
-  });
-  return inrPrice;
-};
+const Price = ({ rounded, children }) =>
+  formatPrice(children, rounded);
 
 Price.propTypes = {
   rounded: PropTypes.bool,

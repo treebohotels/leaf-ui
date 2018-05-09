@@ -10,11 +10,11 @@ export default (storiesOf, { Price }) =>
     ))
     .add('rounded', () => (
       <Price>
-      1234.50
+        1234.50
       </Price>
     ))
     .add('floating', () => (
       <Price rounded={false}>
-      1234.50
+        1234.50
       </Price>
     ));
