@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import theme from '../../theme';
 
 const styles = {
   color(props) {
@@ -99,7 +100,16 @@ const styles = {
   },
 };
 
-const StyledButton = styled.button`
+const StyledButton = styled(
+  ({
+    color,
+    kind,
+    size,
+    shape,
+    block,
+    ...props
+  }) => <button {...props} />,
+)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -127,18 +137,16 @@ const StyledButton = styled.button`
 const Button = (props, context) => (
   <StyledButton
     {...props}
-    disabled={
-      props.disabled || (
-        props.type === 'submit' &&
-        context.formik &&
-        !context.formik.isValid
-      )
-    }
+    disabled={props.disabled || (
+      props.type === 'submit' &&
+      context.formik &&
+      !context.formik.isValid
+    )}
   />
 );
 
 Button.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.oneOf(Object.keys(theme.color)),
   kind: PropTypes.oneOf(['filled', 'outlined']),
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'capsular', 'circular']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),

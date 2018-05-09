@@ -23,7 +23,9 @@
         "transform-class-properties",
         "transform-object-rest-spread",
         "syntax-trailing-function-commas",
-        "transform-runtime",
+        ["transform-runtime", {
+          "polyfill": false
+        }],
         "styled-components"
       ],
       "presets": [

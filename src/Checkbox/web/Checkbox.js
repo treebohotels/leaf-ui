@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Spacer from '../../Spacer/web';
 import Text from '../../Text/web';
 import Container from './Container';
 import Label from './Label';
@@ -31,7 +32,7 @@ class Checkbox extends React.Component {
       formik,
     } = this.context;
 
-    const inputProps = { name, ...props };
+    const inputProps = { ...props };
     let error = errorMessage;
 
     if (formik) {
@@ -53,6 +54,7 @@ class Checkbox extends React.Component {
         <Label htmlFor={name}>
           <Input
             id={name}
+            name={name}
             disabled={disabled}
             error={error}
             {...inputProps}
@@ -64,9 +66,11 @@ class Checkbox extends React.Component {
         </Label>
         {
           error ? (
-            <Text color="red" size="xxs">
-              {error}
-            </Text>
+            <Spacer margin={[0.5, 0, 0, 0]}>
+              <Text color="red" size="xxs">
+                {error}
+              </Text>
+            </Spacer>
           ) : null
         }
       </Container>

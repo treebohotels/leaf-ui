@@ -26,7 +26,7 @@ components.forEach((component) => {
     if (mkdirpErr) throw mkdirpErr;
     platforms.forEach((platform) => {
       const componentFile = path.resolve(componentDir, `${platform}.js`);
-      const componentContent = `export default from '../es/${component}/${platform}';\nexport * from '../es/${component}/${platform}';\n`;
+      const componentContent = `export { default } from '../es/${component}/${platform}';\nexport * from '../es/${component}/${platform}';\n`;
       fs.writeFile(componentFile, componentContent, (writeFileErr) => {
         if (writeFileErr) throw writeFileErr;
         console.log(`generated: ${componentFile}`);
@@ -37,7 +37,7 @@ components.forEach((component) => {
 
 // generate exports for theme
 const themeFile = path.resolve(__dirname, '../../theme.js');
-const themeContent = 'export default from \'./es/theme\';\nexport * from \'./es/theme\';\n';
+const themeContent = 'export { default } from \'./es/theme\';\nexport * from \'./es/theme\';\n';
 fs.writeFile(themeFile, themeContent, (writeFileErr) => {
   if (writeFileErr) throw writeFileErr;
   console.log(`generated: ${themeFile}`);

@@ -10,7 +10,6 @@ const injectBaseStyles = (
 ) => {
   injectGlobal`
     html {
-      line-height: 1.2;
       box-sizing: border-box;
     }
 
@@ -26,6 +25,7 @@ const injectBaseStyles = (
     *,
     *::after,
     *::before {
+      line-height: 1.2;
       box-sizing: inherit;
     }
   `;

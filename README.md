@@ -59,29 +59,7 @@ Supported Platforms
 
 # Contribute
 
-Web Components
-```
-npm install
-npm run web
-# open http://localhost:9000
-```
+Read our [contributing guide](CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to leaf-ui.
 
-Native Components
-```
-npm install
-
-# terminal-1
-npm run native:storybook
-
-# terminal-2
-npm run native
-# press i for ios
-# press a for android
-```
-
-Amp Components
-```
-npm install
-npm run amp
-# open http://localhost:9001
-```
+# Setup
+Follow this quick [setup guide](SETUP.md) to get leaf-ui working on your local machine.

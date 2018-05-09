@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Spacer from '../../Spacer/web';
 import Text from '../../Text/web';
 import Container from './Container';
 import Input from './Input';
@@ -32,7 +33,7 @@ class TextInput extends React.Component {
       formik,
     } = this.context;
 
-    const inputProps = { name, ...props };
+    const inputProps = { ...props };
     let error = errorMessage;
 
     if (formik) {
@@ -53,6 +54,7 @@ class TextInput extends React.Component {
       <Container className={className}>
         <Input
           id={name}
+          name={name}
           placeholder={label}
           disabled={disabled}
           error={error}
@@ -67,9 +69,11 @@ class TextInput extends React.Component {
         </Label>
         {
           error ? (
-            <Text color="red" size="xxs">
-              {error}
-            </Text>
+            <Spacer margin={[0.5, 0, 0, 0]}>
+              <Text color="red" size="xxs">
+                {error}
+              </Text>
+            </Spacer>
           ) : null
         }
       </Container>
