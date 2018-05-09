@@ -29,6 +29,7 @@ export default (storiesOf, {
   Divider,
   Text,
   Flex,
+  Image,
 }) =>
   storiesOf('Accordion', module)
     .add('Simple Accordion', () => (
@@ -56,7 +57,15 @@ export default (storiesOf, {
             </Accordion.Section.Trigger>
             <Accordion.Section.Content>
               <Spacer padding={[2]}>
-                <Card>{sampleText}</Card>
+                <Card>
+                  <Image
+                    alt="img-1"
+                    src="https://images.treebohotels.com/files/Treebo_The_Galaxy/Oak/OAk_(4).jpg"
+                    height="200px"
+                    width="200px"
+                  />
+                  {sampleText}
+                </Card>
               </Spacer>
             </Accordion.Section.Content>
           </Accordion.Section>

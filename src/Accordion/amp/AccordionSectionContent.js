@@ -12,7 +12,8 @@ const AccordionSectionContent = styled(
     </div>
   ),
 )`
-  display: none;
+  height: 0;
+  overflow: hidden;
 `;
 
 AccordionSectionContent.propTypes = {
