@@ -15,7 +15,7 @@ const ButtonView = styled.View`
       border-color: ${p.theme.color[p.color]};
     `,
     outlined: `
-      background-color: transparent;
+      background-color: ${p.theme.color.transparent};
       border-color: ${p.theme.color[p.color]};
     `,
   }[p.kind])}

@@ -13,7 +13,7 @@ const Divider = styled(
   border-width: 1px 0 0;
   border-color: ${(props) => props.theme.color[props.color]};
   border-style: ${(props) => props.type};
-  background: transparent;
+  background: ${(props) => props.theme.color.transparent};
   margin: 0;
 `;
 

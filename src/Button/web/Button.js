@@ -16,7 +16,7 @@ const styles = {
     if (props.kind === 'filled') {
       return props.theme.color[props.color];
     } else if (props.kind === 'outlined') {
-      return 'transparent';
+      return props.theme.color.transparent;
     }
     return '';
   },
