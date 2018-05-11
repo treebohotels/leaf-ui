@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import Divider from '../web';
 import makeStories from '../makeStories';
+import Divider from '../web';
 
 makeStories(storiesOf, { Divider });

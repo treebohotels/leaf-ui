@@ -14,13 +14,14 @@ const styles = {
   },
 };
 
-const listComponent = (type) => type === 'ordered' ? 'ol' : 'ul';
-
 const List = styled(
   ({
     type,
     ...props
-  }) => React.createElement(listComponent(props.type), props),
+  }) => React.createElement(
+    props.type === 'ordered' ? 'ol' : 'ul',
+    props,
+  ),
 )`
   margin: 0;
   padding: ${(props) => props.type ? props.theme.px([0, 0, 0, 2]) : '0'};

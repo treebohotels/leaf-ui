@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spacer from '../../Spacer/web';
+import Space from '../../Space/web';
+import View from '../../View/web';
 import Divider from '../../Divider/web';
 
 const ModalFooter = ({ children }) => (
-  <Spacer padding={[0, 5, 5, 5]}>
-    <div>
-      <Spacer margin={[0, 'auto', 5, 'auto']}>
+  <Space padding={[0, 5, 5, 5]}>
+    <View>
+      <Space margin={[0, 'auto', 5, 'auto']}>
         <Divider color="greyLight" />
-      </Spacer>
+      </Space>
       {children}
-    </div>
-  </Spacer>
+    </View>
+  </Space>
 );
 
 ModalFooter.propTypes = {

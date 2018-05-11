@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import Image from '../web';
 import makeStories from '../makeStories';
+import Image from '../web';
 
 makeStories(storiesOf, { Image });

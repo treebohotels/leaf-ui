@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import GalleryContainer from './GalleryContainer';
@@ -15,7 +15,7 @@ const Gallery = (props) => {
   const integerHeight = Number.parseInt(height, 10);
 
   return (
-    <Fragment>
+    <React.Fragment>
       <Helmet>
         <script async="" custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js">&nbsp;</script>
       </Helmet>
@@ -26,7 +26,7 @@ const Gallery = (props) => {
       >
         {children}
       </GalleryContainer>
-    </Fragment>
+    </React.Fragment>
   );
 };
 

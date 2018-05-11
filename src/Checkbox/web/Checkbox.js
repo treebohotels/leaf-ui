@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spacer from '../../Spacer/web';
+import Space from '../../Space/web';
 import Text from '../../Text/web';
 import Label from './Label';
 import Input from './Input';
@@ -65,11 +65,11 @@ class Checkbox extends React.Component {
         </Label>
         {
           error ? (
-            <Spacer margin={[0.5, 0, 0, 0]}>
+            <Space margin={[0.5, 0, 0, 0]}>
               <Text color="red" size="xxs">
                 {error}
               </Text>
-            </Spacer>
+            </Space>
           ) : null
         }
       </div>

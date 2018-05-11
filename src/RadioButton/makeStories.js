@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 export default (storiesOf, { RadioButton }) =>
   storiesOf('RadioButton', module)
     .add('simple', () => (
-      <Fragment>
+      <React.Fragment>
         <RadioButton
           name="leafColor"
           label="Green"
@@ -14,10 +14,10 @@ export default (storiesOf, { RadioButton }) =>
           label="Brown"
           value="brown"
         />
-      </Fragment>
+      </React.Fragment>
     ))
     .add('disabled', () => (
-      <Fragment>
+      <React.Fragment>
         <RadioButton
           name="leafColor"
           label="Green"
@@ -31,7 +31,7 @@ export default (storiesOf, { RadioButton }) =>
           value="brown"
           disabled
         />
-      </Fragment>
+      </React.Fragment>
     ))
     .add('with error', () => (
       <RadioButton

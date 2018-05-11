@@ -1,12 +1,13 @@
 import { storiesOf } from '@storybook/react';
-import Spacer from '../../Spacer/web';
+import makeStories from '../makeStories';
 import Flex from '../../Flex/web';
+import Space from '../../Space/web';
+import View from '../../View/web';
 import Tag from '../web';
 
-import makeStories from '../makeStories';
-
 makeStories(storiesOf, {
-  Tag,
-  Spacer,
   Flex,
+  Space,
+  View,
+  Tag,
 });

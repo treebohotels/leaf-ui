@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import Spacer from '../../Spacer/native';
+import Space from '../../Space/native';
 import TextInput from '../../TextInput/native';
 import Form from '../native';
 
@@ -13,12 +13,12 @@ storiesOf('Form', module)
         })
       }
       render={() => (
-        <Spacer margin={[2]}>
+        <Space margin={[2]}>
           <TextInput
             name="email"
             label="Email"
           />
-        </Spacer>
+        </Space>
       )}
     />
   ))
@@ -33,15 +33,15 @@ storiesOf('Form', module)
         })
       }
       render={() => (
-        <Spacer margin={[2]}>
+        <Space margin={[2]}>
           <TextInput
             name="name"
             label="Name"
             leftIcon={
-              <Spacer style={{ width: 48, height: 48, backgroundColor: 'red' }} />
+              <Space style={{ width: 48, height: 48, backgroundColor: 'red' }} />
             }
           />
-        </Spacer>
+        </Space>
       )}
     />
   ))
@@ -56,15 +56,15 @@ storiesOf('Form', module)
         })
       }
       render={() => (
-        <Spacer margin={[2]}>
+        <Space margin={[2]}>
           <TextInput
             name="Name"
             label="Name"
             rightIcon={
-              <Spacer style={{ width: 48, height: 48, backgroundColor: 'red' }} />
+              <Space style={{ width: 48, height: 48, backgroundColor: 'red' }} />
             }
           />
-        </Spacer>
+        </Space>
       )}
     />
   ));

@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import Notification from '../amp';
 import makeStories from '../makeStories';
+import Notification from '../amp';
 
 makeStories(storiesOf, { Notification });

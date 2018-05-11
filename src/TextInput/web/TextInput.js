@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spacer from '../../Spacer/web';
+import Space from '../../Space/web';
 import Text from '../../Text/web';
 import Input from './Input';
 import Label from './Label';
@@ -60,11 +60,11 @@ class TextInput extends React.Component {
         />
         {
           error ? (
-            <Spacer margin={[0.5, 0, 0, 0]}>
+            <Space margin={[0.5, 0, 0, 0]}>
               <Text color="red" size="xxs">
                 {error}
               </Text>
-            </Spacer>
+            </Space>
           ) : null
         }
       </div>

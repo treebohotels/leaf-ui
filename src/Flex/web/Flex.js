@@ -16,23 +16,24 @@ const Flex = styled(
     flexWrap,
     justifyContent,
     order,
-    component,
     children,
     ...props
-  }) => React.createElement(component, props, children),
+  }) => React.cloneElement(children, props),
 )`
-  align-content: ${(props) => props.alignContent ? props.alignContent : ''};
-  align-self: ${(props) => props.alignSelf ? props.alignSelf : ''};
-  align-items: ${(props) => props.alignItems ? props.alignItems : ''};
-  display: ${(props) => props.display ? props.display : ''};
-  flex: ${(props) => props.flex ? props.flex : ''};
-  flex-basis: ${(props) => props.flexBasis ? props.flexBasis : ''};
-  flex-direction: ${(props) => props.flexDirection ? props.flexDirection : ''};
-  flex-grow: ${(props) => props.flexGrow ? props.flexGrow : ''};
-  flex-shrink: ${(props) => props.flexShrink ? props.flexShrink : ''};
-  flex-wrap: ${(props) => props.flexWrap ? props.flexWrap : ''};
-  justify-content: ${(props) => props.justifyContent ? props.justifyContent : ''};
-  order: ${(props) => props.order ? props.order : ''};
+  &&& {
+    align-content: ${(props) => props.alignContent ? props.alignContent : ''};
+    align-self: ${(props) => props.alignSelf ? props.alignSelf : ''};
+    align-items: ${(props) => props.alignItems ? props.alignItems : ''};
+    display: ${(props) => props.display ? props.display : ''};
+    flex: ${(props) => props.flex ? props.flex : ''};
+    flex-basis: ${(props) => props.flexBasis ? props.flexBasis : ''};
+    flex-direction: ${(props) => props.flexDirection ? props.flexDirection : ''};
+    flex-grow: ${(props) => props.flexGrow ? props.flexGrow : ''};
+    flex-shrink: ${(props) => props.flexShrink ? props.flexShrink : ''};
+    flex-wrap: ${(props) => props.flexWrap ? props.flexWrap : ''};
+    justify-content: ${(props) => props.justifyContent ? props.justifyContent : ''};
+    order: ${(props) => props.order ? props.order : ''};
+  }
 `;
 
 Flex.propTypes = {
@@ -48,12 +49,11 @@ Flex.propTypes = {
   flexWrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
   justifyContent: PropTypes.oneOf(['center', 'flex-end', 'flex-start', 'space-around', 'space-between']),
   order: PropTypes.number,
-  component: PropTypes.oneOf(['article', 'aside', 'div', 'figure', 'footer', 'header', 'main', 'nav', 'section']),
 };
 
 Flex.defaultProps = {
-  component: 'div',
   display: 'flex',
+  flexDirection: 'column',
 };
 
 export default Flex;

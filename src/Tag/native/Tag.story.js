@@ -1,11 +1,13 @@
 import { storiesOf } from '@storybook/react-native';
-import Spacer from '../../Spacer/native';
-import Flex from '../../Flex/native';
-import Tag from '../native';
 import makeStories from '../makeStories';
+import Flex from '../../Flex/native';
+import Space from '../../Space/native';
+import View from '../../View/native';
+import Tag from '../native';
 
 makeStories(storiesOf, {
-  Tag,
-  Spacer,
   Flex,
+  Space,
+  View,
+  Tag,
 });

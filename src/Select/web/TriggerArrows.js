@@ -1,17 +1,20 @@
 import React from 'react';
-import Spacer from '../../Spacer/web';
+import Space from '../../Space/web';
 import Flex from '../../Flex/web';
+import View from '../../View/web';
 
 const TriggerArrows = () => (
-  <Spacer padding={[1]}>
+  <Space padding={[1]}>
     <Flex>
-      <svg width="24px" height="24px" viewBox="0 0 24 24">
-        <g id="arrow-filled-down" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-          <polygon id="Shape" fill="#727171" fillRule="nonzero" points="12 15 8 9 16 9" />
-        </g>
-      </svg>
+      <View>
+        <svg width="24px" height="24px" viewBox="0 0 24 24">
+          <g id="arrow-filled-down" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <polygon id="Shape" fill="#727171" fillRule="nonzero" points="12 15 8 9 16 9" />
+          </g>
+        </svg>
+      </View>
     </Flex>
-  </Spacer>
+  </Space>
 );
 
 export default TriggerArrows;

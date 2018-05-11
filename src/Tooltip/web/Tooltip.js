@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Overlay } from 'react-overlays';
 import reactChildrenByType from '../../utils/reactChildrenByType';
-import Flex from '../../Flex/web';
 import TooltipTrigger from './TooltipTrigger';
 import TooltipContent from './TooltipContent';
 
@@ -29,7 +28,7 @@ class Tooltip extends React.Component {
     const tooltipChildrenByType = reactChildrenByType(children);
 
     return (
-      <Flex display="inline-block">
+      <React.Fragment>
         {
           React.cloneElement(tooltipChildrenByType[TooltipTrigger], {
             ref: this.setTooltipTriggerRef,
@@ -44,7 +43,7 @@ class Tooltip extends React.Component {
         >
           {tooltipChildrenByType[TooltipContent]}
         </Overlay>
-      </Flex>
+      </React.Fragment>
     );
   }
 }

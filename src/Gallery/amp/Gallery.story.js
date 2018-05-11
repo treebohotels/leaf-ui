@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react';
+import makeStories from '../makeStories';
 import Image from '../../Image/amp';
 import Gallery from '../amp';
-import makeStories from '../makeStories';
 
 makeStories(storiesOf, {
   Gallery,

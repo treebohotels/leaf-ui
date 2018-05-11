@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import Text from '../../Text/native';
-import Spacer from '../../Spacer/native';
+import Space from '../../Space/native';
 
 const labelAnimationDuration = 300;
 
@@ -184,9 +184,9 @@ class TextInput extends Component {
         </InputContainer>
         {
           error ? (
-            <Spacer margin={[1, 0, 0, 0]}>
+            <Space margin={[1, 0, 0, 0]}>
               <Text color="red" size="xs">{error}</Text>
-            </Spacer>
+            </Space>
           ) : null
         }
       </InputContainerWrapper>

@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react-native';
-import Text from '../native';
 import makeStories from '../makeStories';
+import Text from '../native';
 
 makeStories(storiesOf, { Text });

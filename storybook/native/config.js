@@ -24,6 +24,7 @@ addDecorator((story) => (
 configure(() => {
   require('../../src/Button/native/Button.story');
   require('../../src/Card/native/Card.story');
+  require('../../src/View/native/View.story');
   require('../../src/Divider/native/Divider.story');
   require('../../src/Form/native/Form.story');
   require('../../src/Tag/native/Tag.story');

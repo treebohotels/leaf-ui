@@ -3,9 +3,10 @@ import { text, select } from '@storybook/addon-knobs';
 import theme from '../theme';
 
 export default (storiesOf, {
-  Tag,
-  Spacer,
   Flex,
+  Space,
+  View,
+  Tag,
 }) =>
   storiesOf('Tag', module)
     .add('playground', () => (
@@ -19,30 +20,30 @@ export default (storiesOf, {
       </Tag>
     ))
     .add('kinds', () => (
-      <Spacer width="100px">
-        <Flex flexDirection="column" >
+      <Flex alignItems="flex-start">
+        <View>
           <Tag kind="outlined">
             outlined
           </Tag>
-          <Spacer margin={[1, 0, 0, 0]}>
+          <Space margin={[1, 0, 0, 0]}>
             <Tag kind="filled">
               filled
             </Tag>
-          </Spacer>
-        </Flex>
-      </Spacer>
+          </Space>
+        </View>
+      </Flex>
     ))
     .add('size', () => (
-      <Spacer width="100px">
-        <Flex flexDirection="column" >
+      <Flex alignItems="flex-start">
+        <View>
           <Tag size="small">
             small
           </Tag>
-          <Spacer margin={[1, 0, 0, 0]}>
+          <Space margin={[1, 0, 0, 0]}>
             <Tag>
               medium
             </Tag>
-          </Spacer>
-        </Flex>
-      </Spacer>
+          </Space>
+        </View>
+      </Flex>
     ));
