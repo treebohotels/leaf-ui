@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Flex from '../../Flex/web';
+import View from '../../View/web';
 import Tab from './Tab';
 import Title from './Title';
 import TitleContainer from './TitleContainer';
@@ -22,10 +22,10 @@ class Tabs extends React.Component {
 
   render() {
     const { selectedTabIndex } = this.state;
-    const { children } = this.props;
+    const { className, children } = this.props;
 
     return (
-      <Flex flexDirection="column">
+      <View className={className}>
         <TitleContainer>
           {
             React.Children.map(children, (tab, index) => (
@@ -39,12 +39,13 @@ class Tabs extends React.Component {
           }
         </TitleContainer>
         {children[selectedTabIndex]}
-      </Flex>
+      </View>
     );
   }
 }
 
 Tabs.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node,
 };
 

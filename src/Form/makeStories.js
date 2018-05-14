@@ -2,7 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 
 export default(storiesOf, {
-  Spacer,
+  Space,
   TextInput,
   Select,
   Checkbox,
@@ -27,15 +27,15 @@ export default(storiesOf, {
       }
       >
         <Form.Form>
-          <Spacer margin={[0, 0, 2, 0]}>
+          <Space margin={[0, 0, 2, 0]}>
             <TextInput
               name="leafName"
               label="Leaf Name"
               placeholder="pine"
               defaultValue="eucalyptus"
             />
-          </Spacer>
-          <Spacer margin={[0, 0, 2, 0]}>
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
             <Select
               name="leafColor"
               label="Leaf color"
@@ -43,14 +43,14 @@ export default(storiesOf, {
               options={[{ label: 'Red', value: 'Red' }, { label: 'Green', value: 'Green' }]}
               defaultSelected={{ label: 'Green', value: 'Green' }}
             />
-          </Spacer>
-          <Spacer margin={[0, 0, 2, 0]}>
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
             <Checkbox
               name="isAquatic"
               label="Is an aquatic plant"
               defaultChecked
             />
-          </Spacer>
+          </Space>
           <RadioButton
             name="treeType"
             label="Oak"
@@ -66,9 +66,9 @@ export default(storiesOf, {
             label="Mahogany"
             value="mahogany"
           />
-          <Spacer margin={[2, 0, 0, 0]}>
+          <Space margin={[2, 0, 0, 0]}>
             <Button type="submit">Submit</Button>
-          </Spacer>
+          </Space>
         </Form.Form>
       </Form>
     ));

@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import Checkbox from '../web';
 import makeStories from '../makeStories';
+import Checkbox from '../web';
 
 makeStories(storiesOf, { Checkbox });

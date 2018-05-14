@@ -4,9 +4,10 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 import theme from '../theme';
 
 export default (storiesOf, {
-  Button,
-  Spacer,
   Flex,
+  View,
+  Space,
+  Button,
 }) =>
   storiesOf('Button', module)
     .add('playground', () => (
@@ -23,61 +24,61 @@ export default (storiesOf, {
       </Button>
     ))
     .add('kinds', () => (
-      <Spacer width="200px">
-        <Flex flexDirection="column" >
+      <Flex alignItems="flex-start">
+        <View>
           <Button kind="filled">
-          Filled Button
+            Filled Button
           </Button>
-          <Spacer margin={[1, 0, 0, 0]}>
+          <Space margin={[1, 0, 0, 0]}>
             <Button kind="outlined">
-            Outlined Button
+              Outlined Button
             </Button>
-          </Spacer>
-        </Flex>
-      </Spacer>
+          </Space>
+        </View>
+      </Flex>
     ))
     .add('shapes', () => (
-      <Spacer width="200px">
-        <Flex flexDirection="column" >
+      <Flex alignItems="flex-start">
+        <View>
           <Button shape="bluntEdged">
             Blunt Edged Button
           </Button>
-          <Spacer margin={[1, 0, 0, 0]}>
+          <Space margin={[1, 0, 0, 0]}>
             <Button shape="sharpEdged">
               Sharp Edged Button
             </Button>
-          </Spacer>
-          <Spacer margin={[1, 0, 0, 0]}>
+          </Space>
+          <Space margin={[1, 0, 0, 0]}>
             <Button shape="capsular">
               Capsular Button
             </Button>
-          </Spacer>
-          <Spacer margin={[1, 0, 0, 0]} width="45px">
+          </Space>
+          <Space margin={[1, 0, 0, 0]}>
             <Button shape="circular">
-            C
+              C
             </Button>
-          </Spacer>
-        </Flex>
-      </Spacer>
+          </Space>
+        </View>
+      </Flex>
     ))
     .add('sizes', () => (
-      <Spacer width="200px">
-        <Flex flexDirection="column" >
+      <Flex alignItems="flex-start">
+        <View>
           <Button size="small">
-          Small Button
+            Small Button
           </Button>
-          <Spacer margin={[1, 0, 0, 0]}>
+          <Space margin={[1, 0, 0, 0]}>
             <Button size="medium">
-            Medium Button
+              Medium Button
             </Button>
-          </Spacer>
-          <Spacer margin={[1, 0, 0, 0]}>
+          </Space>
+          <Space margin={[1, 0, 0, 0]}>
             <Button size="large">
-            Large Button
+              Large Button
             </Button>
-          </Spacer>
-        </Flex>
-      </Spacer>
+          </Space>
+        </View>
+      </Flex>
     ))
     .add('block', () => (
       <Button block>

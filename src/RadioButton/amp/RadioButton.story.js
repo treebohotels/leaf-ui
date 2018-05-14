@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import RadioButton from '../amp';
 import makeStories from '../makeStories';
+import RadioButton from '../amp';
 
 makeStories(storiesOf, { RadioButton });

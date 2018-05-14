@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Overlay } from 'react-overlays';
 import reactChildrenByType from '../../utils/reactChildrenByType';
-import Flex from '../../Flex/web';
 import DropdownTrigger from './DropdownTrigger';
 import DropdownContent from './DropdownContent';
 
@@ -39,7 +38,7 @@ class Dropdown extends React.Component {
     const dropdownChildrenByType = reactChildrenByType(children);
 
     return (
-      <Flex display="inline-block">
+      <span>
         {
           React.cloneElement(dropdownChildrenByType[DropdownTrigger], {
             ref: this.setDropdownTriggerRef,
@@ -53,7 +52,7 @@ class Dropdown extends React.Component {
         >
           {dropdownChildrenByType[DropdownContent]}
         </Overlay>
-      </Flex>
+      </span>
     );
   }
 }

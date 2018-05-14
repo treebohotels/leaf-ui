@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Spacer from '../../Spacer/web';
+import Space from '../../Space/web';
 import Flex from '../../Flex/web';
+import View from '../../View/web';
 
 const GalleryContainer = styled.div`
   width: ${(props) => props.width};
@@ -54,11 +55,13 @@ class Gallery extends Component {
       >
         {
           isGalleryRefSet ? React.Children.map(children, (child) => (
-            <Spacer key={child} margin={scrollDirection === 'horizontal' ? [0, 0.5, 0, 0] : [0, 0, 0.5, 0]}>
+            <Space key={child} margin={scrollDirection === 'horizontal' ? [0, 0.5, 0, 0] : [0, 0, 0.5, 0]}>
               <Flex display="inline-flex">
-                {child}
+                <View>
+                  {child}
+                </View>
               </Flex>
-            </Spacer>
+            </Space>
           )) : null
         }
       </GalleryContainer>

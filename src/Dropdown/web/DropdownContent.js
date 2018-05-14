@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
-import Spacer from '../../Spacer/web';
+import Size from '../../Size/web';
 import Card from '../../Card/web';
 
 class DropdownContent extends React.Component {
@@ -15,10 +15,10 @@ class DropdownContent extends React.Component {
       position: 'absolute',
       width: 0,
       height: 0,
-      borderRightColor: 'transparent',
-      borderLeftColor: 'transparent',
-      borderTopColor: 'transparent',
-      borderBottomColor: 'transparent',
+      borderRightColor: this.props.theme.color.transparent,
+      borderLeftColor: this.props.theme.color.transparent,
+      borderTopColor: this.props.theme.color.transparent,
+      borderBottomColor: this.props.theme.color.transparent,
       borderStyle: 'solid',
     },
 
@@ -77,11 +77,11 @@ class DropdownContent extends React.Component {
             top,
           }}
         />
-        <Spacer minWidth={25}>
+        <Size minWidth={25}>
           <Card elevated>
             {children}
           </Card>
-        </Spacer>
+        </Size>
       </div>
     );
   }

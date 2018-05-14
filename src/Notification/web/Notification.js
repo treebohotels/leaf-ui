@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Flex from '../../Flex/web';
 import Text from '../../Text/web';
 import Button from '../../Button/web';
-import Spacer from '../../Spacer/web';
+import Space from '../../Space/web';
+import View from '../../View/web';
 import NotificationContainer from './NotificationContainer';
 import notificationTypes from './notificationTypes';
 
@@ -13,42 +14,52 @@ const Notification = ({
   content,
   actionProps,
 }) => (
-  <Spacer padding={[1]} margin={[0, 0, 2, 0]}>
+  <Space padding={[1]} margin={[0, 0, 2, 0]}>
     <NotificationContainer type={type}>
-      <Spacer padding={[2]}>
-        <Flex justifyContent="space-around" alignItems="center">
-          <Flex flex="0">
-            {notificationTypes[type].icon}
-          </Flex>
-          <Spacer margin={[0, 24, 0, 3]}>
-            <Flex flex="1" flexDirection="column">
-              {
-                title ? (
-                  <div>
-                    <Spacer margin={[0, 0, 1, 0]}>
-                      <Text size="m" weight="semibold">{title}</Text>
-                    </Spacer>
-                    <Text size="xs" color="greyDark">{content}</Text>
-                  </div>
-                ) : (
-                  <Text>{content}</Text>
-                )
-              }
+      <Space padding={[2]}>
+        <Flex
+          flexDirection="row"
+          justifyContent="space-around"
+          alignItems="center"
+        >
+          <View>
+            <Flex flex="0">
+              <View>
+                {notificationTypes[type].icon}
+              </View>
             </Flex>
-          </Spacer>
-          {
-            actionProps ? (
-              <Button
-                color={notificationTypes[type].color}
-                size="small"
-                {...actionProps}
-              />
-            ) : null
-          }
+            <Space margin={[0, 24, 0, 3]}>
+              <Flex flex="1">
+                <View>
+                  {
+                    title ? (
+                      <View>
+                        <Space margin={[0, 0, 1, 0]}>
+                          <Text size="m" weight="semibold">{title}</Text>
+                        </Space>
+                        <Text size="xs" color="greyDark">{content}</Text>
+                      </View>
+                    ) : (
+                      <Text>{content}</Text>
+                    )
+                  }
+                </View>
+              </Flex>
+            </Space>
+            {
+              actionProps ? (
+                <Button
+                  color={notificationTypes[type].color}
+                  size="small"
+                  {...actionProps}
+                />
+              ) : null
+            }
+          </View>
         </Flex>
-      </Spacer>
+      </Space>
     </NotificationContainer>
-  </Spacer>
+  </Space>
 );
 
 Notification.propTypes = {

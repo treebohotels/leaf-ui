@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import Text from '../web';
 import makeStories from '../makeStories';
+import Text from '../web';
 
 makeStories(storiesOf, { Text });

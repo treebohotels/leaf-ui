@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const images = [
   {
@@ -48,7 +48,7 @@ export default (storiesOf, {
   Image,
 }) =>
   storiesOf('Gallery', module).add('simple', () => (
-    <Fragment>
+    <React.Fragment>
       <Gallery
         width="400"
         height="300"
@@ -66,5 +66,5 @@ export default (storiesOf, {
           ))
         }
       </Gallery>
-    </Fragment>
+    </React.Fragment>
   ));

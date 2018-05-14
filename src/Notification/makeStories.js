@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 export default (storiesOf, { Notification }) =>
   storiesOf('Notification', module)
@@ -14,7 +14,7 @@ export default (storiesOf, { Notification }) =>
       />
     ))
     .add('types', () => (
-      <Fragment>
+      <React.Fragment>
         <Notification
           type="info"
           title="This is an info message"
@@ -51,5 +51,5 @@ export default (storiesOf, { Notification }) =>
           children: 'OKAY',
         }}
         />
-      </Fragment>
+      </React.Fragment>
     ));

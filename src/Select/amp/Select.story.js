@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import Select from '../amp';
 import makeStories from '../makeStories';
+import Select from '../amp';
 
 makeStories(storiesOf, { Select });

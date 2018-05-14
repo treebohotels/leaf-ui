@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Flex from '../../Flex/web';
+import View from '../../View/web';
 
 const styles = {
   color(props) {
@@ -47,17 +48,19 @@ const Icon = ({
   children,
   ...props
 }) => (
-  <Flex alignItems="center">
-    {right ? children : null}
-    <I
-      color={color}
-      name={name}
-      right={right}
-      onClick={onClick}
-      hasChildren={!!children}
-      {...props}
-    />
-    {!right ? children : null}
+  <Flex flexDirection="row" alignItems="center">
+    <View>
+      {right ? children : null}
+      <I
+        color={color}
+        name={name}
+        right={right}
+        onClick={onClick}
+        hasChildren={!!children}
+        {...props}
+      />
+      {!right ? children : null}
+    </View>
   </Flex>
 );
 

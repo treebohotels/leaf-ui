@@ -17,7 +17,7 @@ const styles = {
 const ImgContainer = styled.div`
   width: ${(props) => props.width || ''};
   height: ${(props) => props.height || ''};
-  background-color: ${(props) => props.isLoaded ? 'transparent' : props.theme.color.translucent};
+  background-color: ${(props) => props.isLoaded ? props.theme.color.transparent : props.theme.color.translucent};
   position: ${(props) => props.isLoaded ? 'static' : 'initial'};
   border-radius: ${styles.borderRadius};
 `;

@@ -9,11 +9,14 @@ const sampleText = `
     Donec convallis massa at pretium tincidunt.
     Quisque quis tellus quis odio venenatis bibendum.`;
 
-export default(storiesOf, { Card }) =>
+export default(storiesOf, {
+  Card,
+}) =>
   storiesOf('Card', module)
     .add('playground', () => (
       <Card
-        color={select('color', Object.keys(theme.color), 'white')}
+        borderColor={select('borderColor', Object.keys(theme.color), 'white')}
+        backgroundColor={select('backgroundColor', Object.keys(theme.color), 'white')}
         elevated={boolean('elevated', false)}
       >
         {sampleText}

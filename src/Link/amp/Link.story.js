@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import Link from '../amp';
 import makeStories from '../makeStories';
+import Link from '../amp';
 
 makeStories(storiesOf, { Link });

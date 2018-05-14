@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import Image from '../amp';
 import makeStories from '../makeStories';
+import Image from '../amp';
 
 makeStories(storiesOf, { Image });

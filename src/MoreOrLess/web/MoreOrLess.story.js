@@ -1,11 +1,11 @@
 import { storiesOf } from '@storybook/react';
-import Spacer from '../../Spacer/web';
-import Card from '../../Card/web';
-import MoreOrLess from '../web';
 import makeStories from '../makeStories';
+import Space from '../../Space/web';
+import View from '../../View/web';
+import MoreOrLess from '../web';
 
 makeStories(storiesOf, {
-  Spacer,
-  Card,
+  Space,
+  View,
   MoreOrLess,
 });

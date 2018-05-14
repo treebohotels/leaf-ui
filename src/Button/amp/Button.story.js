@@ -1,11 +1,13 @@
 import { storiesOf } from '@storybook/react';
-import Spacer from '../../Spacer/amp';
-import Flex from '../../Flex/amp';
-import Button from '../amp';
 import makeStories from '../makeStories';
+import Flex from '../../Flex/amp';
+import View from '../../View/amp';
+import Space from '../../Space/amp';
+import Button from '../amp';
 
 makeStories(storiesOf, {
-  Button,
-  Spacer,
   Flex,
+  View,
+  Space,
+  Button,
 });

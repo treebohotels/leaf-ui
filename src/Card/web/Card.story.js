@@ -1,5 +1,7 @@
 import { storiesOf } from '@storybook/react';
-import Card from '../web';
 import makeStories from '../makeStories';
+import Card from '../web';
 
-makeStories(storiesOf, { Card });
+makeStories(storiesOf, {
+  Card,
+});

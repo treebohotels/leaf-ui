@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import Select from '../web';
 import makeStories from '../makeStories';
+import Select from '../web';
 
 makeStories(storiesOf, { Select });

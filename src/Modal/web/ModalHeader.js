@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Text from '../../Text/web';
+import View from '../../View/web';
+import Space from '../../Space/web';
 import Icon from '../../Icon/web';
-import Spacer from '../../Spacer/web';
+import Text from '../../Text/web';
 
 const ModalHeader = ({ children, onBack }) => (
-  <Spacer padding={[5, 5, 1, 5]}>
-    <div>
+  <Space padding={[5, 5, 1, 5]}>
+    <View>
       {
         onBack ? (
-          <Spacer margin={[0, 0, 2, 0]}>
+          <Space margin={[0, 0, 2, 0]}>
             <Icon
               name="arrow_back"
               onClick={onBack}
             />
-          </Spacer>
+          </Space>
         ) : null
       }
       <Text
@@ -23,8 +24,8 @@ const ModalHeader = ({ children, onBack }) => (
       >
         {children}
       </Text>
-    </div>
-  </Spacer>
+    </View>
+  </Space>
 );
 
 ModalHeader.propTypes = {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import pluralize from '../../utils/pluralize';
 import Text from '../../Text/web';
-import Spacer from '../../Spacer/web';
+import Space from '../../Space/web';
 import Checkbox from '../../Checkbox/web';
 import Trigger from './Trigger';
 import Label from './Label';
@@ -137,7 +137,7 @@ class Select extends React.Component {
                 error,
               })}
             >
-              <Spacer padding={[1.5, 0, 1.5, 1.5]}>
+              <Space padding={[1.5, 0, 1.5, 1.5]}>
                 <Text
                   color={!dsSelectedOptions.length ? 'grey' : ''}
                   size="s"
@@ -145,7 +145,7 @@ class Select extends React.Component {
                 >
                   {this.getTriggerText(dsSelectedOptions)}
                 </Text>
-              </Spacer>
+              </Space>
               <TriggerArrows />
             </Trigger>
             <div style={{ position: 'relative' }}>
@@ -168,13 +168,13 @@ class Select extends React.Component {
                         >
                           {
                             multiple ? (
-                              <Spacer padding={[0]}>
+                              <Space padding={[0]}>
                                 <Checkbox
                                   readOnly
                                   label={option.label}
                                   checked={dsSelectedOptions.includes(option)}
                                 />
-                              </Spacer>
+                              </Space>
                             ) : (
                               <Text>
                                 {option.label}
@@ -190,11 +190,11 @@ class Select extends React.Component {
             </div>
             {
               error ? (
-                <Spacer margin={[0.5, 0, 0, 0]}>
+                <Space margin={[0.5, 0, 0, 0]}>
                   <Text color="red" size="xxs">
                     {error}
                   </Text>
-                </Spacer>
+                </Space>
               ) : null
             }
           </div>

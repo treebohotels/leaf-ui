@@ -11,7 +11,7 @@ export default (storiesOf, {
   Tag,
   Text,
   Select,
-  Spacer,
+  Space,
   Table,
 }) =>
   storiesOf('Table', module)
@@ -97,14 +97,14 @@ export default (storiesOf, {
             <Table.TD>2</Table.TD>
             <Table.TD>
               <Text size="s">Oak</Text>
-              <Spacer margin={[1, 0, 0, 0]}>
+              <Space margin={[1, 0, 0, 0]}>
                 <Tag
                   kind="outlined"
                   shape="capsular"
                 >
                   Chip
                 </Tag>
-              </Spacer>
+              </Space>
             </Table.TD>
             <Table.TD>10/11/2018</Table.TD>
             <Table.TD>oak</Table.TD>

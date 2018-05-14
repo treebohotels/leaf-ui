@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { action } from '@storybook/addon-actions';
 
 export default (storiesOf, { List, Text, Icon }) =>
@@ -36,7 +36,7 @@ export default (storiesOf, { List, Text, Icon }) =>
       </List>
     ))
     .add('ordered list', () => (
-      <Fragment>
+      <React.Fragment>
         <Text size="xl">Need To Know</Text>
         <List type="ordered">
           <List.Item>12:00 PM Checkin</List.Item>
@@ -54,10 +54,10 @@ export default (storiesOf, { List, Text, Icon }) =>
             extra kids during check-in.
           </List.Item>
         </List>
-      </Fragment>
+      </React.Fragment>
     ))
     .add('unordered list', () => (
-      <Fragment>
+      <React.Fragment>
         <Text size="xl">Need To Know</Text>
         <List type="unordered">
           <List.Item>12:00 PM Checkin</List.Item>
@@ -75,5 +75,5 @@ export default (storiesOf, { List, Text, Icon }) =>
             extra kids during check-in.
           </List.Item>
         </List>
-      </Fragment>
+      </React.Fragment>
     ));

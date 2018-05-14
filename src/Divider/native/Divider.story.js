@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react-native';
-import Divider from '../native';
 import makeStories from '../makeStories';
+import Divider from '../native';
 
 makeStories(storiesOf, { Divider });

@@ -13,12 +13,14 @@ const Position = styled(
     ...props
   }) => React.cloneElement(children, props),
 )`
-  position: ${(props) => props.position ? `${props.position} !important;` : ''};
-  top: ${(props) => props.top != null ? `${props.theme.px(props.top)} !important;` : ''};
-  right: ${(props) => props.right != null ? `${props.theme.px(props.right)} !important;` : ''};
-  bottom: ${(props) => props.bottom != null ? `${props.theme.px(props.bottom)} !important;` : ''};
-  left: ${(props) => props.left != null ? `${props.theme.px(props.left)} !important;` : ''};
-  z-index: ${(props) => props.zIndex != null ? `${props.zIndex} !important;` : ''};
+  &&& {
+    position: ${(props) => props.position ? `${props.position} !important;` : ''};
+    top: ${(props) => props.top != null ? `${props.theme.px(props.top)} !important;` : ''};
+    right: ${(props) => props.right != null ? `${props.theme.px(props.right)} !important;` : ''};
+    bottom: ${(props) => props.bottom != null ? `${props.theme.px(props.bottom)} !important;` : ''};
+    left: ${(props) => props.left != null ? `${props.theme.px(props.left)} !important;` : ''};
+    z-index: ${(props) => props.zIndex != null ? `${props.zIndex} !important;` : ''};
+  }
 `;
 
 Position.propTypes = {
