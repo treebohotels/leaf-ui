@@ -34,13 +34,9 @@ var _styledComponents = require('styled-components');
 
 var _styledComponents2 = _interopRequireDefault(_styledComponents);
 
-var _web = require('../../Spacer/web');
+var _web = require('../../Text/web');
 
 var _web2 = _interopRequireDefault(_web);
-
-var _web3 = require('../../Text/web');
-
-var _web4 = _interopRequireDefault(_web3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -100,15 +96,11 @@ var MoreOrLess = function (_Component) {
       }, props),
       _react2.default.createElement('input', { type: 'checkbox', id: this.id }),
       _react2.default.createElement(
-        _web2.default,
-        { margin: [0, 0, 2, 0] },
-        _react2.default.createElement(
-          'div',
-          null,
-          children
-        )
+        'div',
+        null,
+        children
       ),
-      _react2.default.createElement(_web4.default, {
+      _react2.default.createElement(_web2.default, {
         component: 'label',
         htmlFor: this.id,
         color: 'blue',

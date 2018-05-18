@@ -34,11 +34,7 @@ var Gallery = function Gallery(props) {
     _react2.default.createElement(
       _reactHelmet.Helmet,
       null,
-      _react2.default.createElement(
-        'script',
-        { async: '', 'custom-element': 'amp-carousel', src: 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js' },
-        '\xA0'
-      )
+      _react2.default.createElement('script', { async: '', 'custom-element': 'amp-carousel', src: 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js' })
     ),
     _react2.default.createElement(
       _GalleryContainer2.default,

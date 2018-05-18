@@ -17,7 +17,8 @@ const Gallery = (props) => {
   return (
     <Fragment>
       <Helmet>
-        <script async="" custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js">&nbsp;</script>
+        {/* eslint-disable-next-line react/self-closing-comp */}
+        <script async="" custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
       </Helmet>
       <GalleryContainer
         width={integerWidth}
