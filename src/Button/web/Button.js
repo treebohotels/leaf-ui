@@ -34,9 +34,9 @@ const styles = {
     if (props.size === 'small') {
       return props.theme.px([1, 2]);
     } else if (props.size === 'medium') {
-      return props.theme.px([1.625, 2]);
+      return props.theme.px([1.5, 2]);
     } else if (props.size === 'large') {
-      return props.theme.px([2.25, 2]);
+      return props.theme.px([2]);
     }
     return '';
   },
