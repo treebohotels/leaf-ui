@@ -17,15 +17,15 @@ export default (storiesOf, {
             <Button onClick={toggle}>OPEN MODAL</Button>
             <Modal isOpen={on} onClose={toggle}>
               <Modal.Header>
-              Modal Header
+                Modal Header
               </Modal.Header>
               <Modal.Content>
-              content for the modal
-              content for the modal
-              content for the modal
+                content for the modal
+                content for the modal
+                content for the modal
               </Modal.Content>
               <Modal.Footer>
-              Modal Footer
+                Modal Footer
               </Modal.Footer>
             </Modal>
           </React.Fragment>
