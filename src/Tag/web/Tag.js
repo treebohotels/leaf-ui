@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -48,7 +49,15 @@ const styles = {
   },
 };
 
-const Tag = styled.div`
+const Tag = styled(
+  ({
+    color,
+    kind,
+    shape,
+    size,
+    ...props
+  }) => <div {...props} />,
+)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
