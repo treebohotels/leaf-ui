@@ -27,11 +27,11 @@ const GalleryContainer = styled(
     );
   },
 )`
-  ${(props) => props.type === 'carousel' ? `
+  ${(props) => props.type === 'carousel' && `
     .amp-carousel-button {
       display: none;
-  }
-  ` : ''}
+    }
+  `}
 `;
 
 GalleryContainer.propTypes = {
