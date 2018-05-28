@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import GalleryContainer from './GalleryContainer';
 
+const ampCarousel = [{
+  async: '',
+  'custom-element': 'amp-carousel',
+  src: 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js',
+}];
+
 const Gallery = (props) => {
   const {
     width,
@@ -16,10 +22,7 @@ const Gallery = (props) => {
 
   return (
     <Fragment>
-      <Helmet>
-        {/* eslint-disable-next-line react/self-closing-comp */}
-        <script async="" custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
-      </Helmet>
+      <Helmet script={ampCarousel} />
       <GalleryContainer
         width={integerWidth}
         height={integerHeight}
