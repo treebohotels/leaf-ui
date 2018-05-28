@@ -4,16 +4,15 @@ import styled from 'styled-components';
 
 const GalleryContainer = styled(
   ({
-    width,
-    height,
     className,
     ...props
   }) => {
     const carouselProps = {
+      width: Number.parseInt(props.width, 10),
+      height: Number.parseInt(props.height, 10),
       layout: 'responsive',
       controls: '',
-      width: Number.parseInt(width, 10),
-      height: Number.parseInt(height, 10),
+      class: className,
       ...props,
     };
     if (props.type === 'carousel') {
