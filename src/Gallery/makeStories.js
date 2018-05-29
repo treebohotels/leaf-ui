@@ -47,14 +47,15 @@ export default (storiesOf, {
   Gallery,
   Image,
 }) =>
-  storiesOf('Gallery', module).add('simple', () => (
-    <React.Fragment>
-      <Gallery
-        width="400"
-        height="300"
-        type="slides"
-      >
-        {
+  storiesOf('Gallery', module)
+    .add('Slides', () => (
+      <React.Fragment>
+        <Gallery
+          width="400"
+          height="300"
+          type="slides"
+        >
+          {
           images.map((image, index) => (
             <Image
               key={image.url}
@@ -65,6 +66,27 @@ export default (storiesOf, {
             />
           ))
         }
-      </Gallery>
-    </React.Fragment>
-  ));
+        </Gallery>
+      </React.Fragment>
+    ))
+    .add('Carousel', () => (
+      <React.Fragment>
+        <Gallery
+          width="400"
+          height="300"
+          type="carousel"
+        >
+          {
+          images.map((image, index) => (
+            <Image
+              key={image.url}
+              alt={`img-${index}`}
+              width="200"
+              height="300"
+              src={image.url}
+            />
+          ))
+        }
+        </Gallery>
+      </React.Fragment>
+    ));
