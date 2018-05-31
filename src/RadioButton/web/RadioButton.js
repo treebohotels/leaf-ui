@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getIn } from 'formik';
 import Space from '../../Space/web';
 import Text from '../../Text/web';
 import Label from './Label';
@@ -21,7 +22,7 @@ const RadioButton = ({
   let error = errorMessage;
 
   if (formik) {
-    inputProps.checked = formik.values[name] === value;
+    inputProps.checked = getIn(formik.values, name) === value;
     inputProps.onChange = formik.handleChange;
     inputProps.onBlur = formik.handleBlur;
     error = formik.touched[name] && formik.errors[name];

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
+import { getIn } from 'formik';
 import pluralize from '../../utils/pluralize';
 import Text from '../../Text/web';
 import Space from '../../Space/web';
@@ -66,7 +67,7 @@ class Select extends React.Component {
     if (defaultSelected) {
       defaultSelectedOptions = defaultSelectedOptions.concat(defaultSelected || []);
     } else if (formik) {
-      defaultSelectedOptions = defaultSelectedOptions.concat(formik.values[name] || []);
+      defaultSelectedOptions = defaultSelectedOptions.concat(getIn(formik.values, name) || []);
     }
 
     if (formik && defaultSelected) {

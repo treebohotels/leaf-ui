@@ -6,6 +6,7 @@ import Select from '../../Select/web';
 import Checkbox from '../../Checkbox/web';
 import RadioButton from '../../RadioButton/web';
 import Button from '../../Button/web';
+import View from '../../View/web';
 import Form from '../web';
 
 makeStories(storiesOf, {
@@ -15,5 +16,6 @@ makeStories(storiesOf, {
   Checkbox,
   RadioButton,
   Button,
+  View,
   Form,
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getIn } from 'formik';
 import Space from '../../Space/web';
 import Text from '../../Text/web';
 import Label from './Label';
@@ -35,7 +36,7 @@ class Checkbox extends React.Component {
     let error = errorMessage;
 
     if (formik) {
-      inputProps.checked = !!formik.values[name];
+      inputProps.checked = !!getIn(formik.values, name);
       delete inputProps.defaultChecked;
       inputProps.onChange = (...args) => {
         formik.handleChange(...args);
