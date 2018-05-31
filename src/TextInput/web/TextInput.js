@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getIn } from 'formik';
 import Space from '../../Space/web';
 import Text from '../../Text/web';
 import Input from './Input';
@@ -34,7 +35,7 @@ class TextInput extends React.Component {
     let error = errorMessage;
 
     if (formik) {
-      inputProps.value = formik.values[name];
+      inputProps.value = getIn(formik.values, name);
       delete inputProps.defaultValue;
       inputProps.onChange = (...args) => {
         formik.handleChange(...args);

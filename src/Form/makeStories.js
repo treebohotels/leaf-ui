@@ -8,6 +8,7 @@ export default(storiesOf, {
   Checkbox,
   RadioButton,
   Button,
+  View,
   Form,
 }) =>
   storiesOf('Form', module)
@@ -71,4 +72,47 @@ export default(storiesOf, {
           </Space>
         </Form.Form>
       </Form>
+    )).add('dynamic', () => (
+      <View>
+        <p>Dynamic form fields with dynamic and complex field names</p>
+        <Form
+          onSubmit={action('onSubmit')}
+          validationSchema={
+            Form.validation.object().shape({
+              details: Form.validation.array().of(
+                Form.validation.object().shape({
+                  text: Form.validation.string().required(),
+                  checkbox: Form.validation.boolean().equals([true]).required(),
+                }).required(),
+              ).required(),
+            }).required()
+          }
+        >
+          <Form.Form>
+            {
+              [0, 1, 2, 3].map((x) => (
+                <Space margin={[3, 0]}>
+                  <View>
+                    <TextInput
+                      name={`details[${x}].text`}
+                      label={`Text-${x + 1}`}
+                      defaultValue={x !== 1 ? `Text ${x + 1}` : ''}
+                    />
+                    <Space margin={[1, 0]}>
+                      <Checkbox
+                        name={`details[${x}].checkbox`}
+                        label={`Checkbox-${x + 1}`}
+                        defaultChecked={x !== 1}
+                      />
+                    </Space>
+                  </View>
+                </Space>
+              ))
+            }
+            <Space margin={[2, 0, 0, 0]}>
+              <Button type="submit">Submit</Button>
+            </Space>
+          </Form.Form>
+        </Form>
+      </View>
     ));
