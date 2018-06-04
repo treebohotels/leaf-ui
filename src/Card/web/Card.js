@@ -21,8 +21,10 @@ const styles = {
 
 const Card = styled(
   ({
+    borderStyle,
     borderColor,
     backgroundColor,
+    shape,
     elevated,
     ...props
   }) => <View {...props} />,
@@ -36,16 +38,16 @@ const Card = styled(
 `;
 
 Card.propTypes = {
+  borderStyle: PropTypes.string,
   borderColor: PropTypes.oneOf(Object.keys(theme.color)),
   backgroundColor: PropTypes.oneOf(Object.keys(theme.color)),
-  elevated: PropTypes.bool,
-  borderStyle: PropTypes.string,
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'capsular', 'circular']),
+  elevated: PropTypes.bool,
 };
 
 Card.defaultProps = {
-  backgroundColor: 'white',
   borderStyle: 'solid',
+  backgroundColor: 'white',
   shape: 'bluntEdged',
 };
 
