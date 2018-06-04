@@ -18,6 +18,8 @@ export default(storiesOf, {
         borderColor={select('borderColor', Object.keys(theme.color), 'white')}
         backgroundColor={select('backgroundColor', Object.keys(theme.color), 'white')}
         elevated={boolean('elevated', false)}
+        borderStyle={select('borderStyle', ['dashed', 'dotted', 'double', 'solid', 'none', 'hidden'], 'solid')}
+        shape={select('shape', ['bluntEdged', 'sharpEdged', 'capsular', 'circular'], 'bluntEdged')}
       >
         {sampleText}
       </Card>
