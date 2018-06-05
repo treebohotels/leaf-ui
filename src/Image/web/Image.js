@@ -96,7 +96,7 @@ class Image extends Component {
           innerRef={this.setImageRef}
           src={imageSrc}
           alt={alt}
-          width={width}
+          width={width || '100%'}
           height={height}
           grayscale={grayscale}
           isLoaded={isLoaded}
