@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Accordion correctly 1`] = `<div />`;
+
+exports[`should render AccordionSection correctly 1`] = `
+.c0 #__LEAF_UI__accordion-trigger-input-1 {
+  display: none;
+}
+
+.c0 #__LEAF_UI__accordion-trigger-input-1:checked ~ .AccordionSectionContent-jsuqGi {
+  height: auto;
+}
+
+.c0 #__LEAF_UI__accordion-trigger-input-1:checked + .AccordionSectionTrigger-caJlXp .Icon__I-gGplGf {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+<div
+  className="c0"
+>
+  <input
+    id="__LEAF_UI__accordion-trigger-input-1"
+    name={undefined}
+    type="radio"
+  />
+</div>
+`;
+
+exports[`should render AccordionSectionContent correctly 1`] = `
+.c1 {
+  height: 0;
+  overflow: hidden;
+}
+
+.kJDsUm #__LEAF_UI__accordion-trigger-input-1:checked ~ .c0 {
+  height: auto;
+}
+
+<div
+  className="c0 c1"
+/>
+`;
+
+exports[`should render AccordionSectionTrigger correctly 1`] = `
+.kJDsUm #__LEAF_UI__accordion-trigger-input-1:checked + .c0 .Icon__I-gGplGf {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+<div
+  className="c0 "
+>
+  <label
+    htmlFor={undefined}
+  />
+</div>
+`;

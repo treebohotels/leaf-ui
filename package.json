@@ -17,12 +17,14 @@
     "build:es": "NODE_ENV=es babel src -d es --ignore *.test.js,*.story.js,makeStories.js",
     "build:cjs": "NODE_ENV=cjs babel src -d cjs --ignore *.test.js,*.story.js,makeStories.js",
     "build:prepare": "node ./src/scripts/buildPrepare.js",
-    "precommit": "lint-staged",
+    "precommit": "lint-staged && npm test",
     "commit": "git-cz",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint .",
     "lint:stylelint": "stylelint '**/*.js'",
-    "test": "jest"
+    "test": "jest",
+    "update-snapshots": "jest --updateSnapshot",
+    "code-coverage": "jest --coverage"
   },
   "lint-staged": {
     "*.js": [
@@ -58,6 +60,8 @@
     "babel-preset-react": "6.24.1",
     "commitizen": "2.9.6",
     "cz-conventional-changelog": "2.1.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "4.18.2",
     "eslint-config-airbnb": "16.1.0",
     "eslint-plugin-import": "2.9.0",
@@ -65,6 +69,9 @@
     "eslint-plugin-react": "7.7.0",
     "husky": "0.14.3",
     "jest": "22.4.3",
+    "jest-environment-enzyme": "^6.0.1",
+    "jest-enzyme": "^6.0.1",
+    "jest-styled-components": "^5.0.1",
     "lint-staged": "7.0.5",
     "mkdirp": "0.5.1",
     "npm-run-all": "4.1.2",
@@ -112,5 +119,13 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-enzyme",
+    "testEnvironment": "enzyme",
+    "testEnvironmentOptions": {
+      "enzymeAdapter": "react16"
+    },
+    "coverageDirectory":"./test"
   }
 }
