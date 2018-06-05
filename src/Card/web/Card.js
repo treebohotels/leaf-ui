@@ -10,10 +10,6 @@ const styles = {
       return props.theme.borderRadius;
     } else if (props.shape === 'sharpEdged') {
       return '0';
-    } else if (props.shape === 'capsular') {
-      return props.theme.px(10);
-    } else if (props.shape === 'circular') {
-      return '100%';
     }
     return '';
   },
@@ -41,7 +37,7 @@ Card.propTypes = {
   borderStyle: PropTypes.string,
   borderColor: PropTypes.oneOf(Object.keys(theme.color)),
   backgroundColor: PropTypes.oneOf(Object.keys(theme.color)),
-  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'capsular', 'circular']),
+  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged']),
   elevated: PropTypes.bool,
 };
 
