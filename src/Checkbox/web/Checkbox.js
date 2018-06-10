@@ -23,7 +23,6 @@ class Checkbox extends React.Component {
       className,
       name,
       label,
-      disabled,
       error: errorMessage,
       ...props
     } = this.props;
@@ -55,7 +54,6 @@ class Checkbox extends React.Component {
           <Input
             id={name}
             name={name}
-            disabled={disabled}
             error={error}
             {...inputProps}
           />
@@ -80,20 +78,16 @@ class Checkbox extends React.Component {
 
 Checkbox.propTypes = {
   className: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   label: PropTypes.string,
   disabled: PropTypes.bool,
-  error: PropTypes.string,
   defaultChecked: PropTypes.bool,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
+  error: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
-  name: 'defaultName',
-  label: 'defaultLabel',
-  disabled: false,
-  error: '',
   onChange: () => {},
   onBlur: () => {},
 };
