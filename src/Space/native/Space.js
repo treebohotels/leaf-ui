@@ -10,10 +10,8 @@ const Space = styled(
     ...props
   }) => React.cloneElement(children, props),
 )`
-  &&& {
-    ${(props) => props.margin ? `margin: ${props.theme.px(props.margin)}` : ''};
-    ${(props) => props.padding ? `padding: ${props.theme.px(props.padding)}` : ''};
-  }
+  ${(props) => props.margin ? `margin: ${props.theme.px(props.margin)}` : ''};
+  ${(props) => props.padding ? `padding: ${props.theme.px(props.padding)}` : ''};
 `;
 
 Space.propTypes = {

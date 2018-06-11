@@ -20,20 +20,18 @@ const Flex = styled(
     ...props
   }) => React.cloneElement(children, props),
 )`
-  &&& {
-    ${(props) => props.alignContent ? `align-content: ${props.alignContent};` : ''};
-    ${(props) => props.alignItems ? `align-items: ${props.alignItems};` : ''};
-    ${(props) => props.alignSelf ? `align-self: ${props.alignSelf};` : ''};
-    ${(props) => props.display ? `display: ${props.display};` : ''};
-    ${(props) => props.flex ? `flex: ${props.flex};` : ''};
-    ${(props) => props.flexBasis ? `flex-basis: ${props.flexBasis};` : ''};
-    ${(props) => props.flexDirection ? `flex-direction: ${props.flexDirection};` : ''};
-    ${(props) => props.flexGrow ? `flex-grow: ${props.flexGrow};` : ''};
-    ${(props) => props.flexShrink ? `flex-shrink: ${props.flexShrink};` : ''};
-    ${(props) => props.flexWrap ? `flex-wrap: ${props.flexWrap};` : ''};
-    ${(props) => props.justifyContent ? `justify-content: ${props.justifyContent};` : ''};
-    ${(props) => props.order ? `order: ${props.order};` : ''};
-  }
+  ${(props) => props.alignContent ? `align-content: ${props.alignContent};` : ''};
+  ${(props) => props.alignItems ? `align-items: ${props.alignItems};` : ''};
+  ${(props) => props.alignSelf ? `align-self: ${props.alignSelf};` : ''};
+  ${(props) => props.display ? `display: ${props.display};` : ''};
+  ${(props) => props.flex ? `flex: ${props.flex};` : ''};
+  ${(props) => props.flexBasis ? `flex-basis: ${props.flexBasis};` : ''};
+  ${(props) => props.flexDirection ? `flex-direction: ${props.flexDirection};` : ''};
+  ${(props) => props.flexGrow ? `flex-grow: ${props.flexGrow};` : ''};
+  ${(props) => props.flexShrink ? `flex-shrink: ${props.flexShrink};` : ''};
+  ${(props) => props.flexWrap ? `flex-wrap: ${props.flexWrap};` : ''};
+  ${(props) => props.justifyContent ? `justify-content: ${props.justifyContent};` : ''};
+  ${(props) => props.order ? `order: ${props.order};` : ''};
 `;
 
 Flex.propTypes = {
