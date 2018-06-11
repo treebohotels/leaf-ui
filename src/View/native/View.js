@@ -12,7 +12,7 @@ const View = styled(
 )``;
 
 View.propTypes = {
-  component: PropTypes.string.isRequired,
+  component: PropTypes.node.isRequired,
   children: PropTypes.node,
 };
 

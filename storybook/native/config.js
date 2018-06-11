@@ -22,14 +22,7 @@ addDecorator((story) => (
 ));
 
 configure(() => {
-  require('../../src/Button/native/Button.story');
-  require('../../src/Card/native/Card.story');
-  require('../../src/View/native/View.story');
-  require('../../src/Divider/native/Divider.story');
-  require('../../src/Form/native/Form.story');
-  require('../../src/Tag/native/Tag.story');
   require('../../src/Text/native/Text.story');
-  require('../../src/TextInput/native/TextInput.story');
 }, module);
 
 const StorybookUIRoot = getStorybookUI({ port: 7007, onDeviceUI: true });
@@ -42,12 +35,12 @@ class StorybookUIHMRRoot extends Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'roboto-normal': require('./fonts/Roboto.ttf'),
-      'roboto-medium': require('./fonts/Roboto_medium.ttf'),
-      'sfprodisplay-normal': require('./fonts/SFProDisplay-Regular.otf'),
-      'sfprodisplay-medium': require('./fonts/SFProDisplay-Medium.otf'),
-      'sfprodisplay-semibold': require('./fonts/SFProDisplay-Semibold.otf'),
-      'averta-bold': require('./fonts/Averta-Bold.otf'),
+      'Roboto-Regular': require('./fonts/Roboto.ttf'),
+      'Roboto-Medium': require('./fonts/Roboto_medium.ttf'),
+      'SFProDisplay-Regular': require('./fonts/SFProDisplay-Regular.otf'),
+      'SFProDisplay-Medium': require('./fonts/SFProDisplay-Medium.otf'),
+      'SFProDisplay-Semibold': require('./fonts/SFProDisplay-Semibold.otf'),
+      'Averta-Bold': require('./fonts/Averta-Bold.otf'),
     });
 
     // eslint-disable-next-line react/no-did-mount-set-state
