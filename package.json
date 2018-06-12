@@ -31,9 +31,11 @@
     ]
   },
   "dependencies": {
+    "date-fns": "1.29.0",
     "downshift": "1.31.12",
     "expo": "23.0.4",
     "formik": "0.11.11",
+    "react-day-picker": "7.1.9",
     "react-helmet": "5.2.0",
     "react-overlays": "0.8.3",
     "yup": "0.24.1"
