@@ -39,6 +39,7 @@
     "yup": "0.24.1"
   },
   "devDependencies": {
+    "@storybook/addon-centered": "3.4.3",
     "@storybook/addon-actions": "3.4.3",
     "@storybook/addon-knobs": "3.4.3",
     "@storybook/addon-options": "3.4.3",

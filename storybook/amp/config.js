@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { addDecorator, configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
+import centered from '@storybook/addon-centered';
 import theme, { injectBaseStyles } from '../../src/theme';
 
 setOptions({
@@ -21,6 +22,8 @@ addDecorator((story) => {
     </ThemeProvider>
   );
 });
+
+addDecorator(centered);
 
 configure(() => {
   const req = require.context('../../src', true, /\/amp\/.*\.story.js$/);
