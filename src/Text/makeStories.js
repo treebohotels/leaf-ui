@@ -1,19 +1,31 @@
 import React from 'react';
-import { text, select, boolean } from '@storybook/addon-knobs';
 import theme from '../theme';
 
-export default (storiesOf, { Text }) =>
+export default (storiesOf, { Text, View, Space }) =>
   storiesOf('Text', module)
-    .add('playground', () => (
-      <Text
-        component={text('component', 'div')}
-        color={select('color', Object.keys(theme.color), 'greyDarker')}
-        size={select('size', Object.keys(theme.fontSize), 's')}
-        weight={select('weight', Object.keys(theme.fontWeight), 'normal')}
-        family={select('family', Object.keys(theme.fontFamily), 'roboto')}
-        align={select('align', ['left', 'center', 'right'], 'left')}
-        truncate={boolean('truncate', false)}
-      >
-        {text('children', 'The quick brown fox jumps over the lazy dog')}
-      </Text>
+    .add('sizes', () => (
+      <Space margin={[2]}>
+        <View>
+          {Object.keys(theme.fontSize).map((size) => (
+            <Space padding={[1]} key={size}>
+              <Text size={size}>
+                {`size="${size}" (${theme.fontSize[size]})`}
+              </Text>
+            </Space>
+          ))}
+        </View>
+      </Space>
+    ))
+    .add('weights', () => (
+      <Space margin={[2]}>
+        <View>
+          {Object.keys(theme.fontWeight).map((weight) => (
+            <Space padding={[1]} key={weight}>
+              <Text size="xl" weight={weight}>
+                {`weight="${weight}" (${theme.fontWeight[weight]})`}
+              </Text>
+            </Space>
+          ))}
+        </View>
+      </Space>
     ));

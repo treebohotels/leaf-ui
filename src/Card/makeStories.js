@@ -15,8 +15,10 @@ export default(storiesOf, {
   storiesOf('Card', module)
     .add('playground', () => (
       <Card
+        borderStyle={select('borderStyle', ['dashed', 'dotted', 'double', 'solid', 'none', 'hidden'], 'solid')}
         borderColor={select('borderColor', Object.keys(theme.color), 'white')}
         backgroundColor={select('backgroundColor', Object.keys(theme.color), 'white')}
+        shape={select('shape', ['bluntEdged', 'sharpEdged'], 'bluntEdged')}
         elevated={boolean('elevated', false)}
       >
         {sampleText}
