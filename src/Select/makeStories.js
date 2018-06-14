@@ -49,4 +49,17 @@ export default (storiesOf, { Select }) =>
         onChange={action('onChange')}
         error="some error message"
       />
+    ))
+    .add('simple options', () => (
+      <React.Fragment>
+        <Select
+          name="number"
+          label="Number"
+          defaultSelected={[2, 4]}
+          placeholder="Select a number"
+          options={[1, 2, 3, 4]}
+          multiple
+          onChange={action('onChange')}
+        />
+      </React.Fragment>
     ));

@@ -37,7 +37,7 @@ class Select extends React.Component {
 
     if (multiple) {
       let newSelectedOptions = [];
-      if (selectedOptions.includes(selectedOption)) {
+      if (this.isOptionSelected(selectedOptions, selectedOption)) {
         // multiple: remove option
         newSelectedOptions = selectedOptions
           .filter((option) => option.value !== selectedOption.value);
@@ -65,7 +65,9 @@ class Select extends React.Component {
     let defaultSelectedOptions = [];
 
     if (defaultSelected) {
-      defaultSelectedOptions = defaultSelectedOptions.concat(defaultSelected || []);
+      defaultSelectedOptions = defaultSelected.length
+        ? defaultSelectedOptions.concat(defaultSelected.map(this.makeOption))
+        : defaultSelectedOptions.concat(this.makeOption(defaultSelected));
     } else if (formik) {
       defaultSelectedOptions = defaultSelectedOptions.concat(getIn(formik.values, name) || []);
     }
@@ -86,6 +88,21 @@ class Select extends React.Component {
     }
     return selectedOptions[0].label;
   }
+
+  isOptionSelected = (selectedOptions, option) =>
+    selectedOptions
+      .map(({ value }) => value)
+      .includes(option.value);
+
+  makeOption = (option) => {
+    if (typeof option === 'object') {
+      return option;
+    }
+    return {
+      label: option,
+      value: option,
+    };
+  };
 
   itemToString = (option) =>
     option == null ? '' : String(option.value)
@@ -157,34 +174,35 @@ class Select extends React.Component {
                     block={block}
                   >
                     {
-                      options.map((option, index) => (
-                        <Option
-                          {...getItemProps({
-                            key: option.value,
-                            index,
-                            item: option,
-                            isActive: highlightedIndex === index,
-                            isSelected: dsSelectedOptions.includes(option),
-                          })}
-                        >
-                          {
-                            multiple ? (
-                              <Space padding={[0]}>
-                                <Checkbox
-                                  readOnly
-                                  label={option.label}
-                                  checked={dsSelectedOptions.includes(option)}
-                                />
-                              </Space>
-                            ) : (
-                              <Text>
-                                {option.label}
-                              </Text>
-                            )
-                          }
-                        </Option>
-                      ))
-                    }
+                      options
+                        .map(this.makeOption)
+                        .map((option, index) => (
+                          <Option
+                            {...getItemProps({
+                              key: option.value,
+                              index,
+                              item: option,
+                              isActive: highlightedIndex === index,
+                              isSelected: this.isOptionSelected(dsSelectedOptions, option),
+                            })}
+                          >
+                            {
+                              multiple ? (
+                                <Space padding={[0]}>
+                                  <Checkbox
+                                    readOnly
+                                    label={option.label}
+                                    checked={this.isOptionSelected(dsSelectedOptions, option)}
+                                  />
+                                </Space>
+                              ) : (
+                                <Text>
+                                  {option.label}
+                                </Text>
+                              )
+                            }
+                          </Option>
+                        ))}
                   </OptionList>
                 ) : null
               }
