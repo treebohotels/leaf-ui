@@ -6,9 +6,9 @@ import Img from './Img';
 
 class Image extends Component {
   static getCdnUrl(src = '', width = '', height = '') {
-    const validUnitForCdn = /^d+(px)?$/;
-    const integerWidth = validUnitForCdn.test(width) ? Number.parseInt(width, 10) : 'auto';
-    const integerHeight = validUnitForCdn.test(height) ? Number.parseInt(height, 10) : 'auto';
+    const validCdnUnit = /^d+(px)?$/;
+    const integerWidth = validCdnUnit.test(width) ? Number.parseInt(width, 10) : 'auto';
+    const integerHeight = validCdnUnit.test(height) ? Number.parseInt(height, 10) : 'auto';
     const searchParams = [
       `w=${integerWidth || ''}`,
       `h=${integerHeight || ''}`,
