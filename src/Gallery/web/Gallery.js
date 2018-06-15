@@ -11,6 +11,7 @@ const GalleryContainer = styled.div`
   overflow-x: ${(props) => props.scrollDirection === 'horizontal' ? 'scroll' : 'hidden'};
   overflow-y: ${(props) => props.scrollDirection === 'vertical' ? 'scroll' : 'hidden'};
   display: ${(props) => props.scrollDirection === 'horizontal' ? 'flex' : ''};
+  -webkit-overflow-scrolling: 'touch';
 
   &::-webkit-scrollbar {
     display: none;
