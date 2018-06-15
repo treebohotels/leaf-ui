@@ -6,9 +6,9 @@ import Img from './Img';
 
 class Image extends Component {
   static getCdnUrl(src = '', width = '', height = '') {
-    const digitPxRegex = /^d+(px)?$/;
-    const integerWidth = digitPxRegex.test(width) ? Number.parseInt(width, 10) : 'auto';
-    const integerHeight = digitPxRegex.test(height) ? Number.parseInt(height, 10) : 'auto';
+    const validUnitForCdn = /^d+(px)?$/;
+    const integerWidth = validUnitForCdn.test(width) ? Number.parseInt(width, 10) : 'auto';
+    const integerHeight = validUnitForCdn.test(height) ? Number.parseInt(height, 10) : 'auto';
     const searchParams = [
       `w=${integerWidth || ''}`,
       `h=${integerHeight || ''}`,
@@ -97,7 +97,7 @@ class Image extends Component {
           innerRef={this.setImageRef}
           src={imageSrc}
           alt={alt}
-          width={width || '100%'}
+          width={width}
           height={height}
           grayscale={grayscale}
           isLoaded={isLoaded}
