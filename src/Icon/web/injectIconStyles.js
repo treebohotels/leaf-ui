@@ -5,6 +5,7 @@ export default () => injectGlobal`
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
+    font-display: block;
     src: url(https://fonts.gstatic.com/s/materialicons/v31/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
   }
 
