@@ -13,10 +13,13 @@ class Tabs extends React.Component {
       )).find((index) => index !== null) || 0,
   };
 
-  onTabClick = (index) => () => {
+  onTabClick = ({ index, title }) => () => {
     const { selectedTabIndex } = this.state;
+    const { onChange } = this.props;
+
     if (index !== selectedTabIndex) {
       this.setState({ selectedTabIndex: index });
+      onChange({ index, title });
     }
   }
 
@@ -31,7 +34,7 @@ class Tabs extends React.Component {
             React.Children.map(children, (tab, index) => (
               <Title
                 isSelected={index === selectedTabIndex}
-                onClick={this.onTabClick(index)}
+                onClick={this.onTabClick({ index, title: tab.props.title })}
               >
                 {tab.props.title}
               </Title>
@@ -46,7 +49,12 @@ class Tabs extends React.Component {
 
 Tabs.propTypes = {
   className: PropTypes.string,
+  onChange: PropTypes.func,
   children: PropTypes.node,
+};
+
+Tabs.defaultProps = {
+  onChange: () => {},
 };
 
 Tabs.Tab = Tab;
