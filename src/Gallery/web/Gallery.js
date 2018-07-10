@@ -56,13 +56,15 @@ class Gallery extends Component {
       >
         {
           isGalleryRefSet ? React.Children.map(children, (child) => (
-            <Space key={child} margin={scrollDirection === 'horizontal' ? [0, 0.5, 0, 0] : [0, 0, 0.5, 0]}>
-              <Flex display="inline-flex">
-                <View>
-                  {child}
-                </View>
-              </Flex>
-            </Space>
+            child ? (
+              <Space key={child} margin={scrollDirection === 'horizontal' ? [0, 0.5, 0, 0] : [0, 0, 0.5, 0]}>
+                <Flex display="inline-flex">
+                  <View>
+                    {child}
+                  </View>
+                </Flex>
+              </Space>
+            ) : null
           )) : null
         }
       </GalleryContainer>
