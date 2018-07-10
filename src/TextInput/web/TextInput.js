@@ -14,6 +14,8 @@ class TextInput extends React.Component {
     if (formik) {
       if (defaultValue != null) {
         formik.setFieldValue(name, defaultValue);
+      } else {
+        formik.setFieldValue(name, '');
       }
     }
   }
@@ -92,7 +94,6 @@ TextInput.propTypes = {
 };
 
 TextInput.defaultProps = {
-  defaultValue: '',
   onChange: () => {},
   onBlur: () => {},
 };
