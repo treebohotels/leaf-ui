@@ -1,6 +1,9 @@
 import { injectGlobal } from 'styled-components';
+import reactDayPickerStyles from '!!raw-loader!react-day-picker/lib/style.css'; // eslint-disable-line
 
 const injectDatePickerStyles = (theme) => injectGlobal`
+  ${reactDayPickerStyles}
+
   .DayPicker {
     background: ${theme.color.white};
     position: relative;

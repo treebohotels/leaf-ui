@@ -5,7 +5,6 @@ import dateFnsIsBefore from 'date-fns/is_before';
 import dateFnsIsAfter from 'date-fns/is_after';
 import dateFnsFormat from 'date-fns/format';
 import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
 import Flex from '../../Flex/web';
 import Space from '../../Space/web';
 import Position from '../../Position/web';

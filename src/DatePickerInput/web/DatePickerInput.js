@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import dateFnsFormat from 'date-fns/format';
 import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
 import Position from '../../Position/web';
 import View from '../../View/web';
 import TextInput from '../../TextInput/web';
