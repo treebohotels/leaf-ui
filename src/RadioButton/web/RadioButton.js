@@ -7,53 +7,75 @@ import Label from './Label';
 import Input from './Input';
 import Circle from './Circle';
 
-const RadioButton = ({
-  className,
-  name,
-  label,
-  value,
-  disabled,
-  error: errorMessage,
-  ...props
-}, {
-  formik,
-}) => {
-  const inputProps = { name };
-  let error = errorMessage;
+class RadioButton extends React.Component {
+  componentDidMount() {
+    const { name, value, defaultChecked } = this.props;
+    const { formik } = this.context;
 
-  if (formik) {
-    inputProps.checked = getIn(formik.values, name) === value;
-    inputProps.onChange = formik.handleChange;
-    inputProps.onBlur = formik.handleBlur;
-    error = formik.touched[name] && formik.errors[name];
+    if (formik) {
+      if (defaultChecked) {
+        formik.setFieldValue(name, value);
+      }
+    }
   }
 
-  return (
-    <div className={className}>
-      <Label htmlFor={`${name}-${value}`}>
-        <Input
-          id={`${name}-${value}`}
-          {...inputProps}
-          {...props}
-          value={value}
-          disabled={disabled}
-          error={error}
-        />
-        <Circle />
-        {label}
-      </Label>
-      {
-        error ? (
-          <Space margin={[0.5, 0, 0, 0]}>
-            <Text color="red" size="xxs">
-              {error}
-            </Text>
-          </Space>
-        ) : null
-      }
-    </div>
-  );
-};
+  render() {
+    const {
+      className,
+      name,
+      label,
+      value,
+      error: errorMessage,
+      ...props
+    } = this.props;
+
+    const {
+      formik,
+    } = this.context;
+
+    const inputProps = { ...props };
+    let error = errorMessage;
+
+    if (formik) {
+      inputProps.checked = getIn(formik.values, name) === value;
+      delete inputProps.defaultChecked;
+      inputProps.onChange = (...args) => {
+        formik.handleChange(...args);
+        props.onChange(...args);
+      };
+      inputProps.onBlur = (...args) => {
+        formik.handleBlur(...args);
+        props.onBlur(...args);
+      };
+      error = formik.touched[name] && formik.errors[name];
+    }
+
+    return (
+      <div className={className}>
+        <Label htmlFor={`${name}-${value}`}>
+          <Input
+            id={`${name}-${value}`}
+            name={name}
+            value={value}
+            error={error}
+            {...inputProps}
+          />
+          <Circle />
+          {label}
+        </Label>
+        {
+          error ? (
+            <Space margin={[0.5, 0, 0, 0]}>
+              <Text color="red" size="xxs">
+                {error}
+              </Text>
+            </Space>
+          ) : null
+        }
+      </div>
+    );
+  }
+}
 
 RadioButton.propTypes = {
   className: PropTypes.string,
@@ -61,15 +83,15 @@ RadioButton.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
   disabled: PropTypes.bool,
+  defaultChecked: PropTypes.bool,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
   error: PropTypes.string,
 };
 
 RadioButton.defaultProps = {
-  name: 'defaultName',
-  label: 'defaultLabel',
-  value: 'defaultValue',
-  disabled: false,
-  error: '',
+  onChange: () => {},
+  onBlur: () => {},
 };
 
 RadioButton.contextTypes = {
