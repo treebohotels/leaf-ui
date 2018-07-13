@@ -6,6 +6,7 @@ import { Font } from 'expo';
 import theme from '../../src/theme';
 
 const loadStories = () => {
+  require('../../src/Button/native/Button.story');
   require('../../src/Text/native/Text.story');
 };
 
