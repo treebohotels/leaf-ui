@@ -47,6 +47,7 @@ const Button = ({
   block,
   disabled,
   children,
+  ...props
 }) => (
   <StyledButton
     color={color}
@@ -55,6 +56,7 @@ const Button = ({
     shape={shape}
     block={block}
     disabled={disabled}
+    {...props}
   >
     <Text
       color={kind === 'filled' ? 'white' : 'primary'}

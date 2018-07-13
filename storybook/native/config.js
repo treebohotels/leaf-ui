@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, ScrollView } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { getStorybookUI, addDecorator, configure } from '@storybook/react-native';
 import { Font } from 'expo';
@@ -14,7 +14,9 @@ const StorybookUIRoot = getStorybookUI({ port: 7007, onDeviceUI: true });
 
 addDecorator((story) => (
   <ThemeProvider theme={theme}>
-    {story()}
+    <ScrollView>
+      {story()}
+    </ScrollView>
   </ThemeProvider>
 ));
 
