@@ -1,19 +1,15 @@
-/* eslint-disable global-require */
 import React, { Component } from 'react';
-import { AppRegistry, Platform } from 'react-native';
+import { AppRegistry } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { getStorybookUI, addDecorator, configure } from '@storybook/react-native';
 import { Font } from 'expo';
 import theme from '../../src/theme';
 
-const isAndroid = Platform.OS === 'android';
-
-theme.fontFamily = {
-  normal: isAndroid ? 'roboto-normal' : 'sfprodisplay-normal',
-  medium: isAndroid ? 'roboto-medium' : 'sfprodisplay-medium',
-  semibold: isAndroid ? 'roboto-medium' : 'sfprodisplay-semibold',
-  bold: 'averta-bold',
+const loadStories = () => {
+  require('../../src/Text/native/Text.story');
 };
+
+const StorybookUIRoot = getStorybookUI({ port: 7007, onDeviceUI: true });
 
 addDecorator((story) => (
   <ThemeProvider theme={theme}>
@@ -21,37 +17,34 @@ addDecorator((story) => (
   </ThemeProvider>
 ));
 
-configure(() => {
-  require('../../src/Text/native/Text.story');
-}, module);
+configure(loadStories, module);
 
-const StorybookUIRoot = getStorybookUI({ port: 7007, onDeviceUI: true });
-
-// eslint-disable-next-line react/prefer-stateless-function
 class StorybookUIHMRRoot extends Component {
-  state = {
-    fontLoaded: false,
-  };
+  constructor(props) {
+    super(props);
 
-  async componentDidMount() {
-    await Font.loadAsync({
+    this.state = {
+      isFontsLoaded: false,
+    };
+
+    console.disableYellowBox = true;
+  }
+
+  componentDidMount() {
+    Font.loadAsync({
       'Roboto-Regular': require('./fonts/Roboto.ttf'),
       'Roboto-Medium': require('./fonts/Roboto_medium.ttf'),
       'SFProDisplay-Regular': require('./fonts/SFProDisplay-Regular.otf'),
       'SFProDisplay-Medium': require('./fonts/SFProDisplay-Medium.otf'),
       'SFProDisplay-Semibold': require('./fonts/SFProDisplay-Semibold.otf'),
       'Averta-Bold': require('./fonts/Averta-Bold.otf'),
+    }).then(() => {
+      this.setState({ isFontsLoaded: true });
     });
-
-    // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({ fontLoaded: true });
   }
 
   render() {
-    if (this.state.fontLoaded) {
-      return <StorybookUIRoot />;
-    }
-    return null;
+    return this.state.isFontsLoaded ? <StorybookUIRoot /> : null;
   }
 }
 

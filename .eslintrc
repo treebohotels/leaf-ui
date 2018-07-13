@@ -19,6 +19,8 @@
     "jsx-a11y/no-static-element-interactions": ["off"],
     "react/forbid-prop-types": ["error", { "forbid": ["any"] }],
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
-    "react/require-default-props": ["off"]
+    "react/require-default-props": ["off"],
+    "global-require": ["off"],
+    "no-console": ["warn"]
   }
 }
