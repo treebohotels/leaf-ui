@@ -21,6 +21,7 @@
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
     "react/require-default-props": ["off"],
     "global-require": ["off"],
-    "no-console": ["warn"]
+    "no-console": ["warn"],
+    "no-multi-str": ["warn"],
   }
 }
