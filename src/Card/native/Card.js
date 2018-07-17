@@ -24,12 +24,9 @@ const Card = styled(
   border-color: ${(props) => props.borderColor ? props.theme.color[props.borderColor] : props.theme.color[props.backgroundColor]};
   background-color: ${(props) => props.theme.color[props.backgroundColor]};
   elevation: ${(props) => props.elevated ? 1 : 0};
-  shadow-offset: {
-    width: 0,
-    height: ${(props) => props.elevated ? 2 : 0};
-  };
+  shadow-offset: 0px 1px;
   shadow-opacity: ${(props) => props.elevated ? 0.16 : 0};
-  shadow-radius: ${(props) => props.elevated ? 16 : 0};
+  shadow-radius: ${(props) => props.elevated ? 1 : 0};
   shadow-color: #000;
 `;
 
