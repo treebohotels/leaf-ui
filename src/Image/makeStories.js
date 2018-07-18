@@ -8,7 +8,7 @@ export default(storiesOf, { Image }) =>
         alt="img-1"
         shape={select('shape', ['bluntEdged', 'sharpEdged', 'circular'], 'bluntEdged')}
         src="https://images.treebohotels.com/files/Treebo_The_Galaxy/Oak/OAk_(4).jpg"
-        height="200px"
-        width="200px"
+        height="300px"
+        width="300px"
       />
     ));
