@@ -28,7 +28,7 @@ class Tooltip extends React.Component {
     const tooltipChildrenByType = reactChildrenByType(children);
 
     return (
-      <React.Fragment>
+      <div>
         {
           React.cloneElement(tooltipChildrenByType[TooltipTrigger], {
             ref: this.setTooltipTriggerRef,
@@ -43,7 +43,7 @@ class Tooltip extends React.Component {
         >
           {tooltipChildrenByType[TooltipContent]}
         </Overlay>
-      </React.Fragment>
+      </div>
     );
   }
 }
