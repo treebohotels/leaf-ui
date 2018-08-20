@@ -8,4 +8,16 @@ export default(storiesOf, {
       <DatePickerInput
         name="dob"
       />
+    ))
+    .add('all dates', () => (
+      <DatePickerInput
+        name="dob"
+        disabledDays={[]}
+      />
+    ))
+    .add('weekdays', () => (
+      <DatePickerInput
+        name="workday"
+        disabledDays={[{ daysOfWeek: [0, 6] }]}
+      />
     ));

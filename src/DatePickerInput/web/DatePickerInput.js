@@ -101,6 +101,7 @@ class DatePickerInput extends React.Component {
       fromMonth,
       toMonth,
       renderDay,
+      disabledDays,
     } = this.props;
 
     return (
@@ -137,7 +138,7 @@ class DatePickerInput extends React.Component {
                       toMonth={toMonth}
                       month={selectedDay}
                       selectedDays={[selectedDay]}
-                      disabledDays={[{ before: new Date() }]}
+                      disabledDays={disabledDays}
                       modifiers={{
                         start: [selectedDay],
                       }}
@@ -170,6 +171,9 @@ DatePickerInput.propTypes = {
   renderDay: PropTypes.func,
   onDateChange: PropTypes.func,
   theme: PropTypes.object,
+  disabledDays: PropTypes.oneOfType([
+    PropTypes.array, PropTypes.object,
+  ]),
 };
 
 DatePickerInput.defaultProps = {
@@ -177,6 +181,7 @@ DatePickerInput.defaultProps = {
   format: 'YYYY-MM-DD',
   fromMonth: new Date(),
   onDateChange: () => {},
+  disabledDays: [{ before: new Date() }],
 };
 
 DatePickerInput.contextTypes = {
