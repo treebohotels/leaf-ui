@@ -8,4 +8,16 @@ export default(storiesOf, {
       <DateRangePickerInput
         name={{ from: 'checkIn', to: 'checkOut' }}
       />
+    ))
+    .add('all dates', () => (
+      <DateRangePickerInput
+        name={{ from: 'checkIn', to: 'checkOut' }}
+        disabledDays={[]}
+      />
+    ))
+    .add('weekdays', () => (
+      <DateRangePickerInput
+        name={{ from: 'TGIM', to: 'TGIF' }}
+        disabledDays={[{ daysOfWeek: [0, 6] }]}
+      />
     ));
