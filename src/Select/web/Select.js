@@ -192,7 +192,10 @@ class Select extends React.Component {
                                   <Checkbox
                                     readOnly
                                     label={option.label}
-                                    checked={this.isOptionSelected(dsSelectedOptions, option)}
+                                    name={option.value}
+                                    defaultChecked={
+                                      this.isOptionSelected(dsSelectedOptions, option)
+                                    }
                                   />
                                 </Space>
                               ) : (
