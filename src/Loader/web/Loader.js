@@ -4,9 +4,6 @@ import styled, { keyframes } from 'styled-components';
 import theme from '../../theme';
 
 const styles = {
-  color(props) {
-    return props.theme.color[props.color];
-  },
   size(props) {
     if (props.size === 'small') {
       return props.theme.px(3);
@@ -35,8 +32,8 @@ const StyledLoader = styled(
   height: ${styles.size};
   border-radius: 50%;
   border: 4px solid ${(props) => props.theme.color.translucent};
-  border-right-color: ${styles.color};
-  border-bottom-color: ${styles.color};
+  border-right-color: ${(props) => props.color ? props.theme.color[props.color] : ''};
+  border-bottom-color: ${(props) => props.color ? props.theme.color[props.color] : ''};
   display: inline-block;
 `;
 
