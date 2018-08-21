@@ -9,10 +9,10 @@ export default(storiesOf, {
         name="dob"
       />
     ))
-    .add('all dates', () => (
+    .add('before today', () => (
       <DatePickerInput
         name="dob"
-        disabledDays={[]}
+        disabledDays={[{ before: new Date() }]}
       />
     ))
     .add('weekdays', () => (

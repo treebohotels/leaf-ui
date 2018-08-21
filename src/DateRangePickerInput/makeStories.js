@@ -9,10 +9,10 @@ export default(storiesOf, {
         name={{ from: 'checkIn', to: 'checkOut' }}
       />
     ))
-    .add('all dates', () => (
+    .add('before today', () => (
       <DateRangePickerInput
-        name={{ from: 'checkIn', to: 'checkOut' }}
-        disabledDays={[]}
+        name="dob"
+        disabledDays={[{ before: new Date() }]}
       />
     ))
     .add('weekdays', () => (

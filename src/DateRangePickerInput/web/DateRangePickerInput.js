@@ -289,7 +289,8 @@ DateRangePickerInput.propTypes = {
   onDateChange: PropTypes.func,
   theme: PropTypes.object,
   disabledDays: PropTypes.oneOfType([
-    PropTypes.array, PropTypes.object,
+    PropTypes.array,
+    PropTypes.object,
   ]),
 };
 
@@ -317,7 +318,6 @@ DateRangePickerInput.defaultProps = {
   format: 'YYYY-MM-DD',
   fromMonth: new Date(),
   onDateChange: () => {},
-  disabledDays: [{ before: new Date() }],
 };
 
 DateRangePickerInput.contextTypes = {
