@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import { getIn } from 'formik';
+import { withTheme } from 'styled-components';
 import VirtualList from 'react-tiny-virtual-list';
 import pluralize from '../../utils/pluralize';
 import Text from '../../Text/web';
@@ -120,6 +121,7 @@ class Select extends React.Component {
       disabled,
       block,
       multiple,
+      theme,
       error: errorMessage,
     } = this.props;
 
@@ -132,6 +134,8 @@ class Select extends React.Component {
     const error = formik
       ? formik.touched[name] && formik.errors[name]
       : errorMessage;
+
+    const optionsListHeight = 27;
 
     return (
       <Downshift
@@ -174,10 +178,11 @@ class Select extends React.Component {
                   <OptionList
                     isOpen={isOpen}
                     block={block}
+                    height={optionsListHeight}
                   >
                     <VirtualList
                       width="100%"
-                      height={27 * 8}
+                      height={Number.parseInt(theme.px(optionsListHeight), 10)}
                       itemCount={options.length}
                       itemSize={50}
                       renderItem={({ index, style }) => (
@@ -234,6 +239,7 @@ class Select extends React.Component {
 }
 
 Select.propTypes = {
+  theme: PropTypes.object,
   className: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
@@ -255,4 +261,4 @@ Select.contextTypes = {
   formik: PropTypes.object,
 };
 
-export default Select;
+export default withTheme(Select);
