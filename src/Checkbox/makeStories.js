@@ -3,10 +3,14 @@ import React from 'react';
 export default (storiesOf, { Checkbox }) =>
   storiesOf('Checkbox', module)
     .add('simple', () => (
-      <Checkbox
-        name="areLeavesGreen"
-        label="Are leaves green?"
-      />
+      <div style={{ width: '100px' }}>
+        <Checkbox
+          name="areLeavesGreen"
+          truncate
+          label="Are leaves green ksrgf ersog esrgfbv ersgibov eiobsrg eiorbv?"
+        />
+      </div>
+
     ))
     .add('disabled', () => (
       <Checkbox
