@@ -13,6 +13,7 @@ const styles = {
 
 const Option = List.Item.extend`
   background-color: ${styles.backgroundColor};
+  padding: ${(props) => props.theme.px(2)};
 `;
 
 export default Option;

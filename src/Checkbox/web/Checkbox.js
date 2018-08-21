@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { getIn } from 'formik';
 import Space from '../../Space/web';
 import Text from '../../Text/web';
@@ -7,6 +8,10 @@ import Label from './Label';
 import Input from './Input';
 import Box from './Box';
 import Tick from './Tick';
+
+const CheckboxWrapper = styled.div`
+  display: flex;
+`;
 
 class Checkbox extends React.Component {
   componentDidMount() {
@@ -23,6 +28,7 @@ class Checkbox extends React.Component {
       className,
       name,
       label,
+      truncate,
       error: errorMessage,
       ...props
     } = this.props;
@@ -49,8 +55,8 @@ class Checkbox extends React.Component {
     }
 
     return (
-      <div className={className}>
-        <Label htmlFor={name}>
+      <CheckboxWrapper className={className}>
+        <div>
           <Input
             id={name}
             name={name}
@@ -60,6 +66,8 @@ class Checkbox extends React.Component {
           <Box>
             <Tick />
           </Box>
+        </div>
+        <Label htmlFor={name} truncate={truncate}>
           {label}
         </Label>
         {
@@ -71,7 +79,7 @@ class Checkbox extends React.Component {
             </Space>
           ) : null
         }
-      </div>
+      </CheckboxWrapper>
     );
   }
 }
@@ -85,6 +93,7 @@ Checkbox.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
+  truncate: PropTypes.bool,
 };
 
 Checkbox.defaultProps = {
