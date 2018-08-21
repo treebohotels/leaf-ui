@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import { getIn } from 'formik';
+import VirtualList from 'react-tiny-virtual-list';
 import pluralize from '../../utils/pluralize';
 import Text from '../../Text/web';
 import Space from '../../Space/web';
@@ -111,7 +112,7 @@ class Select extends React.Component {
     const {
       selectedOptions,
     } = this.state;
-
+    let { options } = this.props;
     const {
       className,
       name,
@@ -119,13 +120,14 @@ class Select extends React.Component {
       disabled,
       block,
       multiple,
-      options,
       error: errorMessage,
     } = this.props;
 
     const {
       formik,
     } = this.context;
+
+    options = options.map(this.makeOption);
 
     const error = formik
       ? formik.touched[name] && formik.errors[name]
@@ -136,9 +138,9 @@ class Select extends React.Component {
         selectedItem={selectedOptions}
         onSelect={this.onSelect}
         itemToString={this.itemToString}
-        render={({
+      >{({
           isOpen,
-          getButtonProps,
+          getToggleButtonProps,
           getItemProps,
           highlightedIndex,
           selectedItem: dsSelectedOptions,
@@ -148,7 +150,7 @@ class Select extends React.Component {
               {label}
             </Label>
             <Trigger
-              {...getButtonProps({
+              {...getToggleButtonProps({
                 isOpen,
                 block,
                 disabled,
@@ -173,39 +175,44 @@ class Select extends React.Component {
                     isOpen={isOpen}
                     block={block}
                   >
-                    {
-                      options
-                        .map(this.makeOption)
-                        .map((option, index) => (
-                          <Option
-                            {...getItemProps({
-                              key: option.value,
+                    <VirtualList
+                      width="100%"
+                      height={27 * 8}
+                      itemCount={options.length}
+                      itemSize={50}
+                      renderItem={({ index, style }) => (
+                        <Option
+                          style={style}
+                          {...getItemProps({
+                              key: options[index].value,
                               index,
-                              item: option,
+                              item: options[index],
                               isActive: highlightedIndex === index,
-                              isSelected: this.isOptionSelected(dsSelectedOptions, option),
+                              isSelected: this.isOptionSelected(dsSelectedOptions, options[index]),
                             })}
-                          >
-                            {
+                        >
+                          {
                               multiple ? (
                                 <Space padding={[0]}>
                                   <Checkbox
+                                    truncate
                                     readOnly
-                                    label={option.label}
-                                    name={option.value}
+                                    label={options[index].label}
+                                    name={options[index].value}
                                     defaultChecked={
-                                      this.isOptionSelected(dsSelectedOptions, option)
+                                      this.isOptionSelected(dsSelectedOptions, options[index])
                                     }
                                   />
                                 </Space>
                               ) : (
-                                <Text>
-                                  {option.label}
+                                <Text truncate>
+                                  {options[index].label}
                                 </Text>
                               )
                             }
-                          </Option>
-                        ))}
+                        </Option>
+                      )}
+                    />
                   </OptionList>
                 ) : null
               }
@@ -221,7 +228,7 @@ class Select extends React.Component {
             }
           </div>
         )}
-      />
+      </Downshift>
     );
   }
 }
