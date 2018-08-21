@@ -31,7 +31,7 @@ const StyledLoader = styled(
   width: ${styles.size};
   height: ${styles.size};
   border-radius: 50%;
-  border: 4px solid ${(props) => props.theme.color.translucent};
+  border: ${(p) => p.size === 'small' ? '3px' : '4px'} solid ${(p) => p.theme.color.translucent};
   border-right-color: ${(props) => props.color ? props.theme.color[props.color] : ''};
   border-bottom-color: ${(props) => props.color ? props.theme.color[props.color] : ''};
   display: inline-block;
@@ -59,7 +59,7 @@ Loader.propTypes = {
 };
 
 Loader.defaultProps = {
-  color: 'primary',
+  color: 'blue',
   size: 'large',
 };
 
