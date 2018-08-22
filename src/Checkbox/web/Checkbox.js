@@ -45,7 +45,7 @@ class Checkbox extends React.Component {
         formik.handleBlur(...args);
         props.onBlur(...args);
       };
-      error = formik.touched[name] && formik.errors[name];
+      error = getIn(formik.touched, name) && getIn(formik.errors, name);
     }
 
     return (

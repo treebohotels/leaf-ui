@@ -131,8 +131,8 @@ class Select extends React.Component {
       formik,
     } = this.context;
 
-    const error = formik
-      ? formik.touched[name] && formik.errors[name]
+    const error = formik && name
+      ? getIn(formik.touched, name) && getIn(formik.errors, name)
       : errorMessage;
 
     options = options.map(this.makeOption);
