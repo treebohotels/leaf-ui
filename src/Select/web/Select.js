@@ -22,14 +22,14 @@ class Select extends React.Component {
     };
   }
 
-  onChange = (selectedOptions) => {
+  onChange = (selectedValues) => {
     const { name, onChange } = this.props;
     const { formik } = this.context;
     if (formik && name) {
-      formik.setFieldValue(name, selectedOptions);
+      formik.setFieldValue(name, selectedValues);
       formik.setFieldTouched(name, true);
     }
-    onChange(selectedOptions);
+    onChange(selectedValues);
   }
 
   onSelect = (selectedOption) => {
@@ -51,12 +51,12 @@ class Select extends React.Component {
       }
       this.setState({
         selectedOptions: newSelectedOptions,
-      }, () => this.onChange(newSelectedOptions));
+      }, () => this.onChange(this.getOptionsValue(newSelectedOptions)));
     } else {
       // single: select option
       this.setState({
         selectedOptions: [selectedOption],
-      }, () => this.onChange(selectedOption));
+      }, () => this.onChange(this.getOptionsValue(selectedOption)));
     }
   }
 
@@ -74,7 +74,10 @@ class Select extends React.Component {
     }
 
     if (formik && name && defaultSelected) {
-      formik.setFieldValue(name, defaultSelected);
+      formik.setFieldValue(
+        name,
+        this.getOptionsValue(defaultSelectedOptions),
+      );
     }
 
     return defaultSelectedOptions;
@@ -89,6 +92,11 @@ class Select extends React.Component {
     }
     return selectedOptions[0].label;
   }
+
+  getOptionsValue = (options) =>
+    Array.isArray(options)
+      ? options.map((option) => option.value)
+      : options.value
 
   isOptionSelected = (selectedOptions, option) =>
     selectedOptions
@@ -178,7 +186,7 @@ class Select extends React.Component {
                   <OptionList>
                     <VirtualList
                       width={block ? '100%' : 25 * 8}
-                      height={27 * 8}
+                      height={options.length < 5 ? options.length * 48 : 27 * 8}
                       itemCount={options.length}
                       itemSize={48}
                       renderItem={({ index, style }) => (

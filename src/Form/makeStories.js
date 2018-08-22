@@ -23,7 +23,7 @@ export default(storiesOf, {
             leafDOB: Form.validation.string().required(),
             leafFrom: Form.validation.string().required(),
             leafTo: Form.validation.string().required(),
-            leafColor: Form.validation.object().required(),
+            leafColor: Form.validation.string().required(),
             isAquatic: Form.validation.boolean().required(),
             treeType: Form.validation.string().required(),
           })
