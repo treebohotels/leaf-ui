@@ -25,8 +25,11 @@ class RadioButton extends React.Component {
       name,
       label,
       value,
-      error: errorMessage,
       ...props
+    } = this.props;
+
+    let {
+      error,
     } = this.props;
 
     const {
@@ -34,7 +37,6 @@ class RadioButton extends React.Component {
     } = this.context;
 
     const inputProps = { ...props };
-    let error = errorMessage;
 
     if (formik) {
       inputProps.checked = getIn(formik.values, name) === value;

@@ -23,8 +23,11 @@ class Checkbox extends React.Component {
       className,
       name,
       label,
-      error: errorMessage,
       ...props
+    } = this.props;
+
+    let {
+      error,
     } = this.props;
 
     const {
@@ -32,7 +35,6 @@ class Checkbox extends React.Component {
     } = this.context;
 
     const inputProps = { ...props };
-    let error = errorMessage;
 
     if (formik && name) {
       inputProps.checked = !!getIn(formik.values, name);

@@ -120,20 +120,20 @@ class Select extends React.Component {
       disabled,
       block,
       multiple,
-      error: errorMessage,
     } = this.props;
 
     let {
       options,
+      error,
     } = this.props;
 
     const {
       formik,
     } = this.context;
 
-    const error = formik && name
-      ? getIn(formik.touched, name) && getIn(formik.errors, name)
-      : errorMessage;
+    if (formik && name) {
+      error = getIn(formik.touched, name) && getIn(formik.errors, name);
+    }
 
     options = options.map(this.makeOption);
 

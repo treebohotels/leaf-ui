@@ -26,8 +26,11 @@ class TextInput extends React.Component {
       inputRef,
       name,
       label,
-      error: errorMessage,
       ...props
+    } = this.props;
+
+    let {
+      error,
     } = this.props;
 
     const {
@@ -35,7 +38,6 @@ class TextInput extends React.Component {
     } = this.context;
 
     const inputProps = { ...props };
-    let error = errorMessage;
 
     if (formik && name) {
       if (inputProps.defaultValue) {
@@ -50,7 +52,7 @@ class TextInput extends React.Component {
         formik.handleBlur(...args);
         props.onBlur(...args);
       };
-      error = getIn(formik.touched, name) && getIn(formik.errors, name);
+      error = error || (getIn(formik.touched, name) && getIn(formik.errors, name));
     }
 
     return (
