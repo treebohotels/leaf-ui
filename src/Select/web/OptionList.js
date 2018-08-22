@@ -7,8 +7,6 @@ const OptionList = List.extend`
   overflow-y: scroll;
   z-index: 1050;
   background: ${(props) => props.theme.color.white};
-  width: ${(props) => props.block ? '100%' : props.theme.px(25)};
-  max-height: ${(props) => props.theme.px(27)};
   border-radius: ${(props) => props.theme.borderRadius};
   box-shadow: ${(props) => props.theme.boxShadow};
 `;

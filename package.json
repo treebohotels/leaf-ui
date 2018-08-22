@@ -32,12 +32,13 @@
   },
   "dependencies": {
     "date-fns": "1.29.0",
-    "downshift": "1.31.12",
+    "downshift": "2.1.1",
     "expo": "28.0.0",
     "formik": "0.11.11",
     "react-day-picker": "7.1.9",
     "react-helmet": "5.2.0",
     "react-overlays": "0.8.3",
+    "react-tiny-virtual-list": "2.1.6",
     "yup": "0.24.1"
   },
   "devDependencies": {
