@@ -24,7 +24,7 @@ class Select extends React.Component {
   onChange = (selectedOptions) => {
     const { name, onChange } = this.props;
     const { formik } = this.context;
-    if (formik) {
+    if (formik && name) {
       formik.setFieldValue(name, selectedOptions);
       formik.setFieldTouched(name, true);
     }
@@ -68,11 +68,11 @@ class Select extends React.Component {
       defaultSelectedOptions = defaultSelected.length
         ? defaultSelectedOptions.concat(defaultSelected.map(this.makeOption))
         : defaultSelectedOptions.concat(this.makeOption(defaultSelected));
-    } else if (formik) {
+    } else if (formik && name) {
       defaultSelectedOptions = defaultSelectedOptions.concat(getIn(formik.values, name) || []);
     }
 
-    if (formik && defaultSelected) {
+    if (formik && name && defaultSelected) {
       formik.setFieldValue(name, defaultSelected);
     }
 
@@ -190,18 +190,12 @@ class Select extends React.Component {
                               multiple ? (
                                 <Space padding={[0]}>
                                   <Checkbox
-                                    readOnly
-                                    label={option.label}
-                                    name={option.value}
-                                    defaultChecked={
-                                      this.isOptionSelected(dsSelectedOptions, option)
-                                    }
+                                    label={<Text truncate>{option.label}</Text>}
+                                    checked={this.isOptionSelected(dsSelectedOptions, option)}
                                   />
                                 </Space>
                               ) : (
-                                <Text>
-                                  {option.label}
-                                </Text>
+                                <Text truncate>{option.label}</Text>
                               )
                             }
                           </Option>

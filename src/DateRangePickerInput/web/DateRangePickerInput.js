@@ -84,7 +84,7 @@ class DateRangePickerInput extends React.Component {
           to: undefined,
           enteredTo: undefined,
         }, () => {
-          if (formik) {
+          if (formik && name.from && name.to) {
             formik.setFieldValue(name.from, this.formatDayForInput(day));
             formik.setFieldValue(name.to, '');
           }
@@ -95,7 +95,7 @@ class DateRangePickerInput extends React.Component {
           isOpen: !to ? 'to' : false,
           from: day,
         }, () => {
-          if (formik) {
+          if (formik && name.from && name.to) {
             formik.setFieldValue(name.from, this.formatDayForInput(day));
           }
           if (!to) {
@@ -112,7 +112,7 @@ class DateRangePickerInput extends React.Component {
           to: undefined,
           enteredTo: undefined,
         }, () => {
-          if (formik) {
+          if (formik && name.from && name.to) {
             formik.setFieldValue(name.from, this.formatDayForInput(day));
             formik.setFieldValue(name.to, '');
           }
@@ -123,7 +123,7 @@ class DateRangePickerInput extends React.Component {
           to: day,
           enteredTo: day,
         }, () => {
-          if (formik) {
+          if (formik && name.from && name.to) {
             formik.setFieldValue(name.to, this.formatDayForInput(day));
           }
           this.toInputRef.blur();

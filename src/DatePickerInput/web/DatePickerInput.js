@@ -37,7 +37,7 @@ class DatePickerInput extends React.Component {
       isOpen: false,
       selectedDay: day,
     }, () => {
-      if (formik) {
+      if (formik && name) {
         formik.setFieldValue(name, this.formatDayForInput(day));
       }
       this.inputRef.blur();

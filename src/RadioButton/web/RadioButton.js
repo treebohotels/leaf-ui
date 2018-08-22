@@ -12,7 +12,7 @@ class RadioButton extends React.Component {
     const { name, value, defaultChecked } = this.props;
     const { formik } = this.context;
 
-    if (formik) {
+    if (formik && name) {
       if (defaultChecked) {
         formik.setFieldValue(name, value);
       }

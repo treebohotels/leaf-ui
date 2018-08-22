@@ -13,7 +13,7 @@ class Checkbox extends React.Component {
     const { name, defaultChecked } = this.props;
     const { formik } = this.context;
 
-    if (formik) {
+    if (formik && name) {
       formik.setFieldValue(name, !!defaultChecked);
     }
   }
@@ -34,7 +34,7 @@ class Checkbox extends React.Component {
     const inputProps = { ...props };
     let error = errorMessage;
 
-    if (formik) {
+    if (formik && name) {
       inputProps.checked = !!getIn(formik.values, name);
       delete inputProps.defaultChecked;
       inputProps.onChange = (...args) => {

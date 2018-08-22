@@ -11,7 +11,7 @@ class TextInput extends React.Component {
     const { name, defaultValue } = this.props;
     const { formik } = this.context;
 
-    if (formik) {
+    if (formik && name) {
       if (defaultValue != null) {
         formik.setFieldValue(name, defaultValue);
       } else {
@@ -37,7 +37,7 @@ class TextInput extends React.Component {
     const inputProps = { ...props };
     let error = errorMessage;
 
-    if (formik) {
+    if (formik && name) {
       if (inputProps.defaultValue) {
         delete inputProps.defaultValue;
       }
