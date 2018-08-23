@@ -57,7 +57,7 @@ export default(storiesOf, {
               multiple
               placeholder="Select a color"
               options={[{ label: 'Red', value: 'Red' }, { label: 'Green', value: 'Green' }]}
-              defaultSelected={{ label: 'Green', value: 'Green' }}
+              defaultSelected={['Red']}
             />
           </Space>
           <Space margin={[0, 0, 2, 0]}>

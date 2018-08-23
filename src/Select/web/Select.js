@@ -63,24 +63,24 @@ class Select extends React.Component {
   getDefaultSelected = (props, context) => {
     const { name, defaultSelected } = props;
     const { formik } = context;
-    let defaultSelectedOptions = [];
+    let defaultSelectedValues = [];
 
-    if (defaultSelected) {
-      defaultSelectedOptions = defaultSelected.length
-        ? defaultSelectedOptions.concat(defaultSelected.map(this.makeOption))
-        : defaultSelectedOptions.concat(this.makeOption(defaultSelected));
-    } else if (formik && name) {
-      defaultSelectedOptions = defaultSelectedOptions.concat(getIn(formik.values, name) || []);
+    // set default formik value
+    if (formik && name && defaultSelected) {
+      formik.setFieldValue(name, defaultSelected);
     }
 
-    if (formik && name && defaultSelected) {
-      formik.setFieldValue(
-        name,
-        this.getOptionsValue(defaultSelectedOptions),
+    if (defaultSelected) {
+      defaultSelectedValues = Array.isArray(defaultSelected)
+        ? defaultSelectedValues.concat(defaultSelected.map(this.makeOption))
+        : defaultSelectedValues.concat(this.makeOption(defaultSelected));
+    } else if (formik && name && getIn(formik.values, name)) {
+      defaultSelectedValues = defaultSelectedValues.concat(
+        this.makeOption(getIn(formik.values, name)),
       );
     }
 
-    return defaultSelectedOptions;
+    return defaultSelectedValues;
   }
 
   getTriggerText = (selectedOptions) => {
@@ -183,7 +183,7 @@ class Select extends React.Component {
             <div style={{ position: 'relative' }}>
               {
                 isOpen ? (
-                  <OptionList>
+                  <OptionList block={block}>
                     <VirtualList
                       width={block ? '100%' : 25 * 8}
                       height={options.length < 5 ? options.length * 48 : 27 * 8}
