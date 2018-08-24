@@ -66,11 +66,11 @@ class Select extends React.Component {
     let defaultSelectedValues = [];
 
     // set default formik value
-    if (formik && name && defaultSelected) {
+    if (formik && name && defaultSelected !== undefined) {
       formik.setFieldValue(name, defaultSelected);
     }
 
-    if (defaultSelected) {
+    if (defaultSelected !== undefined) {
       defaultSelectedValues = Array.isArray(defaultSelected)
         ? defaultSelectedValues.concat(defaultSelected.map(this.makeOption))
         : defaultSelectedValues.concat(this.makeOption(defaultSelected));
@@ -86,11 +86,11 @@ class Select extends React.Component {
   getTriggerText = (selectedOptions) => {
     const { label, placeholder, multiple } = this.props;
     if (!selectedOptions.length) {
-      return placeholder;
+      return `${placeholder !== undefined ? placeholder : ''}`;
     } else if (multiple) {
       return `${selectedOptions.length} ${pluralize(selectedOptions.length, label)}`;
     }
-    return selectedOptions[0].label;
+    return `${selectedOptions[0].label}`;
   }
 
   getOptionsValue = (options) =>
@@ -104,7 +104,7 @@ class Select extends React.Component {
       .includes(option.value);
 
   makeOption = (option) => {
-    if (typeof option === 'object') {
+    if (typeof option === 'object' && option !== null) {
       return option;
     }
     return {
@@ -171,7 +171,7 @@ class Select extends React.Component {
             >
               <Space padding={[1.5, 0, 1.5, 1.5]}>
                 <Text
-                  color={!dsSelectedOptions.length ? 'grey' : ''}
+                  color={!dsSelectedOptions.length ? 'grey' : undefined}
                   size="s"
                   truncate
                 >
@@ -210,7 +210,7 @@ class Select extends React.Component {
                               </Space>
                             ) : (
                               <Text truncate>
-                                {options[index].label}
+                                {`${options[index].label}`}
                               </Text>
                             )
                           }
@@ -246,7 +246,10 @@ Select.propTypes = {
   block: PropTypes.bool,
   multiple: PropTypes.bool,
   options: PropTypes.array.isRequired,
-  defaultSelected: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  defaultSelected: PropTypes.oneOf([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
   onChange: PropTypes.func,
   error: PropTypes.string,
 };
