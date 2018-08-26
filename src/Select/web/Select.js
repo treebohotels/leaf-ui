@@ -63,7 +63,7 @@ class Select extends React.Component {
   getDefaultSelected = (props, context) => {
     const { name, defaultSelected } = props;
     const { formik } = context;
-    let defaultSelectedValues = [];
+    let defaultSelectedOptions = [];
 
     // set default formik value
     if (formik && name && defaultSelected !== undefined) {
@@ -71,16 +71,16 @@ class Select extends React.Component {
     }
 
     if (defaultSelected !== undefined) {
-      defaultSelectedValues = Array.isArray(defaultSelected)
-        ? defaultSelectedValues.concat(defaultSelected.map(this.makeOption))
-        : defaultSelectedValues.concat(this.makeOption(defaultSelected));
+      defaultSelectedOptions = Array.isArray(defaultSelected)
+        ? defaultSelectedOptions.concat(defaultSelected.map(this.remakeOption))
+        : defaultSelectedOptions.concat(this.remakeOption(defaultSelected));
     } else if (formik && name && getIn(formik.values, name)) {
-      defaultSelectedValues = defaultSelectedValues.concat(
-        this.makeOption(getIn(formik.values, name)),
+      defaultSelectedOptions = defaultSelectedOptions.concat(
+        this.remakeOption(getIn(formik.values, name)),
       );
     }
 
-    return defaultSelectedValues;
+    return defaultSelectedOptions;
   }
 
   getTriggerText = (selectedOptions) => {
@@ -111,6 +111,13 @@ class Select extends React.Component {
       label: option,
       value: option,
     };
+  };
+
+  remakeOption = (value) => {
+    const { options } = this.props;
+    return options
+      .map(this.makeOption)
+      .find((option) => option.value === value);
   };
 
   itemToString = (option) =>
@@ -246,7 +253,7 @@ Select.propTypes = {
   block: PropTypes.bool,
   multiple: PropTypes.bool,
   options: PropTypes.array.isRequired,
-  defaultSelected: PropTypes.oneOf([
+  defaultSelected: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
