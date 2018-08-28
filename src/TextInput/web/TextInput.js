@@ -85,7 +85,7 @@ TextInput.propTypes = {
   className: PropTypes.string,
   inputRef: PropTypes.func,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.node,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   block: PropTypes.bool,

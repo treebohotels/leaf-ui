@@ -248,15 +248,15 @@ class Select extends React.Component {
 Select.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.node,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   block: PropTypes.bool,
   multiple: PropTypes.bool,
   options: PropTypes.array.isRequired,
   defaultSelected: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.any),
+    PropTypes.any,
   ]),
   onChange: PropTypes.func,
   error: PropTypes.string,
