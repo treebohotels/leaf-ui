@@ -4,6 +4,7 @@ import Downshift from 'downshift';
 import VirtualList from 'react-tiny-virtual-list';
 import { getIn } from 'formik';
 import pluralize from '../../utils/pluralize';
+import isEqual from '../../utils/isEqual';
 import Text from '../../Text/web';
 import Space from '../../Space/web';
 import Checkbox from '../../Checkbox/web';
@@ -41,7 +42,7 @@ class Select extends React.Component {
       if (this.isOptionSelected(selectedOptions, selectedOption)) {
         // multiple: remove option
         newSelectedOptions = selectedOptions
-          .filter((option) => option.value !== selectedOption.value);
+          .filter((option) => !isEqual(option.value, selectedOption.value));
       } else {
         // multiple: add option
         newSelectedOptions = [
@@ -117,7 +118,7 @@ class Select extends React.Component {
     const { options } = this.props;
     return options
       .map(this.makeOption)
-      .find((option) => option.value === value);
+      .find((option) => isEqual(option.value, value));
   };
 
   itemToString = (option) =>
@@ -200,7 +201,7 @@ class Select extends React.Component {
                         <Option
                           style={style}
                           {...getItemProps({
-                            key: options[index].value,
+                            key: options[index].label,
                             index,
                             item: options[index],
                             isActive: highlightedIndex === index,
