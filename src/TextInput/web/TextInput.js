@@ -71,7 +71,7 @@ class TextInput extends React.Component {
           error ? (
             <Space margin={[0.5, 0, 0, 0]}>
               <Text color="red" size="xxs">
-                {error}
+                {`${error}`}
               </Text>
             </Space>
           ) : null
