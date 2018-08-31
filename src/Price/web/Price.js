@@ -13,7 +13,7 @@ const formatPrice = (currency, rounded) => {
 };
 
 const Price = ({ rounded, children }) =>
-  formatPrice(children, rounded);
+  children ? formatPrice(children, rounded) : null;
 
 Price.propTypes = {
   rounded: PropTypes.bool,
