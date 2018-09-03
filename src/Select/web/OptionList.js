@@ -1,6 +1,13 @@
+import React from 'react';
+import styled from 'styled-components';
 import List from '../../List/web';
 
-const OptionList = List.extend`
+const OptionList = styled(
+  ({
+    block,
+    ...props
+  }) => <List {...props} />,
+)`
   position: absolute;
   top: -42px;
   left: 0;
