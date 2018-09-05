@@ -19,7 +19,7 @@ const spin = keyframes`
   to {transform: rotate(360deg);}
 `;
 
-const StyledLoader = styled(
+const Loader = styled(
   ({
     color,
     size,
@@ -31,27 +31,11 @@ const StyledLoader = styled(
   width: ${styles.size};
   height: ${styles.size};
   border-radius: 50%;
-  border: ${(p) => p.size === 'small' ? '3px' : '4px'} solid ${(p) => p.theme.color.translucent};
+  border: ${(props) => props.size === 'small' ? '3px' : '4px'} solid ${(props) => props.theme.color.translucent};
   border-right-color: ${(props) => props.color ? props.theme.color[props.color] : ''};
   border-bottom-color: ${(props) => props.color ? props.theme.color[props.color] : ''};
   display: inline-block;
 `;
-
-const LoaderContainer = styled.span`
-  width: inherit;
-  height: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  cursor: not-allowed;
-`;
-
-const Loader = (props) => (
-  <LoaderContainer>
-    <StyledLoader {...props} />
-  </LoaderContainer>
-);
 
 Loader.propTypes = {
   color: PropTypes.oneOf(Object.keys(theme.color)),
@@ -59,7 +43,7 @@ Loader.propTypes = {
 };
 
 Loader.defaultProps = {
-  color: 'blue',
+  color: 'primary',
   size: 'large',
 };
 

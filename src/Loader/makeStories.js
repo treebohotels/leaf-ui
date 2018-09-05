@@ -4,6 +4,9 @@ export default (storiesOf, {
   Loader,
 }) =>
   storiesOf('Loader', module)
-    .add('default', () => (
+    .add('small', () => (
+      <Loader size="small" />
+    ))
+    .add('large', () => (
       <Loader />
     ));
