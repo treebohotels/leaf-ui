@@ -23,6 +23,28 @@ class Select extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { formik } = this.context;
+    let newSelectedOptions = [];
+
+    if (formik && nextProps.name) {
+      const formikValues = getIn(formik.values, nextProps.name);
+      if (formikValues === undefined) {
+        newSelectedOptions = [];
+      } else {
+        newSelectedOptions = Array.isArray(formikValues)
+          ? newSelectedOptions.concat(formikValues.map(this.remakeOption))
+          : newSelectedOptions.concat(this.remakeOption(formikValues));
+      }
+      this.setState((prevState) => {
+        if (!isEqual(prevState.selectedOptions, newSelectedOptions)) {
+          return { selectedOptions: newSelectedOptions };
+        }
+        return null;
+      });
+    }
+  }
+
   onChange = (selectedValues) => {
     const { name, onChange } = this.props;
     const { formik } = this.context;
@@ -67,18 +89,21 @@ class Select extends React.Component {
     let defaultSelectedOptions = [];
 
     // set default formik value
-    if (formik && name && defaultSelected !== undefined) {
+    if (formik && name && (defaultSelected || defaultSelected === undefined)) {
       formik.setFieldValue(name, defaultSelected);
     }
 
-    if (defaultSelected !== undefined) {
+    if (defaultSelected === undefined) {
+      defaultSelectedOptions = [];
+    } else if (defaultSelected !== undefined) {
       defaultSelectedOptions = Array.isArray(defaultSelected)
         ? defaultSelectedOptions.concat(defaultSelected.map(this.remakeOption))
         : defaultSelectedOptions.concat(this.remakeOption(defaultSelected));
     } else if (formik && name && getIn(formik.values, name)) {
-      defaultSelectedOptions = defaultSelectedOptions.concat(
-        this.remakeOption(getIn(formik.values, name)),
-      );
+      const formikValues = getIn(formik.values, name);
+      defaultSelectedOptions = Array.isArray(formikValues)
+        ? defaultSelectedOptions.concat(formikValues.map(this.remakeOption))
+        : defaultSelectedOptions.concat(this.remakeOption(formikValues));
     }
 
     return defaultSelectedOptions;
