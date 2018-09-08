@@ -2,75 +2,112 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Flex from '../../Flex/web';
 import Text from '../../Text/web';
+import Card from '../../Card/web';
 import Button from '../../Button/web';
 import Space from '../../Space/web';
 import View from '../../View/web';
-import NotificationContainer from './NotificationContainer';
-import notificationTypes from './notificationTypes';
+import Icon from '../../Icon/web';
+import theme from '../../theme';
 
 const Notification = ({
-  type,
+  className,
+  color,
+  icon,
   title,
-  content,
-  actionProps,
+  message,
+  actions,
+  onClose,
 }) => (
-  <Space padding={[1]} margin={[0, 0, 2, 0]}>
-    <NotificationContainer type={type}>
-      <Space padding={[2]}>
-        <Flex
-          flexDirection="row"
-          justifyContent="space-around"
-          alignItems="center"
-        >
-          <View>
-            <Flex flex="0">
-              <View>
-                {notificationTypes[type].icon}
-              </View>
-            </Flex>
-            <Space margin={[0, 24, 0, 3]}>
-              <Flex flex="1">
-                <View>
-                  {
-                    title ? (
-                      <View>
-                        <Space margin={[0, 0, 1, 0]}>
-                          <Text size="m" weight="semibold">{title}</Text>
-                        </Space>
-                        <Text size="xs" color="greyDark">{content}</Text>
-                      </View>
-                    ) : (
-                      <Text>{content}</Text>
-                    )
-                  }
-                </View>
-              </Flex>
-            </Space>
-            {
-              actionProps ? (
+  <Space
+    className={className}
+    padding={[1]}
+  >
+    <Card
+      borderColor={color}
+      backgroundColor={`${color}Lighter`}
+    >
+      <Flex
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <View>
+          {
+            icon ? (
+              <Space margin={[0, 1, 0, 0]}>
+                <Flex flex="none">
+                  <Icon name={icon} color={color} />
+                </Flex>
+              </Space>
+            ) : null
+          }
+          <Flex flex="auto">
+            <View>
+              {
+                title ? (
+                  <Space margin={[0, 0, message ? 0.5 : 0, 0]}>
+                    <Text size="m">
+                      {title}
+                    </Text>
+                  </Space>
+                ) : null
+              }
+              {
+                message ? (
+                  <Text size="xs" color="greyDark">
+                    {message}
+                  </Text>
+                ) : null
+              }
+            </View>
+          </Flex>
+          {
+            actions.map((action) => (
+              <Space
+                key={action.label}
+                margin={[0, 0, 0, 1]}
+              >
                 <Button
-                  color={notificationTypes[type].color}
+                  color={color}
                   size="small"
-                  {...actionProps}
+                  {...action}
+                >
+                  {action.label}
+                </Button>
+              </Space>
+            ))
+          }
+          {
+            onClose ? (
+              <Space margin={[0, 0, 0, 1]}>
+                <Icon
+                  name="close"
+                  onClick={onClose}
                 />
-              ) : null
-            }
-          </View>
-        </Flex>
-      </Space>
-    </NotificationContainer>
+              </Space>
+            ) : null
+          }
+        </View>
+      </Flex>
+    </Card>
   </Space>
 );
 
 Notification.propTypes = {
-  type: PropTypes.oneOf(Object.keys(notificationTypes)),
+  className: PropTypes.string,
+  color: PropTypes.oneOf(Object.keys(theme.color)).isRequired,
+  icon: PropTypes.string,
   title: PropTypes.string,
-  content: PropTypes.string,
-  actionProps: PropTypes.object,
+  message: PropTypes.string,
+  actions: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+  })),
+  onClose: PropTypes.func,
 };
 
 Notification.defaultProps = {
-  type: 'info',
+  actions: [],
 };
 
 export default Notification;

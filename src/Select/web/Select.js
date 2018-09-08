@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
+import VirtualList from 'react-tiny-virtual-list';
 import { getIn } from 'formik';
 import pluralize from '../../utils/pluralize';
+import isEqual from '../../utils/isEqual';
 import Text from '../../Text/web';
 import Space from '../../Space/web';
 import Checkbox from '../../Checkbox/web';
@@ -21,14 +23,36 @@ class Select extends React.Component {
     };
   }
 
-  onChange = (selectedOptions) => {
+  componentWillReceiveProps(nextProps) {
+    const { formik } = this.context;
+    let newSelectedOptions = [];
+
+    if (formik && nextProps.name) {
+      const formikValues = getIn(formik.values, nextProps.name);
+      if (formikValues === undefined) {
+        newSelectedOptions = [];
+      } else {
+        newSelectedOptions = Array.isArray(formikValues)
+          ? newSelectedOptions.concat(formikValues.map(this.remakeOption))
+          : newSelectedOptions.concat(this.remakeOption(formikValues));
+      }
+      this.setState((prevState) => {
+        if (!isEqual(prevState.selectedOptions, newSelectedOptions)) {
+          return { selectedOptions: newSelectedOptions };
+        }
+        return null;
+      });
+    }
+  }
+
+  onChange = (selectedValues) => {
     const { name, onChange } = this.props;
     const { formik } = this.context;
-    if (formik) {
-      formik.setFieldValue(name, selectedOptions);
+    if (formik && name) {
+      formik.setFieldValue(name, selectedValues);
       formik.setFieldTouched(name, true);
     }
-    onChange(selectedOptions);
+    onChange(selectedValues);
   }
 
   onSelect = (selectedOption) => {
@@ -40,7 +64,7 @@ class Select extends React.Component {
       if (this.isOptionSelected(selectedOptions, selectedOption)) {
         // multiple: remove option
         newSelectedOptions = selectedOptions
-          .filter((option) => option.value !== selectedOption.value);
+          .filter((option) => !isEqual(option.value, selectedOption.value));
       } else {
         // multiple: add option
         newSelectedOptions = [
@@ -50,12 +74,12 @@ class Select extends React.Component {
       }
       this.setState({
         selectedOptions: newSelectedOptions,
-      }, () => this.onChange(newSelectedOptions));
+      }, () => this.onChange(this.getOptionsValue(newSelectedOptions)));
     } else {
       // single: select option
       this.setState({
         selectedOptions: [selectedOption],
-      }, () => this.onChange(selectedOption));
+      }, () => this.onChange(this.getOptionsValue(selectedOption)));
     }
   }
 
@@ -64,16 +88,22 @@ class Select extends React.Component {
     const { formik } = context;
     let defaultSelectedOptions = [];
 
-    if (defaultSelected) {
-      defaultSelectedOptions = defaultSelected.length
-        ? defaultSelectedOptions.concat(defaultSelected.map(this.makeOption))
-        : defaultSelectedOptions.concat(this.makeOption(defaultSelected));
-    } else if (formik) {
-      defaultSelectedOptions = defaultSelectedOptions.concat(getIn(formik.values, name) || []);
+    // set default formik value
+    if (formik && name && (defaultSelected || defaultSelected === undefined)) {
+      formik.setFieldValue(name, defaultSelected);
     }
 
-    if (formik && defaultSelected) {
-      formik.setFieldValue(name, defaultSelected);
+    if (defaultSelected === undefined) {
+      defaultSelectedOptions = [];
+    } else if (defaultSelected !== undefined) {
+      defaultSelectedOptions = Array.isArray(defaultSelected)
+        ? defaultSelectedOptions.concat(defaultSelected.map(this.remakeOption))
+        : defaultSelectedOptions.concat(this.remakeOption(defaultSelected));
+    } else if (formik && name && getIn(formik.values, name)) {
+      const formikValues = getIn(formik.values, name);
+      defaultSelectedOptions = Array.isArray(formikValues)
+        ? defaultSelectedOptions.concat(formikValues.map(this.remakeOption))
+        : defaultSelectedOptions.concat(this.remakeOption(formikValues));
     }
 
     return defaultSelectedOptions;
@@ -82,12 +112,17 @@ class Select extends React.Component {
   getTriggerText = (selectedOptions) => {
     const { label, placeholder, multiple } = this.props;
     if (!selectedOptions.length) {
-      return placeholder;
+      return `${placeholder !== undefined ? placeholder : ''}`;
     } else if (multiple) {
       return `${selectedOptions.length} ${pluralize(selectedOptions.length, label)}`;
     }
-    return selectedOptions[0].label;
+    return `${selectedOptions[0].label}`;
   }
+
+  getOptionsValue = (options) =>
+    Array.isArray(options)
+      ? options.map((option) => option.value)
+      : options.value
 
   isOptionSelected = (selectedOptions, option) =>
     selectedOptions
@@ -95,13 +130,20 @@ class Select extends React.Component {
       .includes(option.value);
 
   makeOption = (option) => {
-    if (typeof option === 'object') {
+    if (typeof option === 'object' && option !== null) {
       return option;
     }
     return {
       label: option,
       value: option,
     };
+  };
+
+  remakeOption = (value) => {
+    const { options } = this.props;
+    return options
+      .map(this.makeOption)
+      .find((option) => isEqual(option.value, value));
   };
 
   itemToString = (option) =>
@@ -119,26 +161,31 @@ class Select extends React.Component {
       disabled,
       block,
       multiple,
+    } = this.props;
+
+    let {
       options,
-      error: errorMessage,
+      error,
     } = this.props;
 
     const {
       formik,
     } = this.context;
 
-    const error = formik
-      ? formik.touched[name] && formik.errors[name]
-      : errorMessage;
+    if (formik && name) {
+      error = getIn(formik.touched, name) && getIn(formik.errors, name);
+    }
+
+    options = options.map(this.makeOption);
 
     return (
       <Downshift
         selectedItem={selectedOptions}
         onSelect={this.onSelect}
         itemToString={this.itemToString}
-        render={({
+      >{({
           isOpen,
-          getButtonProps,
+          getToggleButtonProps,
           getItemProps,
           highlightedIndex,
           selectedItem: dsSelectedOptions,
@@ -148,7 +195,7 @@ class Select extends React.Component {
               {label}
             </Label>
             <Trigger
-              {...getButtonProps({
+              {...getToggleButtonProps({
                 isOpen,
                 block,
                 disabled,
@@ -157,7 +204,7 @@ class Select extends React.Component {
             >
               <Space padding={[1.5, 0, 1.5, 1.5]}>
                 <Text
-                  color={!dsSelectedOptions.length ? 'grey' : ''}
+                  color={!dsSelectedOptions.length ? 'grey' : undefined}
                   size="s"
                   truncate
                 >
@@ -169,40 +216,40 @@ class Select extends React.Component {
             <div style={{ position: 'relative' }}>
               {
                 isOpen ? (
-                  <OptionList
-                    isOpen={isOpen}
-                    block={block}
-                  >
-                    {
-                      options
-                        .map(this.makeOption)
-                        .map((option, index) => (
-                          <Option
-                            {...getItemProps({
-                              key: option.value,
-                              index,
-                              item: option,
-                              isActive: highlightedIndex === index,
-                              isSelected: this.isOptionSelected(dsSelectedOptions, option),
-                            })}
-                          >
-                            {
-                              multiple ? (
-                                <Space padding={[0]}>
-                                  <Checkbox
-                                    readOnly
-                                    label={option.label}
-                                    checked={this.isOptionSelected(dsSelectedOptions, option)}
-                                  />
-                                </Space>
-                              ) : (
-                                <Text>
-                                  {option.label}
-                                </Text>
-                              )
-                            }
-                          </Option>
-                        ))}
+                  <OptionList block={block}>
+                    <VirtualList
+                      width={block ? '100%' : 25 * 8}
+                      height={options.length < 5 ? options.length * 48 : 27 * 8}
+                      itemCount={options.length}
+                      itemSize={48}
+                      renderItem={({ index, style }) => (
+                        <Option
+                          style={style}
+                          {...getItemProps({
+                            key: options[index].label,
+                            index,
+                            item: options[index],
+                            isActive: highlightedIndex === index,
+                            isSelected: this.isOptionSelected(dsSelectedOptions, options[index]),
+                          })}
+                        >
+                          {
+                            multiple ? (
+                              <Space padding={[0]}>
+                                <Checkbox
+                                  label={<Text truncate>{options[index].label}</Text>}
+                                  checked={this.isOptionSelected(dsSelectedOptions, options[index])}
+                                />
+                              </Space>
+                            ) : (
+                              <Text truncate>
+                                {`${options[index].label}`}
+                              </Text>
+                            )
+                          }
+                        </Option>
+                      )}
+                    />
                   </OptionList>
                 ) : null
               }
@@ -211,14 +258,14 @@ class Select extends React.Component {
               error ? (
                 <Space margin={[0.5, 0, 0, 0]}>
                   <Text color="red" size="xxs">
-                    {error}
+                    {`${error}`}
                   </Text>
                 </Space>
               ) : null
             }
           </div>
         )}
-      />
+      </Downshift>
     );
   }
 }
@@ -226,13 +273,16 @@ class Select extends React.Component {
 Select.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.node,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   block: PropTypes.bool,
   multiple: PropTypes.bool,
   options: PropTypes.array.isRequired,
-  defaultSelected: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  defaultSelected: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.any),
+    PropTypes.any,
+  ]),
   onChange: PropTypes.func,
   error: PropTypes.string,
 };

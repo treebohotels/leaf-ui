@@ -25,7 +25,7 @@ export default (storiesOf, { Select }) =>
         placeholder="Select a color"
         multiple
         options={options}
-        defaultSelected={options[2]}
+        defaultSelected={options[2].value}
         onChange={action('onChange')}
       />
     ))
@@ -35,8 +35,8 @@ export default (storiesOf, { Select }) =>
         label="Color"
         placeholder="Select a color"
         options={options}
+        defaultSelected={options[2].value}
         onChange={action('onChange')}
-        defaultSelected={options[2]}
         disabled
       />
     ))
@@ -55,10 +55,10 @@ export default (storiesOf, { Select }) =>
         <Select
           name="number"
           label="Number"
-          defaultSelected={[2, 4]}
           placeholder="Select a number"
-          options={[1, 2, 3, 4]}
           multiple
+          options={[1, 2, 3, 4]}
+          defaultSelected={[2, 4]}
           onChange={action('onChange')}
         />
       </React.Fragment>

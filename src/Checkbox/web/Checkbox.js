@@ -13,7 +13,7 @@ class Checkbox extends React.Component {
     const { name, defaultChecked } = this.props;
     const { formik } = this.context;
 
-    if (formik) {
+    if (formik && name) {
       formik.setFieldValue(name, !!defaultChecked);
     }
   }
@@ -23,8 +23,11 @@ class Checkbox extends React.Component {
       className,
       name,
       label,
-      error: errorMessage,
       ...props
+    } = this.props;
+
+    let {
+      error,
     } = this.props;
 
     const {
@@ -32,9 +35,8 @@ class Checkbox extends React.Component {
     } = this.context;
 
     const inputProps = { ...props };
-    let error = errorMessage;
 
-    if (formik) {
+    if (formik && name) {
       inputProps.checked = !!getIn(formik.values, name);
       delete inputProps.defaultChecked;
       inputProps.onChange = (...args) => {
@@ -45,7 +47,7 @@ class Checkbox extends React.Component {
         formik.handleBlur(...args);
         props.onBlur(...args);
       };
-      error = formik.touched[name] && formik.errors[name];
+      error = getIn(formik.touched, name) && getIn(formik.errors, name);
     }
 
     return (
@@ -66,7 +68,7 @@ class Checkbox extends React.Component {
           error ? (
             <Space margin={[0.5, 0, 0, 0]}>
               <Text color="red" size="xxs">
-                {error}
+                {`${error}`}
               </Text>
             </Space>
           ) : null
@@ -79,7 +81,7 @@ class Checkbox extends React.Component {
 Checkbox.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.node,
   disabled: PropTypes.bool,
   defaultChecked: PropTypes.bool,
   onChange: PropTypes.func,

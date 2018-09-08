@@ -11,7 +11,7 @@ class TextInput extends React.Component {
     const { name, defaultValue } = this.props;
     const { formik } = this.context;
 
-    if (formik) {
+    if (formik && name) {
       if (defaultValue != null) {
         formik.setFieldValue(name, defaultValue);
       } else {
@@ -26,8 +26,11 @@ class TextInput extends React.Component {
       inputRef,
       name,
       label,
-      error: errorMessage,
       ...props
+    } = this.props;
+
+    let {
+      error,
     } = this.props;
 
     const {
@@ -35,9 +38,8 @@ class TextInput extends React.Component {
     } = this.context;
 
     const inputProps = { ...props };
-    let error = errorMessage;
 
-    if (formik) {
+    if (formik && name) {
       if (inputProps.defaultValue) {
         delete inputProps.defaultValue;
       }
@@ -50,7 +52,7 @@ class TextInput extends React.Component {
         formik.handleBlur(...args);
         props.onBlur(...args);
       };
-      error = formik.touched[name] && formik.errors[name];
+      error = error || (getIn(formik.touched, name) && getIn(formik.errors, name));
     }
 
     return (
@@ -69,7 +71,7 @@ class TextInput extends React.Component {
           error ? (
             <Space margin={[0.5, 0, 0, 0]}>
               <Text color="red" size="xxs">
-                {error}
+                {`${error}`}
               </Text>
             </Space>
           ) : null
@@ -83,7 +85,7 @@ TextInput.propTypes = {
   className: PropTypes.string,
   inputRef: PropTypes.func,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.node,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   block: PropTypes.bool,
