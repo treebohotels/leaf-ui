@@ -28,7 +28,7 @@ const List = styled(
   list-style-type: ${styles.listStyleType};
   list-style-position: ${(props) => props.type ? 'outside' : ''};
 
-  > ${/* sc-selector */ListItem} {
+  ${/* sc-selector */ListItem} {
     padding: ${(props) => props.type ? props.theme.px([1, 1, 1, 0]) : props.theme.px(2)};
   }
 `;
