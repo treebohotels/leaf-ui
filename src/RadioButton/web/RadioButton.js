@@ -12,7 +12,7 @@ class RadioButton extends React.Component {
     const { name, value, defaultChecked } = this.props;
     const { formik } = this.context;
 
-    if (formik) {
+    if (formik && name) {
       if (defaultChecked) {
         formik.setFieldValue(name, value);
       }
@@ -25,8 +25,11 @@ class RadioButton extends React.Component {
       name,
       label,
       value,
-      error: errorMessage,
       ...props
+    } = this.props;
+
+    let {
+      error,
     } = this.props;
 
     const {
@@ -34,7 +37,6 @@ class RadioButton extends React.Component {
     } = this.context;
 
     const inputProps = { ...props };
-    let error = errorMessage;
 
     if (formik) {
       inputProps.checked = getIn(formik.values, name) === value;
@@ -47,7 +49,7 @@ class RadioButton extends React.Component {
         formik.handleBlur(...args);
         props.onBlur(...args);
       };
-      error = formik.touched[name] && formik.errors[name];
+      error = getIn(formik.touched, name) && getIn(formik.errors, name);
     }
 
     return (
@@ -67,7 +69,7 @@ class RadioButton extends React.Component {
           error ? (
             <Space margin={[0.5, 0, 0, 0]}>
               <Text color="red" size="xxs">
-                {error}
+                {`${error}`}
               </Text>
             </Space>
           ) : null
@@ -80,7 +82,7 @@ class RadioButton extends React.Component {
 RadioButton.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.node,
   value: PropTypes.string,
   disabled: PropTypes.bool,
   defaultChecked: PropTypes.bool,

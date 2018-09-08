@@ -6,24 +6,26 @@ import Text from '../../Text/native';
 
 const styles = {
   buttonColor(props) {
-    switch (props.kind) {
-      case 'filled': return props.theme.color[props.color];
-      default: return props.theme.color.white;
+    if (props.kind === 'filled') {
+      return props.theme.color[props.color];
     }
+    return props.theme.color.white;
   },
   padding(props) {
-    switch (props.size) {
-      case 'small': return props.theme.px([1, 2]);
-      case 'medium': return props.theme.px([1.5, 2]);
-      default: return props.theme.px([2]);
+    if (props.size === 'small') {
+      return props.theme.px([1, 2]);
+    } else if (props.size === 'medium') {
+      return props.theme.px([1.5, 2]);
     }
+    return props.theme.px([2]);
   },
   borderRadius(props) {
-    switch (props.shape) {
-      case 'bluntEdged': return props.theme.borderRadius;
-      case 'sharpEdged': return '0';
-      default: return props.theme.px(10);
+    if (props.shape === 'bluntEdged') {
+      return props.theme.borderRadius;
+    } else if (props.shape === 'sharpEdged') {
+      return '0';
     }
+    return props.theme.px(10);
   },
 };
 

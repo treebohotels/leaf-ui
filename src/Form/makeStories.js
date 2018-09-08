@@ -23,7 +23,7 @@ export default(storiesOf, {
             leafDOB: Form.validation.string().required(),
             leafFrom: Form.validation.string().required(),
             leafTo: Form.validation.string().required(),
-            leafColor: Form.validation.string().equals([true]),
+            leafColor: Form.validation.string().required(),
             isAquatic: Form.validation.boolean().required(),
             treeType: Form.validation.string().required(),
           })
@@ -54,9 +54,10 @@ export default(storiesOf, {
             <Select
               name="leafColor"
               label="Leaf color"
+              multiple
               placeholder="Select a color"
               options={[{ label: 'Red', value: 'Red' }, { label: 'Green', value: 'Green' }]}
-              defaultSelected={{ label: 'Green', value: 'Green' }}
+              defaultSelected={['Red']}
             />
           </Space>
           <Space margin={[0, 0, 2, 0]}>

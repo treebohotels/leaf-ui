@@ -93,7 +93,7 @@ class TextInput extends Component {
   handleTextChange = (value) => {
     const { name } = this.props;
     const { formik } = this.context;
-    if (formik) {
+    if (formik && name) {
       formik.setFieldValue(name, value);
     }
   };
@@ -103,7 +103,7 @@ class TextInput extends Component {
     const { formik } = this.context;
     const { labelTranslateValue, isFocused } = this.state;
     let value = '';
-    if (formik) {
+    if (formik && name) {
       formik.setFieldTouched(name, true);
       value = formik.values[name];
     }
@@ -139,7 +139,7 @@ class TextInput extends Component {
       onFocus: this.onFocus,
     };
     let error = errorMessage;
-    if (formik) {
+    if (formik && name) {
       inputProps.value = formik.values[name];
       error = formik.touched[name] && formik.errors[name];
     }
