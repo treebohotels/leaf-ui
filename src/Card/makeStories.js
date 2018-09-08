@@ -1,36 +1,28 @@
 import React from 'react';
-import { select, boolean } from '@storybook/addon-knobs';
-import theme from '../theme';
 
-const sampleText = `
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Maecenas at elit eget diam convallis ultricies in a ligula.
-    Nunc rutrum est ut risus laoreet laoreet.
-    Donec convallis massa at pretium tincidunt.
-    Quisque quis tellus quis odio venenatis bibendum.`;
+const sampleText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+Maecenas at elit eget diam convallis ultricies in a ligula. \
+Nunc rutrum est ut risus laoreet laoreet. \
+Donec convallis massa at pretium tincidunt.
+Quisque quis tellus quis odio venenatis bibendum.`;
 
-export default(storiesOf, {
+export default (storiesOf, {
   Card,
+  Space,
+  View,
 }) =>
   storiesOf('Card', module)
-    .add('playground', () => (
-      <Card
-        borderStyle={select('borderStyle', ['dashed', 'dotted', 'double', 'solid', 'none', 'hidden'], 'solid')}
-        borderColor={select('borderColor', Object.keys(theme.color), 'white')}
-        backgroundColor={select('backgroundColor', Object.keys(theme.color), 'white')}
-        shape={select('shape', ['bluntEdged', 'sharpEdged'], 'bluntEdged')}
-        elevated={boolean('elevated', false)}
-      >
-        {sampleText}
-      </Card>
-    ))
     .add('simple', () => (
-      <Card>
-        {sampleText}
-      </Card>
-    ))
-    .add('elevated', () => (
-      <Card elevated>
-        {sampleText}
-      </Card>
+      <View>
+        <Space padding={[1]} margin={[1, 0]}>
+          <Card>
+            Simple Card: {sampleText}
+          </Card>
+        </Space>
+        <Space padding={[1]} margin={[1, 0]}>
+          <Card elevated>
+            Elevated Card: {sampleText}
+          </Card>
+        </Space>
+      </View>
     ));
