@@ -1,3 +1,5 @@
+/* eslint-disable global-require, no-console */
+
 import React, { Component } from 'react';
 import { AppRegistry, ScrollView } from 'react-native';
 import { ThemeProvider } from 'styled-components';
