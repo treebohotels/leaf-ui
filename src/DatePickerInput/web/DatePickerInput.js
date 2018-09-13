@@ -180,7 +180,6 @@ DatePickerInput.propTypes = {
 DatePickerInput.defaultProps = {
   placeholder: 'YYYY-MM-DD',
   format: 'YYYY-MM-DD',
-  fromMonth: new Date(),
   onDateChange: () => {},
 };
 
