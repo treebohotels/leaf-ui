@@ -316,7 +316,6 @@ DateRangePickerInput.defaultProps = {
     to: false,
   },
   format: 'YYYY-MM-DD',
-  fromMonth: new Date(),
   onDateChange: () => {},
 };
 
