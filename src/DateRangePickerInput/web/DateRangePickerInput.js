@@ -4,6 +4,7 @@ import { withTheme } from 'styled-components';
 import dateFnsIsBefore from 'date-fns/is_before';
 import dateFnsIsAfter from 'date-fns/is_after';
 import dateFnsFormat from 'date-fns/format';
+import dateFnsIsSameDay from 'date-fns/is_same_day';
 import DayPicker from 'react-day-picker';
 import Flex from '../../Flex/web';
 import Space from '../../Space/web';
@@ -73,7 +74,11 @@ class DateRangePickerInput extends React.Component {
     const { name, onDateChange } = this.props;
     const { formik } = this.context;
 
-    if (modifiers.disabled) {
+    if (
+      modifiers.disabled ||
+      dateFnsIsSameDay(day, from) ||
+      dateFnsIsSameDay(day, to)
+    ) {
       return;
     }
 
