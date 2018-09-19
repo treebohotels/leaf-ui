@@ -89,7 +89,7 @@ class Select extends React.Component {
     let defaultSelectedOptions = [];
 
     // set default formik value
-    if (formik && name && (defaultSelected || defaultSelected === undefined)) {
+    if (formik && name && defaultSelected !== undefined) {
       formik.setFieldValue(name, defaultSelected);
     }
 
