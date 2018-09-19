@@ -10,17 +10,19 @@ const Position = styled(
     bottom,
     left,
     zIndex,
+    transform,
     children,
     ...props
   }) => React.cloneElement(children, props),
 )`
   &&& {
-    position: ${(props) => props.position ? `${props.position} !important;` : ''};
-    top: ${(props) => props.top != null ? `${props.theme.px(props.top)} !important;` : ''};
-    right: ${(props) => props.right != null ? `${props.theme.px(props.right)} !important;` : ''};
-    bottom: ${(props) => props.bottom != null ? `${props.theme.px(props.bottom)} !important;` : ''};
-    left: ${(props) => props.left != null ? `${props.theme.px(props.left)} !important;` : ''};
-    z-index: ${(props) => props.zIndex != null ? `${props.zIndex} !important;` : ''};
+    position: ${(props) => props.position ? props.position : ''};
+    top: ${(props) => props.top != null ? props.theme.px(props.top) : ''};
+    right: ${(props) => props.right != null ? props.theme.px(props.right) : ''};
+    bottom: ${(props) => props.bottom != null ? props.theme.px(props.bottom) : ''};
+    left: ${(props) => props.left != null ? props.theme.px(props.left) : ''};
+    z-index: ${(props) => props.zIndex != null ? props.zIndex : ''};
+    transform: ${(props) => props.transform || ''};
   }
 `;
 
@@ -52,6 +54,7 @@ Position.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
+  transform: PropTypes.string,
 };
 
 export default Position;
