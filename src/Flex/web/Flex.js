@@ -40,7 +40,7 @@ Flex.propTypes = {
   alignContent: PropTypes.oneOf(['center', 'flex-end', 'flex-start', 'space-around', 'space-between', 'stretch']),
   alignItems: PropTypes.oneOf(['baseline', 'center', 'flex-end', 'flex-start', 'stretch']),
   alignSelf: PropTypes.oneOf(['baseline', 'center', 'flex-end', 'flex-start', 'stretch']),
-  display: PropTypes.oneOf(['flex', 'inline-flex']),
+  display: PropTypes.oneOf(['none', 'flex', 'inline-flex']),
   flex: PropTypes.string,
   flexBasis: PropTypes.string,
   flexDirection: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
