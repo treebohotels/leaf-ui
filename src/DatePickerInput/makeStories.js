@@ -9,6 +9,19 @@ export default(storiesOf, {
         name="dob"
       />
     ))
+    .add('block', () => (
+      <DatePickerInput
+        name="dob"
+        block
+      />
+    ))
+    .add('multiple', () => (
+      <DatePickerInput
+        name="dob"
+        multiple
+        block
+      />
+    ))
     .add('before today', () => (
       <DatePickerInput
         name="dob"

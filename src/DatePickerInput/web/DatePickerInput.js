@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import dateFnsFormat from 'date-fns/format';
-import DayPicker from 'react-day-picker';
+import DayPicker, { DateUtils } from 'react-day-picker';
 import Position from '../../Position/web';
 import View from '../../View/web';
 import TextInput from '../../TextInput/web';
@@ -10,9 +10,18 @@ import DatePickerNavbar from './DatePickerNavbar';
 import injectDatePickerStyles from './injectDatePickerStyles';
 
 class DatePickerInput extends React.Component {
-  state = {
-    isOpen: false,
-    selectedDay: this.props.defaultValue,
+  constructor(props) {
+    super(props);
+    let selectedDays = null;
+    if (props.multiple && props.defaultValue) {
+      selectedDays = props.defaultValue;
+    } else if (props.defaultValue) {
+      selectedDays = [props.defaultValue];
+    }
+    this.state = {
+      isOpen: false,
+      selectedDays,
+    };
   }
 
   componentWillMount = () => {
@@ -26,21 +35,34 @@ class DatePickerInput extends React.Component {
   }
 
   onDayClick = (day, modifiers) => {
-    const { name, onDateChange } = this.props;
+    const { name, onDateChange, multiple } = this.props;
     const { formik } = this.context;
+    let selectedDays = this.state.selectedDays ? [...this.state.selectedDays] : null;
 
     if (modifiers.disabled) {
       return;
     }
 
+    if (multiple && selectedDays) {
+      const dayIndex = selectedDays && selectedDays.findIndex((d) => DateUtils.isSameDay(d, day));
+      if (dayIndex !== -1) {
+        selectedDays.splice(dayIndex, 1);
+      } else {
+        selectedDays = [...selectedDays, day];
+      }
+    } else {
+      selectedDays = [day];
+    }
     this.setState({
-      isOpen: false,
-      selectedDay: day,
+      isOpen: !!multiple,
+      selectedDays,
     }, () => {
       if (formik && name) {
         formik.setFieldValue(name, this.formatDayForInput(day));
       }
-      this.inputRef.blur();
+      if (!multiple) {
+        this.inputRef.blur();
+      }
       onDateChange(day, modifiers);
     });
   }
@@ -69,10 +91,14 @@ class DatePickerInput extends React.Component {
     }, 1);
   }
 
-  formatDayForInput = (day) => {
+  formatDayForInput = (days) => {
     const { format } = this.props;
-    if (day) {
-      return dateFnsFormat(day, format);
+    if (days && days.length) {
+      let dayInput = null;
+      days.forEach((day, index) => {
+        dayInput = `${dayInput || ''}${dateFnsFormat(day, format)}${days.length - 1 > index ? ', ' : ''}`;
+      });
+      return dayInput;
     }
     return '';
   }
@@ -88,7 +114,7 @@ class DatePickerInput extends React.Component {
   render() {
     const {
       isOpen,
-      selectedDay,
+      selectedDays,
     } = this.state;
 
     const {
@@ -102,6 +128,7 @@ class DatePickerInput extends React.Component {
       toMonth,
       renderDay,
       disabledDays,
+      block,
     } = this.props;
 
     return (
@@ -111,11 +138,12 @@ class DatePickerInput extends React.Component {
           name={name}
           label={label}
           defaultValue={this.formatDayForInput(defaultValue)}
-          value={this.formatDayForInput(selectedDay)}
+          value={this.formatDayForInput(selectedDays)}
           placeholder={placeholder}
           disabled={disabled}
           onFocus={this.onInputFocus}
           onBlur={this.onInputBlur}
+          block={block}
           autoComplete="off"
         />
         {
@@ -136,11 +164,14 @@ class DatePickerInput extends React.Component {
                       numberOfMonths={1}
                       fromMonth={fromMonth}
                       toMonth={toMonth}
-                      month={selectedDay}
-                      selectedDays={[selectedDay]}
+                      month={selectedDays ?
+                        selectedDays[selectedDays.length - 1]
+                        : selectedDays
+                      }
+                      selectedDays={selectedDays}
                       disabledDays={disabledDays}
                       modifiers={{
-                        start: [selectedDay],
+                        start: selectedDays,
                       }}
                       navbarElement={<DatePickerNavbar />}
                       captionElement={() => null}
@@ -163,7 +194,10 @@ DatePickerInput.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  defaultValue: PropTypes.instanceOf(Date),
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+    PropTypes.instanceOf(Date),
+  ]),
   disabled: PropTypes.bool,
   format: PropTypes.string,
   fromMonth: PropTypes.instanceOf(Date),
@@ -171,6 +205,8 @@ DatePickerInput.propTypes = {
   renderDay: PropTypes.func,
   onDateChange: PropTypes.func,
   theme: PropTypes.object,
+  multiple: PropTypes.bool,
+  block: PropTypes.bool,
   disabledDays: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
