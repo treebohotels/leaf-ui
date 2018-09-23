@@ -12,7 +12,7 @@ import Trigger from './Trigger';
 import Label from './Label';
 import TriggerArrows from './TriggerArrows';
 import OptionList from './OptionList';
-import Option from './Option';
+import OptionListItem from './OptionListItem';
 
 class Select extends React.Component {
   constructor(props, context) {
@@ -113,7 +113,8 @@ class Select extends React.Component {
     const { label, placeholder, multiple } = this.props;
     if (!selectedOptions.length) {
       return `${placeholder !== undefined ? placeholder : ''}`;
-    } else if (multiple) {
+    }
+    if (multiple) {
       return `${selectedOptions.length} ${pluralize(selectedOptions.length, label)}`;
     }
     return `${selectedOptions[0].label}`;
@@ -183,7 +184,8 @@ class Select extends React.Component {
         selectedItem={selectedOptions}
         onSelect={this.onSelect}
         itemToString={this.itemToString}
-      >{({
+      >
+        {({
           isOpen,
           getToggleButtonProps,
           getItemProps,
@@ -223,7 +225,7 @@ class Select extends React.Component {
                       itemCount={options.length}
                       itemSize={48}
                       renderItem={({ index, style }) => (
-                        <Option
+                        <OptionListItem
                           style={style}
                           {...getItemProps({
                             key: options[index].label,
@@ -247,7 +249,7 @@ class Select extends React.Component {
                               </Text>
                             )
                           }
-                        </Option>
+                        </OptionListItem>
                       )}
                     />
                   </OptionList>
@@ -272,7 +274,7 @@ class Select extends React.Component {
 
 Select.propTypes = {
   className: PropTypes.string,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   label: PropTypes.node,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,

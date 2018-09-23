@@ -15,6 +15,10 @@ class DatePickerInput extends React.Component {
     selectedDay: this.props.defaultValue,
   }
 
+  datePickerHasFocus = false
+
+  timeout = {}
+
   componentWillMount = () => {
     const { theme } = this.props;
     injectDatePickerStyles(theme);
@@ -80,10 +84,6 @@ class DatePickerInput extends React.Component {
   storeInputRef = (ref) => {
     this.inputRef = ref;
   }
-
-  datePickerHasFocus = false
-
-  timeout = {}
 
   render() {
     const {

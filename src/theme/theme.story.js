@@ -21,7 +21,8 @@ storiesOf('Theme', module)
           {
             Object.keys(theme.color).map((color) => (
               <ColorView key={color} backgroundColor={color} elevated>
-                {color}<br />
+                {color}
+                <br />
                 {theme.color[color]}
               </ColorView>
             ))

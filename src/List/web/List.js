@@ -7,7 +7,8 @@ const styles = {
   listStyleType(props) {
     if (props.type === 'unordered') {
       return 'disc';
-    } else if (props.type === 'ordered') {
+    }
+    if (props.type === 'ordered') {
       return 'decimal';
     }
     return 'none';

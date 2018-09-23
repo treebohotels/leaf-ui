@@ -63,8 +63,8 @@ class TextInput extends Component {
     super(props);
     const { name, theme } = this.props;
     this.state = {
-      labelTranslateValue: formik && formik.values[name] ?
-        new Animated.Value(0) : new Animated.Value(theme.pxScale),
+      labelTranslateValue: formik && formik.values[name]
+        ? new Animated.Value(0) : new Animated.Value(theme.pxScale),
       isFocused: false,
     };
   }

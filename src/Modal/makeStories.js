@@ -29,7 +29,7 @@ export default (storiesOf, {
               </Modal.Footer>
             </Modal>
           </React.Fragment>
-      )}
+        )}
       </Toggle>
     ))
     .add('tabbed', () => (
@@ -62,7 +62,7 @@ export default (storiesOf, {
               </Modal.Footer>
             </Modal>
           </React.Fragment>
-      )}
+        )}
       </Toggle>
     ))
     .add('with title and subtitle', () => (
@@ -85,7 +85,7 @@ export default (storiesOf, {
               </Modal.Footer>
             </Modal>
           </React.Fragment>
-      )}
+        )}
       </Toggle>
     ))
     .add('modal over a modal', () => (
@@ -116,7 +116,7 @@ export default (storiesOf, {
                         </Modal.Footer>
                       </Modal>
                     </React.Fragment>
-                )}
+                  )}
                 </Toggle>
               </Modal.Content>
               <Modal.Footer>
@@ -124,6 +124,6 @@ export default (storiesOf, {
               </Modal.Footer>
             </Modal>
           </React.Fragment>
-      )}
+        )}
       </Toggle>
     ));

@@ -7,7 +7,8 @@ const styles = {
       borderColor(props) {
         if (props.disabled) {
           return `0 0 0 1px ${props.theme.color.grey}`;
-        } else if (props.error) {
+        }
+        if (props.error) {
           return `0 0 0 1px ${props.theme.color.red}`;
         }
         return `0 0 0 1px ${props.theme.color.primary}`;
@@ -19,7 +20,8 @@ const styles = {
       backgroundColor(props) {
         if (props.disabled) {
           return props.theme.color.grey;
-        } else if (props.error) {
+        }
+        if (props.error) {
           return props.theme.color.red;
         }
         return props.theme.color.primary;
@@ -30,7 +32,8 @@ const styles = {
     borderColor(props) {
       if (props.disabled) {
         return props.theme.color.greyLight;
-      } else if (props.error) {
+      }
+      if (props.error) {
         return props.theme.color.red;
       }
       return props.theme.color.greyLight;

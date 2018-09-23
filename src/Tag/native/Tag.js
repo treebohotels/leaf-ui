@@ -18,7 +18,8 @@ const styles = {
   borderRadius(props) {
     if (props.shape === 'capsular') {
       return props.theme.px(10);
-    } else if (props.shape === 'sharpEdged') {
+    }
+    if (props.shape === 'sharpEdged') {
       return props.theme.px(0);
     }
     return props.theme.borderRadius;

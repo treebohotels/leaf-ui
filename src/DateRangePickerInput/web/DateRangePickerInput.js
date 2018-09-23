@@ -22,6 +22,10 @@ class DateRangePickerInput extends React.Component {
     enteredTo: this.props.defaultValue.to,
   };
 
+  datePickerHasFocus = false
+
+  timeout = {}
+
   componentWillMount = () => {
     const { theme } = this.props;
     injectDatePickerStyles(theme);
@@ -75,9 +79,9 @@ class DateRangePickerInput extends React.Component {
     const { formik } = this.context;
 
     if (
-      modifiers.disabled ||
-      dateFnsIsSameDay(day, from) ||
-      dateFnsIsSameDay(day, to)
+      modifiers.disabled
+      || dateFnsIsSameDay(day, from)
+      || dateFnsIsSameDay(day, to)
     ) {
       return;
     }
@@ -161,10 +165,6 @@ class DateRangePickerInput extends React.Component {
   storeFromInputRef = (ref) => {
     this.fromInputRef = ref;
   }
-
-  datePickerHasFocus = false
-
-  timeout = {}
 
   render() {
     const {

@@ -21,19 +21,19 @@ class Accordion extends Component {
   render() {
     const { children } = this.props;
     const accordionChildrenGroupByType = reactChildrenGroupByType(children);
-    const noOtherSiblingSections = accordionChildrenGroupByType[AccordionSection] &&
-    accordionChildrenGroupByType[AccordionSection].length === 1;
+    const noOtherSiblingSections = accordionChildrenGroupByType[AccordionSection]
+    && accordionChildrenGroupByType[AccordionSection].length === 1;
 
     return (
       <div>
         {
           React.Children.map(children, (child) =>
-          child && child.type === AccordionSection ? (
-            React.cloneElement(child, {
-              groupName: this.groupName,
-              noOtherSiblingSections,
-            })
-          ) : child)
+            child && child.type === AccordionSection ? (
+              React.cloneElement(child, {
+                groupName: this.groupName,
+                noOtherSiblingSections,
+              })
+            ) : child)
         }
       </div>
     );

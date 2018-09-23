@@ -16,12 +16,16 @@ export default (storiesOf, {
       <View>
         <Space padding={[1]} margin={[1, 0]}>
           <Card>
-            Simple Card: {sampleText}
+            Simple Card:
+            {' '}
+            {sampleText}
           </Card>
         </Space>
         <Space padding={[1]} margin={[1, 0]}>
           <Card elevated>
-            Elevated Card: {sampleText}
+            Elevated Card:
+            {' '}
+            {sampleText}
           </Card>
         </Space>
       </View>

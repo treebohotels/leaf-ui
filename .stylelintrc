@@ -5,7 +5,6 @@
     "stylelint-config-styled-components"
   ],
   "rules": {
-    "indentation": null,
     "comment-empty-line-before": null
   },
   "syntax": "scss"

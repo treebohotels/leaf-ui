@@ -14,7 +14,8 @@ const styles = {
   padding(props) {
     if (props.size === 'small') {
       return props.theme.px([1, 2]);
-    } else if (props.size === 'medium') {
+    }
+    if (props.size === 'medium') {
       return props.theme.px([1.5, 2]);
     }
     return props.theme.px([2]);
@@ -22,7 +23,8 @@ const styles = {
   borderRadius(props) {
     if (props.shape === 'bluntEdged') {
       return props.theme.borderRadius;
-    } else if (props.shape === 'sharpEdged') {
+    }
+    if (props.shape === 'sharpEdged') {
       return '0';
     }
     return props.theme.px(10);

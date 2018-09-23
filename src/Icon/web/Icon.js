@@ -8,7 +8,8 @@ const styles = {
   color(props) {
     if (props.color) {
       return props.theme.color[props.color];
-    } else if (props.disabled) {
+    }
+    if (props.disabled) {
       return props.theme.color.greyLight;
     }
     return '';

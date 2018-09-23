@@ -38,10 +38,8 @@ class TextInput extends React.Component {
     const inputProps = { ...props };
 
     if (formik && name) {
-      if (inputProps.defaultValue) {
-        delete inputProps.defaultValue;
-      }
       inputProps.value = getIn(formik.values, name);
+      delete inputProps.defaultValue;
       inputProps.onChange = (...args) => {
         formik.handleChange(...args);
         props.onChange(...args);
@@ -82,7 +80,7 @@ class TextInput extends React.Component {
 TextInput.propTypes = {
   className: PropTypes.string,
   inputRef: PropTypes.func,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   label: PropTypes.node,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
