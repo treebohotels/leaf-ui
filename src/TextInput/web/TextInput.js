@@ -12,7 +12,11 @@ class TextInput extends React.Component {
     const { formik } = this.context;
 
     if (formik && name) {
-      formik.setFieldValue(name, defaultValue);
+      if (defaultValue === undefined) {
+        formik.setFieldValue(name, '');
+      } else {
+        formik.setFieldValue(name, defaultValue);
+      }
     }
   }
 
