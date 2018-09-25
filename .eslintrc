@@ -15,6 +15,7 @@
     "object-curly-newline": ["error", { "consistent": true }],
     "operator-linebreak": ["off"],
     "import/no-extraneous-dependencies": ["off"],
+    "import/no-useless-path-segments": ["off"],
     "import/prefer-default-export": ["off"],
     "jsx-a11y/click-events-have-key-events": ["off"],
     "jsx-a11y/label-has-for": ["error", { "required": { "every": [ "id" ] }, "allowChildren": true }],
