@@ -130,4 +130,81 @@ export default(storiesOf, {
           </Form.Form>
         </Form>
       </View>
+    )).add('amount', () => (
+      <Form
+        onSubmit={action('onSubmit')}
+        validationSchema={
+        Form.validation.object().shape({
+          required: Form.validation.amount().required(),
+          min: Form.validation.amount().min(200),
+          max: Form.validation.amount().max(10),
+          lessThan: Form.validation.amount().lessThan(50),
+          moreThan: Form.validation.amount().moreThan(50),
+          negative: Form.validation.amount().negative(),
+          positive: Form.validation.amount().positive(),
+        })
+      }
+      >
+        <Form.Form>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              type="number"
+              name="required"
+              label="Amount Required"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              type="number"
+              name="min"
+              label="Min Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              type="number"
+              name="max"
+              label="Max Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              type="number"
+              name="lessThan"
+              label="LessThan Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              type="number"
+              name="moreThan"
+              label="MoreThan Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              type="number"
+              name="negative"
+              label="Negative Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              type="number"
+              name="positive"
+              label="Positive Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Button type="submit">
+            Submit
+          </Button>
+        </Form.Form>
+      </Form>
     ));
