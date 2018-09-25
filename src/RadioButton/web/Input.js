@@ -4,10 +4,11 @@ import Circle from './Circle';
 const styles = {
   focus: {
     Circle: {
-      boxShadow(props) {
+      borderColor(props) {
         if (props.disabled) {
           return `0 0 0 1px ${props.theme.color.grey}`;
-        } else if (props.error) {
+        }
+        if (props.error) {
           return `0 0 0 1px ${props.theme.color.red}`;
         }
         return `0 0 0 1px ${props.theme.color.primary}`;
@@ -16,10 +17,11 @@ const styles = {
   },
   checked: {
     Circle: {
-      background(props) {
+      backgroundColor(props) {
         if (props.disabled) {
           return props.theme.color.grey;
-        } else if (props.error) {
+        }
+        if (props.error) {
           return props.theme.color.red;
         }
         return props.theme.color.primary;
@@ -27,13 +29,14 @@ const styles = {
     },
   },
   Circle: {
-    border(props) {
+    borderColor(props) {
       if (props.disabled) {
-        return `1px solid ${props.theme.color.grey}`;
-      } else if (props.error) {
-        return `1px solid ${props.theme.color.greyDark}`;
+        return props.theme.color.greyLight;
       }
-      return `1px solid ${props.theme.color.greyDark}`;
+      if (props.error) {
+        return props.theme.color.red;
+      }
+      return props.theme.color.greyLight;
     },
   },
 };
@@ -47,7 +50,6 @@ const Input = styled.input.attrs({
   padding: 0;
   margin: 0;
   overflow: hidden;
-  /* For browsers that yet don't support clip-path */
   clip: rect(0, 0, 0, 0);
   clip-path: inset(1px 0 0 0);
   border: 0;
@@ -55,23 +57,25 @@ const Input = styled.input.attrs({
   white-space: nowrap;
 
   + ${/* sc-selector */Circle} {
-    border: ${styles.Circle.border};
+    border-color: ${styles.Circle.borderColor};
   }
 
   &:focus {
     + ${/* sc-selector */Circle} {
-      box-shadow: ${styles.focus.Circle.boxShadow};
+      border-color: ${(props) => props.theme.color.primary};
     }
   }
 
   &:checked {
     + ${/* sc-selector */Circle} {
+      border-color: ${(props) => props.theme.color.primary};
+
       &::before {
         content: '';
         width: ${(props) => props.theme.px(1)};
         height: ${(props) => props.theme.px(1)};
         border-radius: 50%;
-        background: ${styles.checked.Circle.background};
+        background-color: ${styles.checked.Circle.backgroundColor};
       }
     }
   }

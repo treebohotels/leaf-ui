@@ -11,8 +11,10 @@ class TextInput extends React.Component {
     const { name, defaultValue } = this.props;
     const { formik } = this.context;
 
-    if (formik) {
-      if (defaultValue) {
+    if (formik && name) {
+      if (defaultValue === undefined) {
+        formik.setFieldValue(name, '');
+      } else {
         formik.setFieldValue(name, defaultValue);
       }
     }
@@ -21,10 +23,14 @@ class TextInput extends React.Component {
   render() {
     const {
       className,
+      inputRef,
       name,
       label,
-      error: errorMessage,
       ...props
+    } = this.props;
+
+    let {
+      error,
     } = this.props;
 
     const {
@@ -32,9 +38,8 @@ class TextInput extends React.Component {
     } = this.context;
 
     const inputProps = { ...props };
-    let error = errorMessage;
 
-    if (formik) {
+    if (formik && name) {
       inputProps.value = getIn(formik.values, name);
       delete inputProps.defaultValue;
       inputProps.onChange = (...args) => {
@@ -45,7 +50,7 @@ class TextInput extends React.Component {
         formik.handleBlur(...args);
         props.onBlur(...args);
       };
-      error = formik.touched[name] && formik.errors[name];
+      error = error || (getIn(formik.touched, name) && getIn(formik.errors, name));
     }
 
     return (
@@ -54,6 +59,7 @@ class TextInput extends React.Component {
           {label}
         </Label>
         <Input
+          innerRef={inputRef}
           id={name}
           name={name}
           error={error}
@@ -63,7 +69,7 @@ class TextInput extends React.Component {
           error ? (
             <Space margin={[0.5, 0, 0, 0]}>
               <Text color="red" size="xxs">
-                {error}
+                {`${error}`}
               </Text>
             </Space>
           ) : null
@@ -75,8 +81,9 @@ class TextInput extends React.Component {
 
 TextInput.propTypes = {
   className: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  inputRef: PropTypes.func,
+  name: PropTypes.string,
+  label: PropTypes.node,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   block: PropTypes.bool,

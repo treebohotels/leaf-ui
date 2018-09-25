@@ -63,11 +63,11 @@ class AccordionSection extends Component {
         />
         {
           React.Children.map(children, (child) =>
-          child && child.type === AccordionSectionTrigger ? (
-            React.cloneElement(child, {
-              htmlFor: this.inputId,
-            })
-          ) : child)
+            child && child.type === AccordionSectionTrigger ? (
+              React.cloneElement(child, {
+                htmlFor: this.inputId,
+              })
+            ) : child)
         }
       </AccordionSectionContainer>
     );

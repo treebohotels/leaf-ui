@@ -6,8 +6,9 @@ import Img from './Img';
 
 class Image extends Component {
   static getCdnUrl(src = '', width = '', height = '') {
-    const integerWidth = Number.parseInt(width, 10);
-    const integerHeight = Number.parseInt(height, 10);
+    const validCdnUnit = /^\d+(px)?$/;
+    const integerWidth = validCdnUnit.test(width) ? Number.parseInt(width, 10) : 'auto';
+    const integerHeight = validCdnUnit.test(height) ? Number.parseInt(height, 10) : 'auto';
     const searchParams = [
       `w=${integerWidth || ''}`,
       `h=${integerHeight || ''}`,
@@ -115,8 +116,8 @@ Image.propTypes = {
   className: PropTypes.string,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
   grayscale: PropTypes.bool,
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged', 'circular']),
   lazy: PropTypes.bool,
@@ -125,8 +126,6 @@ Image.propTypes = {
 
 Image.defaultProps = {
   className: '',
-  width: '',
-  height: '',
   grayscale: false,
   shape: 'sharpEdged',
   lazy: true,

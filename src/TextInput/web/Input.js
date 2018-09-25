@@ -4,7 +4,8 @@ const styles = {
   borderColor(props) {
     if (props.disabled) {
       return props.theme.color.greyLight;
-    } else if (props.error) {
+    }
+    if (props.error) {
       return props.theme.color.red;
     }
     return props.theme.color.greyLight;
@@ -12,7 +13,8 @@ const styles = {
   backgroundColor(props) {
     if (props.disabled) {
       return props.theme.color.greyLighter;
-    } else if (props.error) {
+    }
+    if (props.error) {
       return props.theme.color.redLighter;
     }
     return props.theme.color.white;

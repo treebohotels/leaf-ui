@@ -7,6 +7,8 @@ export default(storiesOf, {
   Select,
   Checkbox,
   RadioButton,
+  DatePickerInput,
+  DateRangePickerInput,
   Button,
   View,
   Form,
@@ -16,13 +18,16 @@ export default(storiesOf, {
       <Form
         onSubmit={action('onSubmit')}
         validationSchema={
-        Form.validation.object().shape({
-          leafName: Form.validation.string(),
-          leafColor: Form.validation.object().required(),
-          isAquatic: Form.validation.boolean().equals([true]),
-          treeType: Form.validation.string().required(),
-        })
-      }
+          Form.validation.object().shape({
+            leafName: Form.validation.string(),
+            leafDOB: Form.validation.string().required(),
+            leafFrom: Form.validation.string().required(),
+            leafTo: Form.validation.string().required(),
+            leafColor: Form.validation.string().required(),
+            isAquatic: Form.validation.boolean().required(),
+            treeType: Form.validation.string().required(),
+          })
+        }
       >
         <Form.Form>
           <Space margin={[0, 0, 2, 0]}>
@@ -30,23 +35,35 @@ export default(storiesOf, {
               name="leafName"
               label="Leaf Name"
               placeholder="pine"
-              defaultValue="eucalyptus"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <DatePickerInput
+              name="leafDOB"
+              label="Leaf DOB"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <DateRangePickerInput
+              name={{ from: 'leafFrom', to: 'leafTo' }}
+              defaultValue={{ from: new Date('2019-09-10'), to: new Date('2019-09-11') }}
+              label={{ from: 'From', to: 'To' }}
             />
           </Space>
           <Space margin={[0, 0, 2, 0]}>
             <Select
               name="leafColor"
               label="Leaf color"
+              multiple
               placeholder="Select a color"
               options={[{ label: 'Red', value: 'Red' }, { label: 'Green', value: 'Green' }]}
-              defaultSelected={{ label: 'Green', value: 'Green' }}
+              defaultSelected={['Red']}
             />
           </Space>
           <Space margin={[0, 0, 2, 0]}>
             <Checkbox
               name="isAquatic"
               label="Is an aquatic plant"
-              defaultChecked
             />
           </Space>
           <RadioButton
@@ -58,6 +75,7 @@ export default(storiesOf, {
             name="treeType"
             label="Maple"
             value="maple"
+            defaultChecked
           />
           <RadioButton
             name="treeType"
@@ -65,7 +83,7 @@ export default(storiesOf, {
             value="mahogany"
           />
           <Space margin={[2, 0, 0, 0]}>
-            <Button type="submit">Submit</Button>
+            <button type="submit">Submit</button>
           </Space>
         </Form.Form>
       </Form>
