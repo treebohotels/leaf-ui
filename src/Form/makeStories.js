@@ -20,12 +20,12 @@ export default(storiesOf, {
         validationSchema={
           Form.validation.object().shape({
             leafName: Form.validation.string(),
-            leafDOB: Form.validation.string().required(),
-            leafFrom: Form.validation.string().required(),
-            leafTo: Form.validation.string().required(),
-            leafColor: Form.validation.string().required(),
-            isAquatic: Form.validation.boolean().required(),
-            treeType: Form.validation.string().required(),
+            leafDOB: Form.validation.string(),
+            leafFrom: Form.validation.string(),
+            leafTo: Form.validation.string(),
+            leafColor: Form.validation.string(),
+            isAquatic: Form.validation.boolean(),
+            treeType: Form.validation.string(),
           })
         }
       >
