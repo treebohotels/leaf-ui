@@ -12,7 +12,7 @@ class TextInput extends React.Component {
     const { formik } = this.context;
 
     if (formik && name) {
-      if (defaultValue === undefined) {
+      if (defaultValue == null) {
         formik.setFieldValue(name, '');
       } else {
         formik.setFieldValue(name, defaultValue);
@@ -82,6 +82,7 @@ class TextInput extends React.Component {
 TextInput.propTypes = {
   className: PropTypes.string,
   inputRef: PropTypes.func,
+  type: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.node,
   placeholder: PropTypes.string,
@@ -94,6 +95,7 @@ TextInput.propTypes = {
 };
 
 TextInput.defaultProps = {
+  type: 'text',
   onChange: () => {},
   onBlur: () => {},
 };
