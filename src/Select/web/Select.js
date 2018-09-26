@@ -23,13 +23,26 @@ class Select extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const { name, defaultSelected, multiple } = this.props;
+    const { formik } = this.context;
+
+    if (formik && name) {
+      if (defaultSelected == null || defaultSelected === '') {
+        formik.setFieldValue(name, multiple ? [] : '');
+      } else {
+        formik.setFieldValue(name, defaultSelected);
+      }
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     const { formik } = this.context;
     let newSelectedOptions = [];
 
     if (formik && nextProps.name) {
       const formikValues = getIn(formik.values, nextProps.name);
-      if (formikValues === undefined) {
+      if (formikValues == null || formikValues === '') {
         newSelectedOptions = [];
       } else {
         newSelectedOptions = Array.isArray(formikValues)
@@ -88,18 +101,13 @@ class Select extends React.Component {
     const { formik } = context;
     let defaultSelectedOptions = [];
 
-    // set default formik value
-    if (formik && name && defaultSelected !== undefined) {
-      formik.setFieldValue(name, defaultSelected);
-    }
-
-    if (defaultSelected === undefined) {
+    if (defaultSelected == null || defaultSelected === '') {
       defaultSelectedOptions = [];
-    } else if (defaultSelected !== undefined) {
+    } else if (defaultSelected != null) {
       defaultSelectedOptions = Array.isArray(defaultSelected)
         ? defaultSelectedOptions.concat(defaultSelected.map(this.remakeOption))
         : defaultSelectedOptions.concat(this.remakeOption(defaultSelected));
-    } else if (formik && name && getIn(formik.values, name)) {
+    } else if (formik && name && getIn(formik.values, name) != null) {
       const formikValues = getIn(formik.values, name);
       defaultSelectedOptions = Array.isArray(formikValues)
         ? defaultSelectedOptions.concat(formikValues.map(this.remakeOption))
@@ -112,12 +120,12 @@ class Select extends React.Component {
   getTriggerText = (selectedOptions) => {
     const { label, placeholder, multiple } = this.props;
     if (!selectedOptions.length) {
-      return `${placeholder !== undefined ? placeholder : ''}`;
+      return placeholder || '';
     }
     if (multiple) {
       return `${selectedOptions.length} ${pluralize(selectedOptions.length, label)}`;
     }
-    return `${selectedOptions[0].label}`;
+    return selectedOptions[0].label;
   }
 
   getOptionsValue = (options) =>
@@ -130,25 +138,19 @@ class Select extends React.Component {
       .map(({ value }) => value)
       .includes(option.value);
 
-  makeOption = (option) => {
-    if (typeof option === 'object' && option !== null) {
-      return option;
-    }
-    return {
-      label: option,
-      value: option,
-    };
-  };
+  makeOption = (option) => ({
+    label: (option && option.label) || option,
+    value: (option && option.value) || option,
+  });
 
   remakeOption = (value) => {
     const { options } = this.props;
-    return options
-      .map(this.makeOption)
-      .find((option) => isEqual(option.value, value));
+    const fullOptions = options.map(this.makeOption);
+    return fullOptions.find((option) => isEqual(option.value, value));
   };
 
   itemToString = (option) =>
-    option == null ? '' : String(option.value)
+    String(option.value)
 
   render() {
     const {

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import View from '../../View/web';
 
 const styles = {
   backgroundColor: (props) => {
@@ -18,7 +19,7 @@ const OptionListItem = styled(
     isActive,
     isSelected,
     ...props
-  }) => <li {...props} />,
+  }) => <View {...props} />,
 )`
   background-color: ${styles.backgroundColor};
   cursor: ${(props) => props.onClick ? 'pointer' : ''};
