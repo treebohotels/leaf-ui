@@ -92,13 +92,11 @@ class DatePickerInput extends React.Component {
   }
 
   formatDayForInput = (days) => {
-    const { format } = this.props;
+    const { format, multiple } = this.props;
     if (days && days.length) {
-      let dayInput = null;
-      days.forEach((day, index) => {
-        dayInput = `${dayInput || ''}${dateFnsFormat(day, format)}${days.length - 1 > index ? ', ' : ''}`;
-      });
-      return dayInput;
+      return multiple
+        ? `${days.length} Date${days.length > 1 ? 's' : ''} selected`
+        : dateFnsFormat(days[0], format);
     }
     return '';
   }
