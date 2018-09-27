@@ -10,22 +10,27 @@ export default (storiesOf, {
   Card,
   Space,
   View,
+  Text,
 }) =>
   storiesOf('Card', module)
     .add('simple', () => (
       <View>
         <Space padding={[1]} margin={[1, 0]}>
           <Card>
-            Simple Card:
-            {' '}
-            {sampleText}
+            <Text>
+              <Text weight="bold">Simple Card:</Text>
+              {' '}
+              {sampleText}
+            </Text>
           </Card>
         </Space>
         <Space padding={[1]} margin={[1, 0]}>
           <Card elevated>
-            Elevated Card:
-            {' '}
-            {sampleText}
+            <Text>
+              <Text weight="bold">Elevated Card:</Text>
+              {' '}
+              {sampleText}
+            </Text>
           </Card>
         </Space>
       </View>

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import View from '../../View/native';
-import Text from '../../Text/native';
 import theme from '../../theme';
 
 const Card = styled(
@@ -14,7 +13,7 @@ const Card = styled(
     ...props
   }) => (
     <View {...props}>
-      <Text>{children}</Text>
+      {children}
     </View>
   ),
 )`
