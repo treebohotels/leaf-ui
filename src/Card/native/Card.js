@@ -5,6 +5,18 @@ import View from '../../View/native';
 import theme from '../../theme';
 
 const styles = {
+  borderWidth(props) {
+    if (props.borderStyle === 'none') {
+      return '0px';
+    }
+    return '1px';
+  },
+  borderStyle(props) {
+    if (props.borderStyle === 'none') {
+      return 'solid';
+    }
+    return props.borderStyle;
+  },
   borderRadius(props) {
     if (props.shape === 'bluntEdged') {
       return props.theme.borderRadius;
@@ -26,8 +38,8 @@ const Card = styled(
     <View {...props} />
   ),
 )`
-  border-width: 1px;
-  border-style: ${(props) => props.borderStyle};
+  border-width: ${styles.borderWidth};
+  border-style: ${styles.borderStyle};
   border-radius: ${styles.borderRadius};
   border-color: ${(props) => props.borderColor ? props.theme.color[props.borderColor] : props.theme.color[props.backgroundColor]};
   background-color: ${(props) => props.theme.color[props.backgroundColor]};
@@ -41,7 +53,7 @@ const Card = styled(
 `;
 
 Card.propTypes = {
-  borderStyle: PropTypes.oneOf(['solid', 'dotted', 'dashed']),
+  borderStyle: PropTypes.oneOf(['solid', 'dotted', 'dashed', 'none']),
   borderColor: PropTypes.oneOf(Object.keys(theme.color)),
   backgroundColor: PropTypes.oneOf(Object.keys(theme.color)),
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged']),
