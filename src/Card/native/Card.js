@@ -4,22 +4,31 @@ import styled from 'styled-components';
 import View from '../../View/native';
 import theme from '../../theme';
 
+const styles = {
+  borderRadius(props) {
+    if (props.shape === 'bluntEdged') {
+      return props.theme.borderRadius;
+    }
+    if (props.shape === 'sharpEdged') {
+      return '0';
+    }
+    return '';
+  },
+};
+
 const Card = styled(
   ({
     borderColor,
     backgroundColor,
     elevated,
-    children,
     ...props
   }) => (
-    <View {...props}>
-      {children}
-    </View>
+    <View {...props} />
   ),
 )`
   border-width: 1px;
   border-style: solid;
-  border-radius: ${(props) => props.theme.borderRadius};
+  border-radius: ${styles.borderRadius};
   border-color: ${(props) => props.borderColor ? props.theme.color[props.borderColor] : props.theme.color[props.backgroundColor]};
   background-color: ${(props) => props.theme.color[props.backgroundColor]};
   elevation: ${(props) => props.elevated ? 1 : 0};
@@ -34,11 +43,12 @@ const Card = styled(
 Card.propTypes = {
   borderColor: PropTypes.oneOf(Object.keys(theme.color)),
   backgroundColor: PropTypes.oneOf(Object.keys(theme.color)),
+  shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged']),
   elevated: PropTypes.bool,
-  children: PropTypes.string,
 };
 
 Card.defaultProps = {
+  shape: 'bluntEdged',
   backgroundColor: 'white',
 };
 

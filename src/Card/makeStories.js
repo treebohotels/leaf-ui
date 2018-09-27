@@ -18,8 +18,10 @@ export default (storiesOf, {
         <Space padding={[1]} margin={[1, 0]}>
           <Card>
             <Text>
-              <Text weight="bold">Simple Card:</Text>
-              {' '}
+              <Text weight="bold">
+                Simple Card:
+                {' '}
+              </Text>
               {sampleText}
             </Text>
           </Card>
@@ -27,8 +29,10 @@ export default (storiesOf, {
         <Space padding={[1]} margin={[1, 0]}>
           <Card elevated>
             <Text>
-              <Text weight="bold">Elevated Card:</Text>
-              {' '}
+              <Text weight="bold">
+                Elevated Card:
+                {' '}
+              </Text>
               {sampleText}
             </Text>
           </Card>
