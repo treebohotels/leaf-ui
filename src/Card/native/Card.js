@@ -27,7 +27,7 @@ const Card = styled(
   ),
 )`
   border-width: 1px;
-  border-style: solid;
+  border-style: ${(props) => props.borderStyle};
   border-radius: ${styles.borderRadius};
   border-color: ${(props) => props.borderColor ? props.theme.color[props.borderColor] : props.theme.color[props.backgroundColor]};
   background-color: ${(props) => props.theme.color[props.backgroundColor]};
@@ -41,6 +41,7 @@ const Card = styled(
 `;
 
 Card.propTypes = {
+  borderStyle: PropTypes.oneOf(['solid', 'dotted', 'dashed']),
   borderColor: PropTypes.oneOf(Object.keys(theme.color)),
   backgroundColor: PropTypes.oneOf(Object.keys(theme.color)),
   shape: PropTypes.oneOf(['bluntEdged', 'sharpEdged']),
@@ -48,8 +49,9 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  shape: 'bluntEdged',
+  borderStyle: 'solid',
   backgroundColor: 'white',
+  shape: 'bluntEdged',
 };
 
 export default Card;
