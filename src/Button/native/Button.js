@@ -7,6 +7,9 @@ import Text from '../../Text/native';
 
 const styles = {
   buttonColor(props) {
+    if (props.kind === 'filled' && props.disabled) {
+      return `${props.theme.color[props.color]}aa`;
+    }
     if (props.kind === 'filled') {
       return props.theme.color[props.color];
     }
@@ -41,7 +44,6 @@ const StyledButton = styled.TouchableOpacity`
   border-style: solid;
   border-color: ${(props) => props.theme.color[props.color]};
   border-radius: ${styles.borderRadius};
-  opacity: ${(props) => props.disabled ? '0.5' : '1'};
 `;
 
 const Button = ({
