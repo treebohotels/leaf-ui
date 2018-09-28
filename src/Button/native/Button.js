@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components';
 import theme from '../../theme';
 import Text from '../../Text/native';
@@ -50,6 +51,7 @@ const Button = ({
   size,
   block,
   disabled,
+  isLoading,
   children,
   ...props
 }) => (
@@ -62,13 +64,18 @@ const Button = ({
     disabled={disabled}
     {...props}
   >
-    <Text
-      color={kind === 'filled' ? 'white' : 'primary'}
-      size={size === 'small' ? 'xs' : 's'}
-      weight="medium"
-    >
-      {children.toUpperCase()}
-    </Text>
+    {
+      isLoading ?
+        <ActivityIndicator color={theme.color.white} /> : (
+          <Text
+            color={kind === 'filled' ? 'white' : 'primary'}
+            size={size === 'small' ? 'xs' : 's'}
+            weight="medium"
+          >
+            {children.toUpperCase()}
+          </Text>
+        )
+    }
   </StyledButton>
 );
 
@@ -79,6 +86,7 @@ Button.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   block: PropTypes.bool,
   disabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
   children: PropTypes.string.isRequired,
 };
 
@@ -89,6 +97,7 @@ Button.defaultProps = {
   shape: 'bluntEdged',
   block: false,
   disabled: false,
+  isLoading: false,
 };
 
 export default Button;
