@@ -37,12 +37,20 @@ const TagContainer = styled.View`
   border-color: ${styles.borderColor};
 `;
 
-const Tag = ({ color, kind, size, children, shape }) => (
+const Tag = ({
+  color,
+  kind,
+  size,
+  children,
+  shape,
+  ...props
+}) => (
   <TagContainer
     color={color}
     kind={kind}
     size={size}
     shape={shape}
+    {...props}
   >
     <Text
       color={{
