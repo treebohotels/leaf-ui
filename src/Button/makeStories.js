@@ -73,4 +73,23 @@ export default (storiesOf, {
       <Button disabled>
         Disabled Button
       </Button>
+    ))
+    .add('loading', () => (
+      <Flex alignItems="flex-start">
+        <View>
+          <Button size="small" isLoading>
+            Small Button
+          </Button>
+          <Space margin={[1, 0, 0, 0]}>
+            <Button size="medium" isLoading>
+              Medium Button
+            </Button>
+          </Space>
+          <Space margin={[1, 0, 0, 0]}>
+            <Button size="large" isLoading>
+              Large Button
+            </Button>
+          </Space>
+        </View>
+      </Flex>
     ));
