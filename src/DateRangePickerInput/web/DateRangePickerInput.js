@@ -75,7 +75,12 @@ class DateRangePickerInput extends React.Component {
 
   onDayClick = (day, modifiers) => {
     const { isOpen, from, to } = this.state;
-    const { name, onDateChange } = this.props;
+    const {
+      name,
+      onDateRangeChange,
+      onFromDateChange,
+      onToDateChange,
+    } = this.props;
     const { formik } = this.context;
 
     if (
@@ -97,6 +102,7 @@ class DateRangePickerInput extends React.Component {
             formik.setFieldValue(name.from, this.formatDayForInput(day));
             formik.setFieldValue(name.to, '');
           }
+          onFromDateChange(day, modifiers);
           this.toInputRef.focus();
         });
       } else {
@@ -108,8 +114,11 @@ class DateRangePickerInput extends React.Component {
             formik.setFieldValue(name.from, this.formatDayForInput(day));
           }
           if (!to) {
+            onFromDateChange(day, modifiers);
             this.toInputRef.focus();
           } else {
+            onFromDateChange(day, modifiers);
+            onDateRangeChange({ from: day, to }, modifiers);
             this.fromInputRef.blur();
           }
         });
@@ -125,6 +134,7 @@ class DateRangePickerInput extends React.Component {
             formik.setFieldValue(name.from, this.formatDayForInput(day));
             formik.setFieldValue(name.to, '');
           }
+          onFromDateChange(day, modifiers);
         });
       } else {
         this.setState({
@@ -135,12 +145,12 @@ class DateRangePickerInput extends React.Component {
           if (formik && name.from && name.to) {
             formik.setFieldValue(name.to, this.formatDayForInput(day));
           }
+          onToDateChange(day, modifiers);
+          onDateRangeChange({ from, to: day }, modifiers);
           this.toInputRef.blur();
         });
       }
     }
-
-    onDateChange(day, modifiers);
   }
 
   onDayMouseEnter = (day) => {
@@ -291,7 +301,9 @@ DateRangePickerInput.propTypes = {
   toMonth: PropTypes.instanceOf(Date),
   modifiers: PropTypes.object,
   renderDay: PropTypes.func,
-  onDateChange: PropTypes.func,
+  onDateRangeChange: PropTypes.func,
+  onFromDateChange: PropTypes.func,
+  onToDateChange: PropTypes.func,
   theme: PropTypes.object,
   disabledDays: PropTypes.oneOfType([
     PropTypes.array,
@@ -321,7 +333,9 @@ DateRangePickerInput.defaultProps = {
     to: false,
   },
   format: 'YYYY-MM-DD',
-  onDateChange: () => {},
+  onDateRangeChange: () => {},
+  onFromDateChange: () => {},
+  onToDateChange: () => {},
 };
 
 DateRangePickerInput.contextTypes = {
