@@ -333,11 +333,6 @@ DateRangePickerInput.defaultProps = {
     to: false,
   },
   format: 'YYYY-MM-DD',
-
-  /*
-    The following funcitons take the following signature
-    ({ from, to }, modifiers) => { ... }
-  */
   onDateRangeChange: () => {},
   onFromDateChange: () => {},
   onToDateChange: () => {},
