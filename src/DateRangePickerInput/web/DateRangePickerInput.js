@@ -298,8 +298,14 @@ DateRangePickerInput.propTypes = {
     to: PropTypes.string,
   }),
   defaultValue: PropTypes.shape({
-    from: PropTypes.instanceOf(Date),
-    to: PropTypes.instanceOf(Date),
+    from: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]),
+    to: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]),
   }),
   disabled: PropTypes.shape({
     from: PropTypes.bool,

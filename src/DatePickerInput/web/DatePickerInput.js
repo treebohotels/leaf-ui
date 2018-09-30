@@ -168,7 +168,10 @@ DatePickerInput.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  defaultValue: PropTypes.instanceOf(Date),
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.instanceOf(Date),
+    PropTypes.string,
+  ]),
   disabled: PropTypes.bool,
   format: PropTypes.string,
   fromMonth: PropTypes.instanceOf(Date),
@@ -184,6 +187,7 @@ DatePickerInput.propTypes = {
 
 DatePickerInput.defaultProps = {
   placeholder: 'YYYY-MM-DD',
+  defaultValue: '',
   format: 'YYYY-MM-DD',
   onDateChange: () => {},
 };
