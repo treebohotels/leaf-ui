@@ -41,6 +41,11 @@ class DateRangePickerInput extends React.Component {
     }
   }
 
+  componentWillUnmount = () => {
+    clearTimeout(this.timeout.inputBlur);
+    clearTimeout(this.timeout.datePickerBlur);
+  }
+
   onFromInputFocus = () => {
     setTimeout(() => {
       this.setState({ isOpen: 'from' });
