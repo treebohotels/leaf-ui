@@ -8,7 +8,9 @@ const View = styled(
     children,
     ...props
   }) => React.createElement(component, props, children),
-)``;
+)`
+  ${''}
+`;
 
 View.propTypes = {
   component: PropTypes.string.isRequired,

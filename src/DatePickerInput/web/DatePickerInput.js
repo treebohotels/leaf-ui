@@ -29,6 +29,15 @@ class DatePickerInput extends React.Component {
     injectDatePickerStyles(theme);
   }
 
+  componentDidMount() {
+    const { selectedDays } = this.state;
+    const { name, multiple, defaultValue } = this.props;
+    const { formik } = this.context;
+    if (formik && name) {
+      formik.setFieldValue(name, multiple ? selectedDays : defaultValue);
+    }
+  }
+
   componentWillUnmount = () => {
     clearTimeout(this.timeout.inputBlur);
     clearTimeout(this.timeout.datePickerBlur);
@@ -58,7 +67,7 @@ class DatePickerInput extends React.Component {
       selectedDays,
     }, () => {
       if (formik && name) {
-        formik.setFieldValue(name, this.formatDayForInput(day));
+        formik.setFieldValue(name, multiple ? selectedDays : day);
       }
       if (!multiple) {
         this.inputRef.blur();
@@ -91,6 +100,10 @@ class DatePickerInput extends React.Component {
     }, 1);
   }
 
+  datePickerHasFocus = false;
+
+  timeout = {};
+
   formatDayForInput = (days) => {
     const { format, multiple } = this.props;
     if (days && days.length) {
@@ -105,10 +118,6 @@ class DatePickerInput extends React.Component {
     this.inputRef = ref;
   }
 
-  datePickerHasFocus = false
-
-  timeout = {}
-
   render() {
     const {
       isOpen,
@@ -117,10 +126,8 @@ class DatePickerInput extends React.Component {
 
     const {
       className,
-      name,
       label,
       placeholder,
-      defaultValue,
       disabled,
       fromMonth,
       toMonth,
@@ -133,9 +140,7 @@ class DatePickerInput extends React.Component {
       <View className={className}>
         <TextInput
           inputRef={this.storeInputRef}
-          name={name}
           label={label}
-          defaultValue={this.formatDayForInput(defaultValue)}
           value={this.formatDayForInput(selectedDays)}
           placeholder={placeholder}
           disabled={disabled}
@@ -195,6 +200,7 @@ DatePickerInput.propTypes = {
   defaultValue: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.instanceOf(Date)),
     PropTypes.instanceOf(Date),
+    PropTypes.string,
   ]),
   disabled: PropTypes.bool,
   format: PropTypes.string,
@@ -213,8 +219,8 @@ DatePickerInput.propTypes = {
 
 DatePickerInput.defaultProps = {
   placeholder: 'YYYY-MM-DD',
+  defaultValue: '',
   format: 'YYYY-MM-DD',
-  fromMonth: new Date(),
   onDateChange: () => {},
 };
 

@@ -19,13 +19,13 @@ export default(storiesOf, {
         onSubmit={action('onSubmit')}
         validationSchema={
           Form.validation.object().shape({
-            leafName: Form.validation.string().required(),
-            leafDOB: Form.validation.string().required(),
-            leafFrom: Form.validation.string().required(),
-            leafTo: Form.validation.string().required(),
-            leafColor: Form.validation.string().required(),
-            isAquatic: Form.validation.boolean().required(),
-            treeType: Form.validation.string().required(),
+            leafName: Form.validation.string(),
+            leafDOB: Form.validation.string(),
+            leafFrom: Form.validation.string(),
+            leafTo: Form.validation.string(),
+            leafColor: Form.validation.string(),
+            isAquatic: Form.validation.boolean(),
+            treeType: Form.validation.string(),
           })
         }
       >
@@ -46,7 +46,7 @@ export default(storiesOf, {
           <Space margin={[0, 0, 2, 0]}>
             <DateRangePickerInput
               name={{ from: 'leafFrom', to: 'leafTo' }}
-              defaultValue={{ from: new Date(), to: new Date('2018-06-15') }}
+              defaultValue={{ from: new Date('2019-09-10'), to: new Date('2019-09-11') }}
               label={{ from: 'From', to: 'To' }}
             />
           </Space>

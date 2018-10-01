@@ -78,7 +78,7 @@ class DropdownContent extends React.Component {
           }}
         />
         <Size minWidth={25}>
-          <Card elevated>
+          <Card borderStyle="none" elevated>
             {children}
           </Card>
         </Size>

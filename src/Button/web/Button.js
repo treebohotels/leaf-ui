@@ -7,7 +7,8 @@ const styles = {
   color(props) {
     if (props.kind === 'filled') {
       return props.theme.color.white;
-    } else if (props.kind === 'outlined') {
+    }
+    if (props.kind === 'outlined') {
       return props.theme.color[props.color];
     }
     return '';
@@ -15,7 +16,8 @@ const styles = {
   backgroundColor(props) {
     if (props.kind === 'filled') {
       return props.theme.color[props.color];
-    } else if (props.kind === 'outlined') {
+    }
+    if (props.kind === 'outlined') {
       return props.theme.color.transparent;
     }
     return '';
@@ -23,9 +25,11 @@ const styles = {
   fontSize(props) {
     if (props.size === 'small') {
       return props.theme.fontSize.xs;
-    } else if (props.size === 'medium') {
+    }
+    if (props.size === 'medium') {
       return props.theme.fontSize.s;
-    } else if (props.size === 'large') {
+    }
+    if (props.size === 'large') {
       return props.theme.fontSize.s;
     }
     return '';
@@ -33,9 +37,11 @@ const styles = {
   padding(props) {
     if (props.size === 'small') {
       return props.theme.px([1, 2]);
-    } else if (props.size === 'medium') {
+    }
+    if (props.size === 'medium') {
       return props.theme.px([1.5, 2]);
-    } else if (props.size === 'large') {
+    }
+    if (props.size === 'large') {
       return props.theme.px([2]);
     }
     return '';
@@ -43,7 +49,8 @@ const styles = {
   borderColor(props) {
     if (props.kind === 'filled') {
       return props.theme.color[props.color];
-    } else if (props.kind === 'outlined') {
+    }
+    if (props.kind === 'outlined') {
       return props.theme.color[props.color];
     }
     return '';
@@ -51,11 +58,14 @@ const styles = {
   borderRadius(props) {
     if (props.shape === 'bluntEdged') {
       return props.theme.borderRadius;
-    } else if (props.shape === 'sharpEdged') {
+    }
+    if (props.shape === 'sharpEdged') {
       return '0';
-    } else if (props.shape === 'capsular') {
+    }
+    if (props.shape === 'capsular') {
       return props.theme.px(10);
-    } else if (props.shape === 'circular') {
+    }
+    if (props.shape === 'circular') {
       return '100%';
     }
     return '';
@@ -76,7 +86,8 @@ const styles = {
     color(props) {
       if (props.kind === 'filled') {
         return props.theme.color.white;
-      } else if (props.kind === 'outlined') {
+      }
+      if (props.kind === 'outlined') {
         return props.theme.color.white;
       }
       return '';
@@ -84,7 +95,8 @@ const styles = {
     backgroundColor(props) {
       if (props.kind === 'filled') {
         return props.theme.color[`${props.color}Dark`];
-      } else if (props.kind === 'outlined') {
+      }
+      if (props.kind === 'outlined') {
         return props.theme.color[props.color];
       }
       return '';
@@ -92,7 +104,8 @@ const styles = {
     borderColor(props) {
       if (props.kind === 'filled') {
         return props.theme.color[`${props.color}Dark`];
-      } else if (props.kind === 'outlined') {
+      }
+      if (props.kind === 'outlined') {
         return props.theme.color[props.color];
       }
       return '';
@@ -138,9 +151,9 @@ const Button = (props, context) => (
   <StyledButton
     {...props}
     disabled={props.disabled || (
-      props.type === 'submit' &&
-      context.formik &&
-      !context.formik.isValid
+      props.type === 'submit'
+      && context.formik
+      && !context.formik.isValid
     )}
   />
 );

@@ -1,7 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { boolean, text, select } from '@storybook/addon-knobs';
-import theme from '../theme';
 
 export default (storiesOf, {
   Flex,
@@ -10,19 +7,6 @@ export default (storiesOf, {
   Button,
 }) =>
   storiesOf('Button', module)
-    .add('playground', () => (
-      <Button
-        color={select('color', Object.keys(theme.color), 'primary')}
-        kind={select('kind', ['filled', 'outlined'], 'filled')}
-        shape={select('shape', ['bluntEdged', 'sharpEdged', 'capsular', 'circular'], 'bluntEdged')}
-        size={select('size', ['small', 'medium', 'large'], 'medium')}
-        block={boolean('block', false)}
-        disabled={boolean('disabled', false)}
-        onClick={action('button clicked')}
-      >
-        {text('children', 'Button')}
-      </Button>
-    ))
     .add('kinds', () => (
       <Flex alignItems="flex-start">
         <View>
@@ -86,7 +70,30 @@ export default (storiesOf, {
       </Button>
     ))
     .add('disabled', () => (
-      <Button disabled>
-        Disabled Button
-      </Button>
+      <View>
+        <Space margin={[1]}>
+          <Button size="large" disabled>
+            Disabled Filled Button
+          </Button>
+        </Space>
+        <Space margin={[1]}>
+          <Button size="large" disabled kind="outlined">
+            Disabled Outlined Button
+          </Button>
+        </Space>
+      </View>
+    ))
+    .add('loading', () => (
+      <View>
+        <Space margin={[1]}>
+          <Button size="large" block isLoading>
+            Large Button
+          </Button>
+        </Space>
+        <Space margin={[1]}>
+          <Button size="large" kind="outlined" isLoading>
+            Large Button
+          </Button>
+        </Space>
+      </View>
     ));

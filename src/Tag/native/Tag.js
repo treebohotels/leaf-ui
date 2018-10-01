@@ -18,7 +18,8 @@ const styles = {
   borderRadius(props) {
     if (props.shape === 'capsular') {
       return props.theme.px(10);
-    } else if (props.shape === 'sharpEdged') {
+    }
+    if (props.shape === 'sharpEdged') {
       return props.theme.px(0);
     }
     return props.theme.borderRadius;
@@ -36,12 +37,20 @@ const TagContainer = styled.View`
   border-color: ${styles.borderColor};
 `;
 
-const Tag = ({ color, kind, size, children, shape }) => (
+const Tag = ({
+  color,
+  kind,
+  size,
+  children,
+  shape,
+  ...props
+}) => (
   <TagContainer
     color={color}
     kind={kind}
     size={size}
     shape={shape}
+    {...props}
   >
     <Text
       color={{

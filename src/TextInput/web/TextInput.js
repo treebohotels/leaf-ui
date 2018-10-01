@@ -12,10 +12,10 @@ class TextInput extends React.Component {
     const { formik } = this.context;
 
     if (formik && name) {
-      if (defaultValue != null) {
-        formik.setFieldValue(name, defaultValue);
-      } else {
+      if (defaultValue == null) {
         formik.setFieldValue(name, '');
+      } else {
+        formik.setFieldValue(name, defaultValue);
       }
     }
   }
@@ -40,10 +40,8 @@ class TextInput extends React.Component {
     const inputProps = { ...props };
 
     if (formik && name) {
-      if (inputProps.defaultValue) {
-        delete inputProps.defaultValue;
-      }
       inputProps.value = getIn(formik.values, name);
+      delete inputProps.defaultValue;
       inputProps.onChange = (...args) => {
         formik.handleChange(...args);
         props.onChange(...args);
@@ -71,7 +69,7 @@ class TextInput extends React.Component {
           error ? (
             <Space margin={[0.5, 0, 0, 0]}>
               <Text color="red" size="xxs">
-                {error}
+                {`${error}`}
               </Text>
             </Space>
           ) : null
@@ -84,7 +82,8 @@ class TextInput extends React.Component {
 TextInput.propTypes = {
   className: PropTypes.string,
   inputRef: PropTypes.func,
-  name: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  name: PropTypes.string,
   label: PropTypes.node,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
@@ -96,6 +95,7 @@ TextInput.propTypes = {
 };
 
 TextInput.defaultProps = {
+  type: 'text',
   onChange: () => {},
   onBlur: () => {},
 };

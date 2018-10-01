@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Platform } from 'react-native';
+import responsiveSize from '../../utils/reactNativeResponsiveSize';
 import theme from '../../theme';
 
-const isPlatformAndroid = Platform.OS !== 'ios';
+const isPlatformAndroid = Platform.OS === 'android';
 
 const fontFamilies = {
   normal: isPlatformAndroid ? 'Roboto-Regular' : 'SFProDisplay-Regular',
@@ -14,15 +15,15 @@ const fontFamilies = {
 
 const Text = styled.Text`
   color: ${(props) => props.theme.color[props.color]};
-  font-size: ${(props) => props.theme.fontSize[props.size]};
+  font-size: ${(props) => responsiveSize(props.theme.fontSize[props.size])};
   font-family: ${(props) => fontFamilies[props.weight]};
   text-align: ${(props) => props.align};
 `;
 
 Text.propTypes = {
   color: PropTypes.string,
-  size: PropTypes.oneOf(theme.fontSize),
-  weight: PropTypes.oneOf(theme.fontWeight),
+  size: PropTypes.oneOf(Object.keys(theme.fontSize)),
+  weight: PropTypes.oneOf(Object.keys(theme.fontWeight)),
   align: PropTypes.oneOf(['left', 'center', 'right']),
 };
 

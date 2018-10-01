@@ -6,7 +6,8 @@ const styles = {
   color(props) {
     if (props.kind === 'filled') {
       return props.theme.color.white;
-    } else if (props.kind === 'outlined') {
+    }
+    if (props.kind === 'outlined') {
       return props.theme.color[props.color];
     }
     return '';
@@ -14,7 +15,8 @@ const styles = {
   background(props) {
     if (props.kind === 'filled') {
       return props.theme.color[props.color];
-    } else if (props.kind === 'outlined') {
+    }
+    if (props.kind === 'outlined') {
       return props.theme.color[`${props.color}Lighter`];
     }
     return '';
@@ -22,11 +24,14 @@ const styles = {
   borderRadius(props) {
     if (props.shape === 'bluntEdged') {
       return props.theme.borderRadius;
-    } else if (props.shape === 'sharpEdged') {
+    }
+    if (props.shape === 'sharpEdged') {
       return '0';
-    } else if (props.shape === 'capsular') {
+    }
+    if (props.shape === 'capsular') {
       return props.theme.px(10);
-    } else if (props.shape === 'circular') {
+    }
+    if (props.shape === 'circular') {
       return '100%';
     }
     return '';
@@ -34,7 +39,8 @@ const styles = {
   fontSize(props) {
     if (props.size === 'small') {
       return props.theme.fontSize.xxxs;
-    } else if (props.size === 'medium') {
+    }
+    if (props.size === 'medium') {
       return props.theme.fontSize.xs;
     }
     return '';
@@ -42,7 +48,8 @@ const styles = {
   padding(props) {
     if (props.size === 'small') {
       return props.theme.px([0.375, 1]);
-    } else if (props.size === 'medium') {
+    }
+    if (props.size === 'medium') {
       return props.theme.px([0.5, 1.5]);
     }
     return '';

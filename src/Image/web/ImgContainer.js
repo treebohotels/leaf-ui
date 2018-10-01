@@ -5,9 +5,11 @@ const styles = {
   borderRadius(props) {
     if (props.shape === 'bluntEdged') {
       return props.theme.borderRadius;
-    } else if (props.shape === 'sharpEdged') {
+    }
+    if (props.shape === 'sharpEdged') {
       return '0';
-    } else if (props.shape === 'circular') {
+    }
+    if (props.shape === 'circular') {
       return '100%';
     }
     return '';

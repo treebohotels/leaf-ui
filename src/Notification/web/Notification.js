@@ -10,6 +10,7 @@ import Icon from '../../Icon/web';
 import theme from '../../theme';
 
 const Notification = ({
+  className,
   color,
   icon,
   title,
@@ -17,7 +18,10 @@ const Notification = ({
   actions,
   onClose,
 }) => (
-  <Space padding={[1]}>
+  <Space
+    className={className}
+    padding={[1]}
+  >
     <Card
       borderColor={color}
       backgroundColor={`${color}Lighter`}
@@ -37,18 +41,22 @@ const Notification = ({
               </Space>
             ) : null
           }
-          <Flex flex="1">
+          <Flex flex="auto">
             <View>
               {
                 title ? (
                   <Space margin={[0, 0, message ? 0.5 : 0, 0]}>
-                    <Text size="m">{title}</Text>
+                    <Text size="m">
+                      {title}
+                    </Text>
                   </Space>
                 ) : null
               }
               {
                 message ? (
-                  <Text size="xs" color="greyDark">{message}</Text>
+                  <Text size="xs" color="greyDark">
+                    {message}
+                  </Text>
                 ) : null
               }
             </View>
@@ -86,6 +94,7 @@ const Notification = ({
 );
 
 Notification.propTypes = {
+  className: PropTypes.string,
   color: PropTypes.oneOf(Object.keys(theme.color)).isRequired,
   icon: PropTypes.string,
   title: PropTypes.string,

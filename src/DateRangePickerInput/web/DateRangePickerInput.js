@@ -4,6 +4,7 @@ import { withTheme } from 'styled-components';
 import dateFnsIsBefore from 'date-fns/is_before';
 import dateFnsIsAfter from 'date-fns/is_after';
 import dateFnsFormat from 'date-fns/format';
+import dateFnsIsSameDay from 'date-fns/is_same_day';
 import DayPicker from 'react-day-picker';
 import Flex from '../../Flex/web';
 import Space from '../../Space/web';
@@ -24,6 +25,21 @@ class DateRangePickerInput extends React.Component {
   componentWillMount = () => {
     const { theme } = this.props;
     injectDatePickerStyles(theme);
+  }
+
+  componentDidMount() {
+    const { from, to } = this.state;
+    const { name } = this.props;
+    const { formik } = this.context;
+    if (formik && name.from && name.to) {
+      formik.setFieldValue(name.from, from);
+      formik.setFieldValue(name.to, to);
+    }
+  }
+
+  componentWillUnmount = () => {
+    clearTimeout(this.timeout.inputBlur);
+    clearTimeout(this.timeout.datePickerBlur);
   }
 
   onFromInputFocus = () => {
@@ -70,10 +86,19 @@ class DateRangePickerInput extends React.Component {
 
   onDayClick = (day, modifiers) => {
     const { isOpen, from, to } = this.state;
-    const { name, onDateChange } = this.props;
+    const {
+      name,
+      onDateRangeChange,
+      onFromDateChange,
+      onToDateChange,
+    } = this.props;
     const { formik } = this.context;
 
-    if (modifiers.disabled) {
+    if (
+      modifiers.disabled
+      || dateFnsIsSameDay(day, from)
+      || dateFnsIsSameDay(day, to)
+    ) {
       return;
     }
 
@@ -85,9 +110,10 @@ class DateRangePickerInput extends React.Component {
           enteredTo: undefined,
         }, () => {
           if (formik && name.from && name.to) {
-            formik.setFieldValue(name.from, this.formatDayForInput(day));
+            formik.setFieldValue(name.from, day);
             formik.setFieldValue(name.to, '');
           }
+          onFromDateChange(day, modifiers);
           this.toInputRef.focus();
         });
       } else {
@@ -96,11 +122,14 @@ class DateRangePickerInput extends React.Component {
           from: day,
         }, () => {
           if (formik && name.from && name.to) {
-            formik.setFieldValue(name.from, this.formatDayForInput(day));
+            formik.setFieldValue(name.from, day);
           }
           if (!to) {
+            onFromDateChange(day, modifiers);
             this.toInputRef.focus();
           } else {
+            onFromDateChange(day, modifiers);
+            onDateRangeChange({ from: day, to }, modifiers);
             this.fromInputRef.blur();
           }
         });
@@ -113,9 +142,10 @@ class DateRangePickerInput extends React.Component {
           enteredTo: undefined,
         }, () => {
           if (formik && name.from && name.to) {
-            formik.setFieldValue(name.from, this.formatDayForInput(day));
+            formik.setFieldValue(name.from, day);
             formik.setFieldValue(name.to, '');
           }
+          onFromDateChange(day, modifiers);
         });
       } else {
         this.setState({
@@ -124,14 +154,14 @@ class DateRangePickerInput extends React.Component {
           enteredTo: day,
         }, () => {
           if (formik && name.from && name.to) {
-            formik.setFieldValue(name.to, this.formatDayForInput(day));
+            formik.setFieldValue(name.to, day);
           }
+          onToDateChange(day, modifiers);
+          onDateRangeChange({ from, to: day }, modifiers);
           this.toInputRef.blur();
         });
       }
     }
-
-    onDateChange(day, modifiers);
   }
 
   onDayMouseEnter = (day) => {
@@ -140,6 +170,10 @@ class DateRangePickerInput extends React.Component {
       this.setState({ enteredTo: day });
     }
   }
+
+  datePickerHasFocus = false;
+
+  timeout = {};
 
   formatDayForInput = (day) => {
     const { format } = this.props;
@@ -157,10 +191,6 @@ class DateRangePickerInput extends React.Component {
     this.fromInputRef = ref;
   }
 
-  datePickerHasFocus = false
-
-  timeout = {}
-
   render() {
     const {
       isOpen,
@@ -171,10 +201,8 @@ class DateRangePickerInput extends React.Component {
 
     const {
       className,
-      name,
       label,
       placeholder,
-      defaultValue,
       disabled,
       format,
       fromMonth,
@@ -191,9 +219,7 @@ class DateRangePickerInput extends React.Component {
             <Space margin={[0, 2, 0, 0]}>
               <TextInput
                 inputRef={this.storeFromInputRef}
-                name={name.from}
                 label={label.from}
-                defaultValue={this.formatDayForInput(defaultValue.from)}
                 value={this.formatDayForInput(from)}
                 placeholder={placeholder.from || format}
                 disabled={disabled.from}
@@ -204,9 +230,7 @@ class DateRangePickerInput extends React.Component {
             </Space>
             <TextInput
               inputRef={this.storeToInputRef}
-              name={name.to}
               label={label.to}
-              defaultValue={this.formatDayForInput(defaultValue.to)}
               value={this.formatDayForInput(to)}
               placeholder={placeholder.to || format}
               disabled={disabled.to}
@@ -274,8 +298,14 @@ DateRangePickerInput.propTypes = {
     to: PropTypes.string,
   }),
   defaultValue: PropTypes.shape({
-    from: PropTypes.instanceOf(Date),
-    to: PropTypes.instanceOf(Date),
+    from: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]),
+    to: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]),
   }),
   disabled: PropTypes.shape({
     from: PropTypes.bool,
@@ -286,7 +316,9 @@ DateRangePickerInput.propTypes = {
   toMonth: PropTypes.instanceOf(Date),
   modifiers: PropTypes.object,
   renderDay: PropTypes.func,
-  onDateChange: PropTypes.func,
+  onDateRangeChange: PropTypes.func,
+  onFromDateChange: PropTypes.func,
+  onToDateChange: PropTypes.func,
   theme: PropTypes.object,
   disabledDays: PropTypes.oneOfType([
     PropTypes.array,
@@ -308,16 +340,17 @@ DateRangePickerInput.defaultProps = {
     to: 'To: YYYY-MM-DD',
   },
   defaultValue: {
-    from: undefined,
-    to: undefined,
+    from: '',
+    to: '',
   },
   disabled: {
     from: false,
     to: false,
   },
   format: 'YYYY-MM-DD',
-  fromMonth: new Date(),
-  onDateChange: () => {},
+  onDateRangeChange: () => {},
+  onFromDateChange: () => {},
+  onToDateChange: () => {},
 };
 
 DateRangePickerInput.contextTypes = {
