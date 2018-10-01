@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Platform } from 'react-native';
 import { responsiveSizePx } from '../../utils/reactNativeResponsiveSize';
-import theme from '../../theme';
+import theme from '../../theme/native';
 
 const isPlatformAndroid = Platform.OS === 'android';
 

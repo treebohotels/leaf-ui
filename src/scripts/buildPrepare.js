@@ -43,6 +43,18 @@ fs.writeFile(themeFile, themeContent, (writeFileErr) => {
   console.log(`generated: ${themeFile}`);
 });
 
+// generate exports for native theme
+const themeDir = path.resolve(__dirname, '../../theme');
+mkdirp(themeDir, (mkdirpErr) => {
+  if (mkdirpErr) throw mkdirpErr;
+  const nativeThemeFile = path.resolve(themeDir, 'native.js');
+  const nativeThemeContent = 'export { default } from \'../es/theme/native\';\nexport * from \'../es/theme/native\';\n';
+  fs.writeFile(nativeThemeFile, nativeThemeContent, (writeFileErr) => {
+    if (writeFileErr) throw writeFileErr;
+    console.log(`generated: ${nativeThemeFile}`);
+  });
+});
+
 // generate package.json
 const packageJsonPath = path.resolve(__dirname, '../../package.json');
 fs.readFile(packageJsonPath, 'utf-8', (readFileErr, packageJsonData) => {
