@@ -70,26 +70,30 @@ export default (storiesOf, {
       </Button>
     ))
     .add('disabled', () => (
-      <Button disabled>
-        Disabled Button
-      </Button>
+      <View>
+        <Space margin={[1]}>
+          <Button size="large" disabled>
+            Disabled Filled Button
+          </Button>
+        </Space>
+        <Space margin={[1]}>
+          <Button size="large" disabled kind="outlined">
+            Disabled Outlined Button
+          </Button>
+        </Space>
+      </View>
     ))
     .add('loading', () => (
-      <Flex alignItems="flex-start">
-        <View>
-          <Button size="small" isLoading>
-            Small Button
+      <View>
+        <Space margin={[1]}>
+          <Button size="large" block isLoading>
+            Large Button
           </Button>
-          <Space margin={[1, 0, 0, 0]}>
-            <Button size="medium" isLoading>
-              Medium Button
-            </Button>
-          </Space>
-          <Space margin={[1, 0, 0, 0]}>
-            <Button size="large" isLoading>
-              Large Button
-            </Button>
-          </Space>
-        </View>
-      </Flex>
+        </Space>
+        <Space margin={[1]}>
+          <Button size="large" kind="outlined" isLoading>
+            Large Button
+          </Button>
+        </Space>
+      </View>
     ));

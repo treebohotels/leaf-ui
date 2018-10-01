@@ -8,9 +8,33 @@ import Text from '../../Text/native';
 const styles = {
   buttonColor(props) {
     if (props.kind === 'filled') {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      }
       return props.theme.color[props.color];
     }
+    if (props.kind === 'outlined') {
+      if (props.disabled) {
+        return props.theme.color.greyLight;
+      }
+      return props.theme.color.white;
+    }
     return props.theme.color.white;
+  },
+  borderColor(props) {
+    if (props.kind === 'filled') {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      }
+      return props.theme.color[props.color];
+    }
+    if (props.kind === 'outlined') {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      }
+      return props.theme.color[props.color];
+    }
+    return props.theme.color[props.color];
   },
   padding(props) {
     if (props.size === 'small') {
@@ -30,6 +54,18 @@ const styles = {
     }
     return props.theme.px(10);
   },
+  textColor(props) {
+    if (props.kind === 'filled') {
+      return props.theme.color.white;
+    }
+    if (props.kind === 'outlined') {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      }
+      return props.theme.color[props.color];
+    }
+    return props.theme.color[props.color];
+  },
 };
 
 const StyledButton = styled.TouchableOpacity`
@@ -39,9 +75,12 @@ const StyledButton = styled.TouchableOpacity`
   padding: ${styles.padding};
   border-width: 1px;
   border-style: solid;
-  border-color: ${(props) => props.theme.color[props.color]};
+  border-color: ${styles.borderColor};
   border-radius: ${styles.borderRadius};
-  opacity: ${(props) => props.disabled ? '0.5' : '1'};
+`;
+
+const StyledText = styled(Text)`
+  color: ${styles.textColor};
 `;
 
 const Button = ({
@@ -62,19 +101,25 @@ const Button = ({
     shape={shape}
     block={block}
     disabled={disabled}
+    activeOpacity={0.8}
     {...props}
   >
     {
-      isLoading ?
-        <ActivityIndicator color={theme.color.white} /> : (
-          <Text
-            color={kind === 'filled' ? 'white' : 'primary'}
-            size={size === 'small' ? 'xs' : 's'}
-            weight="medium"
-          >
-            {children.toUpperCase()}
-          </Text>
-        )
+      isLoading ? (
+        <ActivityIndicator
+          color={kind === 'outlined' ? theme.color[color] : theme.color.white}
+        />
+      ) : (
+        <StyledText
+          kind={kind}
+          color={color}
+          disabled={disabled}
+          size={size === 'small' ? 'xs' : 's'}
+          weight="medium"
+        >
+          {children.toUpperCase()}
+        </StyledText>
+      )
     }
   </StyledButton>
 );
