@@ -24,6 +24,15 @@ class DatePickerInput extends React.Component {
     injectDatePickerStyles(theme);
   }
 
+  componentDidMount() {
+    const { selectedDay } = this.state;
+    const { name } = this.props;
+    const { formik } = this.context;
+    if (formik && name) {
+      formik.setFieldValue(name, selectedDay);
+    }
+  }
+
   componentWillUnmount = () => {
     clearTimeout(this.timeout.inputBlur);
     clearTimeout(this.timeout.datePickerBlur);
@@ -42,7 +51,7 @@ class DatePickerInput extends React.Component {
       selectedDay: day,
     }, () => {
       if (formik && name) {
-        formik.setFieldValue(name, this.formatDayForInput(day));
+        formik.setFieldValue(name, day);
       }
       this.inputRef.blur();
       onDateChange(day, modifiers);
@@ -93,10 +102,8 @@ class DatePickerInput extends React.Component {
 
     const {
       className,
-      name,
       label,
       placeholder,
-      defaultValue,
       disabled,
       fromMonth,
       toMonth,
@@ -108,9 +115,7 @@ class DatePickerInput extends React.Component {
       <View className={className}>
         <TextInput
           inputRef={this.storeInputRef}
-          name={name}
           label={label}
-          defaultValue={this.formatDayForInput(defaultValue)}
           value={this.formatDayForInput(selectedDay)}
           placeholder={placeholder}
           disabled={disabled}
@@ -163,7 +168,10 @@ DatePickerInput.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  defaultValue: PropTypes.instanceOf(Date),
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.instanceOf(Date),
+    PropTypes.string,
+  ]),
   disabled: PropTypes.bool,
   format: PropTypes.string,
   fromMonth: PropTypes.instanceOf(Date),
@@ -179,6 +187,7 @@ DatePickerInput.propTypes = {
 
 DatePickerInput.defaultProps = {
   placeholder: 'YYYY-MM-DD',
+  defaultValue: '',
   format: 'YYYY-MM-DD',
   onDateChange: () => {},
 };
