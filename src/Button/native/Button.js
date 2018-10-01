@@ -7,26 +7,32 @@ import Text from '../../Text/native';
 
 const styles = {
   buttonColor(props) {
-    if (props.kind === 'filled' && !props.disabled) {
+    if (props.kind === 'filled') {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      }
       return props.theme.color[props.color];
     }
-    if (props.kind === 'filled' && props.disabled) {
-      return props.theme.color.grey;
-    }
-    if (props.kind === 'outlined' && props.disabled) {
-      return props.theme.color.greyLight;
+    if (props.kind === 'outlined') {
+      if (props.disabled) {
+        return props.theme.color.greyLight;
+      }
+      return props.theme.color.white;
     }
     return props.theme.color.white;
   },
   borderColor(props) {
-    if (props.kind === 'filled' && !props.disabled) {
+    if (props.kind === 'filled') {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      }
       return props.theme.color[props.color];
     }
-    if (props.kind === 'filled' && props.disabled) {
-      return props.theme.color.grey;
-    }
-    if (props.kind === 'outlined' && props.disabled) {
-      return props.theme.color.grey;
+    if (props.kind === 'outlined') {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      }
+      return props.theme.color[props.color];
     }
     return props.theme.color[props.color];
   },
@@ -52,8 +58,11 @@ const styles = {
     if (props.kind === 'filled') {
       return props.theme.color.white;
     }
-    if (props.kind === 'outlined' && props.disabled) {
-      return props.theme.color.grey;
+    if (props.kind === 'outlined') {
+      if (props.disabled) {
+        return props.theme.color.grey;
+      }
+      return props.theme.color[props.color];
     }
     return props.theme.color[props.color];
   },
