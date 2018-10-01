@@ -22,8 +22,8 @@ const Text = styled.Text`
 
 Text.propTypes = {
   color: PropTypes.string,
-  size: PropTypes.oneOf(theme.fontSize),
-  weight: PropTypes.oneOf(theme.fontWeight),
+  size: PropTypes.oneOf(Object.keys(theme.fontSize)),
+  weight: PropTypes.oneOf(Object.keys(theme.fontWeight)),
   align: PropTypes.oneOf(['left', 'center', 'right']),
 };
 
