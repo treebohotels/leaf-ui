@@ -1,3 +1,7 @@
+import { Platform } from 'react-native';
+import { responsiveSizeInt } from '../utils/reactNativeResponsiveSize';
+
+const isPlatformMobile = Platform.OS === 'android' || Platform.OS === 'ios';
 const theme = {};
 
 theme.borderRadius = '2px';
@@ -75,7 +79,7 @@ theme.fontWeight.medium = 500;
 theme.fontWeight.semibold = 600;
 theme.fontWeight.bold = 700;
 
-theme.pxScale = 8;
+theme.pxScale = isPlatformMobile ? responsiveSizeInt(8) : 8;
 
 theme.px = (value) => {
   const values = [].concat(value);

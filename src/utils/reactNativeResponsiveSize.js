@@ -1,21 +1,8 @@
-import { PixelRatio } from 'react-native';
+import { scale } from 'react-native-size-matters';
 
-const responsiveSize = (sizePx) => {
-  const pixelRatio = PixelRatio.get();
+export const responsiveSizeInt = (size) => scale(size);
+
+export const responsiveSizePx = (sizePx) => {
   const sizeInt = parseInt(sizePx, 10);
-
-  let factor = 1.4;
-  if (pixelRatio <= 1.5) {
-    factor = 1;
-  } else if (pixelRatio <= 2) {
-    factor = 1.1;
-  } else if (pixelRatio <= 2.5) {
-    factor = 1.2;
-  } else if (pixelRatio <= 3) {
-    factor = 1.3;
-  }
-
-  return `${sizeInt * factor}px`;
+  return `${scale(sizeInt)}px`;
 };
-
-export default responsiveSize;
