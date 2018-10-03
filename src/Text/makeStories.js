@@ -1,5 +1,5 @@
 import React from 'react';
-import theme from '../theme';
+import theme from '../theme/web';
 
 export default (storiesOf, { Text, View, Space }) =>
   storiesOf('Text', module)

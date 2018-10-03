@@ -1,8 +1,8 @@
 import { responsiveSizeInt, responsiveSizePx } from '../../utils/reactNativeResponsiveSize';
-import baseTheme from '../theme';
+import webTheme from '../web/theme';
 
 const theme = {
-  ...baseTheme,
+  ...webTheme,
   borderRadius: responsiveSizePx('2px'),
   pxScale: responsiveSizeInt(8),
   px: (value) => {
