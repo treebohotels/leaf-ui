@@ -1,6 +1,4 @@
 import React from 'react';
-import { text, select } from '@storybook/addon-knobs';
-import theme from '../theme/web';
 
 export default (storiesOf, {
   Flex,
@@ -9,41 +7,89 @@ export default (storiesOf, {
   Tag,
 }) =>
   storiesOf('Tag', module)
-    .add('playground', () => (
-      <Tag
-        color={select('color', Object.keys(theme.color), 'primary')}
-        kind={select('kind', ['filled', 'outlined'], 'filled')}
-        shape={select('shape', ['bluntEdged', 'sharpEdged', 'capsular'], 'bluntEdged')}
-        size={select('size', ['small', 'medium'], 'medium')}
-      >
-        {text('children', 'Tag')}
-      </Tag>
-    ))
-    .add('kinds', () => (
+    .add('shape', () => (
       <Flex alignItems="flex-start">
-        <View>
-          <Tag kind="outlined">
-            outlined
-          </Tag>
-          <Space margin={[1, 0, 0, 0]}>
-            <Tag kind="filled">
-              filled
+        <Space margin={[2]}>
+          <View>
+            <Tag
+              shape="bluntEdged"
+              size="small"
+              color="teal"
+              kind="outlined"
+            >
+              bluntEdged small outlined
             </Tag>
-          </Space>
-        </View>
+            <Space margin={[2, 0, 0, 0]}>
+              <Tag color="teal" size="medium">
+                bluntEdged medium filled
+              </Tag>
+            </Space>
+            <Space margin={[4, 0, 0, 0]}>
+              <Tag
+                shape="capsular"
+                size="small"
+                color="teal"
+              >
+                capsular small filled
+              </Tag>
+            </Space>
+            <Space margin={[2, 0, 0, 0]}>
+              <Tag
+                shape="capsular"
+                color="teal"
+                kind="outlined"
+              >
+                capsular medium outlined
+              </Tag>
+            </Space>
+            <Space margin={[4, 0, 0, 0]}>
+              <Tag
+                shape="sharpEdged"
+                size="small"
+                color="teal"
+                kind="outlined"
+              >
+                sharpEdged small outlined
+              </Tag>
+            </Space>
+            <Space margin={[2, 0, 0, 0]}>
+              <Tag shape="sharpEdged" color="teal">
+                sharpEdged small filled
+              </Tag>
+            </Space>
+          </View>
+        </Space>
+      </Flex>
+    ))
+    .add('kind', () => (
+      <Flex alignItems="flex-start">
+        <Space margin={[2]}>
+          <View>
+            <Tag kind="outlined" color="teal">
+              outlined
+            </Tag>
+            <Space margin={[2, 0, 0, 0]}>
+              <Tag kind="filled" color="teal">
+                filled
+              </Tag>
+            </Space>
+          </View>
+        </Space>
       </Flex>
     ))
     .add('size', () => (
       <Flex alignItems="flex-start">
-        <View>
-          <Tag size="small">
-            small
-          </Tag>
-          <Space margin={[1, 0, 0, 0]}>
-            <Tag>
-              medium
+        <Space margin={[2]}>
+          <View>
+            <Tag size="small" color="teal">
+              small
             </Tag>
-          </Space>
-        </View>
+            <Space margin={[2, 0, 0, 0]}>
+              <Tag color="teal">
+                medium
+              </Tag>
+            </Space>
+          </View>
+        </Space>
       </Flex>
     ));
