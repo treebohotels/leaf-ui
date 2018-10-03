@@ -195,9 +195,13 @@ class Select extends React.Component {
           selectedItem: dsSelectedOptions,
         }) => (
           <div className={className}>
-            <Label htmlFor={name}>
-              {label}
-            </Label>
+            {
+              label ? (
+                <Label htmlFor={name}>
+                  {label}
+                </Label>
+              ) : null
+            }
             <Trigger
               {...getToggleButtonProps({
                 isOpen,

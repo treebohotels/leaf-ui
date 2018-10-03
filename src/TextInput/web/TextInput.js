@@ -55,9 +55,13 @@ class TextInput extends React.Component {
 
     return (
       <div className={className}>
-        <Label htmlFor={name}>
-          {label}
-        </Label>
+        {
+          label ? (
+            <Label htmlFor={name}>
+              {label}
+            </Label>
+          ) : null
+        }
         <Input
           innerRef={inputRef}
           id={name}
