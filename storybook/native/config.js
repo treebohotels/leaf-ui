@@ -11,6 +11,7 @@ const loadStories = () => {
   require('../../src/Card/native/Card.story');
   require('../../src/Button/native/Button.story');
   require('../../src/Text/native/Text.story');
+  require('../../src/Tag/native/Tag.story');
 };
 
 const StorybookUIRoot = getStorybookUI({ port: 7007, onDeviceUI: true });
