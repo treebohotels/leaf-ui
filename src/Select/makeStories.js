@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import theme from '../theme';
+import theme from '../theme/web';
 
 const options = Object.keys(theme.color).map((color) => ({
   label: color,

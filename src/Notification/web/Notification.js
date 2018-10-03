@@ -7,7 +7,7 @@ import Button from '../../Button/web';
 import Space from '../../Space/web';
 import View from '../../View/web';
 import Icon from '../../Icon/web';
-import theme from '../../theme';
+import theme from '../../theme/web';
 
 const Notification = ({
   className,
