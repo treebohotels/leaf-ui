@@ -4,15 +4,14 @@ import { withTheme } from 'styled-components';
 import dateFnsIsBefore from 'date-fns/is_before';
 import dateFnsIsAfter from 'date-fns/is_after';
 import dateFnsFormat from 'date-fns/format';
-import dateFnsIsSameDay from 'date-fns/is_same_day';
 import DayPicker from 'react-day-picker';
 import Flex from '../../Flex/web';
 import Space from '../../Space/web';
 import Position from '../../Position/web';
 import View from '../../View/web';
 import TextInput from '../../TextInput/web';
-import DatePickerNavbar from '../../DatePickerInput/web/DatePickerNavbar';
 import injectDatePickerStyles from '../../DatePickerInput/web/injectDatePickerStyles';
+import DateRangePickerNavbar from './DateRangePickerNavbar';
 
 class DateRangePickerInput extends React.Component {
   state = {
@@ -36,8 +35,8 @@ class DateRangePickerInput extends React.Component {
     const { name } = this.props;
     const { formik } = this.context;
     if (formik && name.from && name.to) {
-      formik.setFieldValue(name.from, from);
-      formik.setFieldValue(name.to, to);
+      formik.setFieldValue(name.from, from || '');
+      formik.setFieldValue(name.to, to || '');
     }
   }
 
@@ -98,29 +97,12 @@ class DateRangePickerInput extends React.Component {
     } = this.props;
     const { formik } = this.context;
 
-    if (
-      modifiers.disabled
-      || dateFnsIsSameDay(day, from)
-      || dateFnsIsSameDay(day, to)
-    ) {
+    if (modifiers.disabled) {
       return;
     }
 
     if (isOpen === 'from') {
-      if (dateFnsIsAfter(day, to)) {
-        this.setState({
-          from: day,
-          to: undefined,
-          enteredTo: undefined,
-        }, () => {
-          if (formik && name.from && name.to) {
-            formik.setFieldValue(name.from, day);
-            formik.setFieldValue(name.to, '');
-          }
-          onFromDateChange(day, modifiers);
-          this.toInputRef.focus();
-        });
-      } else {
+      if (dateFnsIsBefore(day, to)) {
         this.setState({
           isOpen: !to ? 'to' : false,
           from: day,
@@ -129,17 +111,43 @@ class DateRangePickerInput extends React.Component {
             formik.setFieldValue(name.from, day);
           }
           if (!to) {
-            onFromDateChange(day, modifiers);
             this.toInputRef.focus();
+            onFromDateChange(day, modifiers);
           } else {
+            this.fromInputRef.blur();
             onFromDateChange(day, modifiers);
             onDateRangeChange({ from: day, to }, modifiers);
-            this.fromInputRef.blur();
           }
+        });
+      } else {
+        this.setState({
+          from: day,
+          to: undefined,
+          enteredTo: undefined,
+        }, () => {
+          if (formik && name.from && name.to) {
+            formik.setFieldValue(name.from, day);
+            formik.setFieldValue(name.to, '');
+          }
+          this.toInputRef.focus();
+          onFromDateChange(day, modifiers);
         });
       }
     } else if (isOpen === 'to') {
-      if (dateFnsIsBefore(day, from)) {
+      if (dateFnsIsAfter(day, from)) {
+        this.setState({
+          isOpen: false,
+          to: day,
+          enteredTo: day,
+        }, () => {
+          if (formik && name.from && name.to) {
+            formik.setFieldValue(name.to, day);
+          }
+          this.toInputRef.blur();
+          onToDateChange(day, modifiers);
+          onDateRangeChange({ from, to: day }, modifiers);
+        });
+      } else {
         this.setState({
           from: day,
           to: undefined,
@@ -150,19 +158,6 @@ class DateRangePickerInput extends React.Component {
             formik.setFieldValue(name.to, '');
           }
           onFromDateChange(day, modifiers);
-        });
-      } else {
-        this.setState({
-          isOpen: false,
-          to: day,
-          enteredTo: day,
-        }, () => {
-          if (formik && name.from && name.to) {
-            formik.setFieldValue(name.to, day);
-          }
-          onToDateChange(day, modifiers);
-          onDateRangeChange({ from, to: day }, modifiers);
-          this.toInputRef.blur();
         });
       }
     }
@@ -266,7 +261,7 @@ class DateRangePickerInput extends React.Component {
                         end: [enteredTo],
                         ...modifiers,
                       }}
-                      navbarElement={<DatePickerNavbar />}
+                      navbarElement={DateRangePickerNavbar}
                       captionElement={() => null}
                       renderDay={renderDay}
                       onDayClick={this.onDayClick}
@@ -340,8 +335,8 @@ DateRangePickerInput.defaultProps = {
     to: 'To: YYYY-MM-DD',
   },
   defaultValue: {
-    from: '',
-    to: '',
+    from: undefined,
+    to: undefined,
   },
   disabled: {
     from: false,

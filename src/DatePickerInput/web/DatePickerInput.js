@@ -29,7 +29,7 @@ class DatePickerInput extends React.Component {
     const { name } = this.props;
     const { formik } = this.context;
     if (formik && name) {
-      formik.setFieldValue(name, selectedDay);
+      formik.setFieldValue(name, selectedDay || '');
     }
   }
 
@@ -147,7 +147,7 @@ class DatePickerInput extends React.Component {
                       modifiers={{
                         start: [selectedDay],
                       }}
-                      navbarElement={<DatePickerNavbar />}
+                      navbarElement={DatePickerNavbar}
                       captionElement={() => null}
                       renderDay={renderDay}
                       onDayClick={this.onDayClick}
@@ -187,7 +187,6 @@ DatePickerInput.propTypes = {
 
 DatePickerInput.defaultProps = {
   placeholder: 'YYYY-MM-DD',
-  defaultValue: '',
   format: 'YYYY-MM-DD',
   onDateChange: () => {},
 };
