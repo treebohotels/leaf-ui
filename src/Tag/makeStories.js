@@ -1,6 +1,6 @@
 import React from 'react';
 import { text, select } from '@storybook/addon-knobs';
-import theme from '../theme';
+import theme from '../theme/web';
 
 export default (storiesOf, {
   Flex,
