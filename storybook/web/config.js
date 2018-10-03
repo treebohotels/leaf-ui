@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { addDecorator, configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
-import theme, { injectBaseStyles } from '../../src/theme';
+import theme, { injectBaseStyles } from '../../src/theme/web';
 
 setOptions({
   name: 'Leaf-UI',
