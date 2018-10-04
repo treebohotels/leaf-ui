@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
+import dateFnsIsValid from 'date-fns/is_valid';
 import dateFnsFormat from 'date-fns/format';
 import DayPicker from 'react-day-picker';
 import Position from '../../Position/web';
@@ -10,14 +11,16 @@ import DatePickerNavbar from './DatePickerNavbar';
 import injectDatePickerStyles from './injectDatePickerStyles';
 
 class DatePickerInput extends React.Component {
-  state = {
-    isOpen: false,
-    selectedDay: this.props.defaultValue,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isOpen: false,
+      selectedDay: this.makeDate(this.props.defaultValue),
+    };
+    this.datePickerHasFocus = false;
+    this.timeout = {};
   }
-
-  datePickerHasFocus = false
-
-  timeout = {}
 
   componentWillMount = () => {
     const { theme } = this.props;
@@ -36,6 +39,15 @@ class DatePickerInput extends React.Component {
   componentWillUnmount = () => {
     clearTimeout(this.timeout.inputBlur);
     clearTimeout(this.timeout.datePickerBlur);
+  }
+
+  makeDate = (date) => {
+    if (date && dateFnsIsValid(new Date(date))) {
+      const clonedDate = new Date(date);
+      clonedDate.setHours(12, 0, 0, 0);
+      return clonedDate;
+    }
+    return undefined;
   }
 
   onDayClick = (day, modifiers) => {

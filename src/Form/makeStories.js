@@ -1,4 +1,5 @@
 import React from 'react';
+import dateFnsAddDays from 'date-fns/add_days';
 import { action } from '@storybook/addon-actions';
 
 export default(storiesOf, {
@@ -46,7 +47,7 @@ export default(storiesOf, {
           <Space margin={[0, 0, 2, 0]}>
             <DateRangePickerInput
               name={{ from: 'leafFrom', to: 'leafTo' }}
-              defaultValue={{ from: new Date('2019-09-10'), to: new Date('2019-09-11') }}
+              defaultValue={{ from: new Date(), to: dateFnsAddDays(new Date(), 1) }}
               label={{ from: 'From', to: 'To' }}
             />
           </Space>

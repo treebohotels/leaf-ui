@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
+import dateFnsIsValid from 'date-fns/is_valid';
 import dateFnsIsBefore from 'date-fns/is_before';
 import dateFnsIsAfter from 'date-fns/is_after';
 import dateFnsFormat from 'date-fns/format';
@@ -14,16 +15,18 @@ import injectDatePickerStyles from '../../DatePickerInput/web/injectDatePickerSt
 import DateRangePickerNavbar from './DateRangePickerNavbar';
 
 class DateRangePickerInput extends React.Component {
-  state = {
-    isOpen: false,
-    from: this.props.defaultValue.from,
-    to: this.props.defaultValue.to,
-    enteredTo: this.props.defaultValue.to,
-  };
+  constructor(props) {
+    super(props);
 
-  datePickerHasFocus = false
-
-  timeout = {}
+    this.state = {
+      isOpen: false,
+      from: this.makeDate(this.props.defaultValue.from),
+      to: this.makeDate(this.props.defaultValue.to),
+      enteredTo: this.makeDate(this.props.defaultValue.to),
+    };
+    this.datePickerHasFocus = false;
+    this.timeout = {};
+  }
 
   componentWillMount = () => {
     const { theme } = this.props;
@@ -43,6 +46,15 @@ class DateRangePickerInput extends React.Component {
   componentWillUnmount = () => {
     clearTimeout(this.timeout.inputBlur);
     clearTimeout(this.timeout.datePickerBlur);
+  }
+
+  makeDate = (date) => {
+    if (date && dateFnsIsValid(new Date(date))) {
+      const clonedDate = new Date(date);
+      clonedDate.setHours(12, 0, 0, 0);
+      return clonedDate;
+    }
+    return undefined;
   }
 
   onFromInputFocus = () => {
