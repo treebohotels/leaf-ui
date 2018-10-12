@@ -1,8 +1,12 @@
-import { scale } from 'react-native-size-matters';
+import { Dimensions } from 'react-native';
 
-export const responsiveSizeInt = (size) => scale(size);
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 
+const baseHeight = 600;
+const verticalScale = (size) => ((WINDOW_HEIGHT / baseHeight) * size);
+
+export const responsiveSizeInt = (size) => verticalScale(size);
 export const responsiveSizePx = (sizePx) => {
   const sizeInt = parseInt(sizePx, 10);
-  return `${scale(sizeInt)}px`;
+  return `${verticalScale(sizeInt)}px`;
 };
