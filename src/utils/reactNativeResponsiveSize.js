@@ -9,7 +9,7 @@ const baseWidth = 320;
 const verticalScale = SCREEN_HEIGHT / baseHeight;
 const horizontalScale = SCREEN_WIDTH / baseWidth;
 
-const scale = (size) => ((horizontalScale / verticalScale) * size);
+const scale = (size) => ((verticalScale / horizontalScale) * size);
 
 export const responsiveSizeInt = (size) => scale(size);
 export const responsiveSizePx = (sizePx) => {
