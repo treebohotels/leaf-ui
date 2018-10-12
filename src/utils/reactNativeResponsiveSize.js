@@ -1,12 +1,18 @@
 import { Dimensions } from 'react-native';
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
+const SCREEN_WIDTH = Dimensions.get('screen').width;
 
-const baseHeight = 600;
-const verticalScale = (size) => ((SCREEN_HEIGHT / baseHeight) * size);
+const baseHeight = 568;
+const baseWidth = 320;
 
-export const responsiveSizeInt = (size) => verticalScale(size);
+const verticalScale = SCREEN_HEIGHT / baseHeight;
+const horizontalScale = SCREEN_WIDTH / baseWidth;
+
+const scale = (size) => ((horizontalScale / verticalScale) * size);
+
+export const responsiveSizeInt = (size) => scale(size);
 export const responsiveSizePx = (sizePx) => {
   const sizeInt = parseInt(sizePx, 10);
-  return `${verticalScale(sizeInt)}px`;
+  return `${scale(sizeInt)}px`;
 };
