@@ -7,4 +7,4 @@ coverage
 node_modules
 docs
 npm-debug.log*
-.DS_STORE
+.DS_Store
