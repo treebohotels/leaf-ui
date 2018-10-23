@@ -5,6 +5,7 @@ import View from '../../View/amp';
 import MoreOrLess from '../amp';
 
 makeStories(storiesOf, {
+  isAMP: true,
   Space,
   View,
   MoreOrLess,

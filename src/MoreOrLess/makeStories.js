@@ -43,6 +43,7 @@ const sampleText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     `;
 
 export default (storiesOf, {
+  isAMP,
   Space,
   View,
   MoreOrLess,
@@ -50,26 +51,28 @@ export default (storiesOf, {
   storiesOf('MoreOrLess', module).add('simple', () => (
     <React.Fragment>
       <Space margin={[0, 0, 5, 0]}>
-        <MoreOrLess
-          initialHeight="100px"
-          labelForMore="Show More"
-          labelForLess="Show Less"
-        >
-          <View>
-            {sampleText}
-          </View>
-        </MoreOrLess>
-      </Space>
-      <Space>
-        <MoreOrLess
-          initialHeight="100px"
-          labelForMore="Read More"
-          labelForLess="Read Less"
-        >
-          <View>
-            {sampleText}
-          </View>
-        </MoreOrLess>
+        <View>
+          {
+            isAMP ? (
+              <MoreOrLess
+                initialHeight="100px"
+                labelForMore="Show More"
+                labelForLess="Show Less"
+              >
+                {sampleText}
+              </MoreOrLess>
+            ) : (
+              <MoreOrLess
+                labelForMore="Show More"
+                labelForLess="Show Less"
+                visibleCharacters="500"
+              >
+                {sampleText}
+              </MoreOrLess>
+            )
+          }
+        </View>
       </Space>
     </React.Fragment>
+
   ));

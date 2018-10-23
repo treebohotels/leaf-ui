@@ -1,93 +1,71 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Text from '../../Text/web';
 
-let index = 0;
-const getUniqueId = () => {
-  index += 1;
-  return `__LEAF_UI__more-or-less-input-${index}`;
-};
-
-const MoreOrLessContainer = styled(
-  ({
-    id,
-    initialHeight,
-    labelForMore,
-    labelForLess,
-    ...props
-  }) => <div {...props} />,
-)`
-  > div {
-    height: ${(props) => props.initialHeight};
-    overflow: hidden;
-  }
-
-  > label::before {
-    content: '${(props) => props.labelForMore}';
-  }
-
-  #${(props) => props.id} {
-    display: none;
-
-    &:checked {
-      + div {
-        height: auto;
-      }
-
-      ~ label::before {
-        content: '${(props) => props.labelForLess}';
-      }
-    }
-  }
-`;
-
 class MoreOrLess extends Component {
-  constructor(props) {
-    super(props);
-    this.id = getUniqueId();
+  state = {
+    isShowMore: false,
+  }
+
+  toggleShowMore = () => {
+    this.setState((prevState) => ({ isShowMore: !prevState.isShowMore }));
   }
 
   render() {
     const {
-      initialHeight,
-      labelForMore,
+      color,
+      size,
+      weight,
       labelForLess,
+      labelForMore,
+      visibleCharacters,
       children,
-      ...props
     } = this.props;
+    const { isShowMore } = this.state;
 
     return (
-      <MoreOrLessContainer
-        id={this.id}
-        initialHeight={initialHeight}
-        labelForMore={labelForMore}
-        labelForLess={labelForLess}
-        {...props}
-      >
-        <input type="checkbox" id={this.id} />
-        <div>{children}</div>
+      <React.Fragment>
         <Text
-          component="label"
-          htmlFor={this.id}
-          color="blue"
-          size="s"
-        />
-      </MoreOrLessContainer>
+          color={color}
+          component="span"
+          size={size}
+          weight={weight}
+        >
+          {children.slice(0, isShowMore ? children.length : visibleCharacters)}
+        </Text>
+        {
+          children.length > visibleCharacters ? (
+            <Text
+              color="blue"
+              component="span"
+              size={size}
+              weight={weight}
+              onClick={this.toggleShowMore}
+              style={{ cursor: 'pointer' }}
+            >
+              {' '}
+              {isShowMore ? labelForLess : labelForMore}
+            </Text>
+          ) : null
+        }
+      </React.Fragment>
     );
   }
 }
 
 MoreOrLess.propTypes = {
-  initialHeight: PropTypes.string.isRequired,
-  children: PropTypes.node,
-  labelForMore: PropTypes.string,
+  color: PropTypes.string,
+  size: PropTypes.string,
+  weight: PropTypes.string,
   labelForLess: PropTypes.string,
+  labelForMore: PropTypes.string,
+  visibleCharacters: PropTypes.number.isRequired,
+  children: PropTypes.string.isRequired,
 };
 
 MoreOrLess.defaultProps = {
-  labelForMore: 'Show More',
   labelForLess: 'Show Less',
+  labelForMore: 'Show More',
 };
 
 export default MoreOrLess;
