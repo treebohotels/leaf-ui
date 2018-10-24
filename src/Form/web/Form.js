@@ -1,6 +1,6 @@
 import { Formik, Form as FormikForm, Field as FormikField } from 'formik';
 import yup from 'yup';
-import { AmountSchema } from '../formUtils';
+import { AmountSchema } from '../validationSchema';
 
 const Form = Formik;
 
