@@ -43,7 +43,6 @@ const sampleText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     `;
 
 export default (storiesOf, {
-  isAMP,
   Space,
   View,
   MoreOrLess,
@@ -52,25 +51,24 @@ export default (storiesOf, {
     <React.Fragment>
       <Space margin={[0, 0, 5, 0]}>
         <View>
-          {
-            isAMP ? (
-              <MoreOrLess
-                initialHeight="100px"
-                labelForMore="Show More"
-                labelForLess="Show Less"
-              >
-                {sampleText}
-              </MoreOrLess>
-            ) : (
-              <MoreOrLess
-                labelForMore="Show More"
-                labelForLess="Show Less"
-                visibleCharacters="500"
-              >
-                {sampleText}
-              </MoreOrLess>
-            )
-          }
+          <MoreOrLess
+            labelForMore="Show More"
+            labelForLess="Show Less"
+            visibleCharacters="500"
+          >
+            {sampleText}
+          </MoreOrLess>
+        </View>
+      </Space>
+      <Space margin={[0, 0, 5, 0]}>
+        <View>
+          <MoreOrLess
+            labelForMore="Read More"
+            labelForLess="Read Less"
+            visibleCharacters="600"
+          >
+            {sampleText}
+          </MoreOrLess>
         </View>
       </Space>
     </React.Fragment>
