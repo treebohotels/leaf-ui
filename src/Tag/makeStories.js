@@ -54,7 +54,7 @@ export default (storiesOf, {
             </Space>
             <Space margin={[2, 0, 0, 0]}>
               <Tag shape="sharpEdged" color="teal">
-                sharpEdged small filled
+                sharpEdged medium filled
               </Tag>
             </Space>
           </View>
