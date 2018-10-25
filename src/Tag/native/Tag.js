@@ -63,7 +63,7 @@ const Tag = ({
       }[size]}
       weight="medium"
     >
-      {children}
+      {size === 'small' ? children.toUpperCase() : children}
     </Text>
   </TagContainer>
 );
