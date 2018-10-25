@@ -257,7 +257,7 @@ class DateRangePickerInput extends React.Component {
                   top={0}
                   left={0}
                 >
-                  <Size width="580px">
+                  <Size width="581px">
                     <View
                       tabIndex={0}
                       onFocus={this.onDatePickerFocus}
