@@ -7,6 +7,7 @@ import DayPicker from 'react-day-picker';
 import Position from '../../Position/web';
 import View from '../../View/web';
 import TextInput from '../../TextInput/web';
+import Card from '../../Card/web';
 import DatePickerNavbar from './DatePickerNavbar';
 import injectDatePickerStyles from './injectDatePickerStyles';
 
@@ -149,21 +150,23 @@ class DatePickerInput extends React.Component {
                     onFocus={this.onDatePickerFocus}
                     onBlur={this.onDatePickerBlur}
                   >
-                    <DayPicker
-                      numberOfMonths={1}
-                      fromMonth={fromMonth}
-                      toMonth={toMonth}
-                      month={selectedDay}
-                      selectedDays={[selectedDay]}
-                      disabledDays={disabledDays}
-                      modifiers={{
-                        start: [selectedDay],
-                      }}
-                      navbarElement={DatePickerNavbar}
-                      captionElement={() => null}
-                      renderDay={renderDay}
-                      onDayClick={this.onDayClick}
-                    />
+                    <Card borderStyle="none" elevated>
+                      <DayPicker
+                        numberOfMonths={1}
+                        fromMonth={fromMonth}
+                        toMonth={toMonth}
+                        month={selectedDay}
+                        selectedDays={[selectedDay]}
+                        disabledDays={disabledDays}
+                        modifiers={{
+                          start: [selectedDay],
+                        }}
+                        navbarElement={DatePickerNavbar}
+                        captionElement={() => null}
+                        renderDay={renderDay}
+                        onDayClick={this.onDayClick}
+                      />
+                    </Card>
                   </View>
                 </Position>
               </View>
