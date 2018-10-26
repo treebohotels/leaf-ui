@@ -18,7 +18,7 @@ const styles = {
       return props.theme.color[props.color];
     }
     if (props.kind === 'outlined') {
-      return props.theme.color.transparent;
+      return props.theme.color.white;
     }
     return '';
   },
