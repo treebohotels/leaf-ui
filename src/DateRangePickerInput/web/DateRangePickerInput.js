@@ -12,6 +12,7 @@ import Size from '../../Size/web';
 import Position from '../../Position/web';
 import View from '../../View/web';
 import TextInput from '../../TextInput/web';
+import Card from '../../Card/web';
 import injectDatePickerStyles from '../../DatePickerInput/web/injectDatePickerStyles';
 import DateRangePickerNavbar from './DateRangePickerNavbar';
 
@@ -263,24 +264,26 @@ class DateRangePickerInput extends React.Component {
                       onFocus={this.onDatePickerFocus}
                       onBlur={this.onDatePickerBlur}
                     >
-                      <DayPicker
-                        numberOfMonths={2}
-                        fromMonth={fromMonth}
-                        toMonth={toMonth}
-                        month={from}
-                        selectedDays={[from, { from, to: enteredTo }]}
-                        disabledDays={disabledDays}
-                        modifiers={{
-                          start: [from],
-                          end: [enteredTo],
-                          ...modifiers,
-                        }}
-                        navbarElement={DateRangePickerNavbar}
-                        captionElement={() => null}
-                        renderDay={renderDay}
-                        onDayClick={this.onDayClick}
-                        onDayMouseEnter={this.onDayMouseEnter}
-                      />
+                      <Card borderStyle="none" elevated>
+                        <DayPicker
+                          numberOfMonths={2}
+                          fromMonth={fromMonth}
+                          toMonth={toMonth}
+                          month={from}
+                          selectedDays={[from, { from, to: enteredTo }]}
+                          disabledDays={disabledDays}
+                          modifiers={{
+                            start: [from],
+                            end: [enteredTo],
+                            ...modifiers,
+                          }}
+                          navbarElement={DateRangePickerNavbar}
+                          captionElement={() => null}
+                          renderDay={renderDay}
+                          onDayClick={this.onDayClick}
+                          onDayMouseEnter={this.onDayMouseEnter}
+                        />
+                      </Card>
                     </View>
                   </Size>
                 </Position>
