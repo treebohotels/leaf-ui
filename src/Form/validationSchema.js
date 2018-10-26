@@ -30,7 +30,7 @@ function AmountSchema() {
 
 inherits(AmountSchema, yup.mixed, {
   _typeCheck(value) {
-    return /^-?\d+(\.\d{2})?$/.test(value);
+    return /^-?\d+(\.\d{1,2})?$/.test(value);
   },
 
   min(min, message = '${path} must be greater than or equal to ${min}') {
