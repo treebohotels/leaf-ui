@@ -59,7 +59,7 @@ const Input = styled.input.attrs({
   clip: rect(0, 0, 0, 0);
   clip-path: inset(1px 0 0 0);
   border: 0;
-  visibility: visible;
+  visibility: hidden;
   white-space: nowrap;
 
   + ${/* sc-selector */Box} {
