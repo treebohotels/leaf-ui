@@ -212,7 +212,7 @@ class Select extends React.Component {
             >
               <Space padding={[1.5, 0, 1.5, 1.5]}>
                 <Text
-                  color={!dsSelectedOptions.length ? 'grey' : undefined}
+                  color={!dsSelectedOptions.length ? 'greyLight' : undefined}
                   size="s"
                   truncate
                 >
