@@ -265,7 +265,7 @@ class Select extends React.Component {
             {
               error ? (
                 <Space margin={[0.5, 0, 0, 0]}>
-                  <Text color="red" size="xxs">
+                  <Text color="red" size="xs">
                     {`${error}`}
                   </Text>
                 </Space>
