@@ -54,6 +54,12 @@ const styles = {
     }
     return '';
   },
+  textTransform(props) {
+    if (props.size === 'small') {
+      return 'uppercase';
+    }
+    return 'none';
+  },
 };
 
 const Tag = styled(
@@ -72,8 +78,9 @@ const Tag = styled(
   background: ${styles.background};
   border: 1px solid ${(props) => props.theme.color[props.color]};
   border-radius: ${styles.borderRadius};
-  font-size: ${styles.fontSize};
+  font-weight: ${(props) => props.theme.fontWeight.medium};
   padding: ${styles.padding};
+  text-transform: ${styles.textTransform};
 `;
 
 Tag.propTypes = {
