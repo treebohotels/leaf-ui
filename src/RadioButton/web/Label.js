@@ -5,6 +5,7 @@ const Label = styled.label`
   display: flex;
   cursor: pointer;
   overflow: hidden;
+  color: ${(props) => props.theme.color.greyDark};
 `;
 
 export default Label;
