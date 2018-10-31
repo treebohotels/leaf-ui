@@ -6,13 +6,13 @@ import dateFnsIsBefore from 'date-fns/is_before';
 import dateFnsIsAfter from 'date-fns/is_after';
 import dateFnsFormat from 'date-fns/format';
 import DayPicker from 'react-day-picker';
+import Card from '../../Card/web';
 import Flex from '../../Flex/web';
 import Space from '../../Space/web';
 import Size from '../../Size/web';
 import Position from '../../Position/web';
 import View from '../../View/web';
 import TextInput from '../../TextInput/web';
-import Card from '../../Card/web';
 import injectDatePickerStyles from '../../DatePickerInput/web/injectDatePickerStyles';
 import DateRangePickerNavbar from './DateRangePickerNavbar';
 
@@ -264,7 +264,10 @@ class DateRangePickerInput extends React.Component {
                       onFocus={this.onDatePickerFocus}
                       onBlur={this.onDatePickerBlur}
                     >
-                      <Card borderStyle="none" elevated>
+                      <Card
+                        orderStyle="none"
+                        elevated
+                      >
                         <DayPicker
                           numberOfMonths={2}
                           fromMonth={fromMonth}
