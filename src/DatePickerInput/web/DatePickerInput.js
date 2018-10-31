@@ -150,7 +150,10 @@ class DatePickerInput extends React.Component {
                     onFocus={this.onDatePickerFocus}
                     onBlur={this.onDatePickerBlur}
                   >
-                    <Card borderStyle="none" elevated>
+                    <Card
+                      borderStyle="none"
+                      elevated
+                    >
                       <DayPicker
                         numberOfMonths={1}
                         fromMonth={fromMonth}
