@@ -4,10 +4,10 @@ import { withTheme } from 'styled-components';
 import dateFnsIsValid from 'date-fns/is_valid';
 import dateFnsFormat from 'date-fns/format';
 import DayPicker from 'react-day-picker';
+import Card from '../../Card/web';
 import Position from '../../Position/web';
 import View from '../../View/web';
 import TextInput from '../../TextInput/web';
-import Card from '../../Card/web';
 import DatePickerNavbar from './DatePickerNavbar';
 import injectDatePickerStyles from './injectDatePickerStyles';
 
