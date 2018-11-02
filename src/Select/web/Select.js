@@ -161,9 +161,9 @@ class Select extends React.Component {
       className,
       name,
       label,
-      disabled,
-      block,
       multiple,
+      disabled,
+      size,
     } = this.props;
 
     let {
@@ -205,8 +205,8 @@ class Select extends React.Component {
             <Trigger
               {...getToggleButtonProps({
                 isOpen,
-                block,
                 disabled,
+                size,
                 error,
               })}
             >
@@ -224,9 +224,9 @@ class Select extends React.Component {
             <div style={{ position: 'relative' }}>
               {
                 isOpen ? (
-                  <OptionList block={block}>
+                  <OptionList size={size}>
                     <VirtualList
-                      width={block ? '100%' : 25 * 8}
+                      width={typeof size === 'string' ? size : size * 8}
                       height={options.length < 5 ? options.length * 48 : 27 * 8}
                       itemCount={options.length}
                       itemSize={48}
@@ -283,19 +283,23 @@ Select.propTypes = {
   name: PropTypes.string,
   label: PropTypes.node,
   placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  block: PropTypes.bool,
   multiple: PropTypes.bool,
   options: PropTypes.array.isRequired,
   defaultSelected: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.any),
     PropTypes.any,
   ]),
+  disabled: PropTypes.bool,
+  size: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   onChange: PropTypes.func,
   error: PropTypes.string,
 };
 
 Select.defaultProps = {
+  size: 25,
   onChange: () => {},
 };
 

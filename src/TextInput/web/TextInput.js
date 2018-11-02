@@ -90,9 +90,12 @@ TextInput.propTypes = {
   name: PropTypes.string,
   label: PropTypes.node,
   placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  block: PropTypes.bool,
   defaultValue: PropTypes.string,
+  disabled: PropTypes.bool,
+  size: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
@@ -100,6 +103,7 @@ TextInput.propTypes = {
 
 TextInput.defaultProps = {
   type: 'text',
+  size: 25,
   onChange: () => {},
   onBlur: () => {},
 };

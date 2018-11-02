@@ -117,6 +117,7 @@ class DatePickerInput extends React.Component {
       label,
       placeholder,
       disabled,
+      size,
       fromMonth,
       toMonth,
       renderDay,
@@ -131,6 +132,7 @@ class DatePickerInput extends React.Component {
           value={this.formatDayForInput(selectedDay)}
           placeholder={placeholder}
           disabled={disabled}
+          size={size}
           onFocus={this.onInputFocus}
           onBlur={this.onInputBlur}
           autoComplete="off"
@@ -185,6 +187,10 @@ DatePickerInput.propTypes = {
     PropTypes.string,
   ]),
   disabled: PropTypes.bool,
+  size: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   format: PropTypes.string,
   fromMonth: PropTypes.instanceOf(Date),
   toMonth: PropTypes.instanceOf(Date),
@@ -198,6 +204,7 @@ DatePickerInput.propTypes = {
 };
 
 DatePickerInput.defaultProps = {
+  size: 25,
   placeholder: 'YYYY-MM-DD',
   format: 'YYYY-MM-DD',
   onDateChange: () => {},
