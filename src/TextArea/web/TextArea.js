@@ -86,12 +86,14 @@ class TextArea extends React.Component {
 TextArea.propTypes = {
   className: PropTypes.string,
   inputRef: PropTypes.func,
-  type: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.node,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
-  block: PropTypes.bool,
+  size: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
@@ -99,7 +101,7 @@ TextArea.propTypes = {
 };
 
 TextArea.defaultProps = {
-  type: 'text',
+  size: 25,
   onChange: () => {},
   onBlur: () => {},
 };
