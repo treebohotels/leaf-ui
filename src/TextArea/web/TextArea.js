@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getIn } from 'formik';
+import Size from '../../Size/web';
+import View from '../../View/web';
 import Space from '../../Space/web';
 import Text from '../../Text/web';
 import Label from './Label';
@@ -26,6 +28,7 @@ class TextArea extends React.Component {
       inputRef,
       name,
       label,
+      size,
       ...props
     } = this.props;
 
@@ -54,31 +57,36 @@ class TextArea extends React.Component {
     }
 
     return (
-      <div className={className}>
-        {
-          label ? (
-            <Label htmlFor={name}>
-              {label}
-            </Label>
-          ) : null
-        }
-        <Input
-          innerRef={inputRef}
-          id={name}
-          name={name}
-          error={error}
-          {...inputProps}
-        />
-        {
-          error ? (
-            <Space margin={[0.5, 0, 0, 0]}>
-              <Text color="red" size="xs">
-                {`${error}`}
-              </Text>
-            </Space>
-          ) : null
-        }
-      </div>
+      <Size
+        className={className}
+        width={size}
+      >
+        <View>
+          {
+            label ? (
+              <Label htmlFor={name}>
+                {label}
+              </Label>
+            ) : null
+          }
+          <Input
+            innerRef={inputRef}
+            id={name}
+            name={name}
+            error={error}
+            {...inputProps}
+          />
+          {
+            error ? (
+              <Space margin={[0.5, 0, 0, 0]}>
+                <Text color="red" size="xs">
+                  {`${error}`}
+                </Text>
+              </Space>
+            ) : null
+          }
+        </View>
+      </Size>
     );
   }
 }

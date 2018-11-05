@@ -194,7 +194,10 @@ class Select extends React.Component {
           highlightedIndex,
           selectedItem: dsSelectedOptions,
         }) => (
-          <div className={className}>
+          <div
+            style={{ width: typeof size === 'string' ? size : size * 8 }}
+            className={className}
+          >
             {
               label ? (
                 <Label htmlFor={name}>
@@ -206,7 +209,6 @@ class Select extends React.Component {
               {...getToggleButtonProps({
                 isOpen,
                 disabled,
-                size,
                 error,
               })}
             >
@@ -224,9 +226,9 @@ class Select extends React.Component {
             <div style={{ position: 'relative' }}>
               {
                 isOpen ? (
-                  <OptionList size={size}>
+                  <OptionList>
                     <VirtualList
-                      width={typeof size === 'string' ? size : size * 8}
+                      width="100%"
                       height={options.length < 5 ? options.length * 48 : 27 * 8}
                       itemCount={options.length}
                       itemSize={48}

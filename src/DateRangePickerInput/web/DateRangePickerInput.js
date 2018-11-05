@@ -222,76 +222,81 @@ class DateRangePickerInput extends React.Component {
     } = this.props;
 
     return (
-      <View className={className}>
-        <Flex flexDirection="row">
-          <View>
-            <Space margin={[0, 2, 0, 0]}>
+      <Size
+        className={className}
+        width={size}
+      >
+        <View>
+          <Flex flexDirection="row">
+            <View>
+              <Space margin={[0, 2, 0, 0]}>
+                <TextInput
+                  inputRef={this.storeFromInputRef}
+                  label={label.from}
+                  value={this.formatDayForInput(from)}
+                  placeholder={placeholder.from || format}
+                  disabled={disabled.from}
+                  size="100%"
+                  onFocus={this.onFromInputFocus}
+                  onBlur={this.onInputBlur}
+                  autoComplete="off"
+                />
+              </Space>
               <TextInput
-                inputRef={this.storeFromInputRef}
-                label={label.from}
-                value={this.formatDayForInput(from)}
-                placeholder={placeholder.from || format}
-                disabled={disabled.from}
-                size={size.from}
-                onFocus={this.onFromInputFocus}
+                inputRef={this.storeToInputRef}
+                label={label.to}
+                value={this.formatDayForInput(to)}
+                placeholder={placeholder.to || format}
+                disabled={disabled.to}
+                size="100%"
+                onFocus={this.onToInputFocus}
                 onBlur={this.onInputBlur}
                 autoComplete="off"
               />
-            </Space>
-            <TextInput
-              inputRef={this.storeToInputRef}
-              label={label.to}
-              value={this.formatDayForInput(to)}
-              placeholder={placeholder.to || format}
-              disabled={disabled.to}
-              size={size.to}
-              onFocus={this.onToInputFocus}
-              onBlur={this.onInputBlur}
-              autoComplete="off"
-            />
-          </View>
-        </Flex>
-        {
-          isOpen ? (
-            <Position position="relative">
-              <View>
-                <Position
-                  position="absolute"
-                  top={0}
-                  left={0}
-                >
-                  <Size width="581px">
-                    <View
-                      tabIndex={0}
-                      onFocus={this.onDatePickerFocus}
-                      onBlur={this.onDatePickerBlur}
-                    >
-                      <DayPicker
-                        numberOfMonths={2}
-                        fromMonth={fromMonth}
-                        toMonth={toMonth}
-                        month={from}
-                        selectedDays={[from, { from, to: enteredTo }]}
-                        disabledDays={disabledDays}
-                        modifiers={{
-                          start: [from],
-                          end: [enteredTo],
-                          ...modifiers,
-                        }}
-                        navbarElement={DateRangePickerNavbar}
-                        captionElement={() => null}
-                        renderDay={renderDay}
-                        onDayClick={this.onDayClick}
-                        onDayMouseEnter={this.onDayMouseEnter}
-                      />
-                    </View>
-                  </Size>
-                </Position>
-              </View>
-            </Position>
-          ) : null
-        }
-      </View>
+            </View>
+          </Flex>
+          {
+            isOpen ? (
+              <Position position="relative">
+                <View>
+                  <Position
+                    position="absolute"
+                    top={0}
+                    left={0}
+                  >
+                    <Size width="581px">
+                      <View
+                        tabIndex={0}
+                        onFocus={this.onDatePickerFocus}
+                        onBlur={this.onDatePickerBlur}
+                      >
+                        <DayPicker
+                          numberOfMonths={2}
+                          fromMonth={fromMonth}
+                          toMonth={toMonth}
+                          month={from}
+                          selectedDays={[from, { from, to: enteredTo }]}
+                          disabledDays={disabledDays}
+                          modifiers={{
+                            start: [from],
+                            end: [enteredTo],
+                            ...modifiers,
+                          }}
+                          navbarElement={DateRangePickerNavbar}
+                          captionElement={() => null}
+                          renderDay={renderDay}
+                          onDayClick={this.onDayClick}
+                          onDayMouseEnter={this.onDayMouseEnter}
+                        />
+                      </View>
+                    </Size>
+                  </Position>
+                </View>
+              </Position>
+            ) : null
+          }
+        </View>
+      </Size>
     );
   }
 }
@@ -324,16 +329,10 @@ DateRangePickerInput.propTypes = {
     from: PropTypes.bool,
     to: PropTypes.bool,
   }),
-  size: PropTypes.shape({
-    from: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
-    to: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
-  }),
+  size: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   format: PropTypes.string,
   fromMonth: PropTypes.instanceOf(Date),
   toMonth: PropTypes.instanceOf(Date),
@@ -370,10 +369,7 @@ DateRangePickerInput.defaultProps = {
     from: false,
     to: false,
   },
-  size: {
-    from: 25,
-    to: 25,
-  },
+  size: 52,
   format: 'YYYY-MM-DD',
   onDateRangeChange: () => {},
   onFromDateChange: () => {},
