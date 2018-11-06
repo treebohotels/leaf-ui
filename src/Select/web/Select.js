@@ -177,6 +177,7 @@ class Select extends React.Component {
 
     if (formik && name) {
       error = getIn(formik.touched, name) && getIn(formik.errors, name);
+      error = error && error.replace(name, label || name);
     }
 
     options = options.map(this.makeOption);

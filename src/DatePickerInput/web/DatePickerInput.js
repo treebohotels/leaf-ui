@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
+import { getIn } from 'formik';
 import dateFnsIsValid from 'date-fns/is_valid';
 import dateFnsFormat from 'date-fns/format';
 import DayPicker from 'react-day-picker';
@@ -115,6 +116,7 @@ class DatePickerInput extends React.Component {
 
     const {
       className,
+      name,
       label,
       placeholder,
       disabled,
@@ -124,6 +126,19 @@ class DatePickerInput extends React.Component {
       renderDay,
       disabledDays,
     } = this.props;
+
+    let {
+      error,
+    } = this.props;
+
+    const {
+      formik,
+    } = this.context;
+
+    if (formik && name) {
+      error = error || (getIn(formik.touched, name) && getIn(formik.errors, name));
+      error = error && error.replace(name, label || name);
+    }
 
     return (
       <Size
@@ -141,6 +156,7 @@ class DatePickerInput extends React.Component {
             onFocus={this.onInputFocus}
             onBlur={this.onInputBlur}
             autoComplete="off"
+            error={error}
           />
           {
             isOpen ? (
@@ -207,6 +223,7 @@ DatePickerInput.propTypes = {
     PropTypes.array,
     PropTypes.object,
   ]),
+  error: PropTypes.string,
 };
 
 DatePickerInput.defaultProps = {

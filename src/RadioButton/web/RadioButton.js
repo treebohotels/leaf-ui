@@ -38,7 +38,7 @@ class RadioButton extends React.Component {
 
     const inputProps = { ...props };
 
-    if (formik) {
+    if (formik && name) {
       inputProps.checked = getIn(formik.values, name) === value;
       delete inputProps.defaultChecked;
       inputProps.onChange = (...args) => {
@@ -50,6 +50,7 @@ class RadioButton extends React.Component {
         props.onBlur(...args);
       };
       error = getIn(formik.touched, name) && getIn(formik.errors, name);
+      error = error && error.replace(name, label || name);
     }
 
     return (

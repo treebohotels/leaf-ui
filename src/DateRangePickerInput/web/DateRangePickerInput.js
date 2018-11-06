@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
+import { getIn } from 'formik';
 import dateFnsIsValid from 'date-fns/is_valid';
 import dateFnsIsBefore from 'date-fns/is_before';
 import dateFnsIsAfter from 'date-fns/is_after';
@@ -209,6 +210,7 @@ class DateRangePickerInput extends React.Component {
 
     const {
       className,
+      name,
       label,
       placeholder,
       disabled,
@@ -220,6 +222,23 @@ class DateRangePickerInput extends React.Component {
       renderDay,
       disabledDays,
     } = this.props;
+
+    const {
+      error,
+    } = this.props;
+
+    const {
+      formik,
+    } = this.context;
+
+    if (formik && name) {
+      error.from = error.from ||
+        (getIn(formik.touched, name.from) && getIn(formik.errors, name.from));
+      error.from = error.from && error.from.replace(name.from, label.from || name.from);
+      error.to = error.to ||
+        (getIn(formik.touched, name.to) && getIn(formik.errors, name.to));
+      error.to = error.to && error.to.replace(name.to, label.to || name.to);
+    }
 
     return (
       <Size
@@ -240,6 +259,7 @@ class DateRangePickerInput extends React.Component {
                   onFocus={this.onFromInputFocus}
                   onBlur={this.onInputBlur}
                   autoComplete="off"
+                  error={error.from}
                 />
               </Space>
               <TextInput
@@ -252,6 +272,7 @@ class DateRangePickerInput extends React.Component {
                 onFocus={this.onToInputFocus}
                 onBlur={this.onInputBlur}
                 autoComplete="off"
+                error={error.to}
               />
             </View>
           </Flex>
@@ -346,6 +367,10 @@ DateRangePickerInput.propTypes = {
     PropTypes.array,
     PropTypes.object,
   ]),
+  error: PropTypes.shape({
+    from: PropTypes.string,
+    to: PropTypes.string,
+  }),
 };
 
 DateRangePickerInput.defaultProps = {
@@ -371,6 +396,10 @@ DateRangePickerInput.defaultProps = {
   },
   size: 52,
   format: 'YYYY-MM-DD',
+  error: {
+    from: undefined,
+    to: undefined,
+  },
   onDateRangeChange: () => {},
   onFromDateChange: () => {},
   onToDateChange: () => {},

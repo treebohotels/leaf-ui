@@ -1,5 +1,15 @@
 /* eslint-disable no-template-curly-in-string */
-import yup from 'yup';
+import * as yup from 'yup';
+
+const locale = {
+  mixed: {
+    required: '${path} is required',
+    notType: 'Enter a valid ${path}',
+  },
+  string: {
+    matches: 'Enter a valid ${path}',
+  },
+};
 
 function inherits(ctor, superCtor, spec) {
   // eslint-disable-next-line no-param-reassign
@@ -91,5 +101,6 @@ inherits(AmountSchema, yup.mixed, {
 });
 
 export {
+  locale,
   AmountSchema,
 };
