@@ -8,11 +8,13 @@ export default (storiesOf, { RadioButton }) =>
           name="leafColor"
           label="Green"
           value="green"
+          required
         />
         <RadioButton
           name="leafColor"
           label="Brown"
           value="brown"
+          required
         />
       </React.Fragment>
     ))

@@ -8,6 +8,8 @@ export default(storiesOf, {
     .add('simple', () => (
       <DateRangePickerInput
         name={{ from: 'checkIn', to: 'checkOut' }}
+        label={{ from: 'Check-In', to: 'Check-Out' }}
+        required={{ from: true, to: true }}
         onDateRangeChange={action('onDateRangeChange')}
         onFromDateChange={action('onFromDateChange')}
         onToDateChange={action('onToDateChange')}
@@ -15,7 +17,7 @@ export default(storiesOf, {
     ))
     .add('before today', () => (
       <DateRangePickerInput
-        name="dob"
+        name={{ from: 'checkIn', to: 'checkOut' }}
         disabledDays={[{ before: new Date() }]}
         onDateRangeChange={action('onDateRangeChange')}
         onFromDateChange={action('onFromDateChange')}

@@ -165,6 +165,7 @@ class Select extends React.Component {
       disabled,
       size,
       hint,
+      required,
     } = this.props;
 
     let {
@@ -204,6 +205,13 @@ class Select extends React.Component {
               label ? (
                 <Label htmlFor={name}>
                   {label}
+                  {
+                    required ? (
+                      <Text component="span" color="red">
+                        {' *'}
+                      </Text>
+                    ) : null
+                  }
                 </Label>
               ) : null
             }
@@ -301,6 +309,7 @@ Select.propTypes = {
   onChange: PropTypes.func,
   error: PropTypes.string,
   hint: PropTypes.string,
+  requried: PropTypes.bool,
 };
 
 Select.defaultProps = {

@@ -24,6 +24,7 @@ class Checkbox extends React.Component {
       name,
       label,
       hint,
+      required,
       ...props
     } = this.props;
 
@@ -65,6 +66,13 @@ class Checkbox extends React.Component {
             <Tick />
           </Box>
           {label}
+          {
+            required ? (
+              <Text component="span" color="red">
+                {' *'}
+              </Text>
+            ) : null
+          }
         </Label>
         {
           error || hint ? (
@@ -90,6 +98,7 @@ Checkbox.propTypes = {
   onBlur: PropTypes.func,
   error: PropTypes.string,
   hint: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 Checkbox.defaultProps = {
