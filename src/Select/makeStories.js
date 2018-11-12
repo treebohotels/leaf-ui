@@ -16,6 +16,7 @@ export default (storiesOf, { Select }) =>
         placeholder="Select a color"
         options={options}
         onChange={action('onChange')}
+        required
       />
     ))
     .add('multiple', () => (

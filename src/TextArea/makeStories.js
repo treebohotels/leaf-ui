@@ -6,6 +6,7 @@ export default (storiesOf, { TextArea }) =>
       <TextArea
         name="leafColor"
         label="Leaf Color"
+        required
       />
     ))
     .add('disabled', () => (

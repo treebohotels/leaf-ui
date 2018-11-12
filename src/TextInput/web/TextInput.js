@@ -30,6 +30,7 @@ class TextInput extends React.Component {
       label,
       size,
       hint,
+      required,
       ...props
     } = this.props;
 
@@ -68,6 +69,13 @@ class TextInput extends React.Component {
             label ? (
               <Label htmlFor={name}>
                 {label}
+                {
+                  required ? (
+                    <Text component="span" color="red">
+                      {' *'}
+                    </Text>
+                  ) : null
+                }
               </Label>
             ) : null
           }
@@ -110,6 +118,7 @@ TextInput.propTypes = {
   onBlur: PropTypes.func,
   error: PropTypes.string,
   hint: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 TextInput.defaultProps = {

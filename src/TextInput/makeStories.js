@@ -6,6 +6,7 @@ export default (storiesOf, { TextInput }) =>
       <TextInput
         name="leafColor"
         label="Leaf Color"
+        required
       />
     ))
     .add('disabled', () => (
