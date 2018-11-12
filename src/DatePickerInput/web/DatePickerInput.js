@@ -121,6 +121,7 @@ class DatePickerInput extends React.Component {
       placeholder,
       disabled,
       size,
+      hint,
       fromMonth,
       toMonth,
       renderDay,
@@ -157,6 +158,7 @@ class DatePickerInput extends React.Component {
             onBlur={this.onInputBlur}
             autoComplete="off"
             error={error}
+            hint={hint}
           />
           {
             isOpen ? (
@@ -224,6 +226,7 @@ DatePickerInput.propTypes = {
     PropTypes.object,
   ]),
   error: PropTypes.string,
+  hint: PropTypes.string,
 };
 
 DatePickerInput.defaultProps = {

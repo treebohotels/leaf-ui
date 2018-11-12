@@ -164,6 +164,7 @@ class Select extends React.Component {
       multiple,
       disabled,
       size,
+      hint,
     } = this.props;
 
     let {
@@ -266,10 +267,10 @@ class Select extends React.Component {
               }
             </div>
             {
-              error ? (
+              error || hint ? (
                 <Space margin={[0.5, 0, 0, 0]}>
-                  <Text color="red" size="xs">
-                    {`${error}`}
+                  <Text color={error ? 'red' : 'grey'} size="xs">
+                    {`${error || hint}`}
                   </Text>
                 </Space>
               ) : null
@@ -299,6 +300,7 @@ Select.propTypes = {
   ]),
   onChange: PropTypes.func,
   error: PropTypes.string,
+  hint: PropTypes.string,
 };
 
 Select.defaultProps = {

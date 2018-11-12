@@ -215,6 +215,7 @@ class DateRangePickerInput extends React.Component {
       placeholder,
       disabled,
       size,
+      hint,
       format,
       fromMonth,
       toMonth,
@@ -260,6 +261,7 @@ class DateRangePickerInput extends React.Component {
                   onBlur={this.onInputBlur}
                   autoComplete="off"
                   error={error.from}
+                  hint={hint.from}
                 />
               </Space>
               <TextInput
@@ -273,6 +275,7 @@ class DateRangePickerInput extends React.Component {
                 onBlur={this.onInputBlur}
                 autoComplete="off"
                 error={error.to}
+                hint={hint.to}
               />
             </View>
           </Flex>
@@ -371,6 +374,10 @@ DateRangePickerInput.propTypes = {
     from: PropTypes.string,
     to: PropTypes.string,
   }),
+  hint: PropTypes.shape({
+    from: PropTypes.string,
+    to: PropTypes.string,
+  }),
 };
 
 DateRangePickerInput.defaultProps = {
@@ -397,6 +404,10 @@ DateRangePickerInput.defaultProps = {
   size: 52,
   format: 'YYYY-MM-DD',
   error: {
+    from: undefined,
+    to: undefined,
+  },
+  hint: {
     from: undefined,
     to: undefined,
   },

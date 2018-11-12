@@ -33,6 +33,22 @@ export default (storiesOf, { RadioButton }) =>
         />
       </React.Fragment>
     ))
+    .add('with hint', () => (
+      <React.Fragment>
+        <RadioButton
+          name="leafColor"
+          label="Green"
+          value="green"
+          hint="maybe green"
+        />
+        <RadioButton
+          name="leafColor"
+          label="Brown"
+          value="brown"
+          hint="maybe brown"
+        />
+      </React.Fragment>
+    ))
     .add('with error', () => (
       <RadioButton
         name="leafColor"

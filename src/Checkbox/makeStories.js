@@ -16,6 +16,14 @@ export default (storiesOf, { Checkbox }) =>
         defaultChecked
       />
     ))
+    .add('with hint', () => (
+      <Checkbox
+        name="areLeavesMadeOfGlass"
+        label="Are leaves made of glass?"
+        hint="they're green in color"
+        defaultChecked
+      />
+    ))
     .add('with error', () => (
       <Checkbox
         name="areLeavesMadeOfGlass"

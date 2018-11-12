@@ -15,6 +15,14 @@ export default (storiesOf, { TextInput }) =>
         disabled
       />
     ))
+    .add('with hint', () => (
+      <TextInput
+        name="leafColor"
+        label="Leaf Color"
+        placeholder="What's the leaf's  color"
+        hint="leaves are usually green"
+      />
+    ))
     .add('with error', () => (
       <TextInput
         name="leafColor"

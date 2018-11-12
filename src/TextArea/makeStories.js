@@ -15,6 +15,14 @@ export default (storiesOf, { TextArea }) =>
         disabled
       />
     ))
+    .add('with hint', () => (
+      <TextArea
+        name="leafColor"
+        label="Leaf Color"
+        defaultValue="silver"
+        hint="leaves are usually green"
+      />
+    ))
     .add('with error', () => (
       <TextArea
         name="leafColor"

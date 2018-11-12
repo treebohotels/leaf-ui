@@ -29,27 +29,6 @@ export default (storiesOf, { Select }) =>
         onChange={action('onChange')}
       />
     ))
-    .add('disabled', () => (
-      <Select
-        name="color"
-        label="Color"
-        placeholder="Select a color"
-        options={options}
-        defaultSelected={options[2].value}
-        onChange={action('onChange')}
-        disabled
-      />
-    ))
-    .add('error', () => (
-      <Select
-        name="color"
-        label="Color"
-        placeholder="Select a color"
-        options={options}
-        onChange={action('onChange')}
-        error="some error message"
-      />
-    ))
     .add('simple options', () => (
       <React.Fragment>
         <Select
@@ -62,4 +41,35 @@ export default (storiesOf, { Select }) =>
           onChange={action('onChange')}
         />
       </React.Fragment>
+    ))
+    .add('disabled', () => (
+      <Select
+        name="color"
+        label="Color"
+        placeholder="Select a color"
+        options={options}
+        defaultSelected={options[2].value}
+        onChange={action('onChange')}
+        disabled
+      />
+    ))
+    .add('with hint', () => (
+      <Select
+        name="color"
+        label="Color"
+        placeholder="Select a color"
+        options={options}
+        onChange={action('onChange')}
+        hint="color color which color?"
+      />
+    ))
+    .add('with error', () => (
+      <Select
+        name="color"
+        label="Color"
+        placeholder="Select a color"
+        options={options}
+        onChange={action('onChange')}
+        error="some error message"
+      />
     ));
