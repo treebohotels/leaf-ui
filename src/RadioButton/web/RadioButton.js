@@ -26,6 +26,7 @@ class RadioButton extends React.Component {
       label,
       value,
       hint,
+      required,
       ...props
     } = this.props;
 
@@ -66,6 +67,13 @@ class RadioButton extends React.Component {
           />
           <Circle />
           {label}
+          {
+            required ? (
+              <Text component="span" color="red">
+                {' *'}
+              </Text>
+            ) : null
+          }
         </Label>
         {
           error || hint ? (
@@ -92,6 +100,7 @@ RadioButton.propTypes = {
   onBlur: PropTypes.func,
   error: PropTypes.string,
   hint: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 RadioButton.defaultProps = {

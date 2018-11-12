@@ -6,6 +6,7 @@ export default (storiesOf, { Checkbox }) =>
       <Checkbox
         name="areLeavesGreen"
         label="Are leaves green?"
+        required
       />
     ))
     .add('disabled', () => (
