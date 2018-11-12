@@ -29,6 +29,7 @@ class TextInput extends React.Component {
       name,
       label,
       size,
+      hint,
       ...props
     } = this.props;
 
@@ -78,10 +79,10 @@ class TextInput extends React.Component {
             {...inputProps}
           />
           {
-            error ? (
+            error || hint ? (
               <Space margin={[0.5, 0, 0, 0]}>
-                <Text color="red" size="xs">
-                  {`${error}`}
+                <Text color={error ? 'red' : 'grey'} size="xs">
+                  {`${error || hint}`}
                 </Text>
               </Space>
             ) : null
@@ -108,6 +109,7 @@ TextInput.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
+  hint: PropTypes.string,
 };
 
 TextInput.defaultProps = {

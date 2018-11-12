@@ -23,6 +23,7 @@ class Checkbox extends React.Component {
       className,
       name,
       label,
+      hint,
       ...props
     } = this.props;
 
@@ -66,10 +67,10 @@ class Checkbox extends React.Component {
           {label}
         </Label>
         {
-          error ? (
+          error || hint ? (
             <Space margin={[0.5, 0, 0, 0]}>
-              <Text color="red" size="xs">
-                {`${error}`}
+              <Text color={error ? 'red' : 'grey'} size="xs">
+                {`${error || hint}`}
               </Text>
             </Space>
           ) : null
@@ -88,6 +89,7 @@ Checkbox.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
+  hint: PropTypes.string,
 };
 
 Checkbox.defaultProps = {

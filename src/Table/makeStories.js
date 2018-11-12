@@ -177,4 +177,138 @@ export default (storiesOf, {
           </Table.TBody>
         </Table>
       </Card>
+    ))
+    .add('sticky header', () => (
+      <Card>
+        <Table>
+          <Table.THead sticky>
+            <Table.TR>
+              <Table.TH>Type</Table.TH>
+              <Table.TH>Date</Table.TH>
+              <Table.TH textAlign="right">ID</Table.TH>
+            </Table.TR>
+          </Table.THead>
+          <Table.TBody>
+            <Table.TR disabled>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>
+                <Select
+                  name="color"
+                  label="Color"
+                  options={options}
+                  onChange={action('onChange')}
+                />
+              </Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR disabled>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>
+                <Select
+                  name="color"
+                  label="Color"
+                  options={options}
+                  onChange={action('onChange')}
+                />
+              </Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR disabled>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR disabled>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR disabled>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR disabled>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR disabled>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+            <Table.TR>
+              <Table.TD>1000</Table.TD>
+              <Table.TD>2</Table.TD>
+              <Table.TD textAlign="right">Pragya</Table.TD>
+            </Table.TR>
+          </Table.TBody>
+        </Table>
+      </Card>
     ));

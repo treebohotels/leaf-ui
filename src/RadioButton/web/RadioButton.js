@@ -25,6 +25,7 @@ class RadioButton extends React.Component {
       name,
       label,
       value,
+      hint,
       ...props
     } = this.props;
 
@@ -67,10 +68,10 @@ class RadioButton extends React.Component {
           {label}
         </Label>
         {
-          error ? (
+          error || hint ? (
             <Space margin={[0.5, 0, 0, 0]}>
-              <Text color="red" size="xs">
-                {`${error}`}
+              <Text color={error ? 'red' : 'grey'} size="xs">
+                {`${error || hint}`}
               </Text>
             </Space>
           ) : null
@@ -90,6 +91,7 @@ RadioButton.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
+  hint: PropTypes.string,
 };
 
 RadioButton.defaultProps = {
