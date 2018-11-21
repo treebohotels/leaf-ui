@@ -20,7 +20,7 @@ export default(storiesOf, {
         onSubmit={action('onSubmit')}
         validationSchema={
           Form.validation.object().shape({
-            leafName: Form.validation.string().required(),
+            leafName: Form.validation.string().name().required(),
             leafDOB: Form.validation.string().required(),
             leafFrom: Form.validation.string().required(),
             leafTo: Form.validation.string().required(),
