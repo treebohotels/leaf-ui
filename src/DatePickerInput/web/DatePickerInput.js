@@ -5,6 +5,7 @@ import { getIn } from 'formik';
 import dateFnsIsValid from 'date-fns/is_valid';
 import dateFnsFormat from 'date-fns/format';
 import DayPicker from 'react-day-picker';
+import Card from '../../Card/web';
 import Position from '../../Position/web';
 import Size from '../../Size/web';
 import View from '../../View/web';
@@ -176,21 +177,27 @@ class DatePickerInput extends React.Component {
                       onFocus={this.onDatePickerFocus}
                       onBlur={this.onDatePickerBlur}
                     >
-                      <DayPicker
-                        numberOfMonths={1}
-                        fromMonth={fromMonth}
-                        toMonth={toMonth}
-                        month={selectedDay}
-                        selectedDays={[selectedDay]}
-                        disabledDays={disabledDays}
-                        modifiers={{
-                          start: [selectedDay],
-                        }}
-                        navbarElement={DatePickerNavbar}
-                        captionElement={() => null}
-                        renderDay={renderDay}
-                        onDayClick={this.onDayClick}
-                      />
+                      <Card
+                        borderStyle="none"
+                        elevated
+                      >
+
+                        <DayPicker
+                          numberOfMonths={1}
+                          fromMonth={fromMonth}
+                          toMonth={toMonth}
+                          month={selectedDay}
+                          selectedDays={[selectedDay]}
+                          disabledDays={disabledDays}
+                          modifiers={{
+                            start: [selectedDay],
+                          }}
+                          navbarElement={DatePickerNavbar}
+                          captionElement={() => null}
+                          renderDay={renderDay}
+                          onDayClick={this.onDayClick}
+                        />
+                      </Card>
                     </View>
                   </Position>
                 </View>
