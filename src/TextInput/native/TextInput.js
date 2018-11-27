@@ -15,7 +15,7 @@ const modifierColor = (focused = 'green', valid = 'greyLight', invalid = 'red', 
 
 const labelColor = (props) => {
   if (props.isFocused) return props.theme.color.green;
-  return props.error && !props.isEmptyInput ? props.theme.color.red : props.theme.color.grey;
+  return props.error && !props.isEmptyInput ? props.theme.color.red : props.theme.color.greyDark;
 };
 
 const InputContainerWrapper = styled.View`

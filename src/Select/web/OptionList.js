@@ -4,14 +4,14 @@ import Position from '../../Position/web';
 import Size from '../../Size/web';
 import Card from '../../Card/web';
 
-const OptionList = ({ block, children }) => (
+const OptionList = ({ children }) => (
   <Position
     position="absolute"
     top="-42px"
     left={0}
     zIndex="1050"
   >
-    <Size width={block ? '100%' : undefined}>
+    <Size width="100%">
       <Card
         style={{ overflowY: 'scroll' }}
         borderStyle="none"
@@ -24,7 +24,6 @@ const OptionList = ({ block, children }) => (
 );
 
 OptionList.propTypes = {
-  block: PropTypes.bool,
   children: PropTypes.node,
 };
 

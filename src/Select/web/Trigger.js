@@ -39,7 +39,7 @@ const Trigger = styled.button`
   border-radius: ${(props) => props.theme.borderRadius};
   background-color: ${styles.backgroundColor};
   pointer-events: ${(props) => props.disabled ? 'none' : ''};
-  width: ${(props) => props.block ? '100%' : props.theme.px(25)};
+  width: 100%;
   padding: 0;
   outline: none;
 

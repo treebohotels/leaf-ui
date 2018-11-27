@@ -29,7 +29,7 @@ const Input = styled.textarea`
   background-color: ${styles.backgroundColor};
   font-size: ${(props) => props.theme.fontSize.s};
   padding: ${(props) => props.theme.px(1.5)};
-  width: ${(props) => props.block ? '100%' : props.theme.px(25)};
+  width: 100%;
   outline: none;
 
   &:focus {
