@@ -299,7 +299,7 @@ class DateRangePickerInput extends React.Component {
                         onBlur={this.onDatePickerBlur}
                       >
                         <Card
-                          orderStyle="none"
+                          borderStyle="none"
                           elevated
                         >
                           <DayPicker
