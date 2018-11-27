@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getIn } from 'formik';
+import Size from '../../Size/web';
+import View from '../../View/web';
 import Space from '../../Space/web';
 import Text from '../../Text/web';
 import Label from './Label';
@@ -26,6 +28,9 @@ class TextArea extends React.Component {
       inputRef,
       name,
       label,
+      size,
+      hint,
+      required,
       ...props
     } = this.props;
 
@@ -51,34 +56,47 @@ class TextArea extends React.Component {
         props.onBlur(...args);
       };
       error = error || (getIn(formik.touched, name) && getIn(formik.errors, name));
+      error = error && error.replace(name, label || name);
     }
 
     return (
-      <div className={className}>
-        {
-          label ? (
-            <Label htmlFor={name}>
-              {label}
-            </Label>
-          ) : null
-        }
-        <Input
-          innerRef={inputRef}
-          id={name}
-          name={name}
-          error={error}
-          {...inputProps}
-        />
-        {
-          error ? (
-            <Space margin={[0.5, 0, 0, 0]}>
-              <Text color="red" size="xxs">
-                {`${error}`}
-              </Text>
-            </Space>
-          ) : null
-        }
-      </div>
+      <Size
+        className={className}
+        width={size}
+      >
+        <View>
+          {
+            label ? (
+              <Label htmlFor={name}>
+                {label}
+                {
+                  required ? (
+                    <Text component="span" color="red">
+                      {' *'}
+                    </Text>
+                  ) : null
+                }
+              </Label>
+            ) : null
+          }
+          <Input
+            innerRef={inputRef}
+            id={name}
+            name={name}
+            error={error}
+            {...inputProps}
+          />
+          {
+            error || hint ? (
+              <Space margin={[0.5, 0, 0, 0]}>
+                <Text color={error ? 'red' : 'grey'} size="xs">
+                  {`${error || hint}`}
+                </Text>
+              </Space>
+            ) : null
+          }
+        </View>
+      </Size>
     );
   }
 }
@@ -86,20 +104,24 @@ class TextArea extends React.Component {
 TextArea.propTypes = {
   className: PropTypes.string,
   inputRef: PropTypes.func,
-  type: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.node,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
-  block: PropTypes.bool,
+  size: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
+  hint: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 TextArea.defaultProps = {
-  type: 'text',
+  size: 25,
   onChange: () => {},
   onBlur: () => {},
 };

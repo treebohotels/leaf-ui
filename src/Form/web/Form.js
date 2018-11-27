@@ -1,6 +1,5 @@
 import { Formik, Form as FormikForm, Field as FormikField } from 'formik';
-import yup from 'yup';
-import { AmountSchema } from '../validationSchema';
+import validation from '../validation';
 
 const Form = Formik;
 
@@ -8,7 +7,6 @@ Form.Form = FormikForm;
 
 Form.Field = FormikField;
 
-yup.amount = AmountSchema;
-Form.validation = yup;
+Form.validation = validation;
 
 export default Form;

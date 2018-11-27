@@ -1,5 +1,16 @@
 /* eslint-disable no-template-curly-in-string */
-import yup from 'yup';
+import * as yup from 'yup';
+
+const locale = {
+  mixed: {
+    required: '${path} is required',
+    notType: 'Enter a valid ${path}',
+  },
+  string: {
+    name: 'Enter a valid ${path}',
+    matches: 'Enter a valid ${path}',
+  },
+};
 
 function inherits(ctor, superCtor, spec) {
   // eslint-disable-next-line no-param-reassign
@@ -90,6 +101,14 @@ inherits(AmountSchema, yup.mixed, {
   },
 });
 
-export {
-  AmountSchema,
-};
+yup.setLocale(locale);
+yup.amount = AmountSchema;
+yup.addMethod(yup.string, 'name', function nameMethod(message) {
+  const nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+  // eslint-disable-next-line no-template-curly-in-string
+  return this.test('name', locale.string.name, function nameTest() {
+    return nameRegex.test(this.options.originalValue) || this.createError({ message });
+  });
+});
+
+export default yup;

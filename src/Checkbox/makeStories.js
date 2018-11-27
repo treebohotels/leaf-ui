@@ -6,6 +6,7 @@ export default (storiesOf, { Checkbox }) =>
       <Checkbox
         name="areLeavesGreen"
         label="Are leaves green?"
+        required
       />
     ))
     .add('disabled', () => (
@@ -13,6 +14,14 @@ export default (storiesOf, { Checkbox }) =>
         name="areLeavesGreen"
         label="Are leaves green?"
         disabled
+        defaultChecked
+      />
+    ))
+    .add('with hint', () => (
+      <Checkbox
+        name="areLeavesMadeOfGlass"
+        label="Are leaves made of glass?"
+        hint="they're green in color"
         defaultChecked
       />
     ))
