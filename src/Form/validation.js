@@ -51,7 +51,7 @@ inherits(AmountSchema, yup.mixed, {
       exclusive: true,
       params: { min },
       test(value) {
-        return value == null || value >= this.resolve(min);
+        return value == null || +value >= this.resolve(min);
       },
     });
   },
@@ -63,7 +63,7 @@ inherits(AmountSchema, yup.mixed, {
       exclusive: true,
       params: { max },
       test(value) {
-        return value == null || value <= this.resolve(max);
+        return value == null || +value <= this.resolve(max);
       },
     });
   },
@@ -75,7 +75,7 @@ inherits(AmountSchema, yup.mixed, {
       exclusive: true,
       params: { lessThan },
       test(value) {
-        return value == null || value < this.resolve(lessThan);
+        return value == null || +value < this.resolve(lessThan);
       },
     });
   },
@@ -87,7 +87,7 @@ inherits(AmountSchema, yup.mixed, {
       exclusive: true,
       params: { moreThan },
       test(value) {
-        return value == null || value > this.resolve(moreThan);
+        return value == null || +value > this.resolve(moreThan);
       },
     });
   },
