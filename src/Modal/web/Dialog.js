@@ -14,7 +14,9 @@ const Dialog = ({ children }) => (
   >
     <Size
       minWidth={85}
+      maxWidth="90vw"
       minHeight={60}
+      maxHeight="90vh"
     >
       <Flex>
         <Card elevated>

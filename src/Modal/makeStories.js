@@ -88,6 +88,130 @@ export default (storiesOf, {
         )}
       </Toggle>
     ))
+    .add('with content scroll', () => (
+      <Toggle>
+        {({ on, toggle }) => (
+          <React.Fragment>
+            <Button onClick={toggle}>OPEN MODAL</Button>
+            <Modal isOpen={on} onClose={toggle}>
+              <Modal.Header>
+                <Text size="xxxl">MODAL TITLE</Text>
+                <Text size="xs">MODAL SUBTITLE</Text>
+              </Modal.Header>
+              <Modal.Content>
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+                content for the modal
+                <br />
+              </Modal.Content>
+              <Modal.Footer>
+                Modal Footer
+              </Modal.Footer>
+            </Modal>
+          </React.Fragment>
+        )}
+      </Toggle>
+    ))
     .add('modal over a modal', () => (
       <Toggle>
         {({ on, toggle }) => (
