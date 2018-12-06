@@ -8,7 +8,6 @@ class DropdownContent extends React.Component {
   styles = {
     dropdown: {
       position: 'absolute',
-      padding: this.props.theme.px(1),
     },
   }
 
@@ -31,7 +30,6 @@ class DropdownContent extends React.Component {
 }
 
 DropdownContent.propTypes = {
-  theme: PropTypes.object,
   style: PropTypes.object,
   children: PropTypes.node,
 };
