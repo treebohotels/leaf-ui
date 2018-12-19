@@ -9,8 +9,8 @@ Quisque quis tellus quis odio venenatis bibendum.`;
 export default (storiesOf, {
   Card,
   Space,
-  View,
   Text,
+  View,
 }) =>
   storiesOf('Card', module)
     .add('simple', () => (
