@@ -25,6 +25,8 @@ class RadioButton extends React.Component {
       name,
       label,
       value,
+      hint,
+      required,
       ...props
     } = this.props;
 
@@ -38,7 +40,7 @@ class RadioButton extends React.Component {
 
     const inputProps = { ...props };
 
-    if (formik) {
+    if (formik && name) {
       inputProps.checked = getIn(formik.values, name) === value;
       delete inputProps.defaultChecked;
       inputProps.onChange = (...args) => {
@@ -50,6 +52,7 @@ class RadioButton extends React.Component {
         props.onBlur(...args);
       };
       error = getIn(formik.touched, name) && getIn(formik.errors, name);
+      error = error && error.replace(name, label || name);
     }
 
     return (
@@ -64,12 +67,19 @@ class RadioButton extends React.Component {
           />
           <Circle />
           {label}
+          {
+            required ? (
+              <Text component="span" color="red">
+                {' *'}
+              </Text>
+            ) : null
+          }
         </Label>
         {
-          error ? (
+          error || hint ? (
             <Space margin={[0.5, 0, 0, 0]}>
-              <Text color="red" size="xxs">
-                {`${error}`}
+              <Text color={error ? 'red' : 'grey'} size="xs">
+                {`${error || hint}`}
               </Text>
             </Space>
           ) : null
@@ -89,6 +99,8 @@ RadioButton.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
+  hint: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 RadioButton.defaultProps = {

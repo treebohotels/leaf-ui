@@ -161,9 +161,11 @@ class Select extends React.Component {
       className,
       name,
       label,
-      disabled,
-      block,
       multiple,
+      disabled,
+      size,
+      hint,
+      required,
     } = this.props;
 
     let {
@@ -177,6 +179,7 @@ class Select extends React.Component {
 
     if (formik && name) {
       error = getIn(formik.touched, name) && getIn(formik.errors, name);
+      error = error && error.replace(name, label || name);
     }
 
     options = options.map(this.makeOption);
@@ -194,21 +197,34 @@ class Select extends React.Component {
           highlightedIndex,
           selectedItem: dsSelectedOptions,
         }) => (
-          <div className={className}>
-            <Label htmlFor={name}>
-              {label}
-            </Label>
+          <div
+            style={{ width: typeof size === 'string' ? size : size * 8 }}
+            className={className}
+          >
+            {
+              label ? (
+                <Label htmlFor={name}>
+                  {label}
+                  {
+                    required ? (
+                      <Text component="span" color="red">
+                        {' *'}
+                      </Text>
+                    ) : null
+                  }
+                </Label>
+              ) : null
+            }
             <Trigger
               {...getToggleButtonProps({
                 isOpen,
-                block,
                 disabled,
                 error,
               })}
             >
               <Space padding={[1.5, 0, 1.5, 1.5]}>
                 <Text
-                  color={!dsSelectedOptions.length ? 'grey' : undefined}
+                  color={!dsSelectedOptions.length ? 'greyLight' : undefined}
                   size="s"
                   truncate
                 >
@@ -220,9 +236,9 @@ class Select extends React.Component {
             <div style={{ position: 'relative' }}>
               {
                 isOpen ? (
-                  <OptionList block={block}>
+                  <OptionList>
                     <VirtualList
-                      width={block ? '100%' : 25 * 8}
+                      width="100%"
                       height={options.length < 5 ? options.length * 48 : 27 * 8}
                       itemCount={options.length}
                       itemSize={48}
@@ -259,10 +275,10 @@ class Select extends React.Component {
               }
             </div>
             {
-              error ? (
+              error || hint ? (
                 <Space margin={[0.5, 0, 0, 0]}>
-                  <Text color="red" size="xxs">
-                    {`${error}`}
+                  <Text color={error ? 'red' : 'grey'} size="xs">
+                    {`${error || hint}`}
                   </Text>
                 </Space>
               ) : null
@@ -279,19 +295,25 @@ Select.propTypes = {
   name: PropTypes.string,
   label: PropTypes.node,
   placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  block: PropTypes.bool,
   multiple: PropTypes.bool,
   options: PropTypes.array.isRequired,
   defaultSelected: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.any),
     PropTypes.any,
   ]),
+  disabled: PropTypes.bool,
+  size: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   onChange: PropTypes.func,
   error: PropTypes.string,
+  hint: PropTypes.string,
+  requried: PropTypes.bool,
 };
 
 Select.defaultProps = {
+  size: 25,
   onChange: () => {},
 };
 

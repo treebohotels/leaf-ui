@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { injectGlobal } from 'styled-components';
-import injectIconStyles from '../Icon/web/injectIconStyles';
+import injectIconStyles from '../../Icon/web/injectIconStyles';
 
 const injectBaseStyles = (
   theme,

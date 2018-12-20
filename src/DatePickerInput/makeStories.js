@@ -7,19 +7,14 @@ export default(storiesOf, {
     .add('simple', () => (
       <DatePickerInput
         name="dob"
-      />
-    ))
-    .add('block', () => (
-      <DatePickerInput
-        name="dob"
-        block
+        label="DOB"
+        required
       />
     ))
     .add('multiple', () => (
       <DatePickerInput
         name="dob"
         multiple
-        block
       />
     ))
     .add('before today', () => (

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import theme from '../../theme';
+import theme from '../../theme/web';
 
 const styles = {
   color(props) {
@@ -18,7 +18,7 @@ const styles = {
       return props.theme.color[props.color];
     }
     if (props.kind === 'outlined') {
-      return props.theme.color.transparent;
+      return props.theme.color.white;
     }
     return '';
   },

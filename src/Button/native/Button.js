@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components';
-import theme from '../../theme';
+import theme from '../../theme/native';
 import Text from '../../Text/native';
 
 const styles = {

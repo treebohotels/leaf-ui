@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import theme from '../theme';
+import theme from '../theme/web';
 
 const options = Object.keys(theme.color).map((color) => ({
   label: color,
@@ -16,6 +16,7 @@ export default (storiesOf, { Select }) =>
         placeholder="Select a color"
         options={options}
         onChange={action('onChange')}
+        required
       />
     ))
     .add('multiple', () => (
@@ -27,27 +28,6 @@ export default (storiesOf, { Select }) =>
         options={options}
         defaultSelected={options[2].value}
         onChange={action('onChange')}
-      />
-    ))
-    .add('disabled', () => (
-      <Select
-        name="color"
-        label="Color"
-        placeholder="Select a color"
-        options={options}
-        defaultSelected={options[2].value}
-        onChange={action('onChange')}
-        disabled
-      />
-    ))
-    .add('error', () => (
-      <Select
-        name="color"
-        label="Color"
-        placeholder="Select a color"
-        options={options}
-        onChange={action('onChange')}
-        error="some error message"
       />
     ))
     .add('simple options', () => (
@@ -62,4 +42,35 @@ export default (storiesOf, { Select }) =>
           onChange={action('onChange')}
         />
       </React.Fragment>
+    ))
+    .add('disabled', () => (
+      <Select
+        name="color"
+        label="Color"
+        placeholder="Select a color"
+        options={options}
+        defaultSelected={options[2].value}
+        onChange={action('onChange')}
+        disabled
+      />
+    ))
+    .add('with hint', () => (
+      <Select
+        name="color"
+        label="Color"
+        placeholder="Select a color"
+        options={options}
+        onChange={action('onChange')}
+        hint="color color which color?"
+      />
+    ))
+    .add('with error', () => (
+      <Select
+        name="color"
+        label="Color"
+        placeholder="Select a color"
+        options={options}
+        onChange={action('onChange')}
+        error="some error message"
+      />
     ));

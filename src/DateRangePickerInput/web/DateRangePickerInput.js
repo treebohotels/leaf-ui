@@ -1,26 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
+import { getIn } from 'formik';
+import dateFnsIsValid from 'date-fns/is_valid';
 import dateFnsIsBefore from 'date-fns/is_before';
 import dateFnsIsAfter from 'date-fns/is_after';
 import dateFnsFormat from 'date-fns/format';
-import dateFnsIsSameDay from 'date-fns/is_same_day';
 import DayPicker from 'react-day-picker';
+import Card from '../../Card/web';
 import Flex from '../../Flex/web';
 import Space from '../../Space/web';
+import Size from '../../Size/web';
 import Position from '../../Position/web';
 import View from '../../View/web';
 import TextInput from '../../TextInput/web';
-import DatePickerNavbar from '../../DatePickerInput/web/DatePickerNavbar';
 import injectDatePickerStyles from '../../DatePickerInput/web/injectDatePickerStyles';
+import DateRangePickerNavbar from './DateRangePickerNavbar';
 
 class DateRangePickerInput extends React.Component {
-  state = {
-    isOpen: false,
-    from: this.props.defaultValue.from,
-    to: this.props.defaultValue.to,
-    enteredTo: this.props.defaultValue.to,
-  };
+  datePickerHasFocus = false;
+
+  timeout = {};
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isOpen: false,
+      from: this.makeDate(this.props.defaultValue.from),
+      to: this.makeDate(this.props.defaultValue.to),
+      enteredTo: this.makeDate(this.props.defaultValue.to),
+    };
+    this.datePickerHasFocus = false;
+    this.timeout = {};
+  }
 
   componentWillMount = () => {
     const { theme } = this.props;
@@ -32,14 +45,23 @@ class DateRangePickerInput extends React.Component {
     const { name } = this.props;
     const { formik } = this.context;
     if (formik && name.from && name.to) {
-      formik.setFieldValue(name.from, from);
-      formik.setFieldValue(name.to, to);
+      formik.setFieldValue(name.from, from || '');
+      formik.setFieldValue(name.to, to || '');
     }
   }
 
   componentWillUnmount = () => {
     clearTimeout(this.timeout.inputBlur);
     clearTimeout(this.timeout.datePickerBlur);
+  }
+
+  makeDate = (date) => {
+    if (date && dateFnsIsValid(new Date(date))) {
+      const clonedDate = new Date(date);
+      clonedDate.setHours(12, 0, 0, 0);
+      return clonedDate;
+    }
+    return undefined;
   }
 
   onFromInputFocus = () => {
@@ -94,29 +116,12 @@ class DateRangePickerInput extends React.Component {
     } = this.props;
     const { formik } = this.context;
 
-    if (
-      modifiers.disabled
-      || dateFnsIsSameDay(day, from)
-      || dateFnsIsSameDay(day, to)
-    ) {
+    if (modifiers.disabled) {
       return;
     }
 
     if (isOpen === 'from') {
-      if (dateFnsIsAfter(day, to)) {
-        this.setState({
-          from: day,
-          to: undefined,
-          enteredTo: undefined,
-        }, () => {
-          if (formik && name.from && name.to) {
-            formik.setFieldValue(name.from, day);
-            formik.setFieldValue(name.to, '');
-          }
-          onFromDateChange(day, modifiers);
-          this.toInputRef.focus();
-        });
-      } else {
+      if (dateFnsIsBefore(day, to)) {
         this.setState({
           isOpen: !to ? 'to' : false,
           from: day,
@@ -125,17 +130,43 @@ class DateRangePickerInput extends React.Component {
             formik.setFieldValue(name.from, day);
           }
           if (!to) {
-            onFromDateChange(day, modifiers);
             this.toInputRef.focus();
+            onFromDateChange(day, modifiers);
           } else {
+            this.fromInputRef.blur();
             onFromDateChange(day, modifiers);
             onDateRangeChange({ from: day, to }, modifiers);
-            this.fromInputRef.blur();
           }
+        });
+      } else {
+        this.setState({
+          from: day,
+          to: undefined,
+          enteredTo: undefined,
+        }, () => {
+          if (formik && name.from && name.to) {
+            formik.setFieldValue(name.from, day);
+            formik.setFieldValue(name.to, '');
+          }
+          this.toInputRef.focus();
+          onFromDateChange(day, modifiers);
         });
       }
     } else if (isOpen === 'to') {
-      if (dateFnsIsBefore(day, from)) {
+      if (dateFnsIsAfter(day, from)) {
+        this.setState({
+          isOpen: false,
+          to: day,
+          enteredTo: day,
+        }, () => {
+          if (formik && name.from && name.to) {
+            formik.setFieldValue(name.to, day);
+          }
+          this.toInputRef.blur();
+          onToDateChange(day, modifiers);
+          onDateRangeChange({ from, to: day }, modifiers);
+        });
+      } else {
         this.setState({
           from: day,
           to: undefined,
@@ -146,19 +177,6 @@ class DateRangePickerInput extends React.Component {
             formik.setFieldValue(name.to, '');
           }
           onFromDateChange(day, modifiers);
-        });
-      } else {
-        this.setState({
-          isOpen: false,
-          to: day,
-          enteredTo: day,
-        }, () => {
-          if (formik && name.from && name.to) {
-            formik.setFieldValue(name.to, day);
-          }
-          onToDateChange(day, modifiers);
-          onDateRangeChange({ from, to: day }, modifiers);
-          this.toInputRef.blur();
         });
       }
     }
@@ -170,10 +188,6 @@ class DateRangePickerInput extends React.Component {
       this.setState({ enteredTo: day });
     }
   }
-
-  datePickerHasFocus = false;
-
-  timeout = {};
 
   formatDayForInput = (day) => {
     const { format } = this.props;
@@ -201,9 +215,13 @@ class DateRangePickerInput extends React.Component {
 
     const {
       className,
+      name,
       label,
       placeholder,
       disabled,
+      size,
+      hint,
+      required,
       format,
       fromMonth,
       toMonth,
@@ -212,73 +230,110 @@ class DateRangePickerInput extends React.Component {
       disabledDays,
     } = this.props;
 
+    const {
+      error,
+    } = this.props;
+
+    const {
+      formik,
+    } = this.context;
+
+    if (formik && name) {
+      error.from = error.from ||
+        (getIn(formik.touched, name.from) && getIn(formik.errors, name.from));
+      error.from = error.from && error.from.replace(name.from, label.from || name.from);
+      error.to = error.to ||
+        (getIn(formik.touched, name.to) && getIn(formik.errors, name.to));
+      error.to = error.to && error.to.replace(name.to, label.to || name.to);
+    }
+
     return (
-      <View className={className}>
-        <Flex flexDirection="row">
-          <View>
-            <Space margin={[0, 2, 0, 0]}>
+      <Size
+        className={className}
+        width={size}
+      >
+        <View>
+          <Flex flexDirection="row">
+            <View>
+              <Space margin={[0, 2, 0, 0]}>
+                <TextInput
+                  inputRef={this.storeFromInputRef}
+                  label={label.from}
+                  value={this.formatDayForInput(from)}
+                  placeholder={placeholder.from || format}
+                  disabled={disabled.from}
+                  size="100%"
+                  onFocus={this.onFromInputFocus}
+                  onBlur={this.onInputBlur}
+                  autoComplete="off"
+                  error={error.from}
+                  hint={hint.from}
+                  required={required.from}
+                />
+              </Space>
               <TextInput
-                inputRef={this.storeFromInputRef}
-                label={label.from}
-                value={this.formatDayForInput(from)}
-                placeholder={placeholder.from || format}
-                disabled={disabled.from}
-                onFocus={this.onFromInputFocus}
+                inputRef={this.storeToInputRef}
+                label={label.to}
+                value={this.formatDayForInput(to)}
+                placeholder={placeholder.to || format}
+                disabled={disabled.to}
+                size="100%"
+                onFocus={this.onToInputFocus}
                 onBlur={this.onInputBlur}
                 autoComplete="off"
+                error={error.to}
+                hint={hint.to}
+                required={required.to}
               />
-            </Space>
-            <TextInput
-              inputRef={this.storeToInputRef}
-              label={label.to}
-              value={this.formatDayForInput(to)}
-              placeholder={placeholder.to || format}
-              disabled={disabled.to}
-              onFocus={this.onToInputFocus}
-              onBlur={this.onInputBlur}
-              autoComplete="off"
-            />
-          </View>
-        </Flex>
-        {
-          isOpen ? (
-            <Position position="relative">
-              <View>
-                <Position
-                  position="absolute"
-                  top={0}
-                  left={0}
-                >
-                  <View
-                    tabIndex={0}
-                    onFocus={this.onDatePickerFocus}
-                    onBlur={this.onDatePickerBlur}
+            </View>
+          </Flex>
+          {
+            isOpen ? (
+              <Position position="relative">
+                <View>
+                  <Position
+                    position="absolute"
+                    top={0}
+                    left={0}
                   >
-                    <DayPicker
-                      numberOfMonths={2}
-                      fromMonth={fromMonth}
-                      toMonth={toMonth}
-                      month={from}
-                      selectedDays={[from, { from, to: enteredTo }]}
-                      disabledDays={disabledDays}
-                      modifiers={{
-                        start: [from],
-                        end: [enteredTo],
-                        ...modifiers,
-                      }}
-                      navbarElement={<DatePickerNavbar />}
-                      captionElement={() => null}
-                      renderDay={renderDay}
-                      onDayClick={this.onDayClick}
-                      onDayMouseEnter={this.onDayMouseEnter}
-                    />
-                  </View>
-                </Position>
-              </View>
-            </Position>
-          ) : null
-        }
-      </View>
+                    <Size width="581px">
+                      <View
+                        tabIndex={0}
+                        onFocus={this.onDatePickerFocus}
+                        onBlur={this.onDatePickerBlur}
+                      >
+                        <Card
+                          borderStyle="none"
+                          elevated
+                        >
+                          <DayPicker
+                            numberOfMonths={2}
+                            fromMonth={fromMonth}
+                            toMonth={toMonth}
+                            month={from}
+                            selectedDays={[from, { from, to: enteredTo }]}
+                            disabledDays={disabledDays}
+                            modifiers={{
+                              start: [from],
+                              end: [enteredTo],
+                              ...modifiers,
+                            }}
+                            navbarElement={DateRangePickerNavbar}
+                            captionElement={() => null}
+                            renderDay={renderDay}
+                            onDayClick={this.onDayClick}
+                            onDayMouseEnter={this.onDayMouseEnter}
+                          />
+                        </Card>
+                      </View>
+                    </Size>
+                  </Position>
+                </View>
+              </Position>
+            ) : null
+          }
+        </View>
+      </Size>
     );
   }
 }
@@ -311,6 +366,22 @@ DateRangePickerInput.propTypes = {
     from: PropTypes.bool,
     to: PropTypes.bool,
   }),
+  size: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  error: PropTypes.shape({
+    from: PropTypes.string,
+    to: PropTypes.string,
+  }),
+  hint: PropTypes.shape({
+    from: PropTypes.string,
+    to: PropTypes.string,
+  }),
+  required: PropTypes.shape({
+    from: PropTypes.bool,
+    to: PropTypes.bool,
+  }),
   format: PropTypes.string,
   fromMonth: PropTypes.instanceOf(Date),
   toMonth: PropTypes.instanceOf(Date),
@@ -340,10 +411,23 @@ DateRangePickerInput.defaultProps = {
     to: 'To: YYYY-MM-DD',
   },
   defaultValue: {
-    from: '',
-    to: '',
+    from: undefined,
+    to: undefined,
   },
   disabled: {
+    from: false,
+    to: false,
+  },
+  size: 52,
+  error: {
+    from: undefined,
+    to: undefined,
+  },
+  hint: {
+    from: undefined,
+    to: undefined,
+  },
+  required: {
     from: false,
     to: false,
   },

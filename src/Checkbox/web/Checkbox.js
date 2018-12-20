@@ -23,6 +23,8 @@ class Checkbox extends React.Component {
       className,
       name,
       label,
+      hint,
+      required,
       ...props
     } = this.props;
 
@@ -48,6 +50,7 @@ class Checkbox extends React.Component {
         props.onBlur(...args);
       };
       error = getIn(formik.touched, name) && getIn(formik.errors, name);
+      error = error && error.replace(name, label || name);
     }
 
     return (
@@ -63,12 +66,19 @@ class Checkbox extends React.Component {
             <Tick />
           </Box>
           {label}
+          {
+            required ? (
+              <Text component="span" color="red">
+                {' *'}
+              </Text>
+            ) : null
+          }
         </Label>
         {
-          error ? (
+          error || hint ? (
             <Space margin={[0.5, 0, 0, 0]}>
-              <Text color="red" size="xxs">
-                {`${error}`}
+              <Text color={error ? 'red' : 'grey'} size="xs">
+                {`${error || hint}`}
               </Text>
             </Space>
           ) : null
@@ -87,6 +97,8 @@ Checkbox.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
+  hint: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 Checkbox.defaultProps = {

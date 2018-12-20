@@ -7,7 +7,7 @@ import View from '../../View/web';
 const ModalContent = ({ children }) => (
   <Space padding={[3, 5]}>
     <Flex flex="auto">
-      <View>
+      <View style={{ overflow: 'auto' }}>
         {children}
       </View>
     </Flex>

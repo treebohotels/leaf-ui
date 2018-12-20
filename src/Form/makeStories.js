@@ -1,4 +1,5 @@
 import React from 'react';
+import dateFnsAddDays from 'date-fns/add_days';
 import { action } from '@storybook/addon-actions';
 
 export default(storiesOf, {
@@ -19,13 +20,13 @@ export default(storiesOf, {
         onSubmit={action('onSubmit')}
         validationSchema={
           Form.validation.object().shape({
-            leafName: Form.validation.string(),
-            leafDOB: Form.validation.string(),
-            leafFrom: Form.validation.string(),
-            leafTo: Form.validation.string(),
-            leafColor: Form.validation.string(),
+            leafName: Form.validation.string().name().required(),
+            leafDOB: Form.validation.string().required(),
+            leafFrom: Form.validation.string().required(),
+            leafTo: Form.validation.string().required(),
+            leafColor: Form.validation.string().required(),
             isAquatic: Form.validation.boolean(),
-            treeType: Form.validation.string(),
+            treeType: Form.validation.string().required(),
           })
         }
       >
@@ -46,7 +47,7 @@ export default(storiesOf, {
           <Space margin={[0, 0, 2, 0]}>
             <DateRangePickerInput
               name={{ from: 'leafFrom', to: 'leafTo' }}
-              defaultValue={{ from: new Date('2019-09-10'), to: new Date('2019-09-11') }}
+              defaultValue={{ from: new Date(), to: dateFnsAddDays(new Date(), 1) }}
               label={{ from: 'From', to: 'To' }}
             />
           </Space>
@@ -130,4 +131,74 @@ export default(storiesOf, {
           </Form.Form>
         </Form>
       </View>
+    )).add('amount', () => (
+      <Form
+        onSubmit={action('onSubmit')}
+        validationSchema={
+        Form.validation.object().shape({
+          required: Form.validation.amount().required(),
+          min: Form.validation.amount().min(200),
+          max: Form.validation.amount().max(10),
+          lessThan: Form.validation.amount().lessThan(50),
+          moreThan: Form.validation.amount().moreThan(50),
+          negative: Form.validation.amount().negative(),
+          positive: Form.validation.amount().positive(),
+        })
+      }
+      >
+        <Form.Form>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              name="required"
+              label="Amount Required"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              name="min"
+              label="Min Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              name="max"
+              label="Max Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              name="lessThan"
+              label="LessThan Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              name="moreThan"
+              label="MoreThan Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              name="negative"
+              label="Negative Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Space margin={[0, 0, 2, 0]}>
+            <TextInput
+              name="positive"
+              label="Positive Amount"
+              defaultValue="100.10"
+            />
+          </Space>
+          <Button type="submit">
+            Submit
+          </Button>
+        </Form.Form>
+      </Form>
     ));

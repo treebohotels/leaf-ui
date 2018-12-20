@@ -7,7 +7,6 @@ const ignoreFiles = [
   '.DS_Store',
   'scripts',
   'utils',
-  'theme',
 ];
 
 const platforms = [
@@ -16,7 +15,7 @@ const platforms = [
   'amp',
 ];
 
-// generate exports for components for all platforms
+// generate exports for all platforms
 const srcPath = path.resolve(__dirname, '../');
 const components = fs.readdirSync(srcPath)
   .filter((files) => !ignoreFiles.includes(files));
@@ -33,14 +32,6 @@ components.forEach((component) => {
       });
     });
   });
-});
-
-// generate exports for theme
-const themeFile = path.resolve(__dirname, '../../theme.js');
-const themeContent = 'export { default } from \'./es/theme\';\nexport * from \'./es/theme\';\n';
-fs.writeFile(themeFile, themeContent, (writeFileErr) => {
-  if (writeFileErr) throw writeFileErr;
-  console.log(`generated: ${themeFile}`);
 });
 
 // generate package.json
