@@ -224,9 +224,6 @@ class DateRangePickerInput extends React.Component {
       modifiers,
       renderDay,
       disabledDays,
-    } = this.props;
-
-    const {
       error,
     } = this.props;
 
@@ -234,13 +231,16 @@ class DateRangePickerInput extends React.Component {
       formik,
     } = this.context;
 
+    const errorMessage = {};
+
     if (formik && name) {
-      error.from = error.from ||
-        (getIn(formik.touched, name.from) && getIn(formik.errors, name.from));
-      error.from = error.from && error.from.replace(name.from, label.from || name.from);
-      error.to = error.to ||
-        (getIn(formik.touched, name.to) && getIn(formik.errors, name.to));
-      error.to = error.to && error.to.replace(name.to, label.to || name.to);
+      errorMessage.from = error.from
+        || (getIn(formik.touched, name.from) && getIn(formik.errors, name.from));
+      errorMessage.from = errorMessage.from
+        && errorMessage.from.replace(name.from, label.from || name.from);
+      errorMessage.to = error.to
+        || (getIn(formik.touched, name.to) && getIn(formik.errors, name.to));
+      errorMessage.to = errorMessage.to && errorMessage.to.replace(name.to, label.to || name.to);
     }
 
     return (
@@ -262,7 +262,7 @@ class DateRangePickerInput extends React.Component {
                   onFocus={this.onFromInputFocus}
                   onBlur={this.onInputBlur}
                   autoComplete="off"
-                  error={error.from}
+                  error={errorMessage.from}
                   hint={hint.from}
                   required={required.from}
                 />
@@ -277,7 +277,7 @@ class DateRangePickerInput extends React.Component {
                 onFocus={this.onToInputFocus}
                 onBlur={this.onInputBlur}
                 autoComplete="off"
-                error={error.to}
+                error={errorMessage.to}
                 hint={hint.to}
                 required={required.to}
               />
