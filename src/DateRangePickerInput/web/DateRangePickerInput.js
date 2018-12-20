@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cloneDeep from 'lodash/cloneDeep';
 import { withTheme } from 'styled-components';
 import { getIn } from 'formik';
 import dateFnsIsValid from 'date-fns/is_valid';
@@ -232,14 +231,14 @@ class DateRangePickerInput extends React.Component {
       formik,
     } = this.context;
 
-    const errorMessage = cloneDeep(error);
+    const errorMessage = {};
 
     if (formik && name) {
-      errorMessage.from = errorMessage.from
+      errorMessage.from = error.from
         || (getIn(formik.touched, name.from) && getIn(formik.errors, name.from));
       errorMessage.from = errorMessage.from
         && errorMessage.from.replace(name.from, label.from || name.from);
-      errorMessage.to = errorMessage.to
+      errorMessage.to = error.to
         || (getIn(formik.touched, name.to) && getIn(formik.errors, name.to));
       errorMessage.to = errorMessage.to && errorMessage.to.replace(name.to, label.to || name.to);
     }
