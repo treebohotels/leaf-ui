@@ -9,7 +9,6 @@ const THead = styled.thead`
       box-shadow: 0px 1px ${props.theme.color.greyLight};
       position: sticky;
       top: 0;
-      z-index: 1100;
     ` : ''}
   }
 
