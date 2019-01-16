@@ -23,7 +23,7 @@ const Text = styled(
   line-height: ${(props) => props.component === 'p' ? '1.5' : ''};
   text-align: ${(props) => props.align || ''};
   overflow: ${(props) => props.truncate ? 'hidden' : ''};
-  white-space: ${(props) => props.truncate ? 'nowrap' : ''};
+  white-space: ${(props) => props.truncate ? 'nowrap' : 'pre-line'};
   text-overflow: ${(props) => props.truncate ? 'ellipsis' : ''};
   padding: 0;
   margin: 0;

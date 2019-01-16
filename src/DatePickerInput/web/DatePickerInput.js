@@ -157,9 +157,6 @@ class DatePickerInput extends React.Component {
       toMonth,
       renderDay,
       disabledDays,
-    } = this.props;
-
-    let {
       error,
     } = this.props;
 
@@ -167,9 +164,11 @@ class DatePickerInput extends React.Component {
       formik,
     } = this.context;
 
+    let errorMessage = null;
+
     if (formik && name) {
-      error = error || (getIn(formik.touched, name) && getIn(formik.errors, name));
-      error = error && error.replace(name, label || name);
+      errorMessage = error || (getIn(formik.touched, name) && getIn(formik.errors, name));
+      errorMessage = errorMessage && errorMessage.replace(name, label || name);
     }
 
     return (
@@ -188,7 +187,7 @@ class DatePickerInput extends React.Component {
             onFocus={this.onInputFocus}
             onBlur={this.onInputBlur}
             autoComplete="off"
-            error={error}
+            error={errorMessage}
             hint={hint}
             required={required}
           />

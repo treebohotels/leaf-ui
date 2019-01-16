@@ -68,7 +68,7 @@ class Select extends React.Component {
     onChange(selectedValues);
   }
 
-  onSelect = (selectedOption) => {
+  onSelect = (selectedOption, stateAndHelpers) => {
     const { selectedOptions } = this.state;
     const { multiple } = this.props;
 
@@ -87,7 +87,10 @@ class Select extends React.Component {
       }
       this.setState({
         selectedOptions: newSelectedOptions,
-      }, () => this.onChange(this.getOptionsValue(newSelectedOptions)));
+      }, () => {
+        stateAndHelpers.openMenu();
+        this.onChange(this.getOptionsValue(newSelectedOptions));
+      });
     } else {
       // single: select option
       this.setState({
