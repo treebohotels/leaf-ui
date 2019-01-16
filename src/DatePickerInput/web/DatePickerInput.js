@@ -14,10 +14,6 @@ import DatePickerNavbar from './DatePickerNavbar';
 import injectDatePickerStyles from './injectDatePickerStyles';
 
 class DatePickerInput extends React.Component {
-  datePickerHasFocus = false;
-
-  timeout = {};
-
   constructor(props) {
     super(props);
     let selectedDays = null;
@@ -41,10 +37,11 @@ class DatePickerInput extends React.Component {
 
   componentDidMount() {
     const { selectedDays } = this.state;
-    const { name, multiple, defaultValue } = this.props;
+    const { name } = this.props;
     const { formik } = this.context;
+
     if (formik && name) {
-      formik.setFieldValue(name, multiple ? selectedDays || '' : defaultValue);
+      formik.setFieldValue(name, selectedDays || '');
     }
   }
 
@@ -53,13 +50,19 @@ class DatePickerInput extends React.Component {
     clearTimeout(this.timeout.datePickerBlur);
   }
 
-  makeDate = (date) => {
-    if (date && dateFnsIsValid(new Date(date))) {
-      const clonedDate = new Date(date);
-      clonedDate.setHours(12, 0, 0, 0);
-      return clonedDate;
+  makeDate = (dates) => {
+    const areDatesValid = dates && !dates.find(
+      (date) => !dateFnsIsValid(new Date(date)),
+    );
+
+    if (areDatesValid) {
+      return dates.map((date) => {
+        const clonedDate = new Date(date);
+        clonedDate.setHours(12, 0, 0, 0);
+        return clonedDate;
+      });
     }
-    return undefined;
+    return [];
   }
 
   onDayClick = (day, modifiers) => {
@@ -70,12 +73,14 @@ class DatePickerInput extends React.Component {
       return;
     }
     this.setState(({ selectedDays }) => {
-      let currSelectedDays;
+      let currSelectedDays = null;
 
-      if (multiple && selectedDays) {
-        const dayIndex = selectedDays && selectedDays.findIndex((d) => DateUtils.isSameDay(d, day));
+      if (multiple && getIn(selectedDays, 'length')) {
+        currSelectedDays = [...selectedDays];
+        const dayIndex = currSelectedDays.findIndex((d) => DateUtils.isSameDay(d, day));
+
         if (dayIndex !== -1) {
-          selectedDays.splice(dayIndex, 1);
+          currSelectedDays.splice(dayIndex, 1);
         } else {
           currSelectedDays = [...selectedDays, day];
         }
@@ -138,6 +143,13 @@ class DatePickerInput extends React.Component {
     this.inputRef = ref;
   }
 
+  updateSelectedDays = () => {
+    const { formik } = this.context;
+    const { name } = this.props;
+
+    this.setState({ selectedDays: getIn(formik, `values[${name}]`) });
+  }
+
   render() {
     const {
       isOpen,
@@ -169,6 +181,10 @@ class DatePickerInput extends React.Component {
     if (formik && name) {
       errorMessage = error || (getIn(formik.touched, name) && getIn(formik.errors, name));
       errorMessage = errorMessage && errorMessage.replace(name, label || name);
+
+      if (getIn(formik, `values[${name}]`) !== selectedDays) {
+        this.updateSelectedDays();
+      }
     }
 
     return (
@@ -214,9 +230,9 @@ class DatePickerInput extends React.Component {
                           fromMonth={fromMonth}
                           toMonth={toMonth}
                           month={
-                            selectedDays
+                            getIn(selectedDays, 'length')
                               ? selectedDays[selectedDays.length - 1]
-                              : selectedDays
+                              : null
                           }
                           selectedDays={selectedDays}
                           disabledDays={disabledDays}

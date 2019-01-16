@@ -15,6 +15,7 @@ export default(storiesOf, {
       <DatePickerInput
         name="dob"
         multiple
+        defaultValue={[new Date()]}
       />
     ))
     .add('before today', () => (

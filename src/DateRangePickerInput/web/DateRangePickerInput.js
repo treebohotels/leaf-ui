@@ -18,10 +18,6 @@ import injectDatePickerStyles from '../../DatePickerInput/web/injectDatePickerSt
 import DateRangePickerNavbar from './DateRangePickerNavbar';
 
 class DateRangePickerInput extends React.Component {
-  datePickerHasFocus = false;
-
-  timeout = {};
-
   constructor(props) {
     super(props);
 
