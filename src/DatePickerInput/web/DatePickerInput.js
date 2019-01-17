@@ -101,7 +101,7 @@ class DatePickerInput extends React.Component {
       if (!multiple) {
         this.inputRef.blur();
       }
-      onDateChange(day, modifiers);
+      onDateChange(multiple ? selectedDays : day, modifiers);
     });
   }
 
