@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-export default(storiesOf, {
+export default (storiesOf, {
   DateRangePickerInput,
 }) =>
   storiesOf('DateRangePickerInput', module)

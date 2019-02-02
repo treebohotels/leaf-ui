@@ -2,7 +2,7 @@ import React from 'react';
 import dateFnsAddDays from 'date-fns/add_days';
 import { action } from '@storybook/addon-actions';
 
-export default(storiesOf, {
+export default (storiesOf, {
   Space,
   TextInput,
   Select,

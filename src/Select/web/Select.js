@@ -312,7 +312,7 @@ Select.propTypes = {
   onChange: PropTypes.func,
   error: PropTypes.string,
   hint: PropTypes.string,
-  requried: PropTypes.bool,
+  required: PropTypes.bool,
 };
 
 Select.defaultProps = {
