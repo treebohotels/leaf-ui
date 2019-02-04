@@ -1,7 +1,7 @@
 import React from 'react';
 import { select } from '@storybook/addon-knobs';
 
-export default(storiesOf, { Image }) =>
+export default (storiesOf, { Image }) =>
   storiesOf('Image', module)
     .add('playground', () => (
       <Image

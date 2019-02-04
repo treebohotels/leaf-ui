@@ -7,7 +7,7 @@ const sampleText = `
     Donec convallis massa at pretium tincidunt.
     Quisque quis tellus quis odio venenatis bibendum.`;
 
-export default(storiesOf, {
+export default (storiesOf, {
   View,
 }) =>
   storiesOf('View', module)

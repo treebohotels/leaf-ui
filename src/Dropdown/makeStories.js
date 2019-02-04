@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-export default(storiesOf, {
+export default (storiesOf, {
   Dropdown,
   Icon,
   List,
