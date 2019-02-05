@@ -21,14 +21,14 @@ const CustomText = styled((props) => <Text {...props} />)`
   text-align: ${(props) => props.align};
 `;
 
-Text.propTypes = {
+CustomText.propTypes = {
   color: PropTypes.string,
   size: PropTypes.oneOf(Object.keys(theme.fontSize)),
   weight: PropTypes.oneOf(Object.keys(theme.fontWeight)),
   align: PropTypes.oneOf(['left', 'center', 'right']),
 };
 
-Text.defaultProps = {
+CustomText.defaultProps = {
   color: 'greyDarker',
   size: 'm',
   weight: 'normal',
