@@ -39,12 +39,13 @@ class StorybookUIHMRRoot extends Component {
 
   componentDidMount() {
     Font.loadAsync({
-      'Roboto-Regular': require('./fonts/Roboto.ttf'),
-      'Roboto-Medium': require('./fonts/Roboto_medium.ttf'),
-      'SFProDisplay-Regular': require('./fonts/SFProDisplay-Regular.otf'),
-      'SFProDisplay-Medium': require('./fonts/SFProDisplay-Medium.otf'),
-      'SFProDisplay-Semibold': require('./fonts/SFProDisplay-Semibold.otf'),
-      'Averta-Bold': require('./fonts/Averta-Bold.otf'),
+      RegularFontAndroid: require('./fonts/Roboto-Regular.ttf'),
+      MediumFontAndroid: require('./fonts/Roboto-Medium.ttf'),
+      BoldFontAndroid: require('./fonts/Roboto-Bold.ttf'),
+      RegularFontIOS: require('./fonts/SFProDisplay-Regular.otf'),
+      MediumFontIOS: require('./fonts/SFProDisplay-Medium.otf'),
+      SemiboldFontIOS: require('./fonts/SFProDisplay-Semibold.otf'),
+      BoldFontIOS: require('./fonts/SFProDisplay-Bold.otf'),
     }).then(() => {
       this.setState({ isFontsLoaded: true });
     });

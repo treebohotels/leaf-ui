@@ -1,19 +1,20 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Platform } from 'react-native';
+import { Platform, Text as ReactNativeText } from 'react-native';
 import { responsiveSizePx } from '../../utils/reactNativeResponsiveSize';
 import theme from '../../theme/native';
 
 const isPlatformAndroid = Platform.OS === 'android';
 
 const fontFamilies = {
-  normal: isPlatformAndroid ? 'Roboto-Regular' : 'SFProDisplay-Regular',
-  medium: isPlatformAndroid ? 'Roboto-Medium' : 'SFProDisplay-Medium',
-  semibold: isPlatformAndroid ? 'Roboto-Medium' : 'SFProDisplay-Semibold',
-  bold: 'Averta-Bold',
+  normal: isPlatformAndroid ? 'RegularFontAndroid' : 'RegularFontIOS',
+  medium: isPlatformAndroid ? 'MediumFontAndroid' : 'MediumFontIOS',
+  semibold: isPlatformAndroid ? 'MediumFontAndroid' : 'SemiboldFontIOS',
+  bold: isPlatformAndroid ? 'BoldFontAndroid' : 'BoldFontIOS',
 };
 
-const Text = styled.Text`
+const Text = styled((props) => <ReactNativeText {...props} />)`
   color: ${(props) => props.theme.color[props.color]};
   font-size: ${(props) => responsiveSizePx(props.theme.fontSize[props.size])};
   font-family: ${(props) => fontFamilies[props.weight]};
