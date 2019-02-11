@@ -8,10 +8,10 @@ import theme from '../../theme/native';
 const isPlatformAndroid = Platform.OS === 'android';
 
 const fontFamilies = {
-  normal: isPlatformAndroid ? 'RegularFontAndroid' : 'RegularFontIOS',
-  medium: isPlatformAndroid ? 'MediumFontAndroid' : 'MediumFontIOS',
-  semibold: isPlatformAndroid ? 'MediumFontAndroid' : 'SemiboldFontIOS',
-  bold: isPlatformAndroid ? 'BoldFontAndroid' : 'BoldFontIOS',
+  normal: isPlatformAndroid ? 'Roboto-Regular' : 'SFProDisplay-Regular',
+  medium: isPlatformAndroid ? 'Roboto-Medium' : 'SFProDisplay-Medium',
+  semibold: isPlatformAndroid ? 'Roboto-Medium' : 'SFProDisplay-Semibold',
+  bold: 'Averta-Bold',
 };
 
 const Text = styled((props) => <ReactNativeText {...props} />)`
