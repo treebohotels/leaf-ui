@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { View } from 'react-native';
 import styled from 'styled-components';
 import Text from '../../Text/native';
 
@@ -26,7 +27,7 @@ const styles = {
   },
 };
 
-const TagContainer = styled.View`
+const TagContainer = styled((props) => <View {...props} />)`
   align-self: flex-start;
   align-items: center;
   justify-content: center;

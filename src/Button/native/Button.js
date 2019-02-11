@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 import theme from '../../theme/native';
 import Text from '../../Text/native';
@@ -68,7 +68,7 @@ const styles = {
   },
 };
 
-const StyledButton = styled.TouchableOpacity`
+const StyledButton = styled((props) => <TouchableOpacity {...props} />)`
   background-color: ${styles.buttonColor};
   align-items: center;
   justify-content: center;
@@ -79,7 +79,7 @@ const StyledButton = styled.TouchableOpacity`
   border-radius: ${styles.borderRadius};
 `;
 
-const StyledText = styled(Text)`
+const StyledText = styled((props) => <Text {...props} />)`
   color: ${styles.textColor};
 `;
 

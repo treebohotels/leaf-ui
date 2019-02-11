@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Animated } from 'react-native';
+import { Animated, View } from 'react-native';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import Text from '../../Text/native';
@@ -18,7 +18,7 @@ const labelColor = (props) => {
   return props.error && !props.isEmptyInput ? props.theme.color.red : props.theme.color.greyDark;
 };
 
-const InputContainerWrapper = styled.View`
+const InputContainerWrapper = styled((props) => <View {...props} />)`
   padding: ${(p) => p.theme.px([2, 0])};
 `;
 
@@ -34,7 +34,7 @@ const Label = Text.extend`
 
 const AnimatedLabel = Animated.createAnimatedComponent(Label);
 
-const InputContainer = styled.View`
+const InputContainer = styled((props) => <View {...props} />)`
   position: relative;
   flex-direction: row;
   align-items: center;
@@ -45,12 +45,12 @@ const InputContainer = styled.View`
   height: ${(p) => p.theme.px(6.75)};
 `;
 
-const RelativeFlexView = styled.View`
+const RelativeFlexView = styled((props) => <View {...props} />)`
   position: relative;
   flex: 1;
 `;
 
-const Input = styled.TextInput`
+const Input = styled((props) => <TextInput {...props} />)`
   flex: 1;
   padding: ${(p) => p.theme.px([2.1, 0, 0, 1.5])};
   font-size: ${(p) => p.theme.fontSize.s};
