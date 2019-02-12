@@ -13,6 +13,7 @@ const loadStories = () => {
   require('../../src/Button/native/Button.story');
   require('../../src/Text/native/Text.story');
   require('../../src/Tag/native/Tag.story');
+  require('../../src/theme/native/theme.story');
 };
 
 const StorybookUI = getStorybookUI();
