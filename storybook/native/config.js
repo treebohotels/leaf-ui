@@ -1,11 +1,12 @@
 /* eslint-disable global-require, no-console */
-
-import React, { Component } from 'react';
-import { AppRegistry, ScrollView } from 'react-native';
+import React from 'react';
+import { ScrollView } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { getStorybookUI, addDecorator, configure } from '@storybook/react-native';
 import { Font } from 'expo';
 import theme from '../../src/theme/native';
+
+console.disableYellowBox = true;
 
 const loadStories = () => {
   require('../../src/Card/native/Card.story');
@@ -14,7 +15,7 @@ const loadStories = () => {
   require('../../src/Tag/native/Tag.story');
 };
 
-const StorybookUIRoot = getStorybookUI({ port: 7007, onDeviceUI: true });
+const StorybookUI = getStorybookUI();
 
 addDecorator((story) => (
   <ThemeProvider theme={theme}>
@@ -26,35 +27,28 @@ addDecorator((story) => (
 
 configure(loadStories, module);
 
-class StorybookUIHMRRoot extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isFontsLoaded: false,
-    };
-
-    console.disableYellowBox = true;
-  }
+class StorybookRoot extends React.Component {
+  state = {
+    isFontsLoaded: false,
+  };
 
   componentDidMount() {
     Font.loadAsync({
-      RegularFontAndroid: require('./fonts/Roboto-Regular.ttf'),
-      MediumFontAndroid: require('./fonts/Roboto-Medium.ttf'),
-      BoldFontAndroid: require('./fonts/Roboto-Bold.ttf'),
-      RegularFontIOS: require('./fonts/SFProDisplay-Regular.otf'),
-      MediumFontIOS: require('./fonts/SFProDisplay-Medium.otf'),
-      SemiboldFontIOS: require('./fonts/SFProDisplay-Semibold.otf'),
-      BoldFontIOS: require('./fonts/SFProDisplay-Bold.otf'),
+      'Roboto-Regular': require('./fonts/Roboto-Regular.ttf'),
+      'Roboto-Medium': require('./fonts/Roboto-Medium.ttf'),
+      'Roboto-Bold': require('./fonts/Roboto-Bold.ttf'),
+      'SFProDisplay-Regular': require('./fonts/SFProDisplay-Regular.otf'),
+      'SFProDisplay-Medium': require('./fonts/SFProDisplay-Medium.otf'),
+      'SFProDisplay-Semibold': require('./fonts/SFProDisplay-Semibold.otf'),
+      'Averta-Bold': require('./fonts/SFProDisplay-Bold.otf'),
     }).then(() => {
       this.setState({ isFontsLoaded: true });
     });
   }
 
   render() {
-    return this.state.isFontsLoaded ? <StorybookUIRoot /> : null;
+    return this.state.isFontsLoaded ? <StorybookUI /> : null;
   }
 }
 
-AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIHMRRoot);
-export default StorybookUIHMRRoot;
+export default StorybookRoot;
