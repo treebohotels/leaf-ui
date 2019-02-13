@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Platform, Text as ReactNativeText } from 'react-native';
+import { Platform } from 'react-native';
 import { responsiveSizePx } from '../../utils/reactNativeResponsiveSize';
 import theme from '../../theme/native';
 
@@ -14,7 +13,7 @@ const fontFamilies = {
   bold: 'Averta-Bold',
 };
 
-const Text = styled((props) => <ReactNativeText {...props} />)`
+const Text = styled.Text`
   color: ${(props) => props.theme.color[props.color]};
   font-size: ${(props) => responsiveSizePx(props.theme.fontSize[props.size])};
   font-family: ${(props) => fontFamilies[props.weight]};

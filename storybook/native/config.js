@@ -6,9 +6,8 @@ import { getStorybookUI, addDecorator, configure } from '@storybook/react-native
 import { Font } from 'expo';
 import theme from '../../src/theme/native';
 
-console.disableYellowBox = true;
-
 const loadStories = () => {
+  require('../../src/TextInput/native/TextInput.story');
   require('../../src/Card/native/Card.story');
   require('../../src/Button/native/Button.story');
   require('../../src/Text/native/Text.story');
@@ -20,7 +19,7 @@ const StorybookUI = getStorybookUI();
 
 addDecorator((story) => (
   <ThemeProvider theme={theme}>
-    <ScrollView style={{ backgroundColor: '#eee' }}>
+    <ScrollView style={{ backgroundColor: '#eee', padding: 16 }}>
       {story()}
     </ScrollView>
   </ThemeProvider>
