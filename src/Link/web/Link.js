@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const styles = {
@@ -31,7 +32,17 @@ const styles = {
   },
 };
 
-const Link = styled.a`
+const Link = styled(
+  ({
+    color,
+    children,
+    ...props
+  }) => (
+    <a {...props}>
+      {children}
+    </a>
+  ),
+)`
   color: ${styles.color};
   text-decoration: none;
   cursor: pointer;
