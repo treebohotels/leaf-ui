@@ -21,7 +21,8 @@
     "lint": "run-p lint:*",
     "lint:eslint": "eslint .",
     "lint:stylelint": "stylelint '**/*.js'",
-    "test": "jest"
+    "test": "jest",
+    "eyes-storybook": "eyes-storybook -c ./storybook/web"
   },
   "lint-staged": {
     "*.js": [
@@ -42,6 +43,7 @@
     "yup": "0.26.6"
   },
   "devDependencies": {
+    "@applitools/eyes-storybook": "^2.3.16",
     "@babel/cli": "7.2.3",
     "@babel/core": "7.2.2",
     "@babel/plugin-external-helpers": "7.2.0",
