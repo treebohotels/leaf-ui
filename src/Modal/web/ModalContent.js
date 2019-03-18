@@ -4,8 +4,11 @@ import Space from '../../Space/web';
 import Flex from '../../Flex/web';
 import View from '../../View/web';
 
-const ModalContent = ({ children }) => (
-  <Space padding={[3, 5]}>
+const ModalContent = ({
+  children,
+  className,
+}) => (
+  <Space className={className} padding={[3, 5]}>
     <Flex flex="auto">
       <View style={{ overflow: 'auto' }}>
         {children}
@@ -16,6 +19,7 @@ const ModalContent = ({ children }) => (
 
 ModalContent.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 export default ModalContent;
