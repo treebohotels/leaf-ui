@@ -5,8 +5,8 @@ import Flex from '../../Flex/web';
 import View from '../../View/web';
 
 const ModalContent = ({
-  children,
   className,
+  children,
 }) => (
   <Space className={className} padding={[3, 5]}>
     <Flex flex="auto">
@@ -18,8 +18,8 @@ const ModalContent = ({
 );
 
 ModalContent.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default ModalContent;
