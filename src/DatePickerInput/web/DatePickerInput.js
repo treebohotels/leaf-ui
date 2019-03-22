@@ -4,7 +4,7 @@ import { withTheme } from 'styled-components';
 import { getIn } from 'formik';
 import dateFnsIsValid from 'date-fns/is_valid';
 import dateFnsFormat from 'date-fns/format';
-import DayPicker from 'react-day-picker';
+import DayPicker, { DateUtils } from 'react-day-picker';
 import Card from '../../Card/web';
 import Position from '../../Position/web';
 import Size from '../../Size/web';
@@ -12,6 +12,8 @@ import View from '../../View/web';
 import TextInput from '../../TextInput/web';
 import DatePickerNavbar from './DatePickerNavbar';
 import injectDatePickerStyles from './injectDatePickerStyles';
+import pluralize from '../../utils/pluralize';
+import isEqual from '../../utils/isEqual';
 
 class DatePickerInput extends React.Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class DatePickerInput extends React.Component {
 
     this.state = {
       isOpen: false,
-      selectedDay: this.makeDate(this.props.defaultValue),
+      selectedDays: this.makeDate([].concat(props.defaultValue)),
     };
     this.datePickerHasFocus = false;
     this.timeout = {};
@@ -27,15 +29,33 @@ class DatePickerInput extends React.Component {
 
   componentWillMount = () => {
     const { theme } = this.props;
+
     injectDatePickerStyles(theme);
   }
 
   componentDidMount() {
-    const { selectedDay } = this.state;
+    const { selectedDays } = this.state;
     const { name } = this.props;
     const { formik } = this.context;
+
     if (formik && name) {
-      formik.setFieldValue(name, selectedDay || '');
+      formik.setFieldValue(name, selectedDays || '');
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { formik } = this.context;
+
+    if (formik && nextProps.name) {
+      const formikValues = getIn(formik.values, nextProps.name);
+
+      this.setState((prevState) => {
+        if (!isEqual(formikValues, prevState.selectedDays)) {
+          return { selectedDays: this.makeDate([].concat(formikValues)) };
+        }
+
+        return null;
+      });
     }
   }
 
@@ -44,32 +64,53 @@ class DatePickerInput extends React.Component {
     clearTimeout(this.timeout.datePickerBlur);
   }
 
-  makeDate = (date) => {
-    if (date && dateFnsIsValid(new Date(date))) {
-      const clonedDate = new Date(date);
-      clonedDate.setHours(12, 0, 0, 0);
-      return clonedDate;
+  makeDate = (dates) => {
+    if (!dates.some((date) => !dateFnsIsValid(new Date(date || '')))) {
+      return dates.map((date) => {
+        const clonedDate = new Date(date);
+        clonedDate.setHours(12, 0, 0, 0);
+        return clonedDate;
+      });
     }
-    return undefined;
+    return [];
   }
 
   onDayClick = (day, modifiers) => {
-    const { name, onDateChange } = this.props;
+    const { name, onDateChange, multiple } = this.props;
     const { formik } = this.context;
 
     if (modifiers.disabled) {
       return;
     }
 
-    this.setState({
-      isOpen: false,
-      selectedDay: day,
-    }, () => {
-      if (formik && name) {
-        formik.setFieldValue(name, day);
+    this.setState((prevState) => {
+      let selectedDays = null;
+
+      if (multiple && getIn(prevState.selectedDays, 'length')) {
+        if (prevState.selectedDays.some((selectedDay) => DateUtils.isSameDay(selectedDay, day))) {
+          selectedDays = prevState.selectedDays
+            .filter((selectedDay) => !DateUtils.isSameDay(day, selectedDay));
+        } else {
+          selectedDays = [...prevState.selectedDays, day];
+        }
+      } else {
+        selectedDays = [day];
       }
-      this.inputRef.blur();
-      onDateChange(day, modifiers);
+
+      return {
+        isOpen: !!multiple,
+        selectedDays,
+      };
+    }, () => {
+      const { selectedDays } = this.state;
+
+      if (formik && name) {
+        formik.setFieldValue(name, multiple ? selectedDays : day);
+      }
+      if (!multiple) {
+        this.inputRef.blur();
+      }
+      onDateChange(multiple ? selectedDays : day, modifiers);
     });
   }
 
@@ -97,10 +138,12 @@ class DatePickerInput extends React.Component {
     }, 1);
   }
 
-  formatDayForInput = (day) => {
-    const { format } = this.props;
-    if (day) {
-      return dateFnsFormat(day, format);
+  formatDayForInput = (days) => {
+    const { format, multiple } = this.props;
+    if (days && days.length) {
+      return multiple
+        ? `${days.length} ${pluralize(days.length, 'Date', 'Dates')} selected`
+        : dateFnsFormat(days[0], format);
     }
     return '';
   }
@@ -112,7 +155,7 @@ class DatePickerInput extends React.Component {
   render() {
     const {
       isOpen,
-      selectedDay,
+      selectedDays,
     } = this.state;
 
     const {
@@ -151,7 +194,7 @@ class DatePickerInput extends React.Component {
           <TextInput
             inputRef={this.storeInputRef}
             label={label}
-            value={this.formatDayForInput(selectedDay)}
+            value={this.formatDayForInput(selectedDays)}
             placeholder={placeholder}
             disabled={disabled}
             size="100%"
@@ -184,11 +227,11 @@ class DatePickerInput extends React.Component {
                           numberOfMonths={1}
                           fromMonth={fromMonth}
                           toMonth={toMonth}
-                          month={selectedDay}
-                          selectedDays={[selectedDay]}
+                          month={selectedDays.slice(-1)[0]}
+                          selectedDays={selectedDays}
                           disabledDays={disabledDays}
                           modifiers={{
-                            start: [selectedDay],
+                            start: selectedDays,
                           }}
                           navbarElement={DatePickerNavbar}
                           captionElement={() => null}
@@ -214,6 +257,7 @@ DatePickerInput.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.instanceOf(Date)),
     PropTypes.instanceOf(Date),
     PropTypes.string,
   ]),
@@ -228,6 +272,7 @@ DatePickerInput.propTypes = {
   renderDay: PropTypes.func,
   onDateChange: PropTypes.func,
   theme: PropTypes.object,
+  multiple: PropTypes.bool,
   disabledDays: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
