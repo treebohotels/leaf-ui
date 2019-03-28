@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const IconStyle = createGlobalStyle`
+const IconStyles = createGlobalStyle`
   @font-face {
     font-family: 'Material Icons';
     font-style: normal;
@@ -26,4 +26,4 @@ const IconStyle = createGlobalStyle`
   }
 `;
 
-export default IconStyle;
+export default IconStyles;

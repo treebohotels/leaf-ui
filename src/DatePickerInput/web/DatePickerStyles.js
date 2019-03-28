@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import reactDayPickerStyles from '!!raw-loader!react-day-picker/lib/style.css'; // eslint-disable-line
 
-const DatePickerStyle = createGlobalStyle`
+const DatePickerStyles = createGlobalStyle`
   ${reactDayPickerStyles}
 
   .DayPicker {
@@ -73,4 +73,4 @@ const DatePickerStyle = createGlobalStyle`
   }
 `;
 
-export default DatePickerStyle;
+export default DatePickerStyles;

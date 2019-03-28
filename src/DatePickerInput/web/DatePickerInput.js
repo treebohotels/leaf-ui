@@ -11,7 +11,7 @@ import Size from '../../Size/web';
 import View from '../../View/web';
 import TextInput from '../../TextInput/web';
 import DatePickerNavbar from './DatePickerNavbar';
-import DatePickerStyle from './DatePickerStyle';
+import DatePickerStyles from './DatePickerStyles';
 
 class DatePickerInput extends React.Component {
   constructor(props) {
@@ -139,7 +139,7 @@ class DatePickerInput extends React.Component {
 
     return (
       <React.Fragment>
-        <DatePickerStyle />
+        <DatePickerStyles />
         <Size
           className={className}
           width={size}

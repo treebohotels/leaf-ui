@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import IconStyle from './IconStyle';
+import IconStyles from './IconStyles';
 import Flex from '../../Flex/web';
 import View from '../../View/web';
 
@@ -51,7 +51,7 @@ const Icon = ({
   ...props
 }) => (
   <React.Fragment>
-    <IconStyle />
+    <IconStyles />
     <Flex flexDirection="row" alignItems="center">
       <View>
         {right ? children : null}
