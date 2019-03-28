@@ -52,7 +52,7 @@ class Gallery extends Component {
         width={width}
         height={height}
         scrollDirection={scrollDirection}
-        innerRef={this.setGalleryRef}
+        ref={this.setGalleryRef}
       >
         {
           isGalleryRefSet ? React.Children.map(children, (child) => (
