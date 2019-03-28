@@ -31,11 +31,6 @@ class DateRangePickerInput extends React.Component {
     this.timeout = {};
   }
 
-  // componentWillMount = () => {
-  //   const { theme } = this.props;
-  //   DatePickerStyle(theme);
-  // }
-
   componentDidMount() {
     const { from, to } = this.state;
     const { name } = this.props;
