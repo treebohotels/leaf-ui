@@ -5,11 +5,11 @@
   "scripts": {
     "web": "run-s web:storybook",
     "web:storybook": "start-storybook -p 9000 -c ./storybook/web",
-    "web:storybook:build": "NODE_ENV=cjs build-storybook -o docs -c ./storybook/web",
+    "web:storybook:build": "NODE_ENV=production build-storybook -o docs -c ./storybook/web",
     "native": "expo r -c",
     "amp": "run-s amp:storybook",
     "amp:storybook": "start-storybook -p 9001 -c ./storybook/amp",
-    "amp:storybook:build": "NODE_ENV=cjs build-storybook -o docs -c ./storybook/amp",
+    "amp:storybook:build": "NODE_ENV=production build-storybook -o docs -c ./storybook/amp",
     "semantic-release": "semantic-release",
     "build": "run-s build:clean && run-p build:es build:cjs",
     "build:clean": "rimraf es cjs",
