@@ -1,14 +1,18 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { addDecorator, configure } from '@storybook/react';
-import { setOptions } from '@storybook/addon-options';
+import { addDecorator, addParameters, configure } from '@storybook/react';
+import { create } from '@storybook/theming';
 import { withKnobs } from '@storybook/addon-knobs';
 import theme, { injectBaseStyles } from '../../src/theme/web';
 
-setOptions({
-  name: 'Leaf-UI',
-  url: 'https://github.com/treebohotels/leaf-ui',
-  addonPanelInRight: true,
+addParameters({
+  options: {
+    theme: create({
+      brandTitle: 'Leaf-UI',
+      brandUrl: 'https://github.com/treebohotels/leaf-ui',
+    }),
+    panelPosition: 'right',
+  },
 });
 
 addDecorator(withKnobs);
