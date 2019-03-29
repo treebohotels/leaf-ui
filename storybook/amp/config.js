@@ -1,11 +1,11 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { addDecorator, configure } from '@storybook/react';
-import { setOptions } from '@storybook/addon-options';
+import { withOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
-import theme, { injectBaseStyles } from '../../src/theme/amp';
+import theme, { BaseStyles } from '../../src/theme/amp';
 
-setOptions({
+withOptions({
   name: 'Leaf-UI',
   url: 'https://github.com/treebohotels/leaf-ui',
   addonPanelInRight: true,
@@ -13,14 +13,12 @@ setOptions({
 
 addDecorator(withKnobs);
 
-addDecorator((story) => {
-  injectBaseStyles(theme);
-  return (
-    <ThemeProvider theme={theme}>
-      {story()}
-    </ThemeProvider>
-  );
-});
+addDecorator((story) => (
+  <ThemeProvider theme={theme}>
+    <BaseStyles />
+    {story()}
+  </ThemeProvider>
+));
 
 configure(() => {
   const req = require.context('../../src', true, /\/amp\/.*\.story.js$/);

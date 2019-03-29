@@ -120,6 +120,7 @@ const StyledButton = styled(
     size,
     shape,
     block,
+    isLoading,
     ...props
   }) => <button {...props} />,
 )`

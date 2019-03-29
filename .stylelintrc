@@ -1,5 +1,22 @@
 {
-  "processors": ["stylelint-processor-styled-components"],
+  "processors": [
+    ["stylelint-processor-styled-components", {
+      "parserPlugins": [
+        "jsx",
+        "objectRestSpread",
+        ["decorators", { "decoratorsBeforeExport": true }],
+        "classProperties",
+        "exportExtensions",
+        "asyncGenerators",
+        "functionBind",
+        "functionSent",
+        "dynamicImport",
+        "optionalCatchBinding",
+        "optionalChaining",
+        "exportDefaultFrom"
+      ]
+    }],
+  ],
   "extends": [
     "stylelint-config-standard",
     "stylelint-config-styled-components"

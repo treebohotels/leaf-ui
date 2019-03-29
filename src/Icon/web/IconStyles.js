@@ -1,6 +1,6 @@
-import { injectGlobal } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-export default () => injectGlobal`
+const IconStyles = createGlobalStyle`
   @font-face {
     font-family: 'Material Icons';
     font-style: normal;
@@ -25,3 +25,5 @@ export default () => injectGlobal`
     -webkit-font-smoothing: antialiased;
   }
 `;
+
+export default IconStyles;
