@@ -12,7 +12,7 @@ const THead = styled.thead`
     ` : ''}
   }
 
-  ${/* sc-custom */TR} {
+  ${/* sc-selector */TR} {
     &:hover {
       background-color: initial;
     }

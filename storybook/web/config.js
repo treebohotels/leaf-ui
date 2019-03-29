@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
 import { withKnobs } from '@storybook/addon-knobs';
-import theme, { injectBaseStyles } from '../../src/theme/web';
+import theme, { BaseStyles } from '../../src/theme/web';
 
 addParameters({
   options: {
@@ -17,14 +17,14 @@ addParameters({
 
 addDecorator(withKnobs);
 
-addDecorator((story) => {
-  injectBaseStyles(theme);
-  return (
-    <ThemeProvider theme={theme}>
+addDecorator((story) => (
+  <ThemeProvider theme={theme}>
+    <React.Fragment>
+      <BaseStyles />
       {story()}
-    </ThemeProvider>
-  );
-});
+    </React.Fragment>
+  </ThemeProvider>
+));
 
 configure(() => {
   const req = require.context('../../src', true, /\/web\/.*\.story.js$/);

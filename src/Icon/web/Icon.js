@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import IconStyles from './IconStyles';
 import Flex from '../../Flex/web';
 import View from '../../View/web';
 
@@ -24,10 +25,10 @@ export const I = styled(
     hasChildren,
     ...props
   }) => <i {...props} />,
-).attrs({
-  className: (props) => props.className ? `material-icons ${props.className}` : 'material-icons',
-  children: (props) => props.name,
-})`
+).attrs((props) => ({
+  className: props.className ? `material-icons ${props.className}` : 'material-icons',
+  children: props.name,
+}))`
   color: ${styles.color};
   margin-left: ${(props) => props.hasChildren && props.right ? props.theme.px(1) : ''};
   margin-right: ${(props) => props.hasChildren ? props.theme.px(1) : ''};
@@ -49,20 +50,23 @@ const Icon = ({
   children,
   ...props
 }) => (
-  <Flex flexDirection="row" alignItems="center">
-    <View>
-      {right ? children : null}
-      <I
-        color={color}
-        name={name}
-        right={right}
-        onClick={onClick}
-        hasChildren={!!children}
-        {...props}
-      />
-      {!right ? children : null}
-    </View>
-  </Flex>
+  <React.Fragment>
+    <IconStyles />
+    <Flex flexDirection="row" alignItems="center">
+      <View>
+        {right ? children : null}
+        <I
+          color={color}
+          name={name}
+          right={right}
+          onClick={onClick}
+          hasChildren={!!children}
+          {...props}
+        />
+        {!right ? children : null}
+      </View>
+    </Flex>
+  </React.Fragment>
 );
 
 Icon.propTypes = {

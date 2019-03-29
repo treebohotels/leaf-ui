@@ -80,7 +80,7 @@ class TextArea extends React.Component {
             ) : null
           }
           <Input
-            innerRef={inputRef}
+            ref={inputRef}
             id={name}
             name={name}
             error={error}
