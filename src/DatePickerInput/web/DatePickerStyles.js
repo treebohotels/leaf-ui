@@ -55,7 +55,7 @@ const DatePickerStyles = createGlobalStyle`
           color: ${(props) => props.theme.color.greyDarker};
         }
       }
-
+      /* stylelint-disable no-descending-specificity */
       &--selected:not(&--disabled):not(&--outside) {
         && {
           color: ${(props) => props.theme.color.white};
@@ -69,6 +69,7 @@ const DatePickerStyles = createGlobalStyle`
           background-color: ${(props) => props.theme.color.primaryLighter};
         }
       }
+      /* stylelint-enable no-descending-specificity */
     }
   }
 `;
