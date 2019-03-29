@@ -43,7 +43,7 @@
     "yup": "0.26.6"
   },
   "devDependencies": {
-    "@applitools/eyes-storybook": "^2.3.16",
+    "@applitools/eyes-storybook": "2.6.3",
     "@babel/cli": "7.2.3",
     "@babel/core": "7.2.2",
     "@babel/plugin-external-helpers": "7.2.0",
@@ -55,10 +55,9 @@
     "@babel/preset-env": "7.3.1",
     "@babel/preset-flow": "7.0.0",
     "@babel/preset-react": "7.0.0",
-    "@storybook/addon-actions": "4.1.11",
-    "@storybook/addon-knobs": "4.1.11",
-    "@storybook/addon-options": "4.1.11",
-    "@storybook/react": "4.1.11",
+    "@storybook/addon-actions": "5.0.5",
+    "@storybook/addon-knobs": "5.0.5",
+    "@storybook/react": "5.0.5",
     "@storybook/react-native": "4.1.11",
     "babel-eslint": "9.0.0",
     "babel-jest": "24.0.0",
