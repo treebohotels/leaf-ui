@@ -84,7 +84,7 @@ class Select extends React.Component {
     onChange(selectedValues);
   }
 
-  onSelect = (selectedOption, stateAndHelpers) => {
+  onSelect = (selectedOption) => {
     const { selectedOptions } = this.state;
     const { multiple } = this.props;
 
@@ -109,7 +109,6 @@ class Select extends React.Component {
       this.setState({
         selectedOptions: newSelectedOptions,
       }, () => {
-        stateAndHelpers.openMenu();
         this.onChange(this.getOptionsValue(newSelectedOptions));
       });
     } else {
@@ -191,6 +190,21 @@ class Select extends React.Component {
   itemToString = (option) =>
     String(option.value)
 
+  stateReducer = (state, changes) => {
+    switch (changes.type) {
+      case Downshift.stateChangeTypes.keyDownEnter:
+      case Downshift.stateChangeTypes.clickItem:
+        return {
+          ...changes,
+          highlightedIndex: state.highlightedIndex,
+          isOpen: this.props.multiple,
+          // inputValue: '',
+        };
+      default:
+        return changes;
+    }
+  }
+
   render() {
     const {
       selectedOptions,
@@ -225,6 +239,7 @@ class Select extends React.Component {
 
     return (
       <Downshift
+        stateReducer={this.stateReducer}
         selectedItem={selectedOptions}
         onSelect={this.onSelect}
         itemToString={this.itemToString}
@@ -294,12 +309,16 @@ class Select extends React.Component {
                         >
                           {
                             multiple ? (
-                              <Space padding={[0]}>
-                                <Checkbox
-                                  label={<Text truncate>{options[index].label}</Text>}
-                                  checked={this.isOptionSelected(dsSelectedOptions, options[index])}
-                                />
-                              </Space>
+                              <div style={{ pointerEvents: 'none' }}>
+                                <Space padding={[0]}>
+                                  <Checkbox
+                                    label={<Text truncate>{options[index].label}</Text>}
+                                    checked={
+                                      this.isOptionSelected(dsSelectedOptions, options[index])
+                                    }
+                                  />
+                                </Space>
+                              </div>
                             ) : (
                               <Text truncate>
                                 {`${options[index].label}`}
