@@ -6,6 +6,7 @@ import { getIn } from 'formik';
 import pluralize from '../../utils/pluralize';
 import isEqual from '../../utils/isEqual';
 import Text from '../../Text/web';
+import View from '../../View/web';
 import Space from '../../Space/web';
 import Checkbox from '../../Checkbox/web';
 import Trigger from './Trigger';
@@ -24,12 +25,14 @@ class Select extends React.Component {
   }
 
   componentDidMount() {
-    const { name, defaultSelected, multiple } = this.props;
+    const { name, defaultSelected, multiple, options } = this.props;
     const { formik } = this.context;
 
     if (formik && name) {
       if (defaultSelected == null || defaultSelected === '') {
         formik.setFieldValue(name, multiple ? [] : '');
+      } else if (defaultSelected === 'selectAll') {
+        formik.setFieldValue(name, options);
       } else {
         formik.setFieldValue(name, defaultSelected);
       }
@@ -44,10 +47,16 @@ class Select extends React.Component {
       const formikValues = getIn(formik.values, nextProps.name);
       if (formikValues == null || formikValues === '') {
         newSelectedOptions = [];
+      } else if (Array.isArray(formikValues)) {
+        newSelectedOptions = newSelectedOptions.concat(formikValues.map(this.remakeOption));
+        if (newSelectedOptions.length === nextProps.options.length) {
+          newSelectedOptions = [{
+            label: 'Select all',
+            value: 'selectAll',
+          }].concat(newSelectedOptions);
+        }
       } else {
-        newSelectedOptions = Array.isArray(formikValues)
-          ? newSelectedOptions.concat(formikValues.map(this.remakeOption))
-          : newSelectedOptions.concat(this.remakeOption(formikValues));
+        newSelectedOptions = newSelectedOptions.concat(this.remakeOption(formikValues));
       }
       this.setState((prevState) => {
         if (!isEqual(prevState.selectedOptions, newSelectedOptions)) {
@@ -59,8 +68,12 @@ class Select extends React.Component {
   }
 
   onChange = (selectedValues) => {
-    const { name, onChange } = this.props;
+    const { name, onChange, multiple } = this.props;
     const { formik } = this.context;
+    if (multiple) {
+      // eslint-disable-next-line
+      selectedValues = selectedValues.filter((value) => value !== 'selectAll');
+    }
     if (formik && name) {
       formik.setFieldValue(name, selectedValues);
       formik.setFieldTouched(name, true);
@@ -68,27 +81,42 @@ class Select extends React.Component {
     onChange(selectedValues);
   }
 
-  onSelect = (selectedOption, stateAndHelpers) => {
+  onSelect = (selectedOption) => {
     const { selectedOptions } = this.state;
-    const { multiple } = this.props;
+    const { multiple, options } = this.props;
 
     if (multiple) {
       let newSelectedOptions = [];
       if (this.isOptionSelected(selectedOptions, selectedOption)) {
-        // multiple: remove option
-        newSelectedOptions = selectedOptions
-          .filter((option) => !isEqual(option.value, selectedOption.value));
+        if (selectedOption.value === 'selectAll') {
+          newSelectedOptions = [];
+        } else {
+          // multiple: remove option
+          newSelectedOptions = selectedOptions
+            .filter((option) => !isEqual(option.value, selectedOption.value));
+
+          const newSelectedOptionsCount = newSelectedOptions.filter((option) => option.value !== 'selectAll').length;
+          if (newSelectedOptionsCount !== options.length) {
+            newSelectedOptions = newSelectedOptions.filter((option) => option.value !== 'selectAll');
+          }
+        }
+      } else if (selectedOption.value === 'selectAll') {
+        newSelectedOptions = this.makeOptions();
       } else {
-        // multiple: add option
         newSelectedOptions = [
           ...selectedOptions,
           selectedOption,
         ];
+        if (selectedOptions.length === options.length) {
+          newSelectedOptions = [{
+            label: 'Select all',
+            value: 'selectAll',
+          }].concat(newSelectedOptions);
+        }
       }
       this.setState({
         selectedOptions: newSelectedOptions,
       }, () => {
-        stateAndHelpers.openMenu();
         this.onChange(this.getOptionsValue(newSelectedOptions));
       });
     } else {
@@ -106,6 +134,8 @@ class Select extends React.Component {
 
     if (defaultSelected == null || defaultSelected === '') {
       defaultSelectedOptions = [];
+    } else if (defaultSelected === 'selectAll') {
+      defaultSelectedOptions = this.makeOptions();
     } else if (defaultSelected != null) {
       defaultSelectedOptions = Array.isArray(defaultSelected)
         ? defaultSelectedOptions.concat(defaultSelected.map(this.remakeOption))
@@ -126,9 +156,11 @@ class Select extends React.Component {
       return placeholder || '';
     }
     if (multiple) {
+      // eslint-disable-next-line
+      selectedOptions = selectedOptions.filter((option) => option.value !== 'selectAll');
       return `${selectedOptions.length} ${pluralize(selectedOptions.length, label)}`;
     }
-    return selectedOptions[0].label;
+    return selectedOptions[0] ? selectedOptions[0].label : (placeholder || '');
   }
 
   getOptionsValue = (options) =>
@@ -141,19 +173,42 @@ class Select extends React.Component {
       .map(({ value }) => value)
       .includes(option.value);
 
-  makeOption = (option) => ({
-    label: (option && option.label) || option,
-    value: (option && option.value) || option,
-  });
+  makeOptions = () => {
+    const { multiple } = this.props;
+    let { options } = this.props;
+    if (multiple) {
+      options = [{
+        label: 'Select all',
+        value: 'selectAll',
+      }].concat(options);
+    }
+    return options.map((option) => ({
+      label: (option && option.label) || option,
+      value: (option && option.value) || option,
+    }));
+  }
 
   remakeOption = (value) => {
-    const { options } = this.props;
-    const fullOptions = options.map(this.makeOption);
+    const fullOptions = this.makeOptions();
     return fullOptions.find((option) => isEqual(option.value, value));
   };
 
   itemToString = (option) =>
     String(option.value)
+
+  stateReducer = (state, changes) => {
+    switch (changes.type) {
+      case Downshift.stateChangeTypes.keyDownEnter:
+      case Downshift.stateChangeTypes.clickItem:
+        return {
+          ...changes,
+          highlightedIndex: state.highlightedIndex,
+          isOpen: this.props.multiple,
+        };
+      default:
+        return changes;
+    }
+  }
 
   render() {
     const {
@@ -185,10 +240,11 @@ class Select extends React.Component {
       error = error && error.replace(name, label || name);
     }
 
-    options = options.map(this.makeOption);
+    options = this.makeOptions();
 
     return (
       <Downshift
+        stateReducer={this.stateReducer}
         selectedItem={selectedOptions}
         onSelect={this.onSelect}
         itemToString={this.itemToString}
@@ -258,12 +314,16 @@ class Select extends React.Component {
                         >
                           {
                             multiple ? (
-                              <Space padding={[0]}>
-                                <Checkbox
-                                  label={<Text truncate>{options[index].label}</Text>}
-                                  checked={this.isOptionSelected(dsSelectedOptions, options[index])}
-                                />
-                              </Space>
+                              <View style={{ pointerEvents: 'none' }}>
+                                <Space padding={[0]}>
+                                  <Checkbox
+                                    label={<Text truncate>{options[index].label}</Text>}
+                                    checked={
+                                      this.isOptionSelected(dsSelectedOptions, options[index])
+                                    }
+                                  />
+                                </Space>
+                              </View>
                             ) : (
                               <Text truncate>
                                 {`${options[index].label}`}
