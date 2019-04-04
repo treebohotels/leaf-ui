@@ -104,13 +104,15 @@ class Select extends React.Component {
         newSelectedOptions = this.makeOptions();
       } else {
         newSelectedOptions = [
-          selectedOptions.length + 1 === options.length ? {
-            label: 'Select all',
-            value: 'selectAll',
-          } : null,
           ...selectedOptions,
           selectedOption,
-        ].filter(Boolean);
+        ];
+        if (selectedOptions.length === options.length) {
+          newSelectedOptions = [{
+            label: 'Select all',
+            value: 'selectAll',
+          }].concat(newSelectedOptions);
+        }
       }
       this.setState({
         selectedOptions: newSelectedOptions,
