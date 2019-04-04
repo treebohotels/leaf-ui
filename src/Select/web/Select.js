@@ -25,14 +25,14 @@ class Select extends React.Component {
   }
 
   componentDidMount() {
-    const { name, defaultSelected, multiple } = this.props;
+    const { name, defaultSelected, multiple, options } = this.props;
     const { formik } = this.context;
 
     if (formik && name) {
       if (defaultSelected == null || defaultSelected === '') {
         formik.setFieldValue(name, multiple ? [] : '');
       } else if (defaultSelected === 'selectAll') {
-        formik.setFieldValue(name, this.makeOptions());
+        formik.setFieldValue(name, options);
       } else {
         formik.setFieldValue(name, defaultSelected);
       }
