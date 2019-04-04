@@ -6,6 +6,7 @@ import { getIn } from 'formik';
 import pluralize from '../../utils/pluralize';
 import isEqual from '../../utils/isEqual';
 import Text from '../../Text/web';
+import View from '../../View/web';
 import Space from '../../Space/web';
 import Checkbox from '../../Checkbox/web';
 import Trigger from './Trigger';
@@ -40,7 +41,6 @@ class Select extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { formik } = this.context;
-    const { options } = nextProps;
     let newSelectedOptions = [];
 
     if (formik && nextProps.name) {
@@ -48,11 +48,8 @@ class Select extends React.Component {
       if (formikValues == null || formikValues === '') {
         newSelectedOptions = [];
       } else if (Array.isArray(formikValues)) {
-        const matchedSelectedOptions = options
-          .map((option) => this.makeOption(option))
-          .filter((option) => formikValues.includes(option.value));
-        newSelectedOptions = newSelectedOptions.concat(matchedSelectedOptions);
-        if (matchedSelectedOptions.length === options.length) {
+        newSelectedOptions = newSelectedOptions.concat(formikValues.map(this.remakeOption));
+        if (newSelectedOptions.length === nextProps.options.length) {
           newSelectedOptions = [{
             label: 'Select all',
             value: 'selectAll',
@@ -152,7 +149,7 @@ class Select extends React.Component {
       selectedOptions = selectedOptions.filter((option) => option.value !== 'selectAll');
       return `${selectedOptions.length} ${pluralize(selectedOptions.length, label)}`;
     }
-    return selectedOptions[0].label;
+    return selectedOptions[0] ? selectedOptions[0].label : (placeholder || '');
   }
 
   getOptionsValue = (options) =>
@@ -165,11 +162,6 @@ class Select extends React.Component {
       .map(({ value }) => value)
       .includes(option.value);
 
-  makeOption = (option) => ({
-    label: (option && option.label) || option,
-    value: (option && option.value) || option,
-  });
-
   makeOptions = () => {
     const { multiple } = this.props;
     let { options } = this.props;
@@ -179,7 +171,10 @@ class Select extends React.Component {
         value: 'selectAll',
       }].concat(options);
     }
-    return options.map(this.makeOption);
+    return options.map((option) => ({
+      label: (option && option.label) || option,
+      value: (option && option.value) || option,
+    }));
   }
 
   remakeOption = (value) => {
@@ -198,7 +193,6 @@ class Select extends React.Component {
           ...changes,
           highlightedIndex: state.highlightedIndex,
           isOpen: this.props.multiple,
-          // inputValue: '',
         };
       default:
         return changes;
@@ -309,7 +303,7 @@ class Select extends React.Component {
                         >
                           {
                             multiple ? (
-                              <div style={{ pointerEvents: 'none' }}>
+                              <View style={{ pointerEvents: 'none' }}>
                                 <Space padding={[0]}>
                                   <Checkbox
                                     label={<Text truncate>{options[index].label}</Text>}
@@ -318,7 +312,7 @@ class Select extends React.Component {
                                     }
                                   />
                                 </Space>
-                              </div>
+                              </View>
                             ) : (
                               <Text truncate>
                                 {`${options[index].label}`}
