@@ -25,14 +25,14 @@ class Select extends React.Component {
   }
 
   componentDidMount() {
-    const { name, defaultSelected, multiple, options } = this.props;
+    const { name, defaultSelected, multiple } = this.props;
     const { formik } = this.context;
 
     if (formik && name) {
       if (defaultSelected == null || defaultSelected === '') {
         formik.setFieldValue(name, multiple ? [] : '');
       } else if (defaultSelected === 'selectAll') {
-        formik.setFieldValue(name, options);
+        formik.setFieldValue(name, this.makeOptions());
       } else {
         formik.setFieldValue(name, defaultSelected);
       }
@@ -83,7 +83,7 @@ class Select extends React.Component {
 
   onSelect = (selectedOption) => {
     const { selectedOptions } = this.state;
-    const { multiple } = this.props;
+    const { multiple, options } = this.props;
 
     if (multiple) {
       let newSelectedOptions = [];
@@ -94,14 +94,23 @@ class Select extends React.Component {
           // multiple: remove option
           newSelectedOptions = selectedOptions
             .filter((option) => !isEqual(option.value, selectedOption.value));
+
+          const newSelectedOptionsCount = newSelectedOptions.filter((option) => option.value !== 'selectAll').length;
+          if (newSelectedOptionsCount !== options.length) {
+            newSelectedOptions = newSelectedOptions.filter((option) => option.value !== 'selectAll');
+          }
         }
       } else if (selectedOption.value === 'selectAll') {
         newSelectedOptions = this.makeOptions();
       } else {
         newSelectedOptions = [
+          newSelectedOptions.length === options.length ? {
+            label: 'Select all',
+            value: 'selectAll',
+          } : null,
           ...selectedOptions,
           selectedOption,
-        ];
+        ].filter(Boolean);
       }
       this.setState({
         selectedOptions: newSelectedOptions,
