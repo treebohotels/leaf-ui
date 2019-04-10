@@ -107,7 +107,7 @@ class Select extends React.Component {
           ...selectedOptions,
           selectedOption,
         ];
-        if (selectedOptions.length === options.length) {
+        if (newSelectedOptions.length === options.length) {
           newSelectedOptions = [{
             label: 'Select all',
             value: 'selectAll',
@@ -128,7 +128,7 @@ class Select extends React.Component {
   }
 
   getDefaultSelected = (props, context) => {
-    const { name, defaultSelected } = props;
+    const { name, defaultSelected, options } = props;
     const { formik } = context;
     let defaultSelectedOptions = [];
 
@@ -137,14 +137,32 @@ class Select extends React.Component {
     } else if (defaultSelected === 'selectAll') {
       defaultSelectedOptions = this.makeOptions();
     } else if (defaultSelected != null) {
-      defaultSelectedOptions = Array.isArray(defaultSelected)
-        ? defaultSelectedOptions.concat(defaultSelected.map(this.remakeOption))
-        : defaultSelectedOptions.concat(this.remakeOption(defaultSelected));
+      if (Array.isArray(defaultSelected)) {
+        defaultSelectedOptions = defaultSelectedOptions
+          .concat(defaultSelected.map(this.remakeOption));
+        if (defaultSelectedOptions.length === options.length) {
+          defaultSelectedOptions = [{
+            label: 'Select all',
+            value: 'selectAll',
+          }].concat(defaultSelectedOptions);
+        }
+      } else {
+        defaultSelectedOptions = defaultSelectedOptions.concat(this.remakeOption(defaultSelected));
+      }
     } else if (formik && name && getIn(formik.values, name) != null) {
       const formikValues = getIn(formik.values, name);
-      defaultSelectedOptions = Array.isArray(formikValues)
-        ? defaultSelectedOptions.concat(formikValues.map(this.remakeOption))
-        : defaultSelectedOptions.concat(this.remakeOption(formikValues));
+      if (Array.isArray(formikValues)) {
+        defaultSelectedOptions = defaultSelectedOptions
+          .concat(formikValues.map(this.remakeOption));
+        if (defaultSelectedOptions.length === options.length) {
+          defaultSelectedOptions = [{
+            label: 'Select all',
+            value: 'selectAll',
+          }].concat(defaultSelectedOptions);
+        }
+      } else {
+        defaultSelectedOptions = defaultSelectedOptions.concat(this.remakeOption(formikValues));
+      }
     }
 
     return defaultSelectedOptions;
