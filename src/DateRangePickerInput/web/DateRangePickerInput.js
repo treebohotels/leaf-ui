@@ -4,9 +4,8 @@ import { withTheme } from 'styled-components';
 import { getIn } from 'formik';
 import dateFnsIsValid from 'date-fns/is_valid';
 import dateFnsIsBefore from 'date-fns/is_before';
-import dateFnsIsAfter from 'date-fns/is_after';
 import dateFnsFormat from 'date-fns/format';
-import dateFnsAddDays from 'date-fns/add_days';
+import dateFnsDifferenceInCalendarDays from 'date-fns/difference_in_calendar_days';
 import DayPicker from 'react-day-picker';
 import Card from '../../Card/web';
 import Flex from '../../Flex/web';
@@ -146,8 +145,7 @@ class DateRangePickerInput extends React.Component {
         });
       }
     } else if (isOpen === 'to') {
-      const minAllowedDate = dateFnsAddDays(from, minRange - 1 || null);
-      if (dateFnsIsAfter(day, minAllowedDate)) {
+      if (dateFnsDifferenceInCalendarDays(day, from) >= minRange) {
         this.setState({
           isOpen: false,
           to: day,
