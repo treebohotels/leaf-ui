@@ -4,8 +4,8 @@ import { withTheme } from 'styled-components';
 import { getIn } from 'formik';
 import dateFnsIsValid from 'date-fns/is_valid';
 import dateFnsIsBefore from 'date-fns/is_before';
-import dateFnsIsAfter from 'date-fns/is_after';
 import dateFnsFormat from 'date-fns/format';
+import dateFnsDifferenceInCalendarDays from 'date-fns/difference_in_calendar_days';
 import DayPicker from 'react-day-picker';
 import Card from '../../Card/web';
 import Flex from '../../Flex/web';
@@ -104,6 +104,7 @@ class DateRangePickerInput extends React.Component {
       onDateRangeChange,
       onFromDateChange,
       onToDateChange,
+      minRange,
     } = this.props;
     const { formik } = this.context;
 
@@ -144,7 +145,7 @@ class DateRangePickerInput extends React.Component {
         });
       }
     } else if (isOpen === 'to') {
-      if (dateFnsIsAfter(day, from)) {
+      if (dateFnsDifferenceInCalendarDays(day, from) >= minRange) {
         this.setState({
           isOpen: false,
           to: day,
@@ -377,6 +378,7 @@ DateRangePickerInput.propTypes = {
     to: PropTypes.bool,
   }),
   format: PropTypes.string,
+  minRange: PropTypes.number,
   fromMonth: PropTypes.instanceOf(Date),
   toMonth: PropTypes.instanceOf(Date),
   modifiers: PropTypes.object,
@@ -424,6 +426,7 @@ DateRangePickerInput.defaultProps = {
     from: false,
     to: false,
   },
+  minRange: 1,
   format: 'YYYY-MM-DD',
   onDateRangeChange: () => {},
   onFromDateChange: () => {},
