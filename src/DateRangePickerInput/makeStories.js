@@ -33,11 +33,38 @@ export default (storiesOf, {
         onToDateChange={action('onToDateChange')}
       />
     ))
-    .add('same day', () => (
+    .add('range max 0', () => (
       <DateRangePickerInput
         name={{ from: 'TGIM', to: 'TGIF' }}
         disabledDays={[{ daysOfWeek: [0, 6] }]}
-        minRange={0}
+        range={{
+          min: 0,
+        }}
+        onDateRangeChange={action('onDateRangeChange')}
+        onFromDateChange={action('onFromDateChange')}
+        onToDateChange={action('onToDateChange')}
+      />
+    ))
+    .add('range max 5', () => (
+      <DateRangePickerInput
+        name={{ from: 'TGIM', to: 'TGIF' }}
+        disabledDays={[{ daysOfWeek: [0, 6] }]}
+        range={{
+          max: 5,
+        }}
+        onDateRangeChange={action('onDateRangeChange')}
+        onFromDateChange={action('onFromDateChange')}
+        onToDateChange={action('onToDateChange')}
+      />
+    ))
+    .add('range min 2 max 5', () => (
+      <DateRangePickerInput
+        name={{ from: 'TGIM', to: 'TGIF' }}
+        disabledDays={[{ daysOfWeek: [0, 6] }]}
+        range={{
+          min: 2,
+          max: 5,
+        }}
         onDateRangeChange={action('onDateRangeChange')}
         onFromDateChange={action('onFromDateChange')}
         onToDateChange={action('onToDateChange')}

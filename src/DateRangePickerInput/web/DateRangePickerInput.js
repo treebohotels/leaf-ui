@@ -7,6 +7,7 @@ import dateFnsIsBefore from 'date-fns/is_before';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsDifferenceInCalendarDays from 'date-fns/difference_in_calendar_days';
 import DayPicker from 'react-day-picker';
+import inRange from '../../utils/inRange';
 import Card from '../../Card/web';
 import Flex from '../../Flex/web';
 import Space from '../../Space/web';
@@ -29,6 +30,10 @@ class DateRangePickerInput extends React.Component {
     };
     this.datePickerHasFocus = false;
     this.timeout = {};
+    this.range = {
+      min: this.props.range.min >= 0 ? this.props.range.min : 1,
+      max: this.props.range.max >= 1 ? this.props.range.max : Infinity,
+    };
   }
 
   componentDidMount() {
@@ -104,7 +109,6 @@ class DateRangePickerInput extends React.Component {
       onDateRangeChange,
       onFromDateChange,
       onToDateChange,
-      minRange,
     } = this.props;
     const { formik } = this.context;
 
@@ -145,7 +149,8 @@ class DateRangePickerInput extends React.Component {
         });
       }
     } else if (isOpen === 'to') {
-      if (dateFnsDifferenceInCalendarDays(day, from) >= minRange) {
+      const selectionRange = dateFnsDifferenceInCalendarDays(day, from);
+      if (inRange(selectionRange, this.range.min, this.range.max + 1)) {
         this.setState({
           isOpen: false,
           to: day,
@@ -377,8 +382,11 @@ DateRangePickerInput.propTypes = {
     from: PropTypes.bool,
     to: PropTypes.bool,
   }),
+  range: PropTypes.shape({
+    min: PropTypes.number,
+    max: PropTypes.number,
+  }),
   format: PropTypes.string,
-  minRange: PropTypes.number,
   fromMonth: PropTypes.instanceOf(Date),
   toMonth: PropTypes.instanceOf(Date),
   modifiers: PropTypes.object,
@@ -426,7 +434,6 @@ DateRangePickerInput.defaultProps = {
     from: false,
     to: false,
   },
-  minRange: 1,
   format: 'YYYY-MM-DD',
   onDateRangeChange: () => {},
   onFromDateChange: () => {},
