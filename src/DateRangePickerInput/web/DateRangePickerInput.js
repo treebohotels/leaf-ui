@@ -434,10 +434,6 @@ DateRangePickerInput.defaultProps = {
     from: false,
     to: false,
   },
-  range: {
-    min: 1,
-    max: Infinity,
-  },
   format: 'YYYY-MM-DD',
   onDateRangeChange: () => {},
   onFromDateChange: () => {},
