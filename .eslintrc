@@ -6,6 +6,20 @@
     "node": true,
     "jest": true
   },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".web.js",
+          ".amp.js",
+          ".native.js",
+          ".ios.js",
+          ".android.js"
+        ]
+      }
+    }
+  },
   "rules": {
     "arrow-parens": ["error", "always"],
     "function-paren-newline": ["error", "consistent"],
