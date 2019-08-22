@@ -40,6 +40,7 @@ function AmountSchema() {
 }
 
 inherits(AmountSchema, yup.mixed, {
+  // eslint-disable-next-line no-underscore-dangle
   _typeCheck(value) {
     return /^-?\d+(\.\d{1,2})?$/.test(value);
   },
