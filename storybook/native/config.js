@@ -4,15 +4,15 @@ import { ScrollView } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { getStorybookUI, addDecorator, configure } from '@storybook/react-native';
 import { Font } from 'expo';
-import theme from '../../src/theme/native';
+import theme from '../../src/theme';
 
 const loadStories = () => {
-  require('../../src/TextInput/native/TextInput.story');
-  require('../../src/Card/native/Card.story');
-  require('../../src/Button/native/Button.story');
-  require('../../src/Text/native/Text.story');
-  require('../../src/Tag/native/Tag.story');
-  require('../../src/theme/native/theme.story');
+  require('../../src/TextInput/TextInput.story');
+  require('../../src/Card/Card.story');
+  require('../../src/Button/Button.story');
+  require('../../src/Text/Text.story');
+  require('../../src/Tag/Tag.story');
+  require('../../src/theme/theme.story');
 };
 
 const StorybookUI = getStorybookUI();

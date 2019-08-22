@@ -9,12 +9,6 @@ const ignoreFiles = [
   'utils',
 ];
 
-const platforms = [
-  'web',
-  'native',
-  'amp',
-];
-
 // generate exports for all platforms
 const srcPath = path.resolve(__dirname, '../');
 const components = fs.readdirSync(srcPath)
@@ -23,13 +17,11 @@ components.forEach((component) => {
   const componentDir = path.resolve(__dirname, `../../${component}`);
   mkdirp(componentDir, (mkdirpErr) => {
     if (mkdirpErr) throw mkdirpErr;
-    platforms.forEach((platform) => {
-      const componentFile = path.resolve(componentDir, `${platform}.js`);
-      const componentContent = `export { default } from '../es/${component}/${platform}';\nexport * from '../es/${component}/${platform}';\n`;
-      fs.writeFile(componentFile, componentContent, (writeFileErr) => {
-        if (writeFileErr) throw writeFileErr;
-        console.log(`generated: ${componentFile}`);
-      });
+    const componentFile = path.resolve(componentDir, 'index.js');
+    const componentContent = `export { default } from '../es/${component}';\nexport * from '../es/${component}';\n`;
+    fs.writeFile(componentFile, componentContent, (writeFileErr) => {
+      if (writeFileErr) throw writeFileErr;
+      console.log(`generated: ${componentFile}`);
     });
   });
 });
