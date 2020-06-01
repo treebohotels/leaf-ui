@@ -56,6 +56,12 @@ theme.color.accentLighter = theme.color.white;
 theme.color.accentLight = theme.color.white;
 theme.color.accent = theme.color.white;
 theme.color.accentDark = theme.color.white;
+theme.color.purpleLightest = '#ECE1FA';
+theme.color.purpleLighter = '#D8C4F5';
+theme.color.purpleLight = '#B79EE2';
+theme.color.purple = '#6950A1';
+theme.color.purpleDark = '#503A8A';
+theme.color.purpleDarker = '#3A2873';
 
 theme.fontFamily = {};
 theme.fontFamily.roboto = 'Roboto';
