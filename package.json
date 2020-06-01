@@ -35,7 +35,7 @@
     "downshift": "2.2.2",
     "expo": "32.0.0",
     "formik": "0.11.11",
-    "lodash": "4.17.11",
+    "lodash": "4.17.15",
     "react-day-picker": "7.2.4",
     "react-helmet": "5.2.0",
     "react-overlays": "0.8.3",
